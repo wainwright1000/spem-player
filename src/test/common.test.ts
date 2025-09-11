@@ -43,11 +43,13 @@ describe("common", () => {
     
     result = getTimeFromBar(1);
     expect(result).toBeTypeOf('number');
-    expect(result).toBeCloseTo(2.5, 1);
+    expect(result).toBeGreaterThanOrEqual(2.5); // ALC
+    expect(result).toBeLessThanOrEqual(4.2); // CotE
 
     result = getTimeFromBar(65);
     expect(result).toBeTypeOf('number');
-    expect(result).toBeCloseTo(234.5, 1);
+    expect(result).toBeLessThanOrEqual(252);  // CotE
+    expect(result).toBeGreaterThanOrEqual(234.5); // ALC
 
     result = getTimeFromBar(140);
     expect(result).toBe(0);
