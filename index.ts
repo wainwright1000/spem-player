@@ -47,6 +47,7 @@ var current: State = {
 // TODO: highlight part on score?
 // TODO: Add lyrics to footer
 // BUG: Soprano in choir 1 bar 13.  Breve or Longa?
+// BUG: loop() never finishes after playing to the end of spem
 
 async function setChoir(c: number, forceChange = false) {
   if (current.choir == c && !forceChange) {
@@ -81,10 +82,10 @@ function setPart(p: PartType) {
 }
 
 
-// where b = 0 to 139
+// where b = 0 (the intro bar with intro_bar beats in it) to 139
 function setBar(b: number) {
   b = toNum(b, false);
-  if (b > 140) {
+  if (b > 141) {
     controls.pause();
     b = 0;
   }
@@ -107,9 +108,9 @@ function parseURL() {
   const url = window.location.search.substring(1);
   const parms = url.split("&");
 
-  var choir = 0; // choir 1
+  var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
-  var bar = 0;
+  var bar = 1 - config.intro_beats/4;
   var dark = false;
   var early = false;
   for (let i = 0; i < parms.length; i++) {

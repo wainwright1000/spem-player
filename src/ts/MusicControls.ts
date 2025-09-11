@@ -153,7 +153,7 @@ export class MusicControls extends MusicElement {
       // load the new audio
       this.audio.src = newfile;
       this.audio.load();
-      this.audio.currentTime = this.bar * config.tempo;
+      this.audio.currentTime = this.getTimeFromBar(this.bar);
     }
 
     await this.audio.play();
@@ -167,8 +167,25 @@ export class MusicControls extends MusicElement {
     this.fireEvent('music-controls-playing');
 
     const self = this;
+
+    function getBarFromTime(t: number) {
+      for (let index = 0; index < config.bartime.length; index++) {
+        if (t > config.bartime[index] && t < config.bartime[index+1]) {
+          // calculate temp (bars per second)
+          const currenttempo = (config.barno[index+1]-config.barno[index])/(config.bartime[index+1]-config.bartime[index]);
+
+          return (config.barno[index] + currenttempo * (t-config.bartime[index]));
+        }
+      }
+      return 0;      
+    }
+
     function loop() {
-      self.bar = self.audio.currentTime / config.tempo;
+
+      // self.bar = ((self.audio.currentTime - (config.intro_beats * config.tempo / 4)) / config.tempo) + 1;
+      self.bar = getBarFromTime(self.audio.currentTime);
+      console.log("BAR for time " + self.audio.currentTime + " is " + self.bar);
+
       const intbar = Math.floor(self.bar);
       if (self.barinput && Number(self.barinput.value) != intbar) {
         self.barinput.value = String(intbar);
@@ -185,6 +202,9 @@ export class MusicControls extends MusicElement {
   }
 
   pause() {
+    console.log("paused at " + this.audio.currentTime);
+    console.log("barno", config.barno);
+    console.log("bartime", config.bartime);
     this.playing = false;
     if (this.svgPlay && this.svgLoading && this.svgPause) {
       this.svgPlay.style.display = "block";
@@ -213,6 +233,19 @@ export class MusicControls extends MusicElement {
     if (this.isPlaying()) this.play();
   }
 
+  getTimeFromBar(b: number) {
+    for (let index = 0; index < config.bartime.length; index++) {
+      if (b >= config.barno[index] && b < config.barno[index+1]) {
+        // calculate temp (bars per second)
+        const currenttempo = (config.barno[index+1]-config.barno[index])/(config.bartime[index+1]-config.bartime[index]);
+
+        return (config.bartime[index] + (b-config.barno[index])/currenttempo);
+      }
+    }
+    return 0;      
+  }
+
+
   setBar(b: string | number) {
     if (!this.barinput) return;
     const intbar = Number(b);
@@ -221,7 +254,10 @@ export class MusicControls extends MusicElement {
     console.log(`MusicControls: changing bar to ${b}`);
     
     this.bar = intbar;
-    this.audio.currentTime = this.bar * config.tempo;
+    // this.audio.currentTime = (this.bar * config.tempo) - (config.intro_beats * config.tempo / 4);
+    this.audio.currentTime = this.getTimeFromBar(this.bar);
+
+    console.log("setting currentTime to " + this.audio.currentTime);
     this.barinput.value = String(this.bar);
   }
   
