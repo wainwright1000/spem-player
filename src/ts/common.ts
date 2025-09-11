@@ -1,3 +1,5 @@
+import config from "./config";
+
 export type PartType = "all" | number;
 
 export interface Position {
@@ -78,5 +80,29 @@ export function toNum(s: string | number, integer: boolean = true, max?: number)
   var nums: number = Number(s);
   if (max) nums = Math.min(Math.max(0, nums), max);
   return integer ? Math.floor(nums + HDSQTIME) : nums;
+}
+
+export function getBarFromTime(t: number) {
+  for (let index = 0; index < config.bartime.length; index++) {
+    if (t > config.bartime[index] && t < config.bartime[index+1]) {
+      // calculate temp (bars per second)
+      const currenttempo = (config.barno[index+1]-config.barno[index])/(config.bartime[index+1]-config.bartime[index]);
+
+      return (config.barno[index] + currenttempo * (t-config.bartime[index]));
+    }
+  }
+  return 0;      
+}
+
+export function getTimeFromBar(b: number) {
+  for (let index = 0; index < config.bartime.length; index++) {
+    if (b >= config.barno[index] && b < config.barno[index+1]) {
+      // calculate temp (bars per second)
+      const currenttempo = (config.barno[index+1]-config.barno[index])/(config.bartime[index+1]-config.bartime[index]);
+
+      return (config.bartime[index] + (b-config.barno[index])/currenttempo);
+    }
+  }
+  return 0;      
 }
 
