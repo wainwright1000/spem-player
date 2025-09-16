@@ -119,9 +119,10 @@ header {
     }
 
     #versionrecording {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
         color: var(--color-title);
-        margin-right: 10px;
+        text-align: right;
+        margin-right: 5px;
         display: flex;
         align-items: center;
     }
