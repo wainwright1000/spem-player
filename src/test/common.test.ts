@@ -1,4 +1,4 @@
-import { toNum } from '../ts/common';
+import { toNum, getBarFromTime, getTimeFromBar } from '../ts/common';
 
 describe("common", () => {
   it("toNum() converts string and numbers as expected", () => {
@@ -20,6 +20,41 @@ describe("common", () => {
     expect(toNum("7.2", false, 7)).toBe(7);
     expect(toNum("7.2", true, 7)).toBe(7);
     expect(toNum("10.999999958333332", true)).toBe(11);
-  })
+  });
+
+  it("getBarFromTime() converts time to bar as expected", () => {
+    var result = getBarFromTime(0);
+    expect(result).toBeTypeOf('number');
+    expect(result).toBe(0);
+    
+    result = getBarFromTime(4.3);
+    expect(result).toBeTypeOf('number');
+    expect(Math.floor(result)).toBe(1);
+    
+    result = getBarFromTime(1000);
+    expect(result).toBeTypeOf('number');
+    expect(result).toBe(0);
+  });
+
+  it("getTimeFromBar() converts bar to time as expected", () => {
+    var result = getTimeFromBar(0);
+    expect(result).toBeTypeOf('number');
+    expect(result).toBe(0);
+    
+    result = getTimeFromBar(1);
+    expect(result).toBeTypeOf('number');
+    expect(result).toBeGreaterThanOrEqual(2.5); // ALC
+    expect(result).toBeLessThanOrEqual(4.2); // CotE
+
+    result = getTimeFromBar(65);
+    expect(result).toBeTypeOf('number');
+    expect(result).toBeLessThanOrEqual(252);  // CotE
+    expect(result).toBeGreaterThanOrEqual(234.5); // ALC
+
+    result = getTimeFromBar(140);
+    expect(result).toBe(0);
+  });
+
+
 
 })
