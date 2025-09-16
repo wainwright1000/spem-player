@@ -1,3 +1,5 @@
+import config from "./config";
+
 export type PartType = "all" | number;
 
 export interface Position {
@@ -11,6 +13,7 @@ export type ScoreType = "early" | "modern";
 export type Status = "playing" | "paused" | "loading";
 
 export type State = {
+  version: number; // 0 = ALC, 1 = CotE
   viewmode: Brightness;
   period: ScoreType;
   choir: number;
@@ -78,5 +81,29 @@ export function toNum(s: string | number, integer: boolean = true, max?: number)
   var nums: number = Number(s);
   if (max) nums = Math.min(Math.max(0, nums), max);
   return integer ? Math.floor(nums + HDSQTIME) : nums;
+}
+
+export function getBarFromTime(t: number, v: number = 0) {
+  for (let index = 0; index < config.bartime[v].length; index++) {
+    if (t > config.bartime[v][index] && t < config.bartime[v][index+1]) {
+      // calculate temp (bars per second)
+      const currenttempo = (config.barno[v][index+1]-config.barno[v][index])/(config.bartime[v][index+1]-config.bartime[v][index]);
+      const b = (config.barno[v][index] + currenttempo * (t-config.bartime[v][index]));
+      return b;
+    }
+  }
+  return 0;      
+}
+
+export function getTimeFromBar(b: number, v: number = 0) {
+  for (let index = 0; index < config.bartime[v].length; index++) {
+    if (b >= config.barno[v][index] && b < config.barno[v][index+1]) {
+      // calculate temp (bars per second)
+      const currenttempo = (config.barno[v][index+1]-config.barno[v][index])/(config.bartime[v][index+1]-config.bartime[v][index]);
+
+      return (config.bartime[v][index] + (b-config.barno[v][index])/currenttempo);
+    }
+  }
+  return 0;      
 }
 

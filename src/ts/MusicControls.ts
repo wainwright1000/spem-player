@@ -1,4 +1,5 @@
 import config from "./config";
+import { getBarFromTime, getTimeFromBar } from "./common";
 import { MusicElement } from "./MusicElement";
 
 import loadingSVG from "../icons/loading.svg?raw";
@@ -6,10 +7,11 @@ import pauseSVG from "../icons/pause.svg?raw";
 import playSVG from "../icons/play.svg?raw";
 
 export class MusicControls extends MusicElement {
-  static observedAttributes = [ "choir", "part", "bar", "playing" ];
+  static observedAttributes = [ "choir", "part", "bar", "playing", "version" ];
 
   audio = new Audio();
 
+  versionselect: HTMLSelectElement | null = null;
   choirselect: HTMLSelectElement | null = null;
   partselect: HTMLSelectElement | null = null;
   barinput: HTMLInputElement | null = null;
@@ -119,9 +121,13 @@ export class MusicControls extends MusicElement {
 
   // Returns true if the filename of the current audio source the same as that of the new (input) filename?
   isSameAudio(file: string): boolean {
-    const thisfn = this.audio.src.split("/").pop();
-    const thatfn = file.split("/").pop();
-    return thisfn == thatfn;
+    const thisversion = this.audio.src.split("/").slice(-2, -1)[0]; 
+    const thatversion = file.split("/").slice(-2, -1)[0];
+    if (thisversion != thatversion) return false; // different versions, so definitely not the same audio
+    
+    const thisfile = this.audio.src.split("/").pop();
+    const thatfile = file.split("/").pop();
+    return thisfile == thatfile;
   }
 
   getMP3filename() {
@@ -131,8 +137,11 @@ export class MusicControls extends MusicElement {
       this.voicePart != "all") {
       newfile = "Choir " + (this.choir + 1) + "-" + config.parts[this.voicePart];
     }
-    return config.audio_prefix + newfile + ".mp3";
+    console.log("MusicControls: " + config.version[this.version]);
+    return config.audio_prefix + config.version[this.version] + "/" + newfile + ".mp3";
   }
+
+
 
 
   async play() {
@@ -140,7 +149,7 @@ export class MusicControls extends MusicElement {
     const newfile = this.getMP3filename();
     if (!this.isSameAudio(newfile)) {
 
-      console.log("AudioControls: loading:", newfile);
+      console.log("MusicControls: loading:", newfile);
       // set the play button spinner while loading audio
       this.playing = false;
       if (this.svgPlay && this.svgLoading && this.svgPause) {
@@ -153,7 +162,7 @@ export class MusicControls extends MusicElement {
       // load the new audio
       this.audio.src = newfile;
       this.audio.load();
-      this.audio.currentTime = this.bar * config.tempo;
+      this.audio.currentTime = getTimeFromBar(this.bar, this.version);
     }
 
     await this.audio.play();
@@ -167,8 +176,11 @@ export class MusicControls extends MusicElement {
     this.fireEvent('music-controls-playing');
 
     const self = this;
+
     function loop() {
-      self.bar = self.audio.currentTime / config.tempo;
+
+      self.bar = getBarFromTime(self.audio.currentTime, self.version);
+
       const intbar = Math.floor(self.bar);
       if (self.barinput && Number(self.barinput.value) != intbar) {
         self.barinput.value = String(intbar);
@@ -177,14 +189,13 @@ export class MusicControls extends MusicElement {
 
       if (self.isPlaying()) {
         window.requestAnimationFrame(loop);
-        // setTimeout(frame, config.tempo / 10);
       }
     }
     window.requestAnimationFrame(loop);
-    // setTimeout(frame, config.tempo / 10);
   }
 
   pause() {
+    console.log("MusicControls: paused at bar " + this.bar + ", time " + this.audio.currentTime);
     this.playing = false;
     if (this.svgPlay && this.svgLoading && this.svgPause) {
       this.svgPlay.style.display = "block";
@@ -204,6 +215,12 @@ export class MusicControls extends MusicElement {
     if (this.isPlaying()) this.play();
   }
 
+  setVersion(v: number | string): void { 
+    super.setVersion(v);
+    this.audio.currentTime = getTimeFromBar(this.bar, this.version);
+    if (this.isPlaying()) this.play();
+  }
+
   setPart(p: string | number) {
     if (!this.partselect) return;
     super.setPart(p);
@@ -213,6 +230,7 @@ export class MusicControls extends MusicElement {
     if (this.isPlaying()) this.play();
   }
 
+
   setBar(b: string | number) {
     if (!this.barinput) return;
     const intbar = Number(b);
@@ -221,7 +239,9 @@ export class MusicControls extends MusicElement {
     console.log(`MusicControls: changing bar to ${b}`);
     
     this.bar = intbar;
-    this.audio.currentTime = this.bar * config.tempo;
+    this.audio.currentTime = getTimeFromBar(this.bar, this.version);
+
+    console.log("setting currentTime to " + this.audio.currentTime);
     this.barinput.value = String(this.bar);
   }
   

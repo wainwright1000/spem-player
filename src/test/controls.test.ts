@@ -26,6 +26,12 @@ function waitForEvent(element: HTMLElement, eventName: string, handler: (event: 
   });
 }
 
+function matchesWildcard(pattern: string, str: string): boolean {
+  const regex = new RegExp('^' + pattern.replace(/\*/g, '.*') + '$');
+  return regex.test(str);
+}
+
+
 describe("MusicControls custom element", () => {
 
   beforeAll(() => {
@@ -253,10 +259,10 @@ describe("MusicControls custom element", () => {
 
   it("getMP3filename works", () => {
     const elem = document.querySelector('music-controls') as MusicControls;
-    expect(elem.getMP3filename()).toBe("/audio/default.mp3");
+    expect(matchesWildcard("/audio/*/default.mp3", elem.getMP3filename())).toBe(true);
     elem.setChoir(2);
     elem.setPart(4);
-    expect(elem.getMP3filename()).toBe("/audio/Choir 3-Bass.mp3");
+    expect(matchesWildcard("/audio/*/Choir 3-Bass.mp3", elem.getMP3filename())).toBe(true);
   });
 
   it("play, change choirs, should still be playing", async () => {

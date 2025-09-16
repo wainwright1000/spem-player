@@ -4,6 +4,7 @@ import { PartType, Position, toNum } from "./common";
 export class MusicElement extends HTMLElement {
 
   // state
+  version: number = 0; // 0 = ALC, 1 = CotE
   choir: number = 0;
   voicePart: PartType = "all";
   bar: number = 0;
@@ -27,8 +28,12 @@ export class MusicElement extends HTMLElement {
 
   async attributeChangedCallback(name: string, oldValue: string, newValue: string) {
     if (oldValue == newValue) return;
-
+    
     switch (name) {
+      case "version":
+        console.log(this.constructor.name + ": attribute changed: " + name + " from " + oldValue + " to " + newValue);
+        this.setVersion(newValue);
+        break;
       case "choir":
         this.setChoir(newValue);
         break;
@@ -42,7 +47,7 @@ export class MusicElement extends HTMLElement {
         this.setPlaying(newValue);
         break;
       default:
-        console.log("AudioControls: bad attribute: " + newValue);
+        console.log("MusicControls: bad attribute: " + newValue);
         break;
     }
   }
@@ -64,6 +69,11 @@ export class MusicElement extends HTMLElement {
 
   setPlaying(playing: string | boolean) {
     this.playing = typeof playing == 'string' && playing == 'true' || playing == true;
+    this.fireEvent('music-controls-changed');
+  }
+
+  setVersion(v: number | string) {
+    this.version = toNum(v, true, config.version.length - 1);
     this.fireEvent('music-controls-changed');
   }
 
