@@ -25,8 +25,11 @@ const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 type SvgInHtml = HTMLElement & SVGElement;
 const darkswitch = document.getElementById('darkswitch') as SvgInHtml;
 const scoreswitch = document.getElementById('scoreswitch') as SvgInHtml;
+const versionswitch = document.getElementById('versionswitch') as SvgInHtml;
+const versionrecording = document.getElementById('versionrecording') as HTMLSpanElement;
 
 var current: State = {
+  version: 0, // 0 = ALC, 1 = CotE
   viewmode: "dark",
   period: "modern",
   choir: 0,
@@ -108,11 +111,14 @@ function parseURL() {
   const url = window.location.search.substring(1);
   const parms = url.split("&");
 
+  var version = 0; // ALC
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
-  var bar = 1 - config.intro_beats/4;
+  var bar = 1 - config.intro_beats[version]/4;
   var dark = false;
   var early = false;
+  var v = 1; // Choir of the Earth
+
   for (let i = 0; i < parms.length; i++) {
     const parm = parms[i].split("=");
     if (parm[0] == "choir") {
@@ -128,10 +134,15 @@ function parseURL() {
     else if (parm[0] == "dark") {
       dark = true;
     }
+    else if (parm[0] == "version") {
+      if (parm[1] == "alc") v = 0;
+      else v = 1;
+    }
     else if (parm[0] == "score") {
       early = (parm[1] == "early");
     }
   }
+  setVersion(v);
   setChoir(choir, true);
   setPart(part);
   setBar(bar);
@@ -209,6 +220,9 @@ function keyboardTapped(e) {
     case 'KeyB':
       setPart("satrb".indexOf(e.key));
       break;
+    case 'KeyV':
+      toggleVersion();
+      break;
     case 'KeyM':
       toggleScore();
       break;
@@ -283,6 +297,23 @@ function toggleScore(forceEarly = false) {
   }
 }
 
+async function setVersion(v: number) {
+  v = toNum(v, false, config.version.length - 1);
+  if (current.version == v) {
+    return;
+  }
+  current.version = v;
+  console.log("Setting version to", config.version[current.version]);
+  versionrecording.textContent = config.version_label[current.version];
+
+  // Update the input field
+  controls.setAttribute("version", String(current.version));
+}
+
+
+function toggleVersion() {
+  setVersion((current.version + 1) % config.version.length);
+}
 
 function setVH() {
   let vh = window.innerHeight * 0.01;
@@ -339,6 +370,7 @@ function init(): void {
   backdrop.addEventListener("click", () => showHelp(false));
   darkswitch.addEventListener("click", () => toggleDark());
   scoreswitch.addEventListener("click", () => toggleScore());
+  versionswitch.addEventListener("click", () => toggleVersion());
 
   // watch for change in user's preference of color scheme
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {

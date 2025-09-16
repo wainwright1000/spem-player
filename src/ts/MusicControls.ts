@@ -7,10 +7,11 @@ import pauseSVG from "../icons/pause.svg?raw";
 import playSVG from "../icons/play.svg?raw";
 
 export class MusicControls extends MusicElement {
-  static observedAttributes = [ "choir", "part", "bar", "playing" ];
+  static observedAttributes = [ "choir", "part", "bar", "playing", "version" ];
 
   audio = new Audio();
 
+  versionselect: HTMLSelectElement | null = null;
   choirselect: HTMLSelectElement | null = null;
   partselect: HTMLSelectElement | null = null;
   barinput: HTMLInputElement | null = null;
@@ -120,9 +121,13 @@ export class MusicControls extends MusicElement {
 
   // Returns true if the filename of the current audio source the same as that of the new (input) filename?
   isSameAudio(file: string): boolean {
-    const thisfn = this.audio.src.split("/").pop();
-    const thatfn = file.split("/").pop();
-    return thisfn == thatfn;
+    const thisversion = this.audio.src.split("/").slice(-2, -1)[0]; 
+    const thatversion = file.split("/").slice(-2, -1)[0];
+    if (thisversion != thatversion) return false; // different versions, so definitely not the same audio
+    
+    const thisfile = this.audio.src.split("/").pop();
+    const thatfile = file.split("/").pop();
+    return thisfile == thatfile;
   }
 
   getMP3filename() {
@@ -132,7 +137,8 @@ export class MusicControls extends MusicElement {
       this.voicePart != "all") {
       newfile = "Choir " + (this.choir + 1) + "-" + config.parts[this.voicePart];
     }
-    return config.audio_prefix + newfile + ".mp3";
+    console.log("MusicControls: " + config.version[this.version]);
+    return config.audio_prefix + config.version[this.version] + "/" + newfile + ".mp3";
   }
 
 
@@ -143,7 +149,7 @@ export class MusicControls extends MusicElement {
     const newfile = this.getMP3filename();
     if (!this.isSameAudio(newfile)) {
 
-      console.log("AudioControls: loading:", newfile);
+      console.log("MusicControls: loading:", newfile);
       // set the play button spinner while loading audio
       this.playing = false;
       if (this.svgPlay && this.svgLoading && this.svgPause) {
@@ -156,7 +162,7 @@ export class MusicControls extends MusicElement {
       // load the new audio
       this.audio.src = newfile;
       this.audio.load();
-      this.audio.currentTime = getTimeFromBar(this.bar);
+      this.audio.currentTime = getTimeFromBar(this.bar, this.version);
     }
 
     await this.audio.play();
@@ -173,8 +179,7 @@ export class MusicControls extends MusicElement {
 
     function loop() {
 
-      self.bar = getBarFromTime(self.audio.currentTime);
-      console.log("BAR for time " + self.audio.currentTime + " is " + self.bar);
+      self.bar = getBarFromTime(self.audio.currentTime, self.version);
 
       const intbar = Math.floor(self.bar);
       if (self.barinput && Number(self.barinput.value) != intbar) {
@@ -190,9 +195,7 @@ export class MusicControls extends MusicElement {
   }
 
   pause() {
-    console.log("paused at " + this.audio.currentTime);
-    console.log("barno", config.barno);
-    console.log("bartime", config.bartime);
+    console.log("MusicControls: paused at bar " + this.bar + ", time " + this.audio.currentTime);
     this.playing = false;
     if (this.svgPlay && this.svgLoading && this.svgPause) {
       this.svgPlay.style.display = "block";
@@ -209,6 +212,12 @@ export class MusicControls extends MusicElement {
     console.log(`MusicControls: changing choir to ${this.choir}`);
 
     this.choirselect.value = String(this.choir);
+    if (this.isPlaying()) this.play();
+  }
+
+  setVersion(v: number | string): void { 
+    super.setVersion(v);
+    this.audio.currentTime = getTimeFromBar(this.bar, this.version);
     if (this.isPlaying()) this.play();
   }
 
@@ -230,7 +239,7 @@ export class MusicControls extends MusicElement {
     console.log(`MusicControls: changing bar to ${b}`);
     
     this.bar = intbar;
-    this.audio.currentTime = getTimeFromBar(this.bar);
+    this.audio.currentTime = getTimeFromBar(this.bar, this.version);
 
     console.log("setting currentTime to " + this.audio.currentTime);
     this.barinput.value = String(this.bar);
