@@ -111,10 +111,11 @@ function parseURL() {
   const url = window.location.search.substring(1);
   const parms = url.split("&");
 
-  var version = 0; // ALC
+  var version = 1; // CotE
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
   var bar = 1 - config.intro_beats[version]/4;
+  console.log("Initial bar is", bar);
   var dark = false;
   var early = false;
   var v = 1; // Choir of the Earth

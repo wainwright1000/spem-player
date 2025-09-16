@@ -1,0 +1,15 @@
+<svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
+  <!-- Rounded rectangle background, 20% of 180 = 36px radius -->
+  <rect width="180" height="180" rx="36" fill="#18365A"/>
+ 
+  <line x1="65" y1="30" x2="115" y2="30" stroke="hsl(360,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="115" y1="30" x2="150" y2="65" stroke="hsl(320,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="150" y1="65" x2="150" y2="115" stroke="hsl(30,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="150" y1="115" x2="115" y2="150" stroke="hsl(50,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="115" y1="150" x2="65" y2="150" stroke="hsl(110,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="65" y1="150" x2="30" y2="115" stroke="hsl(150,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="30" y1="115" x2="30" y2="65" stroke="hsl(190,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="30" y1="65" x2="65" y2="30" stroke="hsl(220,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  <line x1="65" y1="30" x2="90" y2="30" stroke="hsl(360,50%,47%)" stroke-width="16" stroke-linecap="round" />
+  
+</svg>
