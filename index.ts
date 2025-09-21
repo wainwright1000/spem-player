@@ -176,13 +176,23 @@ function handleControlChange(e: CustomEvent) {
 // Keyboard events (wasd)
 // -----------------------------------------------------
 
-function keyboardTapped(e) {
+function keyboardTapped(e: KeyboardEvent) {
+  if (e === undefined || e.target === null) {
+    return keyboardTapped;
+  }
+
+   // Ensure e.target is an Element before accessing classList
+  if (!(e.target instanceof Element)) {
+    return;
+  }
+
   // don't handle keyboard events on the four control widgets
   // cos it messes with the UI interaction
   const classes = [...e.target.classList];
   if (classes.includes('control')) {
     return;
   }
+  // don't handle keyboard events if composing text (chinese characters)
   if (e.isComposing || e.keyCode === 229) {
     return;
   }
@@ -215,14 +225,14 @@ function keyboardTapped(e) {
     case 'Digit6':
     case 'Digit7':
     case 'Digit8':
-      setChoir(e.key - 1);
+      setChoir(Number(e.key) - 1);
       break;
     case 'KeyS':
     case 'KeyA':
     case 'KeyT':
     case 'KeyR':
     case 'KeyB':
-      setPart("satrb".indexOf(e.key));
+      setPart("satrb".indexOf(String(e.key).toLowerCase()));
       break;
     case 'KeyV':
       toggleVersion();
@@ -369,7 +379,7 @@ function init(): void {
   canvas.addEventListener("music-canvas-touchstart", handleCanvasClick as (e: Event) => void);
   canvas.addEventListener("music-canvas-touchmove", handleCanvasClick as (e: Event) => void);
 
-  document.addEventListener("keydown", keyboardTapped);
+  document.addEventListener("keydown", keyboardTapped as (e: KeyboardEvent) => void);
   info.addEventListener("click", () => showHelp(true));
   backdrop.addEventListener("click", () => showHelp(false));
   darkswitch.addEventListener("click", () => toggleDark());
