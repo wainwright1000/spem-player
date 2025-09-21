@@ -75,8 +75,11 @@ function setupLilypondParser(): ohm.Semantics {
       const c = comp.parse();
       return c;
     },
-    command(_, _2, _3) {
+    command(_, _2) {
       // const command = _2.sourceString;
+    },
+    BarCheck(_, _2, _3) {
+      // console.log("Bar check: " + _3.sourceString);
     },
     barline(_) {
       return new BarLine();
@@ -143,6 +146,11 @@ async function getFile(filename: string): Promise<string> {
   return text;
 }
 
+// -----------------------------------------------------
+// Process the lilypond input file, creating two data structures:
+// dict[position] = [ {choir, part, note}, ... ]
+// ranges[choir (0 to 7)][part (0 to 4)] = [ {from, to}, ... ]
+// -----------------------------------------------------
 export function processLilypond() {
 
   if (!semantics) {
@@ -157,8 +165,6 @@ export function processLilypond() {
 
   semantics(result).parse();
 
-  // Read lilypond input into dict{ position -> [ {choir, part, note}], ... }
-  // Read lilypond into ranges[choir][part] = [ {from, to}, ... ]
   for (let c = 0; c < config.choirs[0].length; c++) {
     const choir = config.choirs[0][c];
     ranges[c] = [];
@@ -166,6 +172,8 @@ export function processLilypond() {
       const part = config.parts[p]; 
       ranges[c][p] = [];
       var key = "notes" + choir + part;
+
+      // get the lilypond for this choir and part
       var lilypond = scores[key];
 
       // console.log(lilypond.map(x => (typeof x == "undefined") ? "?" : x.toString()).join(" "));

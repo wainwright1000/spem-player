@@ -9,7 +9,9 @@ Lilypond {
     
     RelativeClause = (variable "=")? ("\\relative" note?)? "{" Music "}"
     
-    Music = ( Component | command) *
+    Music = ( Component | Command ) *
+    
+    Command = BarCheck | command
 
     comment = "%" (~"\n" any)* ("\n" | end)
     space += comment
@@ -19,7 +21,9 @@ Lilypond {
 		    | rest --rest
 		    | barline -- barline
             
-    command = "\\" (~"\n" any)* ("\n" | end)
+    command = "\\" alnum+
+    
+    BarCheck = "\\barNumberCheck" "#" digit+
     
     barline = "|"
     
