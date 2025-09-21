@@ -1,9 +1,11 @@
 Lilypond { 
 
 	File = (Clause)*
-    Clause = RelativeClause | Version
+    Clause = RelativeClause | Version | Include
 	
     Version = "\\version" "\"" (digit | ".")* "\""
+
+    Include = "\\include" ("\"" (~"\"" any)* "\"")
     
     RelativeClause = (variable "=")? ("\\relative" note?)? "{" Music "}"
     
@@ -21,7 +23,7 @@ Lilypond {
     
     barline = "|"
     
-	note = noteName accidental? octave? durationScaled? expression? slur?
+	note = noteName accidental? octave? courtesy? durationScaled? expression? slur?
 	noteName = "a" | "b" | "c" | "d" | "e" | "f" | "g"
     
     repeatedNote = durationScaled slur?
@@ -36,6 +38,8 @@ Lilypond {
     octave = octaveUp | octaveDown
     octaveUp = "'"+
     octaveDown = ","+
+    
+    courtesy = "?"
     
     fraction = #(digit+ ("/" digit+)?)
     

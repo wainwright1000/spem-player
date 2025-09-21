@@ -55,7 +55,7 @@ export class MusicControls extends MusicElement {
     this.choirselect = document.createElement("select");
     this.choirselect.setAttribute("name", "choir");
     this.choirselect.setAttribute("id", "choir-select");
-    for (var c = 0; c < config.choirs; c++) {
+    for (var c = 0; c < config.choirs[0].length; c++) {
       const opt = document.createElement("option");
       opt.setAttribute("value", String(c));
       opt.appendChild(document.createTextNode(String(c + 1)))
@@ -133,7 +133,7 @@ export class MusicControls extends MusicElement {
   getMP3filename() {
     var newfile = "default";
     if (this.choir >= 0 &&
-      this.choir < config.choirs &&
+      this.choir < config.choirs[0].length &&
       this.voicePart != "all") {
       newfile = "Choir " + (this.choir + 1) + "-" + config.parts[this.voicePart];
     }

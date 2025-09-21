@@ -1,5 +1,4 @@
 export default {
-  "choirs": 8,
   "parts": ["Soprano", "Alto", "Tenor", "Baritone", "Bass"],
   "scores": ["modern", "early"],
   "audio_prefix": "/audio/",
@@ -21,6 +20,10 @@ export default {
 
   "version": ["ALC", "CotE"],
   "version_label": ["Andrew Leslie Cooper", "Choir of the Earth"],
+  "choirs": [
+    ["IA", "IB", "IIA", "IIB", "IIIA", "IIIB", "IVA", "IVB"],
+    ["1", "2", "3", "4", "5", "6", "7", "8"]
+  ],
   "intro_beats": [2, 4],
   "barno": [
     [0, 1,  65,  75,  78,  86,  94, 107, 120,   122, 137, 138, 139], // ALC

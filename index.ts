@@ -56,13 +56,16 @@ async function setChoir(c: number, forceChange = false) {
   if (current.choir == c && !forceChange) {
     return;
   }
-  current.choir = Math.min(Math.max(0, c), config.choirs - 1);
+  current.choir = Math.min(Math.max(0, c), config.choirs[0].length - 1);
 
   // Update the input field
   controls.setAttribute("choir", String(current.choir));
   
   // Update the score for this choir
   score.setAttribute("choir", String(current.choir));
+
+  // Set the version of the score to use
+  score.setAttribute("version", String(current.version));
   
   // Update the canvas
   canvas.setAttribute("choir", String(current.choir));
@@ -111,7 +114,7 @@ function parseURL() {
   const url = window.location.search.substring(1);
   const parms = url.split("&");
 
-  var version = 1; // CotE
+  var version = 0; // CotE
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
   var bar = 1 - config.intro_beats[version]/4;
@@ -249,10 +252,10 @@ function keyboardTapped(e) {
       e.preventDefault();
       break;
     case 'ArrowDown':
-      setChoir(current.choir >= config.choirs - 1 ? 0 : current.choir + 1);
+      setChoir(current.choir >= config.choirs[0].length - 1 ? 0 : current.choir + 1);
       break;
     case 'ArrowUp':
-      setChoir(current.choir <= 0 ? config.choirs - 1 : current.choir - 1);
+      setChoir(current.choir <= 0 ? config.choirs[0].length - 1 : current.choir - 1);
       break;
     case 'KeyX':
       setPart("all");
