@@ -114,14 +114,14 @@ function parseURL() {
   const url = window.location.search.substring(1);
   const parms = url.split("&");
 
-  var version = 0; // CotE
+  var version = 0; // ALC
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
   var bar = 1 - config.intro_beats[version]/4;
   console.log("Initial bar is", bar);
   var dark = false;
   var early = false;
-  var v = 1; // Choir of the Earth
+  var v = 0; // ALC
 
   for (let i = 0; i < parms.length; i++) {
     const parm = parms[i].split("=");
@@ -313,9 +313,7 @@ function toggleScore(forceEarly = false) {
 
 async function setVersion(v: number) {
   v = toNum(v, false, config.version.length - 1);
-  if (current.version == v) {
-    return;
-  }
+  
   current.version = v;
   console.log("Setting version to", config.version[current.version]);
   versionrecording.textContent = config.version_label[current.version];

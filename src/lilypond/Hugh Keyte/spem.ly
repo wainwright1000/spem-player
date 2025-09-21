@@ -19,7 +19,7 @@ notesIASoprano = \relative c {
    a2 d d, a'2 %tie44
    e4 r4 g c2 g' 
   |f4. e8 d4 c b2 g 
-  |d'1 r1 
+  |d'\breve 
   |r2 d d4 d2 a4 
   | %15
   \barNumberCheck #15

@@ -4,7 +4,7 @@ import { PartType, Position, toNum } from "./common";
 export class MusicElement extends HTMLElement {
 
   // state
-  version: number = 1; // 0 = ALC, 1 = CotE
+  version: number = 0; // 0 = ALC, 1 = CotE
   choir: number = 0;
   voicePart: PartType = "all";
   bar: number = 0;
@@ -53,7 +53,7 @@ export class MusicElement extends HTMLElement {
   }
 
   setChoir(c: string | number) {
-    this.choir = toNum(c, true, config.choirs - 1);
+    this.choir = toNum(c, true, config.choirs[0].length - 1);
     this.fireEvent('music-controls-changed');
   }
 
