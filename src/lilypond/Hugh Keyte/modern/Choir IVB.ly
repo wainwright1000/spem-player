@@ -38,7 +38,7 @@
           \remove Note_heads_engraver
           \consists Completion_heads_engraver
       }
-      { \clef "bass" \notesIVBBaritone }
+      { \clef "treble_8" \notesIVBBaritone }
       \addlyrics \wordsIVBBaritone
     >>
     <<

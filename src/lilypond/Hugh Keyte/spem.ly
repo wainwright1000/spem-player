@@ -3862,16 +3862,18 @@ notesIVBSoprano = \relative c {
 
   %33
   \barNumberCheck #33
-  r2 e''2 e e
+  r2 e''2^\leadMark e e
   g1 f2 e2. %tie2.
-  d4 d1 c4 b
-  c4. d8 e4 a,2 b8 c d2
-  r1 r2 d2
+  d4 d1 c?4 b?
+  c?4. d8 e4 a,2 b8 c d2
+  r1 r2 d2^\leadMark
   d2 d e1. %tie1.
   d2. c4 c1 %tie
-  b1 g2
+
+  \barNumberCheck #40
+  b?1 g2
   g1 r1
-  r2 g'2 g g
+  r2 g'2^\leadMark g g
   g2 r4 g,2 d'2 %tie44
   d2 d4 d1 b2
   b1 r1
@@ -3891,7 +3893,9 @@ notesIVBSoprano = \relative c {
   c2 r4 c2 e c2 %tie44
   e4. e8 e4 r4 a, c f,
   r4 a4. e8 e4 r2 r4 g2 %tie44
-  d'4 g, d' r2 d
+  d'4 g, d' r2 d^\leadMark
+
+  \barNumberCheck #75
   d2 d e e
   f1 e2 d
   c1 a2 d
@@ -3903,7 +3907,7 @@ notesIVBSoprano = \relative c {
   g,4 d'2 d4. a8 a4 r2
   b4 g4. a8 b4 b2 r2
   R\breve
-  r2 b2. b4 d2
+  r2 b2.^\leadMark b4 d2
   e c r1
   R\breve
   r2 e2. e4 a,2
@@ -3914,35 +3918,37 @@ notesIVBSoprano = \relative c {
 
   %99
   \barNumberCheck #99
-  r4 f'4 e2 d r2
+  r4 f'4^\leadMark e2 d r2
   R\breve*2
 
   %102
   \barNumberCheck #102
   r2 r4 c4 c4. d8 e2
-  r1 a,4 d2 cis4
+  r1 a,4 d2 c?4
   d d r2 r1
   R\breve*3
 
   %108
   \barNumberCheck #108
   r1 r2 cis2. %tie24
-  b4 a2. g8 f e4 a4
-  a4. b8 c d e4 r1
+  b4 a2. g?8 f? e4 a4
+  a4. b8 c? d e4 r1
   R\breve*11
 
   %122
   \barNumberCheck #122
   g1. g2
-  g2 d d d4 d4
+  g2 d^\leadMark d d4 d4
   f1. c1 %tie
   f,2. c'4 c2
   r2 a a4 a a c2. %tie42
   a4 c r4 bes4. a8 f4
   f2 r2 r2 d'2
   d,4 f2. f2 r2
+
+  \barNumberCheck #130
   r4 g4. e8 e4 r4 a a2
-  | r2 r4 d2 d4 d d
+  | r2 r4 d2^\leadMark d4 d d
   | g1 g2 r2
   g, g4 g g c c2
   r2 g4 e2 e'4. f8 g2 %tie44
@@ -3963,6 +3969,8 @@ notesIVBAlto = \relative c {
   R\breve
   r2 g2 e2. g2. %tie42
   d2 r4 a2 a4
+
+  \barNumberCheck #40
   d2 b4 g'2 g4. a8 b4
   r2 r4 e,2. b2
   r2 c2. e4 c g'2 %tie44
@@ -3972,7 +3980,7 @@ notesIVBAlto = \relative c {
   R\breve
   r2 c1 g2
   b b a r4 g
-  g4 b4. a8 g2 f4 g2
+  g4 b4. a8 g2 f?4 g2
   r2 r4 d2 a c2 %tie44
   g4 c2 r2 f
   a4. g8 f2 c' r2
@@ -4022,7 +4030,7 @@ notesIVBAlto = \relative c {
   \barNumberCheck #108
   r1 r2 a2. %tie2.
   e2 a, a' e2 %tie44
-  f8 g a2 r1
+  f?8 g? a2 r1
   R\breve*11
 
   %122
@@ -4034,8 +4042,9 @@ notesIVBAlto = \relative c {
   r4 f2 f4 f f a2. %tie2.
   f4 f2 r2 f
   bes, r4 g'2. g2
-  r1 r4 d4. \ficta
-  bes8 bes g8
+  r1 r4 d4. \ficta bes8 \ficta bes? g8
+
+  \barNumberCheck #130
   g4 g'4 g2 r1
   g4. g8 g4 g b2. g4
   g2 r4 g c, e r4 e
@@ -4059,6 +4068,8 @@ notesIVBTenor = \relative c {
   r2 b2 c c
   d2. e4 f1
   g2 d1 d2
+
+  \barNumberCheck #41
   g,1 r2 g'
   g2 g c,2. e4
   e1 r2 r4 d2 %tie44
@@ -4067,7 +4078,7 @@ notesIVBTenor = \relative c {
   r2 g'1 d2
   f2 f e4 e2 c4
   d2. g,4 a4. b8 c4 g2 %tie44
-  d'4 b d r4 d2 c4
+  d'4 b d r4 d2 c?4
   d2. d4 d2 c4 a
   r4 c e g2 d4 r4 d d
   f2 c4 c2 bes4 g
@@ -4095,9 +4106,11 @@ notesIVBTenor = \relative c {
   r2 g,2. g4 b2
   c a r1
   R\breve
-  r2 c2. c4 e2
-  f d r2 d
-  e d r2 d
+
+  \barNumberCheck #92
+  r2 c2.^\leadMark c4 e2
+  f d r2 d^\leadMark
+  e d r2 d^\leadMark
   e d c b
   R\breve*3
 
@@ -4130,8 +4143,10 @@ notesIVBTenor = \relative c {
   c1 r2 r4 bes4. %tie48
   a8 f4 bes2. g4 r4 d'4. %tie4.
   a8 a4. d,8 d4 r4 a' d2
+
+  \barNumberCheck #130
   r4 g, g2 r2 a
-  b2 b4 b b g d'1 %tie
+  b?2 b4 b b g d'1 %tie
   b2 e1
   r2 d4 g, g2 r4 e'2 %tie44
   e4 e e, e4. f8 g4 e
@@ -4152,9 +4167,10 @@ notesIVBBaritone = \relative c {
   a\breve
   r1 r2 d1
   b2 g c1 %tie
-  \ficta
-  bes2 c1
-  d2. b4 b2 r4 g2 %tie44
+  \ficta bes2 c1
+
+  \barNumberCheck #40
+  d2. b?4 b2 r4 g2 %tie44
   c2 c,4. d8 e4 r2
   e4 g2 c, c' g4
   g1 r2 d1 %tie
@@ -4225,7 +4241,9 @@ notesIVBBaritone = \relative c {
   a2 a4 a d2 d
   r4 d2 g,4 d'1
   r2 a a r2
-  r4 g4 c2 r4 f, d a'
+  
+  \barNumberCheck #130
+  r4 g4 c2 r4 f,? d a'
   r4 g d2 r2 d2. %tie2.
   d4 d d r4 g c2. %tie2.
   b8 a d2 g, c

@@ -2168,7 +2168,7 @@ wordsIVASoprano = \lyricmode {
   ad | hu -- mi -- li -- ta -- _ _ _ tem no -- stram,
   ad | hu -- mi -- li -- ta -- _ _ tem | no -- _ _ _ stram,
   ad hu -- mi -- li -- ta -- tem,
-  \emphasize
+  \emphasize 
   ad hu -- mi -- li -- ta -- tem,
   \normal
   no -- _ _ stram,
@@ -2429,11 +2429,15 @@ wordsIVABass = \lyricmode {
 
 wordsIVBSoprano = \lyricmode {
   % 29
+  \emphasize
   prae -- ter in | te, De -- _ us Is -- ra -- _ | el, Is -- _ ra -- _ _ el, 
+  \normal
   
   % 37
+  \emphasize
   prae -- | ter in te, De -- us Is -- ra -- _ | el,
   prae -- ter in | te, 
+  \normal
   in te, De -- us Is -- ra -- | el,
   qui i -- ra -- sce -- | ris, et pro -- pi -- | ti -- _ _ us e -- _ _ | _ ris,
   e -- _ _ ris,
@@ -2446,18 +2450,24 @@ wordsIVBSoprano = \lyricmode {
   ho -- _ mi -- num,
 
   % 74  
+  \emphasize
   in | tri -- bu -- la -- ti -- | o -- ne di -- | mit -- _ _ | tis,
+  \normal
 
   % 86
   di -- _ mit -- _ tis,
   | di -- mit -- _ _ tis,
   
   % 89
+  \emphasize
   Do -- mi -- ne | De -- us, 
+  \normal
   Do -- mi -- ne | De -- us, 
   Cre -- | a -- tor 
   cae -- | li et ter -- _ _ _ _ rae,
+  \emphasize
   et ter -- rae,
+  \normal
 
   % 102
   Cre -- a -- _ tor 
@@ -2467,7 +2477,10 @@ wordsIVBSoprano = \lyricmode {
   re -- spi -- _ _ _ ce, re -- | spi -- _ _ _ ce,
   
   % 122
-  | re -- spi -- | ce ad hu -- mi -- li -- | ta -- tem no -- _ stram,
+  | re -- spi -- | ce 
+  \emphasize
+  ad hu -- mi -- li -- | ta -- tem no -- _ stram,
+  \normal
 
   % 126
   ad hu -- mi -- li -- ta -- _ tem 
@@ -2475,7 +2488,9 @@ wordsIVBSoprano = \lyricmode {
   no -- | _ _ stram,
   no -- _ stram,
   no -- stram,
+  \emphasize
   ad hu -- mi -- li -- | ta -- tem,
+  \normal
   | ad hu -- mi -- li -- ta -- tem,
   ad hu -- mi -- li -- ta -- tem no -- _ stram,
   no -- | _ stram,
@@ -2580,9 +2595,11 @@ wordsIVBTenor = \lyricmode {
   
   % 89
   Do -- mi -- ne | De -- us, 
+  \emphasize
   Do -- mi -- ne | De -- us, 
   Cre -- | a -- tor 
   cae -- | li et ter -- rae,
+  \normal
 
   % 99
   et ter -- _ rae,
