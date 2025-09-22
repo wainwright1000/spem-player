@@ -1751,11 +1751,14 @@ wordsIIIABass = \lyricmode {
 
 % ------------
 % Choir IIIB
-% ------------
+% ------------ 
 
 wordsIIIBSoprano = \lyricmode {
   % 25
+  \emphasize
   prae -- | ter in te, De -- | _ us Is -- ra -- _ | el, 
+  \normal
+
   prae -- ter | in te, De -- _ _ | us, te, De -- us Is -- ra -- _ | _ el,
   De -- _ us Is -- ra -- _ _ el,
   Is -- ra -- | _ _ el,
@@ -1789,7 +1792,9 @@ wordsIIIBSoprano = \lyricmode {
   di -- mi -- _ tis, 
   
   % 87
+  \emphasize
   Do -- mi -- ne | De -- us, 
+  \normal
 
   % 95
   Cre -- _ | a -- _ tor 
@@ -1803,7 +1808,9 @@ wordsIIIBSoprano = \lyricmode {
   re -- spi -- _ ce
   
   % 110
+  \emphasize
   ad hu -- mi -- li -- | ta -- _ _ tem | no -- _ stram,
+  \normal
   no -- _ _ _ _ _ _ _ stram,
   
   % 122
@@ -1817,7 +1824,9 @@ wordsIIIBSoprano = \lyricmode {
   no -- stram,
   no -- stram,
   ad | hu -- mi -- li -- ta -- tem, 
+  \emphasize
   ad | hu -- mi -- li -- ta -- tem 
+  \normal
   no -- _ stram, no -- stram.
 }
 
@@ -1913,9 +1922,12 @@ wordsIIIBTenor = \lyricmode {
   qui i -- ra -- | sce -- _ ris et pro -- pi -- ti -- _ us, e -- ris, 
   e -- _ _ _ _ _ _ _ _ | _ ris,
   
-  % 69
+  % 70
+  \emphasize
   | et o -- mni -- | a
   pec -- ca -- | ta ho -- mi -- _ _ _ _ | num,
+  \normal
+
   ho -- mi -- | num
 
   % 74  
@@ -1945,7 +1957,9 @@ wordsIIIBTenor = \lyricmode {
   re -- spi -- ce
   
   % 112
+  \emphasize
   ad hu -- mi -- li -- | ta -- _ _ _ | _ tem no -- _ | _ _ _ stram,
+  \normal
   
   % 122
   | re -- spi -- ce, re -- _ _ spi -- _ ce, 
@@ -1961,7 +1975,9 @@ wordsIIIBTenor = \lyricmode {
   no -- _ _ _ _ | stram,
   no -- stram,
   | ad hu -- mi -- li -- ta -- tem,
+  \emphasize
   ad hu -- mi -- li -- ta -- tem 
+  \normal
   no -- _ _ _ _ stram.
 }
 

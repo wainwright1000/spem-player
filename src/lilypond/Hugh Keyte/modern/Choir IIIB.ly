@@ -4,7 +4,7 @@
 \include "../spem.ly"
 \include "../spem words.ly"
 
-\score {
+\score { 
   <<
     \time 4/2
     \override Score.BarNumber.break-visibility = ##(#f #t #t)
