@@ -1405,13 +1405,20 @@ wordsIIBBass = \lyricmode {
 
 wordsIIIASoprano = \lyricmode {
   % 23
+  \emphasize
   prae -- ter in | te, De -- | us Is -- ra -- el, Is -- _ ra -- | el, in te, De -- us Is -- ra -- _ _ _ el,
+  \normal
+
   Is -- ra -- _ _ el,
+  \emphasize
   prae -- ter in | te, De -- us | Is -- ra -- el,
+  \normal
   
   % 40
   prae -- ter in | te,
+  \emphasize
   prae -- ter in | te,
+  \normal
   De -- | _ _ us 
   te, De -- us Is -- ra -- el,
   Is -- ra -- el,
@@ -1424,12 +1431,16 @@ wordsIIIASoprano = \lyricmode {
   
   % 69
   et | o -- mni -- | a
+  \emphasize
   | pec -- ca -- ta ho -- mi -- num,
+  \normal
   ho -- mi -- | num
 
   % 74  
   in tri -- bu -- la -- ti -- o -- _ _ ne,
+  \emphasize
   | in tri -- bu -- | la -- ti -- o -- | ne di -- mit -- tis,
+  \normal
   
   % 86
   di -- mi -- _ tis, 
@@ -1438,28 +1449,38 @@ wordsIIIASoprano = \lyricmode {
   Do -- mi -- ne De -- _ us, 
 
   % 95
+  \emphasize
   Cre -- | a -- tor 
   cae -- | li et ter -- rae,
   et ter -- rae,
   Cre -- a -- tor 
   cae -- | li et ter -- rae
+  \normal
 
   % 108
   re -- spi -- ce
   
   % 111
+  \emphasize
   ad | hu -- mi -- li -- ta -- _ | _ _ _ tem no -- _ stram,
+  \normal
   
   % 122
   re -- spi -- _ _ _ ce, 
 
   % 126
+  \emphasize
   ad hu -- mi -- li -- | ta -- tem 
   no -- _ _ _ stram,
+  \normal
   no -- | _ _ stram,
+
+  \emphasize
   ad hu -- | mi -- li -- ta -- tem no -- | stram,
   ad | hu -- mi -- li -- ta -- tem _ no -- stram,
   no -- _ _ stram,
+  \normal
+  
   no -- stram.
 }
 
@@ -1536,10 +1557,14 @@ wordsIIIATenor = \lyricmode {
   % 23
   prae -- ter in | te, De -- | - us Is -- ra -- | el, De -- _ us | Is -- ra -- el, | De -- _ _ us 
   Is -- ra -- _ el, | Is -- ra -- _ _ el, 
+  \emphasize
   prae -- ter in | te, De -- us | Is -- ra -- _ _ _ _ | _ el,
+  \normal
   
   % 40
+  \emphasize
   prae -- | ter in te,
+  \normal
   De -- _ _ us Is -- ra -- el,
   in te, 
   De -- _ us,
@@ -1574,7 +1599,10 @@ wordsIIIATenor = \lyricmode {
   Cre -- | a -- tor 
   cae -- | li et ter -- rae,
   et ter -- _ rae,
+  \emphasize
   et ter -- | rae, Cre -- a -- tor 
+  \normal
+  
   cae -- | li et ter -- _ rae
 
   % 108

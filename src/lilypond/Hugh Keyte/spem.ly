@@ -2310,38 +2310,40 @@ notesIIIASoprano = \relative c {
 
   %23
   \barNumberCheck #23
-  | r2 d''2 d d 
+  | r2 d''2^\leadMark d d 
   e1 c 
   c2 f2. e4 d2. %tie2.
-   c4 c1 b2 
+  c4 c1 b2 
   c2. d4 e1 
-  f2 c d2. c8 \ficta 
-      bes 
+  f2 c d2. c8 \ficta bes 
   a4 d, a'2 r2 d1 %tie
-   g,2. a8 b c2 
-  r2 e e e 
+  g,2. a8 b c2 
+
+  %31
+  \barNumberCheck #31
+  | r2 e^\leadMark e e 
   g1 f2 d 
   e2. e4 e\breve %tie11
-    r1
+  r1
   R\breve*5
   
   %40
   \barNumberCheck #40
   | r2 d2. g,4 b2 
-  g2 g' g g 
+  g2 g'^\leadMark g g 
   g1 r2 g, 
   c4. d8 e2 r2 d4 b2 %tie44
   g2 b4. a8 g4 r4 d'2 %tie44
-   b4 b2 r4 b2 d4 
+  b4 b2 r4 b2 d4 
   d2 r2 r1
   R\breve*8
   
   %55
   \barNumberCheck #55
   | r1 r2 f1 %tie
-   c2 e d2. %tie24
+  c2 e d2. %tie24
   d4 c2 r4 c2 g2 %tie44
-   c4 d2. g,4 c a 
+  c4 d2. g,4 c a 
   | r4 e'2 c4 d g,2 d'4 
   | d2 r2 r1
   R\breve*8
@@ -2351,8 +2353,8 @@ notesIIIASoprano = \relative c {
   | r1 b1 
   e1. e2 
   e1 r1 
-  g2 e c f2. %tie2.
-   e4 e2 r4 c g'2 
+  g2^\leadMark e c f2. %tie2.
+  e4 e2 r4 c g'2 
   g1 r2 g4 d2 %tie44
   d4 b2 e,4 g2 e4 
   r4 a d,2 r1
@@ -2360,7 +2362,7 @@ notesIIIASoprano = \relative c {
   
   %78
   \barNumberCheck #78
-  | d'1 e2 e 
+  | d'1^\leadMark e2 e 
   f f g1 
   f2 e e1 
   e r1
@@ -2375,21 +2377,21 @@ notesIIIASoprano = \relative c {
   
   %95
   \barNumberCheck #95
-  | r1 r2 e2 
-  f e r2 e 
+  | r1 r2 e2^\leadMark 
+  f e r2 e^\leadMark 
   f e d c 
-  r4 f e2 d r2
+  r4 f^\leadMark e2 d r2
   R\breve
-  r4 d4 c2 b r4 e 
+  r4 d4^\leadMark c2 b r4 e^\leadMark 
   d4 d c2 b r2
   R\breve*6
   
   %108
   \barNumberCheck #108
   | r1 r2 e1 %tie
-   e2 e\breve %tie11
-    r1
-  r1 r2 e2 
+  e2 e\breve %tie11
+  r1
+  r1 r2 e2^\leadMark 
   e2 e4 e g2. f4 
   e2. d4 c2 b 
   a2 e' e1 
@@ -2402,16 +2404,16 @@ notesIIIASoprano = \relative c {
   
   %126
   \barNumberCheck #126
-  | r2 c,2 c c4 c 
+  | r2 c,2^\leadMark c c4 c 
   f1. d2 
   r4 d g, d'4. c8 bes4 r4 g 
-  d'4 a2 d4 r4 d2 d4 
+  d'4 a2 d4 r4 d2^\leadMark d4 
   e4 e g2. fis4 fis2 
-  g1 r2 d 
+  g1 r2 d^\leadMark 
   d2 d4 d e1. %tie1.
-   d2. c4 c1. %tie21
+  d2. c4 c1. %tie21
   g2 r4 g2 %tie44
-   f8 e d1. 
+  f8 e d1. 
   r2 d'2 d1~
   d\longa
 }
@@ -2420,23 +2422,23 @@ notesIIIAAlto = \relative c {
   R\breve*22
   r1 r2 g''2 
   g g a\breve %tie11
-    f2 g 
+  f2 g 
   a2. a4 g1. %tie1.
-   e2. f4 g2 
+  e2. f4 g2 
   c,2 f2. g4 a2 
   d,2 f d4 g2 g2 %tie44
-   d4 d2 r1 
+  d4 d2 r1 
   e2 a a c1 %tie22
   b2. a4 a1 %tie
-   gis2 a1 
+  g?2 a1 
   R\breve*6
   
   %40
   \barNumberCheck #40
   | r2 d,2 d4 d d2 
   r2 r4 g2 g4 g2. %tie2.
-   c,4 c2 r4 g'4. e8 e4. %tie4.
-   c8 c2 e4 g2 r2
+  c,4 c2 r4 g'4. e8 e4. %tie4.
+  c8 c2 e4 g2 r2
   r2 r4 g,4 g2 g'4 d 
   r4 g d2 d2. g4 
   f d g2 r1
@@ -2445,7 +2447,7 @@ notesIIIAAlto = \relative c {
   %54
   \barNumberCheck #54
   | r1 r2 c1 %tie
-   g2 b4 b a2 
+  g2 b4 b a2 
   r4 a a c4. c8 g2 bes2 %tie44
   f4 a2. f4 g2 
   g1 r2 a 
@@ -2474,9 +2476,8 @@ notesIIIAAlto = \relative c {
   %85
   \barNumberCheck #85
   | r1 r4 a'4 d2 
-  d4. c8 b2 r4 a4. g8 \ficta 
-      fis4 
-  r2 d4. d8 g4 b4. a8 g f 
+  d4. c8 b?2 r4 a4. g8 \ficta fis4 
+  r2 d4. d8 g4 b4. a8 g f? 
   e4 c d2 r1
   R\breve*6
   
@@ -2494,9 +2495,9 @@ notesIIIAAlto = \relative c {
   %108
   \barNumberCheck #108
   | r1 r2 e1 %tie
-   e2 e e 
+  e2 e e 
   e2 e4 e a1. %tie1.
-   g2 a e 
+  g2 a e 
   r2 a2. g4 a b 
   c2 b a e 
   e1 r1
@@ -2511,9 +2512,12 @@ notesIIIAAlto = \relative c {
   a2 a4 a c2 a 
   a1 r2 d,1. %tie21
   d1 
-  r1 f2 bes, 
-  r4 g' g2 r2 r4 d4. %tie4.
-   b8 b g g2 r4 g'2 g4
+  r1 f2 bes,
+
+  %130
+  \barNumberCheck #130 
+  | r4 g' g2 r2 r4 d4. %tie4.
+  b?8 b g g2 r4 g'2 g4
   g4 g g2 g r2 
   r4 g2 b4 e,1 
   r2 c' c4 c2 b8 a 
@@ -2529,15 +2533,16 @@ notesIIIATenor = \relative c {
   \barNumberCheck #24
   r2 c'2 c c 
   f1. bes,2 
-  c a \ficta 
-      bes2. a4 
-  g2 c4. \ficta 
-      bes8 g1 
+  c a \ficta bes2. a4 
+  g2 c4. \ficta bes8 g1 
   f2. g4 a1 
   f2. a4 g2 d 
   r2 d' g,4 c e2
   e4. d8 c4 e a,1 
-  r2 g d' d 
+
+  %32
+  \barNumberCheck #32
+  | r2 g^\leadMark d' d 
   g1 c,2 e 
   e2. b4 c4. d8 e4 c 
   d2 g, r1
@@ -2545,10 +2550,10 @@ notesIIIATenor = \relative c {
   
   %40
   \barNumberCheck #40
-  r1 r2 g'2 
+  r1 r2 g'2^\leadMark 
   g2 g c, r2
   r4 c2 e4 g c, c2. %tie2.
-   c4 g2 r4 b d2 
+  c4 g2 r4 b d2 
   r2 d,2. g4 d2 
   r2 r4 d'4 d g2 d4 
   d2 r2 r1
@@ -2557,12 +2562,12 @@ notesIIIATenor = \relative c {
   %51
   \barNumberCheck #51
   f1 c2 e2. %tie2.
-   d4 b2 d4 d f4. f8 
+  d4 b2 d4 d f4. f8 
   e4 c2. d2 d 
   d4 f2 c4. d8 e c d1 %tie
-   a2 r4 c2 e2 %tie44
-   g2 d4 d2 r4 c2 %tie44
-   c4 e2 b4 d4. c8 b4 
+  a2 r4 c2 e2 %tie44
+  g2 d4 d2 r4 c2 %tie44
+  c4 e2 b4 d4. c8 b4 
   r4 d g2 d r2
   R\breve*10
   
@@ -2573,9 +2578,9 @@ notesIIIATenor = \relative c {
   c4 g'2 c,4 g c4 c e2 %tie44
   c4. g8 g4 r1 
   e4 a2 a4 r2 r4 g4. %tie4.
-   d'8 d2 d4 r2 b4 b4. %tie4.
-   c8 d2 d4 r2 r4 c4. %tie4.
-   b8 d4. c8 a4 r1
+  d'8 d2 d4 r2 b4 b4. %tie4.
+  c8 d2 d4 r2 r4 c4. %tie4.
+  b8 d4. c8 a4 r1
   R\breve
   b1 c2 c 
   d d e2. b4 
@@ -2596,7 +2601,7 @@ notesIIIATenor = \relative c {
   d'2 c r2 c 
   d4 d c2 f, r2
   r4 a4. b8 c4 d2 r2
-  r1 r4 f4 e2 
+  r1 r4 f4^\leadMark e2 
   d4 d g,2 d' r4 c 
   d4 d e c d2 r2
   R\breve*6
@@ -2640,10 +2645,9 @@ notesIIIABaritone = \relative c {
   f f bes1 
   a2 f g g 
   c,1 r2 c' 
-  c4. \ficta 
-      bes8 a4. g8 f2. g4 
+  c4. \ficta bes8 a4. g8 f2. g4 
   a2 d, d\breve %tie11
-    r2 g 
+  r2 g 
   c, c c1 
   r4 g'2 e4 f4. g8 a2 
   r2 e1 a2 
@@ -2654,23 +2658,23 @@ notesIIIABaritone = \relative c {
   \barNumberCheck #40
   r2 g2 b4 b4. c8 d4 
   r2 g, g g2. %tie2.
-   g4 g2 r2 g1 %tie
-   c,2 r2 r4 g'2 %tie44
-   d2 d' g,4 d' g, 
+  g4 g2 r2 g1 %tie
+  c,2 r2 r4 g'2 %tie44
+  d2 d' g,4 d' g, 
   g1 r1
   R\breve*4
   
   %50
   \barNumberCheck #50
   r1 r4 f2 c2 %tie44
-   c'2 c4 b g a2 
+  c'2 c4 b g a2 
   d,2 r2 r2 bes'1 %tie22
   f2 a g
   g1 r1
   r2 g2. g4 a2. %tie2.
-   f4. g8 a f g2 r2
+  f4. g8 a f g2 r2
   r2 c4 f,4. g8 a4 e1 %tie
-   g2 d r2
+  g2 d r2
   r1 d2 g 
   d r2 r1
   R\breve*9
@@ -2680,14 +2684,17 @@ notesIIIABaritone = \relative c {
   c2 e2. e4 g2 
   r2 r4 e4 e2 e 
   g4. g8 g2 r2 c4 c2 %tie44
-   a2 c4. c8 c4 g4. a8 
+  a2 c4. c8 c4 g4. a8 
   | b4 g g2 r2 g 
   g4. b8 b4 b r4 c g2 
   R\breve
+
+  %77
+  \barNumberCheck #77
   r1 r2 d'1 %tie
-   g,2 g4 c4. b8 a g 
+  g,2 g4 c4. b8 a g 
   f4 d4. e8 f4 c2 r2 
-  d4 a'4. e8 a4 g e r4 e 
+  d4 a'4. e8 a4 g? e r4 e 
   e2. a4 f d a'2 
   R\breve*4
   
