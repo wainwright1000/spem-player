@@ -72,7 +72,7 @@ describe("MusicControls custom element", () => {
     const choirs = document.getElementById("choir-select");
     expect(choirs).not.toBeNull();
     expect(choirs?.getAttribute("name")).toBe("choir");
-    expect(choirs?.querySelectorAll('option').length).toBe(config.choirs);
+    expect(choirs?.querySelectorAll('option').length).toBe(config.choirs[0].length);
 
     const parts = document.getElementById("part-select");
     expect(parts).not.toBeNull();

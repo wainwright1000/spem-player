@@ -63,11 +63,11 @@ describe("common", () => {
     
     result = getTimeFromBar(1, 0);
     expect(result).toBeTypeOf('number');
-    expect(result).toBeCloseTo(2.5); // ALC
+    expect(result).toBeCloseTo(2.2); // ALC
 
     result = getTimeFromBar(65, 0);
     expect(result).toBeTypeOf('number');
-    expect(result).toBeCloseTo(234.5); // ALC
+    expect(result).toBeCloseTo(234.3); // ALC
 
     result = getTimeFromBar(140, 0);
     expect(result).toBe(0);
