@@ -3155,7 +3155,7 @@ notesIIIBTenor = \relative c {
   g4 e2 r1
   r4 d d g g g d2
   r2 r4 g4. e8 e'4. d8 c4
-  c2 r4 g4 g2 r2
+  c2 r4 g4 g2 r2 
   g2 c4 c c c2 c4
   r2 g'2^\leadMark g4 g g g2 %tie44
   g4 r2 r4 g,2 d2 %tie44
@@ -3368,7 +3368,8 @@ notesIIIBBass = \relative c {
 notesIVASoprano = \relative c {
 
   R\breve*28
-  r1 d''1
+  \barNumberCheck #29
+  r1 d''1^\leadMark
   d2 d e1
   c2 a e'2. e4
   e1 r2 d
@@ -3380,12 +3381,12 @@ notesIVASoprano = \relative c {
 
   %39
   \barNumberCheck #39
-  r2 g2 c c
-  g' r2 d d4 d
+  r2 g2^\leadMark c c
+  g' r2 d^\leadMark d4 d
   e1. d2. %tie2.
   c4 c1 c2
   g r4 g2 f8 e d2. %tie2.
-  d4 d2 r2 d'1 %tie
+  d4 d2 r2 d'1^\leadMark %tie
   g,2 b1
   a2 g4 e f d4. e8 f g
   a2. f4 g2 e
@@ -3415,7 +3416,7 @@ notesIVASoprano = \relative c {
 
   %86
   \barNumberCheck #86
-  r2 d2 d1
+  r2 d2^\leadMark d1
   d1 r1
   R\breve
   r2 d2. d4 b2
@@ -3452,15 +3453,15 @@ notesIVASoprano = \relative c {
   d2. e8 f g4 g,2 d'4
   d1 r1
   r1 r2 a2
-  a4 a a c4. \ficta
-  bes8 a4. g8 f2 %tie44
+  a4 a a c4. \ficta bes8 a4. g8 f2 %tie44
   c'4 c2 r1
   r1 r2 d2
   d4 d d f4. e8 d4 d2
-  g,4 c4. \ficta
-  bes8 g4 d'1
-  r2 r4 b2 b4 d2. %tie2.
-  g,4 b2 g r4 g'2 %tie44
+  g,4 c4. \ficta bes8 g4 d'1
+
+  \barNumberCheck #131
+  r2 r4 b?2 b4 d2. %tie2.
+  g,4 b2 g r4 g'2^\leadMark %tie44
   g4 g g g2 g
   | r2 g, c4. d8 e2
   r2 d4 b2 g b4. %tie4.
@@ -3475,20 +3476,21 @@ notesIVAAlto = \relative c {
   %28
   \barNumberCheck #28
   r1 r2 a''2
-  a a b1
+  a a b?1
   r2 g g g
   c2. b4 a e a1 %tie
   g2 r2 f4 a
   g4. f8 e2. a,4 c4. d8 e4
   b4 r e f a2.
   d,4 g r4 g c2 a2. %tie2.
-  b4 c2 f,1
+  b?4 c2 f,1
   R\breve
-  r2 g g g
+
+  \barNumberCheck #38 
+  r2 g^\leadMark g g
   bes1 a2 a
-  \ficta
-  bes4. a8 g1 g2
-  g r2 r4 g2 b4
+  \ficta bes4. a8 g1 g2
+  g r2 r4 g2 b?4
   e,1 r2 c'
   c2. b8 a b1
   b2 b b2. g4
@@ -3504,7 +3506,7 @@ notesIVAAlto = \relative c {
   r4 g4. a8 b4 r2 b
   b2 b c2. c4
   a d, a'2. g4 g2. %tie2.
-  f4 a2. e4 f2
+  f4 a2. e4 f?2
   g1 r1
   R\breve*7
 
@@ -3552,7 +3554,9 @@ notesIVAAlto = \relative c {
   bes4 bes'4. a8 g4 r2 d
   d1 r2 r4 g4. %tie48
   e8 e c c2 r1
-  | r4 b2 b4 b b g2
+
+  \barNumberCheck #131
+  | r4 b?2 b4 b b g2
   g2 r2 r2 r4 g'4
   g4 g g g2 c,4 c2
   r4 g'4. e8 e4. c8 c2 e4
@@ -3577,10 +3581,12 @@ notesIVATenor = \relative c {
   R\breve
   r2 d2 c g'
   g1 c,2 f
+
+  \barNumberCheck #40
   bes,4 d2 g,4 g2 r2
   e4 e'2 c4 c2 r4 g
   g2 r2 g4 g c2. %tie2.
-  c4 c2 r2 g'
+  c4 c2 r2 g'^\leadMark
   g2 g g r2
   r4 b,2 d, d'4 b4. c8
   d2 e4 c d1. %tie1.
@@ -3591,7 +3597,7 @@ notesIVATenor = \relative c {
   %69
   \barNumberCheck #69
   r1 d2 g,2. %tie2.
-  g4 g2 r4 g' e2
+  g4 g2 r4 g'^\leadMark e2
   c g'4 g c,2 c4 c2 %tie44
   c4 r4 e2 a,4 a2
   r2 e e e
@@ -3618,13 +3624,13 @@ notesIVATenor = \relative c {
 
   %99
   \barNumberCheck #99
-  a,4 d2 cis4 d2 r2
+  a,4 d2 c?4 d2 r2
   R\breve*2
 
   %102
   \barNumberCheck #102
-  r2 r4 g4 f2 e
-  r2 r4 g4 f f e2
+  r2 r4 g4^\leadMark f2 e
+  r2 r4 g4^\leadMark f f e2
   d r2 r1
   R\breve*3
 
@@ -3643,8 +3649,9 @@ notesIVATenor = \relative c {
   c2 c4 c c f2 c2 %tie44
   f,4 a2 r2 c2. %tie2.
   c2 a4 r4 d bes f'
-  f2 r4 \ficta
-  bes,2 d4. c8 bes4
+
+  \barNumberCheck #128
+  f2 r4 \ficta bes,2 d4. c8 \ficta bes?4
   r2 r4 a4. f8 f d d2
   r1 r2 d'2. %tie24
   d4 d d g2. d4
@@ -3662,7 +3669,7 @@ notesIVABaritone = \relative c {
   %28
   \barNumberCheck #28
   r2 a'2 a a
-  d2. c4 b2 b
+  d2. c4 b?2 b
   b2. b4 e,2 e
   a a c1
   g1 a
@@ -3674,7 +3681,7 @@ notesIVABaritone = \relative c {
   r2 g2 g g
   g4. a8 bes4 g a2 f
   bes2 r4 g d2 d
-  r4 g c2. b8 a d2
+  r4 g c2. b?8 a d2
   g,2 c r4 g e2
   g4 c,2 g'4 r4 d'4. b8 b4
   r2 b b1
@@ -3688,7 +3695,7 @@ notesIVABaritone = \relative c {
   %69
   \barNumberCheck #69
   r1 r2 g2. %tie2.
-  c2 c4 c2 r4 g2 %tie44
+  c2 c4 c2 r4 g2^\leadMark %tie44
   e2 c g' c,4
   c2 r2 c4 c2 c4
   r4 a' a a g e e2
@@ -3786,7 +3793,7 @@ notesIVABass = \relative c {
   \barNumberCheck #69
   r1 g1
   g1. g2
-  g1 r2 g
+  g1 r2 g^\leadMark
   e2 c f2. f4
   c2 c2. e4 c g'2 %tie44
   g4 g2 r g
@@ -3830,11 +3837,13 @@ notesIVABass = \relative c {
   g1 r2 d2
   d2 d4 d f1
   c1 r1
-  r2 f2 f f4 f
+  r2 f2^\leadMark f f4 f
   a1 f2 r
   d4 f bes,2 d1
+
+  \barNumberCheck #129
   r2 d2. d4 d d
-  c2 c f f4. e8
+  c2 c f? f4. e8
   d2 r2 r4 d2 d4
   g,4 g g'1 e2
   c2 d e1

@@ -2104,16 +2104,24 @@ wordsIIIBBass = \lyricmode {
 
 wordsIVASoprano = \lyricmode {
   % 29
+  \emphasize
   prae -- | ter in te, | De -- us Is -- ra -- | el, 
+  \normal
+
   in | te, 
   De -- _ _ _ _ us, 
   Is -- ra -- _ | el,
   
   % 39
+  \emphasize
   prae -- ter in | te,
   prae -- ter in | te, De -- us Is -- ra -- | el,
+  \normal
   Is -- _ _ _ ra -- el,
+  \emphasize
   qui i -- ra -- | sce -- ris, et pro -- pi -- ti -- _ _ | us e -- _ _ | ris,
+  \normal
+
   et pro -- | pi -- ti -- us,
   pro -- pi -- ti -- us,
   et pro -- pi -- ti -- _ us,
@@ -2135,7 +2143,9 @@ wordsIVASoprano = \lyricmode {
   di -- mit -- | _ _ _ _ _ _ | tis,
 
   % 86
+  \emphasize
   di -- mit -- | tis,
+  \normal
   
   % 89
   Do -- mi -- ne | De -- us, 
@@ -2158,7 +2168,9 @@ wordsIVASoprano = \lyricmode {
   ad | hu -- mi -- li -- ta -- _ _ _ tem no -- stram,
   ad | hu -- mi -- li -- ta -- _ _ tem | no -- _ _ _ stram,
   ad hu -- mi -- li -- ta -- tem,
+  \emphasize
   ad hu -- mi -- li -- ta -- tem,
+  \normal
   no -- _ _ stram,
   no -- _ _ _ _ stram,
   no -- stram,
@@ -2173,7 +2185,10 @@ wordsIVAAlto = \lyricmode {
   te, _ | De -- _ us Is -- ra -- _ | _ el, 
   De -- us Is -- | ra -- el, 
   De -- u Is -- ra -- _ el, 
+  \emphasize
   prae -- ter in | te, De -- us | Is -- _ _ ra -- | el,
+  \normal
+
   Is -- ra -- | el,
   te, | De -- _ _ us, De -- us Is -- ra -- | el,
   
@@ -2230,12 +2245,18 @@ wordsIVATenor = \lyricmode {
   in te, De -- us,
   in | te, 
   De -- us Is -- ra -- el,
+  \emphasize
   prae -- | ter in te, 
+  \normal
   De -- us Is -- ra -- _ | el, De -- us Is -- _ ra -- | el, 
   
   % 69
   et o -- mni -- a
-  pec -- ca -- | ta ho -- mi -- num, pec -- ca -- ta 
+  \emphasize
+  pec -- ca -- | ta ho -- mi -- num, 
+  \normal
+
+  pec -- ca -- ta 
   ho -- mi -- num,
   pec -- ca -- ta 
   ho -- mi -- num
@@ -2255,8 +2276,12 @@ wordsIVATenor = \lyricmode {
   Cre -- _ | a -- _ tor 
   cae -- | li et ter -- rae,
   | et ter -- _ rae,
+
+  %102
+  \emphasize
   Cre -- a -- tor 
   cae -- li et ter -- | rae
+  \normal
 
   % 108
   re -- spi -- ce
@@ -2297,7 +2322,9 @@ wordsIVABaritone = \lyricmode {
   
   % 69
   et o -- mni -- a 
+  \emphasize
   pec -- ca -- ta ho -- mi -- | num,
+  \normal
   pec -- ca -- ta 
   pec -- ca -- ta ho -- mi -- num, 
   ho -- mi -- num, 
@@ -2356,7 +2383,11 @@ wordsIVABass = \lyricmode {
   
   % 69
   et | o -- mni -- | a,
-  pec -- | ca -- ta ho -- mi -- | num, pec -- ca -- ta ho -- mi -- num, 
+  \emphasize
+  pec -- | ca -- ta ho -- mi -- | num, 
+  \normal
+  
+  pec -- ca -- ta ho -- mi -- num, 
 
   % 74  
   in | tri -- bu -- la -- ti -- | o -- ne di -- | mit -- | tis,
@@ -2379,9 +2410,11 @@ wordsIVABass = \lyricmode {
   % 122
   | re -- spi -- | ce,
 
-  % 125
+  % 126
   ad | hu -- mi -- li -- ta -- | tem  
+  \emphasize
   ad hu -- mi -- li -- | ta -- tem  
+  \normal
   | no -- _ _ stram, 
   ad hu -- mi -- li -- | ta -- tem no -- _ _ | stram,
   ad hu -- | mi -- li -- ta -- tem | no -- _ _ | _ stram
