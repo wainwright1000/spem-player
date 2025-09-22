@@ -14,10 +14,12 @@ MusicCanvasWatcher.define("music-canvas-watcher");
 MusicControls.define("music-controls");
 MusicScore.define("music-score");
 
-const canvas = document.querySelector("music-canvas") as MusicCanvas;
-const canvasWatcher = document.querySelector("music-canvas-watcher") as MusicCanvasWatcher;
-const controls = document.querySelector("music-controls") as MusicControls;
+const container = document.querySelector(".split-container");
 const score = document.querySelector("music-score") as MusicScore;
+const splitter = document.querySelector(".splitter") as HTMLDivElement;
+const canvas = document.querySelector("music-canvas") as MusicCanvas;
+const controls = document.querySelector("music-controls") as MusicControls;
+const canvasWatcher = document.querySelector("music-canvas-watcher") as MusicCanvasWatcher;
 
 const info = document.getElementById('info') as HTMLSpanElement;
 const help = document.getElementById('help') as HTMLDivElement;
@@ -27,6 +29,8 @@ const darkswitch = document.getElementById('darkswitch') as SvgInHtml;
 const scoreswitch = document.getElementById('scoreswitch') as SvgInHtml;
 const versionswitch = document.getElementById('versionswitch') as SvgInHtml;
 const versionrecording = document.getElementById('versionrecording') as HTMLSpanElement;
+
+let isDragging = false;
 
 var current: State = {
   version: 0, // 0 = ALC, 1 = CotE
@@ -49,8 +53,30 @@ var current: State = {
 // TODO: CMD-B to type in bar number
 // TODO: highlight part on score?
 // TODO: Add lyrics to footer
-// BUG: Soprano in choir 1 bar 13.  Breve or Longa?
 // BUG: loop() never finishes after playing to the end of spem
+
+
+// -----------------------------------------------------
+// Splitter to resize score and canvas
+// -----------------------------------------------------
+splitter.addEventListener('mousedown', (e)=> {
+  isDragging = true;
+  document.body.style.cursor = 'col.resize';
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const containerRect = container?.getBoundingClientRect();
+  if (!containerRect) return;
+  let newHeight = e.clientY - containerRect.top;
+  newHeight = Math.max(100, Math.min(newHeight, containerRect.height - 100));
+  score.style.height = `${newHeight}px`;
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  document.body.style.cursor = '';
+});
 
 async function setChoir(c: number, forceChange = false) {
   if (current.choir == c && !forceChange) {
@@ -313,7 +339,7 @@ function toggleScore(forceEarly = false) {
 
 async function setVersion(v: number) {
   v = toNum(v, false, config.version.length - 1);
-  
+
   current.version = v;
   console.log("Setting version to", config.version[current.version]);
   versionrecording.textContent = config.version_label[current.version];
