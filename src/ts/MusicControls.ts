@@ -242,7 +242,7 @@ export class MusicControls extends MusicElement {
     this.audio.currentTime = getTimeFromBar(this.bar, this.recording);
 
     console.log("setting currentTime to " + this.audio.currentTime);
-    this.barinput.value = String(this.bar);
+    this.barinput.value = String(Math.floor(this.bar));
   }
   
   setPlaying(playing: string | boolean) {
