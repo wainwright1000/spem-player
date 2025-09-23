@@ -11,9 +11,9 @@ ficta = {
 }
 
 \header {
-  title = "Spem in alium"
-  composer = "Thomas Tallis (c. 1505--1585)"
-  edition = "VERSION A 2020 (c) Hugh Keyte"
+  title = "Spem in alium nunquam habui"
+  composer = "Thomas Tallis (c. 1505-1585)"
+  edition = "VERSION A 2020 © Hugh Keyte 2020"
   tagline = \markup { \fill-line { \fromproperty #'header:edition } }
 }
 

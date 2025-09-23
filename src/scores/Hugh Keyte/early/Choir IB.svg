@@ -4104,7 +4104,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(1278.5716, 2.9188)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
@@ -6518,7 +6518,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(2179.6178, 4.4188)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
@@ -6867,7 +6867,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(2231.1183, 2.9188)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
@@ -15881,7 +15881,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4099.4374, 4.8308)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
@@ -16677,7 +16677,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4215.1565, 4.4188)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
@@ -17124,7 +17124,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4281.3404, 3.4188)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
@@ -20520,9 +20520,9 @@ c0 20 -3 41 -20 41h-145c-17 0 -20 -21 -20 -41c0 -11 -8 -16 -16 -16s-17 5 -17 16v
 <g transform="translate(2360.2629, 46.5991)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(59.4094, 59.9873)">
+<g transform="translate(57.2967, 59.9873)">
 <text font-family="serif" font-size="2.2001" text-anchor="start" fill="currentColor">
-<tspan>VERSION A 2020 (c) Hugh Keyte</tspan>
+<tspan>VERSION A 2020 © Hugh Keyte 2020</tspan>
 </text>
 </g>
 </svg>

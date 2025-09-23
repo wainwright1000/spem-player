@@ -9761,7 +9761,7 @@ c25 17 88 50 188 50z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(2257.3792, 3.3921)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g transform="translate(2257.3792, 4.1471)">
@@ -14104,7 +14104,7 @@ c0 -35 11 -74 28 -94c7 -8 -5 -19 -12 -11c-45 54 -92 148 -92 202c0 41 27 42 40 42
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3375.6307, 3.8871)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g transform="translate(3375.6307, 4.6471)">
@@ -14301,7 +14301,7 @@ c0 -35 11 -74 28 -94c7 -8 -5 -19 -12 -11c-45 54 -92 148 -92 202c0 41 27 42 40 42
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3409.3447, 3.8871)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g transform="translate(3409.3447, 4.6471)">
@@ -14579,7 +14579,7 @@ c0 -35 11 -74 28 -94c7 -8 -5 -19 -12 -11c-45 54 -92 148 -92 202c0 41 27 42 40 42
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3445.4152, 3.8871)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g transform="translate(3445.4152, 6.6471)">
@@ -15424,7 +15424,7 @@ c25 17 88 50 188 50z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3672.4409, 3.8871)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g transform="translate(3672.4409, 5.1471)">
@@ -18302,7 +18302,7 @@ c25 17 88 50 188 50z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4288.5193, 28.1386)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g transform="translate(4288.5193, 28.8936)">
@@ -18936,7 +18936,7 @@ c25 17 88 50 188 50z" fill="currentColor"/>
 </g>
 <g color="rgb(100.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4391.9129, 3.3921)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="L0 -1L1 -1"/>
+<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
 <g transform="translate(4391.9129, 4.1471)">
@@ -21316,9 +21316,9 @@ c11 62 105 121 244 121zM211 112c-45 0 -69 -34 -69 -88c0 -102 90 -136 135 -136s68
 <g transform="translate(2507.5464, 31.3936)">
 <path transform="scale(0.0040, -0.0040)" d="M140 0h-130c-6 0 -10 4 -10 10v230c0 6 4 10 10 10h130c6 0 10 -4 10 -10v-230c0 -6 -4 -10 -10 -10z" fill="currentColor"/>
 </g>
-<g transform="translate(44.4546, 62.1213)">
+<g transform="translate(42.3718, 62.1213)">
 <text font-family="serif" font-size="2.2000" text-anchor="start" fill="currentColor">
-<tspan>VERSION A 2020 (c) Hugh Keyte</tspan>
+<tspan>VERSION A 2020 © Hugh Keyte 2020</tspan>
 </text>
 </g>
 </svg>

@@ -23046,9 +23046,9 @@ c11 62 105 121 244 121zM211 112c-45 0 -69 -34 -69 -88c0 -102 90 -136 135 -136s68
 <g transform="translate(2653.1420, 37.5967)">
 <rect x="0.0000" y="-0.5500" width="0.6600" height="0.1300" ry="0.0400" fill="currentColor"/>
 </g>
-<g transform="translate(44.4546, 62.1213)">
+<g transform="translate(42.3718, 62.1213)">
 <text font-family="serif" font-size="2.2000" text-anchor="start" fill="currentColor">
-<tspan>VERSION A 2020 (c) Hugh Keyte</tspan>
+<tspan>VERSION A 2020 © Hugh Keyte 2020</tspan>
 </text>
 </g>
 </svg>
