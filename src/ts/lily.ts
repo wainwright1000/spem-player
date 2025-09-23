@@ -171,7 +171,7 @@ export function processLilypond() {
     for (let p = 0; p < config.parts.length; p++) {
       const part = config.parts[p]; 
       ranges[c][p] = [];
-      var key = "notes" + choir + part;
+      var key = "notes" + choir.replace(/ /g, '') + part;
 
       // get the lilypond for this choir and part
       var lilypond = scores[key];

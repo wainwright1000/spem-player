@@ -7,7 +7,7 @@ export default {
   "recording": ["ALC", "CotE"],
   "recording_label": ["Andrew Leslie Cooper", "Choir of the Earth"],
   "choirs": [
-    ["IA", "IB", "IIA", "IIB", "IIIA", "IIIB", "IVA", "IVB"],
+    ["I A", "I B", "II A", "II B", "III A", "III B", "IV A", "IV B"],
     ["1", "2", "3", "4", "5", "6", "7", "8"]
   ],
   "intro_beats": [2, 4],
