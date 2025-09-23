@@ -328,7 +328,7 @@ function toggleScore(forceEarly = false) {
     console.log("Toggle SCORE");
     current.period = "early";
     score.setAttribute("score-type", "early");
-    document.body.style.setProperty('--font', "Quintessential");
+    document.body.style.setProperty('--font', "Macondo Swash Caps");
   }
   else {
     current.period = "modern";
