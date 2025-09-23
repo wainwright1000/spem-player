@@ -27,13 +27,13 @@ const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 type SvgInHtml = HTMLElement & SVGElement;
 const darkswitch = document.getElementById('darkswitch') as SvgInHtml;
 const scoreswitch = document.getElementById('scoreswitch') as SvgInHtml;
-const versionswitch = document.getElementById('versionswitch') as SvgInHtml;
-const versionrecording = document.getElementById('versionrecording') as HTMLSpanElement;
+const recordingswitch = document.getElementById('recordingswitch') as SvgInHtml;
+const recordinglabel = document.getElementById('recordinglabel') as HTMLSpanElement;
 
 let isDragging = false;
 
 var current: State = {
-  version: 0, // 0 = ALC, 1 = CotE
+  recording: 0, // 0 = ALC, 1 = CotE
   viewmode: "dark",
   period: "modern",
   choir: 0,
@@ -90,8 +90,8 @@ async function setChoir(c: number, forceChange = false) {
   // Update the score for this choir
   score.setAttribute("choir", String(current.choir));
 
-  // Set the version of the score to use
-  score.setAttribute("version", String(current.version));
+  // Set the recording of the audio to use
+  score.setAttribute("recording", String(current.recording));
   
   // Update the canvas
   canvas.setAttribute("choir", String(current.choir));
@@ -140,14 +140,14 @@ function parseURL() {
   const url = window.location.search.substring(1);
   const parms = url.split("&");
 
-  var version = 0; // ALC
+  var recording = 0; // ALC
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
-  var bar = 1 - config.intro_beats[version]/4;
+  var bar = 1 - config.intro_beats[recording]/4;
   console.log("Initial bar is", bar);
   var dark = false;
   var early = false;
-  var v = 0; // ALC
+  var r = 0; // ALC
 
   for (let i = 0; i < parms.length; i++) {
     const parm = parms[i].split("=");
@@ -164,15 +164,15 @@ function parseURL() {
     else if (parm[0] == "dark") {
       dark = true;
     }
-    else if (parm[0] == "version") {
-      if (parm[1] == "alc") v = 0;
-      else v = 1;
+    else if (parm[0] == "recording") {
+      if (parm[1] == "alc") r = 0;
+      else r = 1;
     }
     else if (parm[0] == "score") {
       early = (parm[1] == "early");
     }
   }
-  setVersion(v);
+  setRecording(r);
   setChoir(choir, true);
   setPart(part);
   setBar(bar);
@@ -261,7 +261,7 @@ function keyboardTapped(e: KeyboardEvent) {
       setPart("satrb".indexOf(String(e.key).toLowerCase()));
       break;
     case 'KeyV':
-      toggleVersion();
+      toggleRecording();
       break;
     case 'KeyM':
       toggleScore();
@@ -337,20 +337,20 @@ function toggleScore(forceEarly = false) {
   }
 }
 
-async function setVersion(v: number) {
-  v = toNum(v, false, config.version.length - 1);
+async function setRecording(r: number) {
+  r = toNum(r, false, config.recording.length - 1);
 
-  current.version = v;
-  console.log("Setting version to", config.version[current.version]);
-  versionrecording.textContent = config.version_label[current.version];
+  current.recording = r;
+  console.log("Setting recording to", config.recording[current.recording]);
+  recordinglabel.textContent = config.recording_label[current.recording];
 
   // Update the input field
-  controls.setAttribute("version", String(current.version));
+  controls.setAttribute("recording", String(current.recording));
 }
 
 
-function toggleVersion() {
-  setVersion((current.version + 1) % config.version.length);
+function toggleRecording() {
+  setRecording((current.recording + 1) % config.recording.length);
 }
 
 function setVH() {
@@ -408,7 +408,7 @@ function init(): void {
   backdrop.addEventListener("click", () => showHelp(false));
   darkswitch.addEventListener("click", () => toggleDark());
   scoreswitch.addEventListener("click", () => toggleScore());
-  versionswitch.addEventListener("click", () => toggleVersion());
+  recordingswitch.addEventListener("click", () => toggleRecording());
 
   // watch for change in user's preference of color scheme
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {

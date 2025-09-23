@@ -10,7 +10,7 @@ export class MusicScore extends MusicElement {
   svgWidth: number = 0;
 
   scoreType: string = "modern";
-  version: number = 0; // 0 = ALC, 1 = CotE
+  recording: number = 0; // 0 = ALC, 1 = CotE
 
   bars: number[] = [];
 
@@ -74,7 +74,7 @@ export class MusicScore extends MusicElement {
 
   #loadSvg = async (): Promise<string | null> => {
     try {
-      const choirName = config.choirs[this.version][this.choir];
+      const choirName = config.choirs[this.recording][this.choir];
       const svgModule = await import(`../scores/Hugh Keyte/${this.scoreType}/Choir ${choirName}.svg?raw`);
       this.fireEvent("music-score-loaded");
       return svgModule.default;
@@ -85,7 +85,7 @@ export class MusicScore extends MusicElement {
   };
 
   async #loadScore() {
-    const choirName = config.choirs[this.version][this.choir];
+    const choirName = config.choirs[this.recording][this.choir];
     const filename = config.svg_prefix + "/Hugh Keyte/" + this.scoreType + "/" + choirName + ".svg";
     console.log("MusicScore: fetching", filename);
     var starttime = performance.now()

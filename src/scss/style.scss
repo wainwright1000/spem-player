@@ -109,7 +109,7 @@ header {
     }
 
     #scoreswitch,
-    #versionswitch,
+    #recordingswitch,
     #darkswitch {
         cursor: pointer;
         margin-right: 5px;
@@ -118,7 +118,7 @@ header {
         }
     }
 
-    #versionrecording {
+    #recordinglabel {
         font-size: 1.0rem;
         color: var(--color-title);
         margin-right: 10px;

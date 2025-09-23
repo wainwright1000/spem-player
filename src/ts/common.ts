@@ -13,7 +13,7 @@ export type ScoreType = "early" | "modern";
 export type Status = "playing" | "paused" | "loading";
 
 export type State = {
-  version: number; // 0 = ALC, 1 = CotE
+  recording: number; // 0 = ALC, 1 = CotE
   viewmode: Brightness;
   period: ScoreType;
   choir: number;

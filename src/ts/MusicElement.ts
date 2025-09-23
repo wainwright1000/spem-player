@@ -4,7 +4,7 @@ import { PartType, Position, toNum } from "./common";
 export class MusicElement extends HTMLElement {
 
   // state
-  version: number = 0; // 0 = ALC, 1 = CotE
+  recording: number = 0; // 0 = ALC, 1 = CotE
   choir: number = 0;
   voicePart: PartType = "all";
   bar: number = 0;
@@ -30,9 +30,9 @@ export class MusicElement extends HTMLElement {
     if (oldValue == newValue) return;
     
     switch (name) {
-      case "version":
+      case "recording":
         console.log(this.constructor.name + ": attribute changed: " + name + " from " + oldValue + " to " + newValue);
-        this.setVersion(newValue);
+        this.setRecording(newValue);
         break;
       case "choir":
         this.setChoir(newValue);
@@ -72,8 +72,8 @@ export class MusicElement extends HTMLElement {
     this.fireEvent('music-controls-changed');
   }
 
-  setVersion(v: number | string) {
-    this.version = toNum(v, true, config.version.length - 1);
+  setRecording(v: number | string) {
+    this.recording = toNum(v, true, config.recording.length - 1);
     this.fireEvent('music-controls-changed');
   }
 
