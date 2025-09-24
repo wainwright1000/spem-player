@@ -19,18 +19,25 @@
   \context {
     \Score
     \time 4/2
-    \hide BarLine
+    \hide BarLine 
     \override SpacingSpanner.base-shortest-duration = #(ly:make-moment 1/16)
+
     % \override NoteHead.style = #'baroque
     \override NoteHead.style = #'petrucci
     \override Rest.style = #'mensural
     \override Flag.style = #'mensural
+
     \override NoteHead.font-size = #+2
-    \override Accidental.font-size = #+4
     \override Rest.font-size = #+4
     alterationGlyphs = #alteration-vaticana-glyph-name-alist
     \override Stem.thickness = 3.0
     \override Score.BarLine.transparent = ##t
+    
+    % increase font size of normal, ficta and cautionary accidentals
+    \override Accidental.font-size = #+4
+    \override AccidentalSuggestion.font-size = #+1
+    \override AccidentalCautionary.font-size = #+4
+
     \autoBeamOff
 
     % \override Voice.Stem.thickness = #1.0
