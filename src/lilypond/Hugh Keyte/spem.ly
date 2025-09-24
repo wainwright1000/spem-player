@@ -568,7 +568,7 @@ notesIABass = \relative c {
   |g4. a8 b2 g r2
   |r2 c,2 g' e
   |r2 g g, g'
-  |g2. f8 e d1
+  |g2. f8 e d1~
   d\longa
 }
 

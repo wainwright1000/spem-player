@@ -8,7 +8,7 @@
 
 wordsIASoprano = \lyricmode {
   Spem in a -- li -- um nun -- quam ha -- bu _ _ _ _ -- i, nun -- quam ha -- bu -- i,
-  nun -- quam, nun -- quam ha -- bu -- _ _ i, nu -- quam ha -- bu -- _ _ _ i
+  nun -- quam, nun -- quam ha -- bu -- _ _ i, nu -- quam ha -- bu -- _ _ _ i,
   nun -- quam ha -- bu -- _ _ _ _ _ i, 
   spem in a -- li -- um 
   nun -- quam ha -- bu -- i, 
@@ -20,46 +20,46 @@ wordsIASoprano = \lyricmode {
   
   
   prae -- te in te, 
-  in te 
+  in te, 
   De -- us Is -- ra -- el, 
   in te, De -- us 
   Is -- ra -- el
   
   \emphasize
   et o -- mni -- a 
-  pec -- ca -- ta ho -- mi -- num
+  pec -- ca -- ta ho -- mi -- num,
   \normal
 
   et o -- mni -- a 
-  pec -- ca -- _ ta ho -- mi -- num
+  pec -- ca -- _ ta ho -- mi -- num,
   pe -- ca -- _ ta
-  ho -- _ _ _ _ mi -- _ num
-  ho -- mi -- num, 
-  in tri -- bu -- la -- ti -- o -- _ _ ne
+  ho -- _ _ _ _ mi -- _ num,
+  ho -- mi -- num
+  in tri -- bu -- la -- ti -- o -- _ _ ne,
   
   in tri -- bu -- la -- ti -- o -- _ _ _ _ ne 
-  di -- _ _ _ _ mi -- _ tis
+  di -- _ _ _ _ mi -- _ tis,
   \emphasize
-  di -- mi -- tis, di -- mi -- _ _ _ _ tis
+  di -- mi -- tis, di -- mi -- _ _ _ _ tis.
   
   Do -- mi -- ne De -- us, 
   Cre -- a -- tor 
-  cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
   \normal
   
   % 101
   Cre -- a -- tor 
-  cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
   Cre -- a -- _ tor 
-  cae -- li et ter -- _ _ rae, 
-  et ter -- _ _ _ _ rae,
+  Cae -- li et Ter -- _ _ rae, 
+  et Ter -- _ _ _ _ rae,
   
   % 108 
   re -- spi -- ce
   
   % 117
   \emphasize
-  ad hu -- mi -- li -- ta -- _ _ tem no -- _ stram, no -- _ _ _ stram
+  ad hu -- mi -- li -- ta -- _ _ tem no -- _ stram, no -- _ _ _ stram,
   \normal
 
   re -- spi -- ce, 
@@ -70,112 +70,111 @@ wordsIASoprano = \lyricmode {
   ad hu -- mi -- li -- ta -- tem no -- _ _ _  stram, 
   \normal
 
-  hu -- mi -- li -- ta -- tem no -- stram
+  hu -- mi -- li -- ta -- tem no -- stram,
   ad hu -- mi -- li -- ta -- tem 
-  no -- _ _ _ stram
+  no -- _ _ _ stram,
   ad hu -- mi -- li -- ta -- _ tem 
   no -- _ _ stram, 
-  no -- stram no -- stram.
+  no -- stram, no -- stram.
 }
 
 wordsIAAlto = \lyricmode {
-  Spem in a -- li -- um nun -- quam ha -- bu -- _ _ _ _ _ _ i ha -- bu -- _ _ i
-  nun -- quam nun -- _ _ quam ha -- bu -- _ _ _ i
+  Spem in a -- li -- um nun -- quam ha -- bu -- _ _ _ _ _ _ i, ha -- bu -- _ _ i,
+  nun -- quam, nun -- _ _ quam ha -- bu -- _ _ _ i,
   % 10
-  Spem in a -- li -- um nun -- quam ha -- bu -- i, nun -- quam ha -- bu -- i
+  spem in a -- li -- um nun -- quam ha -- bu -- i, nun -- quam ha -- bu -- i,
   % 14
-  Spem in a -- li -- um nun -- quam ha -- bu -- i
+  spem in a -- li -- um nun -- quam ha -- bu -- i,
   nun -- quam ha -- bu -- i, nun -- _ quam ha -- bu -- i, ha -- _ bu -- i,
   ha -- bu -- i, 
   nun -- quam _ ha -- bu -- i,
-  ha -- bu -- _ i, nun -- quam ha -- bu -- i
+  ha -- bu -- _ i, nun -- quam ha -- bu -- i,
 
   % 40
-  Pra -- ter in te 
-  in te De -- us
-  De -- us Is -- ra -- el
-  in te De -- us
-  De -- us Is -- ra -- el
-  De -- us Is -- ra -- el
+  prae -- ter in te, 
+  in te, De -- us,
+  De -- us Is -- ra -- el,
+  in te, De -- us,
+  De -- us Is -- ra -- el,
+  De -- us Is -- ra -- el,
   
   % 65
   et o -- mni -- _ _ a 
-  pec -- ca -- ta ho -- mi -- num et _ _ o -- mni -- a 
-  pec -- ca -- ta ho -- mi -- num pec -- ca -- ta  ho -- mi -- num, 
+  pec -- ca -- ta ho -- mi -- num, et _ _ o -- mni -- a 
+  pec -- ca -- ta ho -- mi -- num, pec -- ca -- ta  ho -- mi -- num, 
   pec -- ca -- ta 
   ho -- mi -- num
   in tri -- bu -- la -- ti -- 
-  o -- ne
+  o -- ne,
   
   \emphasize
   in tri -- bu -- la -- ti -- o -- ne di -- mi -- tis, 
   \normal
-  di -- mi -- tis, di -- mi -- tis
+  di -- mi -- tis, di -- mi -- tis.
   
   % 91
   Do -- mi -- ne De -- us, 
   Cre -- a -- tor 
-  cae -- li et ter -- _ _ _ rae,
+  Cae -- li et Ter -- _ _ _ rae,
   
   % 100
   Cre -- a -- tor, 
   Cre -- a -- tor 
-  cae -- li  et ter -- _ _ rae, 
-  cae -- li et ter -- rae,
+  Cae -- li  et Ter -- _ _ rae, 
+  Cae -- li et Ter -- rae,
   Cre -- a -- _ tor, 
-  Cre -- a -- tor  cae -- li et ter -- rae, 
-  et ter -- rae, 
-  et ter -- _ rae,
+  Cre -- a -- tor Cae -- li et Ter -- rae, 
+  et Ter -- rae, 
+  et Ter -- _ rae,
   
   % 108
   re -- spi -- ce
   
   % 117
-  ad hu -- mi -- li -- ta -- _ tem 
-  ad hu -- mi -- li -- ta -- tem no -- stram
+  ad hu -- mi -- li -- ta -- _ tem,
+  ad hu -- mi -- li -- ta -- tem no -- stram,
   
   % 122
-  re -- spi -- ce, 
+  re -- spi -- ce 
   ad hu -- mi -- li -- ta -- _ _ tem 
   no -- _ _ stram, 
   no -- stram, 
   no -- _ stram, 
   no -- _ _ _ _ stram, 
-  ad hu -- mi -- li -- ta -- 
-  tem no -- stram 
+  ad hu -- mi -- li -- ta -- tem no -- stram,
   no -- _ _ _ stram,
   ad hu -- mi -- li -- ta -- tem no -- _ stram.
 }
 
 wordsIATenor = \lyricmode {
-  Spem in a -- li -- um, nun -- quam ha -- bu _ _ _ -- i
+  Spem in a -- li -- um, nun -- quam ha -- bu _ _ _ -- i,
   nun -- quam ha -- bu -- _ _ _ _ _ i, 
-  nun -- quam ha -- bu -- i
-  Spem in a -- _ _ li -- um 
-  nun -- quam ha -- bu -- i
-  nun -- quam ha -- bu -- _ i
+  nun -- quam ha -- bu -- i,
+  spem in a -- _ _ li -- um 
+  nun -- quam ha -- bu -- i,
+  nun -- quam ha -- bu -- _ i,
   nun -- quam, nun -- quam
   ha -- bu -- _ i
-  nun -- quam -- ha -- bu -- _ _ _ _ _ i
-  ha -- bu -- _ i, nun -- _ quam -- ha -- bu -- _ i
+  nun -- quam -- ha -- bu -- _ _ _ _ _ i,
+  ha -- bu -- _ i, nun -- _ quam -- ha -- bu -- _ i,
 
   %40
-  Pra -- ter in te 
+  prae -- ter in te,
   De -- us 
   Is -- ra -- el, 
-  in te De -- us Is -- _ _ ra -- el,
-  in te De -- us Is -- ra -- el,
+  in te, De -- us Is -- _ _ ra -- el,
+  in te, De -- us Is -- ra -- el,
 
   % 65
   
   et o -- mni -- a 
-  pec -- ca -- ta ho -- mi -- num 
+  pec -- ca -- ta ho -- mi -- num,
   \emphasize 
-  et o -- mni -- a pec -- ca -- ta ho -- mi -- num
+  et o -- mni -- a pec -- ca -- ta ho -- mi -- num,
   \normal
   pec -- ca -- ta ho -- mi -- num, 
-  ho -- mi -- num,
-  in tri -- bu -- la -- ti -- o -- _ ne
+  ho -- mi -- num
+  in tri -- bu -- la -- ti -- o -- _ ne,
 
   % 81
   in tri -- bu -- la -- ti -- o -- _ ne 
@@ -183,41 +182,41 @@ wordsIATenor = \lyricmode {
   di -- _ _ _ mi -- _ _ tis, 
   di -- mi -- _ _ _ tis,
   di -- mi -- tis, 
-  di -- mi -- _ tis,
+  di -- mi -- _ tis.
 
   % 91
   Do -- mi -- ne De -- _ us, 
   Cre -- a -- tor 
-  cae -- li et ter -- _ rae,
+  Cae -- li et Ter -- _ rae,
 
   % 100
   \emphasize
   Cre -- a -- tor 
-  cae -- li  et ter -- _ _ rae, 
+  Cae -- li  et Ter -- _ _ rae, 
   \normal
-  cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
 
   \emphasize
   Cre -- a -- tor 
-  cae -- li et ter -- rae,
-  Cre -- a -- tor cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
+  Cre -- a -- tor Cae -- li et Ter -- rae,
   \normal
 
   % 108
   re -- spi -- ce
 
   % 118
-  ad hu -- mi -- li -- ta -- _ _ tem no -- _ _ _ stram
-  no -- _ stram
-  re -- spi -- ce, re -- spi -- _ ce,
+  ad hu -- mi -- li -- ta -- _ _ tem no -- _ _ _ stram,
+  no -- _ stram,
+  re -- spi -- ce, re -- spi -- _ ce
 
   % 124
   ad hu -- mi -- li -- ta -- tem 
   no -- _ _ stram,
   ad hu -- mi -- li -- ta -- tem no -- stram, 
   no -- _ stram, 
-  no -- stram
-  no -- stram
+  no -- stram,
+  no -- stram,
   ad hu -- mi -- li -- ta -- tem,
   \emphasize
   ad hu -- mi -- li -- ta -- _ tem
@@ -225,69 +224,68 @@ wordsIATenor = \lyricmode {
 
   no -- _ _ stram, no -- stram,
   no -- stram.
-
 }
 
 wordsIABaritone = \lyricmode {
-  Spem in a -- li -- um nun -- quam ha -- bu -- _ i, ha -- bu -- i
-  nun -- quam ha -- bu -- _ _ _ i
-  nun -- quam ha -- bu -- _ _ _ _ i
-  ha -- bu -- _ i, nun -- quam ha -- bu -- _ i
-  spem in a -- li -- um nun -- _ _ quam,
-  ha -- bu -- _ i
-  nun -- quam ha -- bu -- _ i
-  nun -- quam
-  nun -- quam
-  ha -- bu -- i
+  Spem in a -- li -- um nun -- quam ha -- bu -- _ i, ha -- bu -- i,
+  nun -- quam ha -- bu -- _ _ _ i,
+  nun -- quam ha -- bu -- _ _ _ _ i,
+  ha -- bu -- _ i, nun -- quam ha -- bu -- _ i,
+  spem in a -- li -- um nun -- _ _ quam
+  ha -- bu -- _ i,
+  nun -- quam ha -- bu -- _ i,
+  nun -- quam,
+  nun -- quam,
+  ha -- bu -- i,
   
   % 40
   prae -- ter in te, 
   in te, De -- us 
   Is -- ra -- el, 
   in te, 
-  De -- us _ _ _ Is -- ra -- el
+  De -- us _ _ _ Is -- ra -- el,
   
   % 65
-  Et o -- mni -- a, 
-  et o -- mni -- a pec -- ca -- ta ho -- mi -- num
+  et o -- mni -- a, 
+  et o -- mni -- a pec -- ca -- ta ho -- mi -- num,
   pec -- ca -- ta 
   ho -- mi -- num, 
-  ho -- mi -- num 
-  in tri -- bu -- la -- ti -- o  -- ne
+  ho -- mi -- num
+  in tri -- bu -- la -- ti -- o  -- ne,
   
   % 82
   in tri -- bu -- la -- ti -- o  -- ne di -- mit -- tis, 
   di -- mit -- _ tis, 
-  di -- mit -- _ tis
+  di -- mit -- _ tis.
   
   % 91
   Do -- mi -- ne De -- us, 
   Cre -- a -- tor 
-  cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
   
   % 100
   Cre -- a -- tor 
-  cae -- li et ter -- rae, 
-  cae -- li et ter -- rae, 
+  Cae -- li et Ter -- rae, 
+  Cae -- li et Ter -- rae, 
   Cre -- a -- _ _ tor 
-  cae -- li et ter -- _ _ rae, 
-  cae -- _ _ li et 
-  ter -- _ rae
+  Cae -- li et Ter -- _ _ rae, 
+  Cae -- _ _ li et 
+  Ter -- _ rae,
   
   re -- spi -- ce
   
   % 118
-  ad hu -- mi -- li -- ta -- tem no -- stram 
+  ad hu -- mi -- li -- ta -- tem no -- stram,
   re -- _ _ _ spi -- ce
-  ad hu -- mi -- li -- ta -- _ tem no -- _ stram 
-  ad hu -- mi -- li -- ta -- tem no -- _ _ _ stram 
+  ad hu -- mi -- li -- ta -- _ tem no -- _ stram,
+  ad hu -- mi -- li -- ta -- tem no -- _ _ _ stram, 
   no -- stram, 
   no -- _ stram,
   no -- stram,
-  ad hu -- mi -- li -- ta -- tem
+  ad hu -- mi -- li -- ta -- tem,
   ad hu -- mi -- li -- ta -- _ tem 
-  no -- stram 
-  no -- _ stram
+  no -- stram,
+  no -- _ stram,
   no -- _ _ _ _ _ stram,
   no -- _ _ _ stram.
 }
@@ -300,15 +298,15 @@ wordsIABass = \lyricmode {
   nun -- quam ha -- bu -- _ i,
   nun -- quam ha -- bu -- _ i,
   nun -- quam ha -- bu -- _ _ i,
-  ha -- bu -- i
+  ha -- bu -- i,
   
   % 40
   prae -- ter in te, De -- us Is -- ra -- el, 
   te, De -- _ us Is -- ra -- el
-  te, De -- us Is -- ra -- el
+  te, De -- us Is -- ra -- el,
   
   % 69
-  et o -- mni -- _ _ _ a, 
+  et o -- mni -- _ _ _ a
   \emphasize
   pec -- ca -- ta ho -- mi -- num, 
   \normal
@@ -316,30 +314,30 @@ wordsIABass = \lyricmode {
   
 
   % 74
-  in tri -- bu -- la -- ti -- o  -- _ ne 
+  in tri -- bu -- la -- ti -- o  -- _ ne,
   
   % 81
-  in tri -- bu -- la -- ti -- o  -- ne  di -- mi -- tis
+  in tri -- bu -- la -- ti -- o  -- ne  di -- mi -- tis,
   di -- mi -- tis, 
-  di -- mi -- _ _ _ _ tis
+  di -- mi -- _ _ _ _ tis.
   
   % 100
   Cre -- a -- tor 
-  cae -- li et ter -- rae, 
+  Cae -- li et Ter -- rae, 
   Cre -- a -- tor 
-  cae -- li et ter -- rae, Cre -- a -- tor cae -- li et ter -- _ rae, 
+  Cae -- li et Ter -- rae, Cre -- a -- tor Cae -- li et Ter -- _ rae, 
 
-   % 108 
-  re -- spi ce, re -- spi -- _ ce
+  % 108 
+  re -- spi ce, re -- spi -- _ ce,
   
   % 122
   re -- spi -- ce
   ad hu -- mi -- li -- ta -- tem, 
   ad hu -- mi -- li -- ta -- tem 
-  no -- _ stram
-  no -- _ stram 
-  no -- stram, no -- _ stram
-  ad hu -- mi -- li -- ta -- tem no --stram 
+  no -- _ stram,
+  no -- _ stram,
+  no -- stram, no -- _ stram,
+  ad hu -- mi -- li -- ta -- tem no --stram,
   no -- _ stram,
   no -- _ stram,
   no -- _ _ stram.
@@ -351,9 +349,9 @@ wordsIABass = \lyricmode {
 
 wordsIBSoprano = \lyricmode {
   Spem in a -- li -- um nun -- quam ha -- bu -- i, nun -- quam ha -- bu -- i,
-  nun -- quam ha -- bu -- i, ha -- _ bu -- i
+  nun -- quam ha -- bu -- i, ha -- _ bu -- i,
   nun -- quam ha -- bu -- i, 
-  ha -- bu -- _ i
+  ha -- bu -- _ i,
   spem in a -- li -- um nun -- quam ha -- bu -- i, 
   ha -- bu -- i,
   ha -- bu -- _ _ i,
@@ -361,7 +359,7 @@ wordsIBSoprano = \lyricmode {
   ha -- _ bu -- i,
   nun -- quam ha -- bu -- i, 
   ha -- bu -- i,
-  nun -- quam ha -- bu -- i
+  nun -- quam ha -- bu -- i,
   
   % 40
   \emphasize
@@ -370,7 +368,7 @@ wordsIBSoprano = \lyricmode {
 
   De -- us Is -- ra -- el, 
   in te, De -- _ us Is -- ra -- _ el 
-  Is -- ra -- el
+  Is -- ra -- el,
   De -- us Is -- ra -- el, 
   
   % 65
@@ -380,104 +378,104 @@ wordsIBSoprano = \lyricmode {
   pec -- ca -- ta ho -- mi -- _ num,
   \normal
 
-  pe -- ca -- ta ho -- mi -- num
-  ho -- mi -- num, 
-  in tri -- bu -- la -- ti -- o -- _ ne
+  pe -- ca -- ta ho -- mi -- num,
+  ho -- mi -- num
+  in tri -- bu -- la -- ti -- o -- _ ne,
   
   % 81
-  in tri -- bu -- la -- ti -- o -- _ _ ne di -- mi -- _ tis
-  di -- mi -- tis, di -- mi -- _ _ tis
-  di -- mi -- _ _ tis
+  in tri -- bu -- la -- ti -- o -- _ _ ne di -- mi -- _ tis,
+  di -- mi -- tis, di -- mi -- _ _ tis,
+  di -- mi -- _ _ tis.
   
   % 91 
   Do -- mi -- ne De -- _ us, 
   Cre -- _ a -- _ tor 
-  cae -- _ li et ter -- _ rae,
+  Cae -- _ li et Ter -- _ rae,
 
   % 101
   Cre -- a -- tor 
-  cae -- li, 
-  cae -- li et ter -- rae,
-  cae -- li et ter -- rae,
+  Cae -- li, 
+  Cae -- li et Ter -- rae,
+  Cae -- li et Ter -- rae,
   Cre -- a -- _ _ _ _ tor 
-  cae -- li et ter -- rae, 
-  et ter -- rae,
+  Cae -- li et Ter -- rae, 
+  et Ter -- rae,
   
   % 108 
   re -- spi -- ce
   
   % 117
-  ad hu -- mi -- li -- ta -- tem 
+  ad hu -- mi -- li -- ta -- tem,
   ad hu -- mi -- li -- ta -- tem no -- _ _ stram, 
-  no -- stram
-  re -- spi -- ce, 
+  no -- stram,
+  re -- spi -- ce
 
   % 126 
   \emphasize
   ad hu -- mi -- li -- ta -- _ tem, 
   ad hu -- mi -- li -- ta -- tem, 
-  ad hu -- mi -- li -- ta -- tem,
+  ad hu -- mi -- li -- ta -- tem
   no -- _ _ _ stram
   \normal
   ad hu -- mi -- li -- ta -- tem 
-  no -- stram
+  no -- stram,
   ad hu -- mi -- li -- ta -- tem 
   no -- _ _ stram, 
   no -- _ stram,
-  no -- _ stram no -- stram.
+  no -- _ stram, no -- stram.
 }
 
 wordsIBAlto = \lyricmode {
-  Spem in a -- li -- um nun -- quam ha -- bu -- _ i, non ha -- _ _ bu -- _ i
-  spem in a -- li -- um, spem in _ a -- li -- _ um, 
-  nun -- quam ha -- bu -- _ i
+  Spem in a -- li -- um nun -- quam ha -- bu -- _ i, non ha -- _ _ bu -- _ i,
+  spem in a -- li -- um, spem in _ a -- li -- _ um
+  nun -- quam ha -- bu -- _ i,
   % 14
-  nun -- quam, nun -- quam ha -- bu -- i
-  nun -- quam ha -- bu -- i
-  Spem in a -- li -- um 
-  nun -- _ _ _ quam 
+  nun -- quam, nun -- quam ha -- bu -- i,
+  nun -- quam ha -- bu -- i,
+  spem in a -- li -- um 
+  nun -- _ _ _ quam,
   nun -- quam,
-  nun -- quam ha -- _ bu -- i
-  Spem in a -- li -- _ um 
-  nun -- quam ha -- bu -- i
+  nun -- quam ha -- _ bu -- i,
+  spem in a -- li -- _ um 
+  nun -- quam ha -- bu -- i,
   
   % 40
   prae -- ter in te,
-  te De -- us
-  in te De -- us 
-  Is -- ra -- el
-  De -- us Is -- ra -- el
+  te, De -- us,
+  in te, De -- us 
+  Is -- ra -- el,
+  De -- us Is -- ra -- el,
   
   % 65
-  et o -- mni -- a pec -- ca -- ta ho -- mi -- num 
+  et o -- mni -- a pec -- ca -- ta ho -- mi -- num,
   et o -- mni -- a 
   pec -- ca -- ta 
-  ho -- mi -- num 
-  pec -- ca -- ta  ho -- mi -- num, 
+  ho -- mi -- num, 
+  pec -- ca -- ta  ho -- mi -- num
 
   in tri -- bu -- la -- ti -- 
-  o -- ne
+  o -- ne,
   
   in tri -- bu -- la -- ti -- o -- _ ne 
   di -- mi -- _ tis, 
   di -- mi -- _ _ _ _ _ _ tis, 
   di -- mi -- _ _ tis, 
-  di -- mi -- _ _ _ _ tis
+  di -- mi -- _ _ _ _ tis.
   
   % 91
-  Do -- mi -- ne De -- _ _ _ _ _ us, 
+  Do -- mi -- ne De -- _ _ _ _ _ us,
   Cre -- _ a _ -- tor 
-  cae -- li _ et _ ter -- rae,
+  Cae -- li _ et _ Ter -- rae,
   
   % 100
   Cre -- a -- tor, 
   Cre -- a -- tor 
-  cae -- li  et ter -- _ rae, 
-  cae -- li et ter -- rae,
+  Cae -- li  et Ter -- _ rae, 
+  Cae -- li et Ter -- rae,
   Cre -- a -- _ tor,
   Cre -- a -- tor
-  cae -- _ _ li,
-  cae -- li et ter -- _ rae, 
+  Cae -- _ _ li,
+  Cae -- li et Ter -- _ rae, 
   
   % 108
   re -- spi -- _ ce
@@ -488,74 +486,74 @@ wordsIBAlto = \lyricmode {
   no -- _ _ stram,
   
   % 122
-  re -- spi -- ce, 
+  re -- spi -- ce 
   ad hu -- mi -- li -- ta -- _ tem 
   no -- _ stram, 
   ad hu -- mi -- li -- _ ta -- tem 
-  no -- _ _ _ _ stram 
+  no -- _ _ _ _ stram,
   no -- stram,
   ad hu -- mi -- li -- ta -- tem 
   no -- _ _ stram, 
-  hu -- mi -- _ li -- _ ta -- _ tem 
+  hu -- mi -- _ li -- _ ta -- _ tem,
   hu -- mi -- li -- ta -- _ tem,
   no -- _ _ stram, 
-  no -- _ _ _ _ stram. 
+  no -- _ _ _ _ stram.
 }
 
 wordsIBTenor = \lyricmode {
-  Spem in a -- li -- um, nun -- quam ha -- bu _ _ _ -- i, ha -- bu -- i,
+  Spem in a -- li -- um nun -- quam ha -- bu _ _ _ -- i, ha -- bu -- i,
   nun -- quam ha -- bu -- _ _ _ i, 
   ha -- bu -- _ i,
   nun -- quam ha -- _ bu -- i, 
   ha -- bu -- i,
-  nun -- quam ha -- _ bu -- i, ha -- bu -- _ _ i
-  nun -- quam, ha -- bu -- _ _ i
+  nun -- quam ha -- _ bu -- i, ha -- bu -- _ _ i,
+  nun -- quam ha -- bu -- _ _ i,
 
   %40
-  Pra -- ter in te 
-  De -- _ us 
-  in te, in te De -- _ us
+  prae -- ter in te,
+  De -- _ us,
+  in te, in te, De -- _ us
   Is -- ra -- _ el, 
   De -- us Is -- ra -- _ _ el, 
 
   % 65
   et o -- mni -- a 
-  pec -- ca -- ta ho -- mi -- num 
+  pec -- ca -- ta ho -- mi -- num,
   et o -- mni -- a 
   pec -- ca -- ta 
-  ho -- mi -- num
+  ho -- mi -- num,
   pec -- ca -- ta 
   ho -- mi -- num, 
-  ho -- mi -- num,
-  in tri -- bu -- la -- ti -- o -- _ _ ne
+  ho -- mi -- num
+  in tri -- bu -- la -- ti -- o -- _ _ ne,
 
   % 81
   in tri -- bu -- la -- ti -- o -- _ _ _ _ _ ne 
   di -- mi -- _ _ _ tis, di -- mi -- _ _ _ tis, 
   di -- mi -- tis,
-  di -- mi -- _ tis, 
+  di -- mi -- _ tis.
 
   % 91
   Do -- mi -- ne De -- us, 
   Cre -- a -- tor 
-  cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
 
   % 100
   Cre -- a -- _ _ _ tor 
-  cae -- _ _ _ _ li  et ter -- _ rae, 
-  cae -- li et ter -- rae,
+  Cae -- _ _ _ _ li  et Ter -- _ rae, 
+  Cae -- li et Ter -- rae,
   Cre -- a -- _ _ tor 
-  cae -- li et ter -- _ _ _ rae,
-  et ter -- _ rae,
-  cae -- _ li et ter -- _ rae,
+  Cae -- li et Ter -- _ _ _ rae,
+  et Ter -- _ rae,
+  Cae -- _ li et Ter -- _ rae,
 
   % 108
   re -- spi -- ce
 
   % 118
   ad hu -- mi -- li -- ta -- _ _ _ _ _ tem 
-  no -- _ _ _ _ _ _ _ stram
-  re -- spi -- ce, 
+  no -- _ _ _ _ _ _ _ stram,
+  re -- spi -- ce
 
   % 123
   ad hu -- mi -- li -- ta -- _ _ tem 
@@ -564,21 +562,21 @@ wordsIBTenor = \lyricmode {
   ad hu -- mi -- li -- ta -- 
   tem no -- stram, _ _  
   no -- _ _ _ _ stram, 
-  ad hu -- mi -- li -- ta -- tem,
+  ad hu -- mi -- li -- ta -- tem
   no -- _ stram,
   no -- _ _ stram,
-  hu -- mi -- li -- ta -- _ _ tem,
+  hu -- mi -- li -- ta -- _ _ tem
   no -- stram.
 }
 
 wordsIBBaritone = \lyricmode {
-  Spem in a -- li -- um nun -- quam ha -- bu -- i, ha _ -- bu -- i
+  Spem in a -- li -- um nun -- quam ha -- bu -- i, ha _ -- bu -- i,
   nun -- quam ha -- bu -- i, nun -- _ quam
   ha -- bu -- i,
   nun -- quam ha -- bu -- _ _ _ _ i,
-  nun -- quam, nun -- quam,
+  nun -- quam, nun -- quam
   ha -- bu -- _ _ i
-  nun -- quam, nun -- quam,
+  nun -- quam, nun -- quam
   ha -- bu -- _ i,
   ha -- bu -- i,
   ha -- bu -- i, nun -- quam ha -- bu -- i,
@@ -588,54 +586,54 @@ wordsIBBaritone = \lyricmode {
   De -- us Is -- ra -- el, 
   Is -- ra -- el,
   in te, De -- _ us,
-  Is -- ra -- _ _ el
+  Is -- ra -- _ _ el,
   
   % 65
   et o -- mni -- a, 
   et o -- mni -- a 
   pec -- ca -- ta ho -- mi -- num, pec -- ca -- ta ho -- mi -- num, 
   pec -- ca -- ta
-  ho -- mi -- num, 
-  in tri -- bu -- la -- ti -- o  -- _ _ _ ne
+  ho -- mi -- num
+  in tri -- bu -- la -- ti -- o  -- _ _ _ ne,
   
   % 82
   in tri -- bu -- la -- ti -- _ o  -- ne di -- mit -- _ tis, 
-  di -- mit -- tis, di -- mit -- _ _ _ _ tis
-  di -- mit -- _ _ tis, di -- mit -- _ _ tis, 
+  di -- mit -- tis, di -- mit -- _ _ _ _ tis,
+  di -- mit -- _ _ tis, di -- mit -- _ _ tis.
   
   % 91
   Do -- mi -- ne De -- us, 
   Cre -- a -- tor 
-  cae -- li et ter -- _ rae,
+  Cae -- li et Ter -- _ rae,
   
   % 100
   Cre -- a -- tor 
-  cae -- li et ter -- _ rae, 
-  cae -- li et ter -- _ _ rae, 
+  Cae -- li et Ter -- _ rae, 
+  Cae -- li et Ter -- _ _ rae, 
   Cre -- a -- tor 
-  cae -- li et ter -- rae, 
+  Cae -- li et Ter -- rae, 
   Cre -- a -- tor,
-  cae -- _ li 
-  et ter -- rae
+  Cae -- _ li 
+  et Ter -- rae,
   
   re -- _ spi -- ce
   
   % 118
-  ad hu -- mi -- li -- ta -- _ _ _ _ tem no -- _ _ _ stram 
-  no -- stram, 
+  ad hu -- mi -- li -- ta -- _ _ _ _ tem no -- _ _ _ stram,
+  no -- stram,
 
   % 122
   re -- spi -- ce
   ad hu -- mi -- li -- ta -- _ tem 
-  no -- _ stram 
+  no -- _ stram, 
   ad hu -- mi -- li -- ta -- _ tem 
-  no -- _ _ stram 
-  no -- _ _ stram 
+  no -- _ _ stram, 
+  no -- _ _ stram,
   no -- stram, 
   no -- _ _ stram,
   ad hu -- mi -- li -- ta -- tem
-  no -- stram 
-  no -- _ _ stram
+  no -- stram,
+  no -- _ _ stram,
   ad hu -- mi -- li -- ta -- _ tem 
   no -- _ _ _ _ stram.
 }
@@ -652,44 +650,44 @@ wordsIBBass = \lyricmode {
   % 40
   prae -- ter in te, De -- _ us 
   te, De -- us,
-  te, De -- us Is -- ra -- _ el
-  Is -- ra -- el
+  te, De -- us Is -- ra -- _ el,
+  Is -- ra -- el,
   
   % 69
-  et o -- mni -- a, 
+  et o -- mni -- a
   pec -- ca -- ta ho -- _ _ mi -- num, 
-  pec -- ca -- ta  ho -- mi -- num
-  ho -- mi -- _ num,
+  pec -- ca -- ta  ho -- mi -- num,
+  ho -- mi -- _ num
 
   % 74
-  in tri -- bu -- la -- ti -- o  -- ne 
+  in tri -- bu -- la -- ti -- o  -- ne,
   
   % 82
-  in tri -- bu -- la -- ti -- o  -- ne  di -- mi -- tis
+  in tri -- bu -- la -- ti -- o  -- ne  di -- mi -- tis,
   di -- mit -- _ tis, 
-  di -- mit -- _ _ tis
-  di -- mit -- tis,
+  di -- mit -- _ _ tis,
+  di -- mit -- tis.
   
   % 100
   Cre -- a -- tor 
-  cae -- li et ter -- rae, 
+  Cae -- li et Ter -- rae, 
   Cre -- a -- tor 
-  cae -- li et ter -- _ _ rae, 
-  cae -- li,  cae -- li et ter -- _ _ rae, 
+  Cae -- li et Ter -- _ _ rae, 
+  Cae -- li,  Cae -- li et Ter -- _ _ rae, 
 
-   % 108 
-  re -- spi ce, 
+  % 108 
+  re -- spi ce
   
   % 117
   ad hu -- mi -- li -- ta -- _ _ _ _ tem no -- stram, no -- _ _ _ _ stram,
-  re -- spi -- ce,
+  re -- spi -- ce
 
   % 124
-  ad hu -- mi -- li -- ta -- tem no -- _ stram
+  ad hu -- mi -- li -- ta -- tem no -- _ stram,
   hu -- mi -- li -- ta -- tem 
-  no -- _ _ _ stram 
-  no -- stram 
-  no -- _ _ _ stram, no -- stram
+  no -- _ _ _ stram,
+  no -- stram,
+  no -- _ _ _ stram, no -- stram,
   ad hu -- mi -- li -- ta -- tem, hu -- mi -- li -- ta -- tem no -- stram,
   no -- _ stram, no -- _ _ _ _ stram.
 }
@@ -704,7 +702,7 @@ wordsIIASoprano = \lyricmode {
   ha -- bu -- _ _ _ i,
   spem in a -- li -- _ um nun -- quam ha -- bu -- _ _ _ i, 
   nun -- quam ha -- bu -- i, nun -- _ quam ha -- bu -- _ _ i, ha -- bu -- i,
-  ha -- _ bu -- i
+  ha -- _ bu -- i,
 
   prae -- ter in te, De -- us,
   De -- us _ Is -- ra -- _ _ el,
@@ -712,16 +710,16 @@ wordsIIASoprano = \lyricmode {
   % 40
   prae -- | ter in te,
   De -- us Is -- ra -- | el, 
-  in | te, De -- us Is -- ra -- _ el 
+  in | te, De -- us Is -- ra -- _ el,
   
   % 65
   et pro -- pi -- ti -- | us
-  e -- | ris
+  e -- | ris,
 
   % 69
   et o -- mni -- a
   \emphasize
-  pec -- | ca -- ta ho -- mi -- | num
+  pec -- | ca -- ta ho -- mi -- | num,
   \normal
   et o -- mni -- a pec -- ca -- ta ho -- mi -- num
 
@@ -730,8 +728,8 @@ wordsIIASoprano = \lyricmode {
   
   % 84
   di -- mi -- | tis, 
-  | di -- mi -- _ _ tis
-  | di -- mi -- _ tis
+  | di -- mi -- _ _ tis,
+  | di -- mi -- _ tis.
   
   % 88 
   Do -- mi -- ne | De -- us, 
@@ -739,15 +737,15 @@ wordsIIASoprano = \lyricmode {
 
   % 96
   Cre -- a -- tor 
-  cae -- li et ter -- rae,
-  ter -- rae,
-  cae -- _ li -- _ et ter -- rae,
+  Cae -- li et Ter -- rae,
+  Ter -- rae,
+  Cae -- _ li -- _ et Ter -- rae,
 
   % 104
   \emphasize
   Cre -- a -- tor 
-  cae -- li et ter -- rae,
-  Cre -- a -- tor cae -- | li etc ter -- _ _ rae
+  Cae -- li et Ter -- rae,
+  Cre -- a -- tor Cae -- | li etc Ter -- _ _ rae,
   \normal
   
   % 108 
@@ -755,11 +753,12 @@ wordsIIASoprano = \lyricmode {
   
   % 113
   \emphasize
-  ad | hu -- mi -- li -- ta -- _ | _ _ tem ad | hu -- mi -- li -- ta -- _ _ | _ tem no -- _ _ | stram, 
+  ad | hu -- mi -- li -- ta -- _ | _ _ tem, 
+  ad | hu -- mi -- li -- ta -- _ _ | _ tem no -- _ _ | stram,
   \normal
   
   % 122
-  re -- spi -- ce, 
+  re -- spi -- ce
 
   % 126 
   ad | hu -- mi -- li -- ta -- tem no -- _ stram,
@@ -767,41 +766,40 @@ wordsIIASoprano = \lyricmode {
   no -- _ _ _ _ stram,
   no -- | stram, 
   ad hu -- | mi -- li -- ta -- _ tem 
-  no -- stram
+  no -- stram,
   \emphasize
   ad | hu -- mi -- li -- ta -- _ _ _ tem 
   no -- stram.
   \normal
-
 }
 
 wordsIIAAlto = \lyricmode {
   Spem in a -- li -- um nun -- quam ha -- bu -- _ _ _ _ _ _ i, ha -- bu -- i,
   nun -- quam ha -- bu -- _ _ i, ha -- bu -- _ i
-  nun -- quam, _ _ ha -- bu -- _ _ _ i
+  nun -- quam _ _ ha -- bu -- _ _ _ i,
   nun -- quam ha -- bu -- i,
   nun -- quam ha -- bu -- _ i,
   nun -- quam ha -- bu -- i, ha -- bu -- i,
 
   % 35
-  prae -- ter in te, De -- us Is -- ra -- el
+  prae -- ter in te, De -- us Is -- ra -- el,
   
   % 40
   prae -- ter in te,
   De -- _ _ us
   Is -- ra -- el
-  in te De -- us _  
-  in te | De -- us
-  Is -- ra -- el
+  in te, De -- us _  
+  in te, | De -- us
+  Is -- ra -- el,
   
   % 62
-  et pro -- | pi -- ti -- us
-  pro -- pi -- ti -- _ us e -- _ _ | ris
+  et pro -- | pi -- ti -- us,
+  pro -- pi -- ti -- _ us e -- _ _ | ris,
 
   % 69
   et o -- _ _ _ _ mni -- a 
   pec -- ca -- ta 
-  ho -- mi -- num 
+  ho -- mi -- num,
   pec -- ca -- ta ho -- mi -- num 
 
   % 74
@@ -811,21 +809,21 @@ wordsIIAAlto = \lyricmode {
   % 84
   di -- mi -- _ _ tis, 
   | di -- mi -- _ _ tis, 
-  | di -- mi -- _ tis, 
+  | di -- mi -- _ tis.
   Do -- mi -- ne De -- us, 
   Do -- mi -- ne De -- _ us, 
   
   % 96
   Cre -- a -- _ _ tor 
-  cae -- li 
-  et ter -- _ rae,
-  et ter -- | rae,
+  Cae -- li 
+  et Ter -- _ rae,
+  et Ter -- | rae,
   
   % 104
   | Cre -- a -- _ _ tor, 
-  cae -- li  et ter -- rae, 
+  Cae -- li  et Ter -- rae, 
   Cre -- a -- tor,
-  cae -- li et ter -- _ | rae, 
+  Cae -- li et Ter -- _ | rae, 
   
   % 108
   re -- spi -- ce
@@ -836,55 +834,55 @@ wordsIIAAlto = \lyricmode {
   
   % 122
   re -- spi -- ce, 
-  re -- spi -- ce, 
+  re -- spi -- ce
   
   ad hu -- mi -- | li -- ta -- tem 
   no -- stram, 
   no -- stram, 
   ad,
   ad hu -- mi -- li -- ta -- | tem 
-  no -- _ _ stram 
+  no -- _ _ stram,
   no -- _ stram, _ _ 
   ad hu -- mi -- li -- 
-  ta -- tem no -- stram
+  ta -- tem no -- stram,
   no -- _ _ stram, 
   no -- _ _ stram.
 }
 
 wordsIIATenor = \lyricmode {
-  Spem in a -- li -- um, nun -- quam ha -- bu -- i, 
+  Spem in a -- li -- um nun -- quam ha -- bu -- i, 
   nun -- quam ha -- bu -- _ i, 
   ha -- bu -- _ _ i,
   nun -- quam ha -- bu -- i, 
   nun -- quam ha -- bu -- _ i, 
   ha -- bu -- _ i,
   in a -- li -- um nun -- _ quam ha -- bu -- i,
-  nun -- quam ha -- bu -- i, ha -- bu -- i
+  nun -- quam ha -- bu -- i, ha -- bu -- i,
 
   % 35
-  Pra -- ter in te De -- us Is -- ra -- el,
+  prae -- ter in te, De -- us Is -- ra -- el,
   
   %40
-  Pra -- ter in te 
+  prae -- ter in te,
   in te, De -- us 
   Is -- ra -- _ el, 
   in te, De -- us _ Is -- ra -- el, 
 
   % 57
-  et pro -- | pi -- ti -- us e -- _ _ | _ _ _ _ _ _ ris
-  et pro -- pi -- ti -- | us e -- | ris, et pro -- pi -- | ti -- _ us e -- _ _ ris
+  et pro -- | pi -- ti -- us e -- _ _ | _ _ _ _ _ _ ris,
+  et pro -- pi -- ti -- | us e -- | ris, et pro -- pi -- | ti -- _ us e -- _ _ ris,
 
   % 69
-  | et o -- mni -- a pec -- | ca -- ta ho -- mi -- num 
+  | et o -- mni -- a pec -- | ca -- ta ho -- mi -- num,
   pec -- ca -- ta 
-  ho -- mi -- | num
-  ho -- mi -- num, 
+  ho -- mi -- | num,
+  ho -- mi -- num
   in tri -- | bu -- la -- ti -- o -- _ ne
 
   % 84
   di -- mi -- _ | tis, 
   di -- mi -- _ _ _ tis, 
-  di -- mi -- _ tis,
+  di -- mi -- _ tis.
 
   % 88
   Do -- mi -- ne De -- _ us, 
@@ -892,24 +890,24 @@ wordsIIATenor = \lyricmode {
   
   % 96
   Cre -- a -- _ _ tor 
-  cae -- li  et ter -- _ | _ rae, 
-  et ter -- | rae,
+  Cae -- li  et Ter -- _ | _ rae, 
+  et Ter -- | rae,
 
   % 104
   | Cre -- a -- _ tor
-  cae -- li  et ter -- _ rae, 
-  Cre -- a -- _ _ tor,
-  cae -- _ li  et ter -- _ _ | rae, 
+  Cae -- li  et Ter -- _ rae, 
+  Cre -- a -- _ _ tor
+  Cae -- _ li  et Ter -- _ _ | rae, 
   
   % 108
   re -- | _ spi -- ce
 
   % 114
-  ad hu -- mi -- li -- ta -- _ _ _ _ _ tem no -- _ _ _ _ stram
+  ad hu -- mi -- li -- ta -- _ _ _ _ _ tem no -- _ _ _ _ stram,
   no -- stram,
 
   % 122
-  re -- _ spi -- ce, re -- spi -- _ ce,
+  re -- _ spi -- ce, re -- spi -- _ ce
 
   % 123
   ad hu -- mi -- li -- | ta -- _ tem 
@@ -930,7 +928,7 @@ wordsIIATenor = \lyricmode {
 
   no -- stram, 
   no -- _ stram, 
-  hu -- mi -- li -- ta -- tem,
+  hu -- mi -- li -- ta -- tem
   no -- stram.
 }
 
@@ -940,18 +938,18 @@ wordsIIABaritone = \lyricmode {
   nun -- quam, nun -- quam ha -- bu -- _ _ i,
 
   % 35
-  prae -- ter in te, De -- us Is -- ra -- el
+  prae -- ter in te, De -- us Is -- ra -- el,
 
   % 40
   prae -- ter in te, 
-  in te De -- us Is -- ra -- el, 
+  in te, De -- us Is -- ra -- el, 
   in te, De -- _ | us,
   te, De -- us Is -- ra -- _ el, te, De -- us | Is -- ra -- el,
   
   % 57
   et pro -- pi -- ti -- us e -- | _ _ ris,
   et pro -- pi -- ti -- | us, et pro -- pi -- ti us, | et pro -- pi -- ti -- us e -- ris, 
-  et pro -- _ _ pi -- ti -- | us,
+  et pro -- _ _ pi -- ti -- | us
   e -- _ _ _ ris,
 
   % 70
@@ -962,7 +960,7 @@ wordsIIABaritone = \lyricmode {
   
   % 82
   di -- mit -- _ | tis, 
-  di -- mit -- _ _ _ | tis
+  di -- mit -- _ _ _ | tis.
   
   % 88
   Do -- mi -- ne De -- _ _ _ _ us, 
@@ -970,22 +968,22 @@ wordsIIABaritone = \lyricmode {
 
   % 96
   Cre -- a -- tor 
-  cae -- li et _ | ter -- rae,
-  et ter -- | rae
+  Cae -- li et _ | Ter -- rae,
+  et Ter -- | rae,
   
   % 104
   Cre -- a -- tor 
-  cae -- li et ter -- rae, 
-  cae -- | li et ter -- | rae, 
+  Cae -- li et Ter -- rae, 
+  Cae -- | li et Ter -- | rae, 
   
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
   re -- spi -- ce
-  ad hu -- | mi -- li -- ta -- tem no -- _ | stram 
-  no -- _ _ stram 
-  no -- _ _ _ _ _ stram 
-  no -- | _ _ stram, 
+  ad hu -- | mi -- li -- ta -- tem no -- _ | stram,
+  no -- _ _ stram,
+  no -- _ _ _ _ _ stram,
+  no -- | _ _ stram,
   no -- stram,
   no -- _ stram,
   ad hu -- mi -- li -- ta -- tem _ _ 
@@ -1001,19 +999,19 @@ wordsIIABass = \lyricmode {
   ha -- bu i,
 
   % 35
-  prae -- ter in te, De -- us Is -- ra -- el
+  prae -- ter in te, De -- us Is -- ra -- el,
   
   % 40
-  prae -- ter in te _ De -- _ us in te, De -- us Is -- ra -- el, 
-  Is -- ra -- el
+  prae -- ter in te, _ De -- _ us, in te, De -- us Is -- ra -- el, 
+  Is -- ra -- el,
   
   % 57
-  et pro -- pi -- ti -- | _ us 
+  et pro -- pi -- ti -- | _ us,
   et pro -- | pi -- ti -- us, et pro -- pi -- ti -- us, et pro -- | pi -- ti -- us e -- | ris,
 
   % 69
   et | o -- mni -- a
-  pec -- ca -- ta  | ho -- mi -- num
+  pec -- ca -- ta  | ho -- mi -- num,
   et o -- mni -- a pec -- ca -- ta  | ho -- mi -- num
 
   % 74
@@ -1021,26 +1019,26 @@ wordsIIABass = \lyricmode {
   
   % 84
   di -- mit -- | tis, 
-  di -- mit -- | tis
+  di -- mit -- | tis.
   Do -- mi -- ne | De -- us,
   Do -- mi -- ne | De -- us,
   
   % 96
   Cre -- a -- tor 
-  cae -- li et ter -- rae, 
-  et ter -- | rae,
+  Cae -- li et Ter -- rae, 
+  et Ter -- | rae,
 
   % 108
   re -- | spi -- _ ce, re -- | spi -- ce, 
   
   % 122
-  re -- spi -- | ce,
+  re -- spi -- | ce
 
   % 124
   ad hu -- mi -- li -- | ta -- tem 
-  no -- _ | stram
-  ad hu -- | mi -- li -- ta -- tem | no -- stram 
-  ad hu -- mi -- li -- ta -- | tem no -- | stram 
+  no -- _ | stram,
+  ad hu -- | mi -- li -- ta -- tem | no -- stram,
+  ad hu -- mi -- li -- ta -- | tem no -- | stram,
   ad | hu -- mi -- li -- ta -- _ _ _ tem | no -- | stram.
 }
 
@@ -1061,13 +1059,13 @@ wordsIIBSoprano = \lyricmode {
   in te, 
   De -- | us Is -- ra -- el, 
   \emphasize
-  in te, De -- _ _ us Is -- ra -- | el
+  in te, De -- _ _ us Is -- ra -- | el,
   \normal
   
   % 59
-  et pro -- | pi -- ti -- us, et | pro -- pi -- ti -- us _ e -- ris
-  et pro -- pi -- ti -- _ _ _ _ _ _ us, 
-  | e -- _ _ _ _ _ _ _ _ _ _ _ _ ris
+  et pro -- | pi -- ti -- us, et | pro -- pi -- ti -- us _ e -- ris,
+  et pro -- pi -- ti -- _ _ _ _ _ _ us
+  | e -- _ _ _ _ _ _ _ _ _ _ _ _ ris,
 
   % 69
   et | o -- mni -- a
@@ -1083,7 +1081,7 @@ wordsIIBSoprano = \lyricmode {
   di -- mi -- | tis, 
   \normal
 
-  di -- mi -- _ _ | tis
+  di -- mi -- _ _ | tis.
   
   % 88 
   Do -- mi -- ne | De -- _ us, 
@@ -1091,24 +1089,24 @@ wordsIIBSoprano = \lyricmode {
 
   % 96
   Cre -- a -- tor 
-  cae -- li et ter -- | rae,
-  cae -- li et ter -- | rae
+  Cae -- li et Ter -- | rae,
+  Cae -- li et Ter -- | rae,
 
   % 104
   Cre -- a -- _ _ _ _ _ tor 
-  cae -- li et ter -- _ rae,
+  Cae -- li et Ter -- _ rae,
   Cre -- a -- tor
-  cae -- li -- et ter -- _ _ rae,
+  Cae -- li -- et Ter -- _ _ rae,
   
   % 108 
-  re -- spi -- ce _ _ 
+  re -- spi -- ce _ _
   
   % 114
-  ad | hu -- mi -- li -- ta -- tem 
+  ad | hu -- mi -- li -- ta -- tem,
   ad hu -- | mi -- li -- ta -- _ tem no -- _ stram, 
   
   % 122
-  re -- spi -- ce, 
+  re -- spi -- ce
 
   % 127
   \emphasize
@@ -1117,9 +1115,9 @@ wordsIIBSoprano = \lyricmode {
 
   no -- _ _ _ _ stram,
   no -- stram,
-  ad hu -- mi -- li -- ta -- | tem 
-  ad hu -- | mi -- li -- ta -- tem 
-  ad hu --  mi -- li -- ta -- _ tem 
+  ad hu -- mi -- li -- ta -- | tem,
+  ad hu -- | mi -- li -- ta -- tem,
+  ad hu --  mi -- li -- ta -- _ tem
   no -- _ stram.
 }
 
@@ -1127,33 +1125,33 @@ wordsIIBAlto = \lyricmode {
   Spem in | a -- li -- um nun -- | quam ha -- bu -- _ _ _ | _ i, 
   nun -- quam ha -- bu -- i, 
   nun -- quam, ha -- bu -- | i, prae -- ter in te, De -- _ _ _ _ us Is -- ra -- el, 
-  prae -- ter in te, De -- us Is -- ra -- _ el
+  prae -- ter in te, De -- us Is -- ra -- _ el,
 
   % 35
-  prae -- | ter in te, De -- | _ _ us 
-  De -- _ us Is -- ra -- el
+  prae -- | ter in te, De -- | _ _ us,
+  De -- _ us Is -- ra -- el,
   
   % 40
   prae -- ter in | _ te,
   De -- us
-  Is -- | ra -- _ el
+  Is -- | ra -- _ el,
   in te, 
-  De -- us Is -- ra -- el
-  pra -- ter
+  De -- us Is -- ra -- el,
+  prae -- ter
   in | te,
   De -- us Is -- ra -- _ el,
   
   % 58
-  et pro -- pi -- ti -- | us
-  pro -- pi -- ti -- us e -- ris
-  et pro -- pi -- ti -- us, et pro -- pi -- ti -- us, et pro -- pi -- ti -- us, _ e -- _ _ _ | ris, 
+  et pro -- pi -- ti -- | us,
+  pro -- pi -- ti -- us e -- ris,
+  et pro -- pi -- ti -- us, et pro -- pi -- ti -- us, et pro -- pi -- ti -- us _ e -- _ _ _ | ris, 
 
   % 69
   et | o -- mni -- a 
-  pec -- ca -- ta ho -- mi -- num 
+  pec -- ca -- ta ho -- mi -- num,
   pec -- ca -- ta 
   ho -- mi -- num,
-  ho -- mi -- num,
+  ho -- mi -- num
 
   % 74
   in tri -- | bu -- la -- ti -- o -- ne
@@ -1161,20 +1159,20 @@ wordsIIBAlto = \lyricmode {
   % 84
   di -- mi -- _ _ | tis, 
   di -- mi -- _ _ _ tis, 
-  di -- mi -- tis, 
+  di -- mi -- tis.
   Do -- mi -- ne | De -- us, 
   Do -- mi -- ne | De -- us, 
   
   % 96
   Cre -- a -- tor 
-  cae -- li et | ter -- rae,
-  et ter -- | rae,
+  Cae -- li et | Ter -- rae,
+  et Ter -- | rae,
   
   % 104
   Cre -- a -- _ tor, 
-  cae -- li  et ter -- rae, 
-  Cre -- a -- tor, cae -- _ li 
-  et ter -- rae, 
+  Cae -- li  et Ter -- rae, 
+  Cre -- a -- tor Cae -- _ li 
+  et Ter -- rae, 
   
   % 108
   re -- spi -- ce
@@ -1183,7 +1181,7 @@ wordsIIBAlto = \lyricmode {
   ad hu -- mi -- li -- | ta -- _ _ _ _ _ tem no -- _ _ stram,
   
   % 122
-  re -- spi -- | ce, 
+  re -- spi -- | ce
   
   % 127
   ad hu -- mi -- li -- | ta -- _ | tem 
@@ -1200,16 +1198,16 @@ wordsIIBAlto = \lyricmode {
 
 wordsIIBTenor = \lyricmode {
   Spem in | a -- li -- um nun -- | quam ha -- bu -- | _ _ i, nun -- quam ha -- bu -- _ _ i, 
-  pra -- ter in -- _ te,
+  prae -- ter in -- _ te,
   De -- _ _ us, 
   De -- _ _ _ us,
-  De -- us Is -- _ _ ra -- el
+  De -- us Is -- _ _ ra -- el,
 
   % 35
-  prae -- | ter in te De -- | us Is -- ra -- _ _ _ | el,
+  prae -- | ter in te, De -- | us Is -- ra -- _ _ _ | el,
   
   %40
-  prae -- ter in te 
+  prae -- ter in te,
   De -- us 
   | Is -- ra -- el, 
   in te, De -- _ us
@@ -1229,7 +1227,7 @@ wordsIIBTenor = \lyricmode {
 
   % 84
   di -- _ mi -- _ | tis, 
-  di -- mi -- _ _ _ _ _ | tis, 
+  di -- mi -- _ _ _ _ _ | tis.
 
   % 88
   \emphasize
@@ -1240,24 +1238,24 @@ wordsIIBTenor = \lyricmode {
   % 96
   \emphasize
   Cre -- a -- tor 
-  cae -- li  et | ter -- rae, 
-  et ter -- | rae,
+  Cae -- li  et | Ter -- rae, 
+  et Ter -- | rae,
   \normal
 
   % 104
   Cre -- _ a -- tor
-  cae -- li  et ter -- rae, 
+  Cae -- li  et Ter -- rae, 
   
   % 108
   re -- spi -- ce
 
   % 114
   \emphasize
-  ad hu -- mi -- li -- | ta -- _ _ _ _ _ _ _ _ _ _ _ tem no -- | _ _ stram
+  ad hu -- mi -- li -- | ta -- _ _ _ _ _ _ _ _ _ _ _ tem no -- | _ _ stram,
   \normal
 
   % 122
-  re -- spi -- | ce, 
+  re -- spi -- | ce
 
   % 123
   ad hu -- mi -- li -- | ta -- _ _ tem 
@@ -1268,7 +1266,7 @@ wordsIIBTenor = \lyricmode {
 
   %128
   \emphasize
-  | ad hu -- mi -- li -- ta -- | tem, 
+  | ad hu -- mi -- li -- ta -- | tem
   no -- stram, 
   \normal
 
@@ -1276,17 +1274,17 @@ wordsIIBTenor = \lyricmode {
   ad hu -- mi -- li -- ta -- | tem
   no -- stram, 
   no -- stram, 
-  ad hu -- mi -- li -- | ta -- tem, _ no -- stram,
+  ad hu -- mi -- li -- | ta -- tem _ no -- stram,
   ad hu -- mi -- li -- ta -- tem no -- stram.
 }
 
 wordsIIBBaritone = \lyricmode {
   Spem in a -- li -- | um nun -- quam ha -- bu -- i, 
-  Spem in | a -- li -- um nun -- | quam ha -- _ bu -- | i, 
+  spem in | a -- li -- um nun -- | quam ha -- _ bu -- | i, 
   nun -- quam ha -- _ bu -- i, 
 
   % 35
-  prae -- | ter in te, | De -- us Is -- ra -- _ | el
+  prae -- | ter in te, | De -- us Is -- ra -- _ | el,
 
   % 40
   prae -- ter in | te, 
@@ -1301,16 +1299,16 @@ wordsIIBBaritone = \lyricmode {
   e -- _ _ ris,
 
   % 70
-  | et o -- mni -- a, 
+  | et o -- mni -- a
   pec -- _ ca -- _ ta,
-  pec -- ca -- ta, ho -- mi -- num, 
-  pec -- ca -- ta,
-  ho -- mi -- num, 
+  pec -- ca -- ta ho -- mi -- num, 
+  pec -- ca -- ta
+  ho -- mi -- num 
   in | tri -- bu -- la -- ti -- o  -- ne
   
   % 82
   di -- mit -- _ | tis, 
-  di -- mit -- _ _ tis
+  di -- mit -- _ _ tis.
   
   % 88
   Do -- mi -- ne | De -- us, 
@@ -1318,26 +1316,26 @@ wordsIIBBaritone = \lyricmode {
 
   % 96
   Cre -- a -- tor 
-  cae -- li et _ | ter -- rae,
-  et ter -- _ | rae
+  Cae -- li et _ | Ter -- rae,
+  et Ter -- _ | rae,
   
   % 104
   Cre -- a -- tor 
-  cae -- li et ter -- rae, 
+  Cae -- li et Ter -- rae, 
   
   re -- spi -- ce
   
   % 114
-  ad | hu -- mi -- li -- ta -- _ | _ _ tem | no -- _ stram 
+  ad | hu -- mi -- li -- ta -- _ | _ _ tem | no -- _ stram,
 
   % 122
   | re -- spi -- ce, re -- spi -- ce
   ad hu -- mi -- li -- ta -- tem no -- stram,
-  no -- _ _ stram 
+  no -- _ _ stram,
   no -- _ stram,
   no -- _ | stram,
   no -- | stram,
-  | no -- stram, 
+  | no -- stram,
   no -- _ stram,
   no -- _ stram,
   ad hu -- mi -- li -- ta -- tem 
@@ -1349,14 +1347,14 @@ wordsIIBBaritone = \lyricmode {
 
 wordsIIBBass = \lyricmode {
   Spem in a -- li -- | um nun -- quam | ha -- bu i, 
-  Spem in | a -- li -- | um nun -- quam | ha -- bu i, 
+  spem in | a -- li -- | um nun -- quam | ha -- bu i, 
 
   % 35
-  prae -- | ter in te, | De -- us Is -- ra -- | el
+  prae -- | ter in te, | De -- us Is -- ra -- | el,
   
   % 40
   prae -- ter,
-  prae -- ter in te 
+  prae -- ter in te,
   De -- us Is -- ra -- el, Is -- ra -- _ _ el,
   
   % 57
@@ -1373,27 +1371,27 @@ wordsIIBBass = \lyricmode {
   in | tri -- bu -- la -- ti -- o  -- ne 
   
   % 86
-  di -- mit -- | tis
+  di -- mit -- | tis.
   Do -- mi -- ne | De -- us,
   Do -- mi -- ne | De -- us,
   
   % 96
   Cre -- a -- tor 
-  cae -- li et | ter -- _ _ rae, 
-  et ter -- | rae,
+  Cae -- li et | Ter -- _ _ rae, 
+  et Ter -- | rae,
 
   % 108
   re -- spi -- _ _ _ _ ce,
   
   % 122
-  re -- spi -- | _ _ ce,
+  re -- spi -- | _ _ ce
 
   % 124
   ad | hu -- mi -- li -- ta -- | tem 
-  no -- | _ stram
-  ad | hu -- mi -- li -- ta -- tem | no -- stram 
-  no -- _ stram
-  ad hu -- | mi -- li -- ta -- _ tem | no -- _ stram 
+  no -- | _ stram,
+  ad | hu -- mi -- li -- ta -- tem | no -- stram,
+  no -- _ stram,
+  ad hu -- | mi -- li -- ta -- _ tem | no -- _ stram,
   no -- _ _ _ _ _ stram,
   no -- _ _ stram,
   no -- stram.
@@ -1406,7 +1404,8 @@ wordsIIBBass = \lyricmode {
 wordsIIIASoprano = \lyricmode {
   % 23
   \emphasize
-  prae -- ter in | te, De -- | us Is -- ra -- el, Is -- _ ra -- | el, in te, De -- us Is -- ra -- _ _ _ el,
+  prae -- ter in | te, De -- | us Is -- ra -- el, 
+  Is -- _ ra -- | el, in te, De -- us Is -- ra -- _ _ _ el,
   \normal
 
   Is -- ra -- _ _ el,
@@ -1419,7 +1418,7 @@ wordsIIIASoprano = \lyricmode {
   \emphasize
   prae -- ter in | te,
   \normal
-  De -- | _ _ us 
+  De -- | _ _ us,
   te, De -- us Is -- ra -- el,
   Is -- ra -- el,
   Is -- ra -- el,
@@ -1443,7 +1442,7 @@ wordsIIIASoprano = \lyricmode {
   \normal
   
   % 86
-  di -- mi -- _ tis, 
+  di -- mi -- _ tis.
   
   % 87
   Do -- mi -- ne De -- _ us, 
@@ -1451,10 +1450,10 @@ wordsIIIASoprano = \lyricmode {
   % 95
   \emphasize
   Cre -- | a -- tor 
-  cae -- | li et ter -- rae,
-  et ter -- rae,
+  Cae -- | li et Ter -- rae,
+  et Ter -- rae,
   Cre -- a -- tor 
-  cae -- | li et ter -- rae
+  Cae -- | li et Ter -- rae,
   \normal
 
   % 108
@@ -1466,7 +1465,7 @@ wordsIIIASoprano = \lyricmode {
   \normal
   
   % 122
-  re -- spi -- _ _ _ ce, 
+  re -- spi -- _ _ _ ce
 
   % 126
   \emphasize
@@ -1486,7 +1485,8 @@ wordsIIIASoprano = \lyricmode {
 
 wordsIIIAAlto = \lyricmode {
   % 23
-  prae -- | ter in te, De -- us | Is -- ra -- el, De -- _ _ us Is -- ra -- _ | el, De -- us Is -- ra -- _ el, 
+  prae -- | ter in te, De -- us | Is -- ra -- el, De -- _ _ us Is -- ra -- _ | el, 
+  De -- us Is -- ra -- _ el, 
   in te, De -- us Is -- _ ra -- _ el,
   
   % 40
@@ -1507,7 +1507,7 @@ wordsIIIAAlto = \lyricmode {
   pec -- ca -- ta ho -- mi -- num,
   et o -- mni -- | a
   pec -- _ ca -- _ ta 
-  ho -- mi -- num,
+  ho -- mi -- num
 
   % 74  
   in | tri -- bu -- la -- ti -- o -- ne,
@@ -1518,17 +1518,17 @@ wordsIIIAAlto = \lyricmode {
   
   % 5
   di -- mi -- | tis, 
-  di -- _ mi -- _ tis, 
+  di -- _ mi -- _ tis.
   
   % 87
   Do -- mi -- ne De -- _ _ _ _ _ us, 
 
   % 95
   Cre -- | a -- tor 
-  cae -- | li et ter -- _ rae,
-  et ter -- _ rae,
-  et ter -- | rae, Cre -- a -- tor 
-  cae -- | li et ter -- rae
+  Cae -- | li et Ter -- _ rae,
+  et Ter -- _ rae,
+  et Ter -- | rae, Cre -- a -- tor 
+  Cae -- | li et Ter -- rae,
 
   % 108
   re -- spi -- ce
@@ -1538,7 +1538,7 @@ wordsIIIAAlto = \lyricmode {
   no -- _ _ _ | _ _ _ _ | stram,
   
   % 122
-  re -- _ spi -- | ce, re -- _ _ _ spi -- _ ce, 
+  re -- _ spi -- | ce, re -- _ _ _ spi -- _ ce
 
   % 126
   ad | hu -- mi -- li -- ta -- _ | tem 
@@ -1555,7 +1555,8 @@ wordsIIIAAlto = \lyricmode {
 
 wordsIIIATenor = \lyricmode {
   % 23
-  prae -- ter in | te, De -- | - us Is -- ra -- | el, De -- _ us | Is -- ra -- el, | De -- _ _ us 
+  prae -- ter in | te, De -- | - us Is -- ra -- | el, 
+  De -- _ us | Is -- ra -- el, | De -- _ _ us 
   Is -- ra -- _ el, | Is -- ra -- _ _ el, 
   \emphasize
   prae -- ter in | te, De -- us | Is -- ra -- _ _ _ _ | _ el,
@@ -1571,16 +1572,17 @@ wordsIIIATenor = \lyricmode {
   De -- us Is -- ra -- | el,
   
   % 53
-  qui i -- ra -- sce -- ris, et pro -- pi -- ti -- | us, e -- ris, et | pro -- pi -- ti -- _ _ _ _ us,
+  qui i -- ra -- sce -- ris, et pro -- pi -- ti -- | us e -- ris, 
+  et | pro -- pi -- ti -- _ _ _ _ us
   e -- _ _ _ ris,
   et pro -- pi -- ti -- _ _ us
   e -- _ ris,
   
   % 69
-  et o -- mni -- a
+  et o -- mni -- a,
   et o -- mni -- a
   | pec -- ca -- ta, pec -- ca -- ta ho -- _ mi -- num,
-  | pec -- _ ca -- ta,
+  | pec -- _ ca -- ta
   ho -- mi -- num
 
   % 74  
@@ -1590,20 +1592,20 @@ wordsIIIATenor = \lyricmode {
   | in tri -- bu -- | la -- ti -- o -- _ | ne di -- mit -- | tis,
   
   % 86
-  di -- mi -- _ _ _ tis, 
+  di -- mi -- _ _ _ tis.
   
   % 87
   Do -- mi -- ne | De -- us, 
 
   % 95
   Cre -- | a -- tor 
-  cae -- | li et ter -- rae,
-  et ter -- _ rae,
+  Cae -- | li et Ter -- rae,
+  et Ter -- _ rae,
   \emphasize
-  et ter -- | rae, Cre -- a -- tor 
+  et Ter -- | rae, Cre -- a -- tor 
   \normal
   
-  cae -- | li et ter -- _ rae
+  Cae -- | li et Ter -- _ rae,
 
   % 108
   re -- spi -- ce
@@ -1613,7 +1615,7 @@ wordsIIIATenor = \lyricmode {
   no -- _ _ | _ stram,
   
   % 122
-  re -- _ _ _ _ _ _ | _ spi -- ce, re -- _ spi -- _ ce, 
+  re -- _ _ _ _ _ _ | _ spi -- ce, re -- _ spi -- _ ce
 
   % 126
   ad | hu -- mi -- li -- ta -- _ tem 
@@ -1651,7 +1653,7 @@ wordsIIIABaritone = \lyricmode {
   pro -- pi -- ti -- _ us e -- ris,
   e -- _ ris,
   
-  % 69
+  % 69    
   | et o -- mni -- a 
   pec -- ca -- ta ho -- mi -- num,
   pec -- ca -- ta ho -- mi -- num, ho -- _ | _ mi -- num
@@ -1665,17 +1667,17 @@ wordsIIIABaritone = \lyricmode {
   di | mit -- _ _ _ tis,
   
   % 86
-  di -- mit -- tis, 
+  di -- mit -- tis.
   
   % 87
   Do -- mi -- ne | De -- us, 
 
   % 95
   Cre -- | a -- tor 
-  cae -- | li et ter -- _ rae,
-  et ter -- rae,
-  et ter -- _ | rae, Cre -- a -- tor 
-  cae -- | li et ter -- rae
+  Cae -- | li et Ter -- _ rae,
+  et Ter -- rae,
+  et Ter -- _ | rae, Cre -- a -- tor 
+  Cae -- | li et Ter -- rae,
 
   % 108
   re -- spi -- ce
@@ -1693,9 +1695,9 @@ wordsIIIABaritone = \lyricmode {
   ad | hu -- mi -- li -- ta -- tem no -- _ _ _ stram,
   no -- _ stram,
   ad hu -- | mi -- li -- ta -- tem,
-  ad hu -- mi -- | li -- ta -- tem,
+  ad hu -- mi -- | li -- ta -- tem
   no -- _ | _ _ stram,
-  ad | hu -- mi -- li -- ta -- tem,
+  ad | hu -- mi -- li -- ta -- tem
   no -- stram, no -- _ | stram,
   no -- _ _ _ | stram.
 }
@@ -1711,8 +1713,8 @@ wordsIIIABass = \lyricmode {
   in | te, De -- us | Is -- ra -- _ el,
   
   % 50
-  qui i -- | ra -- sce -- ris et | pro -- pi -- ti -- us, 
-  qui i -- | ra -- sce -- ris et pro -- pi -- ti -- us, 
+  qui i -- | ra -- sce -- ris, et | pro -- pi -- ti -- us, 
+  qui i -- | ra -- sce -- ris, et pro -- pi -- ti -- us
   | e -- _ _ _ _ _ ris,
   
   % 69
@@ -1728,16 +1730,16 @@ wordsIIIABass = \lyricmode {
   
   % 86
   di -- mit -- tis, 
-  di -- _ mit -- _ tis, 
+  di -- _ mit -- _ tis.
   
   % 99
-  et ter -- | rae, Cre -- a -- tor 
+  et Ter -- | rae, Cre -- a -- tor,
 
   % 108
-  re -- spi -- _ | ce
+  re -- spi -- _ | ce,
   
   % 122
-  re -- spi -- _ ce,
+  re -- spi -- _ ce
 
   % 125
   ad | hu -- mi -- li -- ta -- | tem 
@@ -1778,7 +1780,7 @@ wordsIIIBSoprano = \lyricmode {
   % 70
   et o -- | mni -- _ a
   pec -- ca -- | ta ho -- mi -- num,
-  pec -- | ca -- _ ta ho -- _ mi -- _ num,
+  pec -- | ca -- _ ta ho -- _ mi -- _ num
 
   % 74  
   in | tri -- bu -- la -- ti -- o -- ne,
@@ -1789,7 +1791,7 @@ wordsIIIBSoprano = \lyricmode {
   di -- _ mit -- | _ _ tis,
   
   % 86
-  di -- mi -- _ tis, 
+  di -- mi -- _ tis.
   
   % 87
   \emphasize
@@ -1798,11 +1800,11 @@ wordsIIIBSoprano = \lyricmode {
 
   % 95
   Cre -- _ | a -- _ tor 
-  cae -- | _ _ _ li 
-  cae -- li et 
-  ter -- rae,
-  et ter -- _ _ | rae,
-  Cre -- a -- tor cae -- _ | li et ter -- rae
+  Cae -- | _ _ _ li,
+  Cae -- li et 
+  Ter -- rae,
+  et Ter -- _ _ | rae,
+  Cre -- a -- tor Cae -- _ | li et Ter -- rae,
 
   % 108
   re -- spi -- _ ce
@@ -1866,18 +1868,18 @@ wordsIIIBAlto = \lyricmode {
   in tri -- bu -- la -- ti -- o -- ne di -- mit -- _ _ _ _ tis,
   
   % 86
-  | di -- mi -- _ _ tis, 
+  | di -- mi -- _ _ tis.
   
   % 87
   Do -- mi -- ne | De -- us, 
 
   % 95
   Cre -- | a -- _ _ tor 
-  cae -- li et ter -- _ rae,
-  et ter -- rae,
-  et ter -- rae, 
+  Cae -- li et Ter -- _ rae,
+  et Ter -- rae,
+  et Ter -- rae, 
   Cre -- a -- tor 
-  cae -- li et ter -- _ rae
+  Cae -- li et Ter -- _ rae,
 
   % 108
   re -- spi -- ce
@@ -1886,11 +1888,11 @@ wordsIIIBAlto = \lyricmode {
   ad | hu -- mi -- li -- ta -- _ | _ _ tem no -- _ _ _ _ _ _ _ _ _ _ _ | stram,
   
   % 122
-  re -- _ _  spi -- ce, re -- spi -- ce, 
+  re -- _ _  spi -- ce, re -- spi -- ce
 
   % 126
-  ad hu -- mi -- li -- ta -- | tem 
-  ad hu -- mi -- li -- ta -- tem 
+  ad hu -- mi -- li -- ta -- | tem,
+  ad hu -- mi -- li -- ta -- tem
   no -- stram,
   no -- stram,
   no -- _ | _ _ stram,
@@ -1919,7 +1921,7 @@ wordsIIIBTenor = \lyricmode {
   Is -- ra -- el,
   
   % 49
-  qui i -- ra -- | sce -- _ ris et pro -- pi -- ti -- _ us, e -- ris, 
+  qui i -- ra -- | sce -- _ ris, et pro -- pi -- ti -- _ us, e -- ris, 
   e -- _ _ _ _ _ _ _ _ | _ ris,
   
   % 70
@@ -1939,19 +1941,19 @@ wordsIIIBTenor = \lyricmode {
   di -- mit -- _ _ _ _ tis,
   
   % 85
-  di -- mi -- tis, 
+  di -- mi -- tis.
   
   % 87
   Do -- mi -- ne | De -- us, 
 
   % 95
   Cre -- | a -- tor 
-  cae -- li et ter -- rae,
-  cae -- li
-  et ter -- rae,
-  et ter -- rae, 
+  Cae -- li et Ter -- rae,
+  Cae -- li
+  et Ter -- rae,
+  et Ter -- rae, 
   Cre -- a -- tor 
-  cae -- | li et ter -- rae
+  Cae -- | li et Ter -- rae,
 
   % 108
   re -- spi -- ce
@@ -1997,7 +1999,7 @@ wordsIIIBBaritone = \lyricmode {
   Is -- ra -- | el,
   
   % 53
-  qui i -- | ra -- sce -- ris, | et pro -- _ | pi -- ti -- us, 
+  qui i -- | ra -- sce -- ris, | et pro -- _ | pi -- ti -- us
   e -- _ _ _ ris,
   qui i -- | ra -- sce -- ris,
   et pro -- pi -- ti -- _ | us, 
@@ -2018,14 +2020,14 @@ wordsIIIBBaritone = \lyricmode {
   
   % 85
   di -- | mit -- tis, 
-  di -- | mit -- tis, 
+  di -- | mit -- tis.
   
   % 95
-  Cre -- | a -- tor 
-  cae -- | li et ter -- rae,
-  et ter -- rae,
-  et ter -- | rae, Cre -- a -- _ tor 
-  cae -- | li et ter -- rae
+  Cre -- | a -- tor
+  Cae -- | li et Ter -- rae,
+  et Ter -- rae,
+  et Ter -- | rae, Cre -- a -- _ tor 
+  Cae -- | li et Ter -- rae,
 
   % 108
   re -- spi -- ce
@@ -2045,7 +2047,7 @@ wordsIIIBBaritone = \lyricmode {
   no -- _ stram,
   ad | hu -- mi -- li -- ta -- tem | no -- stram,
   no -- stram,
-  ad hu -- mi -- li -- ta -- tem,
+  ad hu -- mi -- li -- ta -- tem
   no -- | stram.
 }
 
@@ -2067,7 +2069,7 @@ wordsIIIBBass = \lyricmode {
   % 69
   et | o -- mni -- a,
   et | o -- mni -- a, et o -- mni -- a
-  pec -- | ca -- ta ho -- mi -- | num, _ _
+  pec -- | ca -- ta ho -- mi -- | num _ _
 
   % 74  
   in | tri -- bu -- la -- ti -- o -- _ ne,
@@ -2077,16 +2079,16 @@ wordsIIIBBass = \lyricmode {
   
   % 86
   di -- mit -- tis, 
-  di -- mit -- _ _ tis, 
+  di -- mit -- _ _ tis.
   
   % 99
-  et ter -- | rae, Cre -- a -- tor 
+  et Ter -- | rae, Cre -- a -- tor,
 
   % 108
-  re -- spi -- _ _ | ce
+  re -- spi -- _ _ | ce,
   
   % 122
-  | re -- spi -- ce, re -- spi -- _ ce,
+  | re -- spi -- ce, re -- spi -- _ ce
 
   % 125
   ad | hu -- mi -- li -- ta -- tem 
@@ -2125,10 +2127,10 @@ wordsIVASoprano = \lyricmode {
   et pro -- | pi -- ti -- us,
   pro -- pi -- ti -- us,
   et pro -- pi -- ti -- _ us,
-  et pro -- pi -- ti -- _ | _ us,
+  et pro -- pi -- ti -- _ | _ us
   e -- _ _ _ | _ _ _ _ _ _ _ ris,
   e -- _ _ _ ris,
-  pro -- | pi -- ti -- us,
+  pro -- | pi -- ti -- us
   e -- ris,
   
   % 70
@@ -2136,7 +2138,7 @@ wordsIVASoprano = \lyricmode {
   pec -- ca -- ta ho -- mi -- num,
   pec -- ca -- ta,
   pec -- ca -- ta
-  ho -- mi -- _ | num,
+  ho -- mi -- _ | num
 
   % 74  
   in | tri -- bu -- la -- _ _ ti -- o -- _ ne,
@@ -2144,32 +2146,32 @@ wordsIVASoprano = \lyricmode {
 
   % 86
   \emphasize
-  di -- mit -- | tis,
+  di -- mit -- | tis.
   \normal
   
   % 89
   Do -- mi -- ne | De -- us, 
   Do -- mi -- ne | De -- _ us, 
   Cre -- | a -- _ tor 
-  cae -- | li et ter -- _ rae,
+  Cae -- | li et Ter -- _ rae,
 
   % 99
-  et ter -- _ _ _ _ _ rae,
+  et Ter -- _ _ _ _ _ rae,
   Cre -- a -- tor 
-  cae -- li et | ter -- rae,
+  Cae -- li et | Ter -- rae,
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  re -- spi -- | ce, __ _ _ _ re -- spi -- ce, 
+  re -- spi -- | ce, __ _ _ _ re -- spi -- ce
 
   % 125
   ad | hu -- mi -- li -- ta -- _ _ _ tem no -- stram,
   ad | hu -- mi -- li -- ta -- _ _ tem | no -- _ _ _ stram,
   ad hu -- mi -- li -- ta -- tem,
   \emphasize 
-  ad hu -- mi -- li -- ta -- tem,
+  ad hu -- mi -- li -- ta -- tem
   \normal
   no -- _ _ stram,
   no -- _ _ _ _ stram,
@@ -2197,36 +2199,36 @@ wordsIVAAlto = \lyricmode {
   pec -- ca -- ta ho -- mi -- num,
   pec -- ca -- _ ta,
   pec -- ca -- ta 
-  ho -- mi -- num,
+  ho -- mi -- num
   
   % 74  
   in | tri -- bu -- la -- ti -- | o -- _ _ _ ne di -- mit -- _ _ | tis,
 
   % 86
   | di -- mi -- tis, 
-  di -- mi -- _ tis, 
+  di -- mi -- _ tis.
   
   % 89
   Do -- mi -- ne De -- _ _ _ | _ us, 
   Do -- mi -- ne De -- _ _ us, 
   Cre -- | a -- tor 
-  cae -- | li et ter -- rae,
-  et ter -- rae,
+  Cae -- | li et Ter -- rae,
+  et Ter -- rae,
   
   % 102
   Cre -- a -- tor 
-  cae -- li et | ter -- rae
+  Cae -- li et | Ter -- rae,
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  | re --  spi -- | ce,
+  | re --  spi -- | ce
   ad | hu -- mi -- li -- ta -- tem no -- stram,
   hu -- mi -- | li -- ta -- _ tem 
   no -- | stram,
   no -- _ _ _ stram,
-  ad hu -- mi -- li -- ta -- | tem
+  ad hu -- mi -- li -- ta -- | tem,
   ad | hu -- mi -- li -- ta -- _ tem
   no -- _ _ _ _ _ | stram,
   no -- _ stram,
@@ -2236,7 +2238,7 @@ wordsIVAAlto = \lyricmode {
 wordsIVATenor = \lyricmode {
   % 23
   prae -- ter in | te,
-  prae -- | ter in te, | De -- us
+  prae -- | ter in te, | De -- us,
   in | te, De -- us Is -- ra -- el,
   prae -- | ter in te, De -- us | Is -- ra -- el,
   
@@ -2262,32 +2264,32 @@ wordsIVATenor = \lyricmode {
   ho -- mi -- num
 
   % 74  
-  in tri -- | bu -- la -- ti -- o -- _ ne,
+  in tri -- | bu -- la -- ti -- o -- _ ne
   di -- mit -- _ tis,
   di -- mit -- _ _ _ tis,
 
   % 86
   | di -- mi -- _ tis, 
-  di -- mi -- tis, 
+  di -- mi -- tis.
   
   % 89
   Do -- mi -- ne De -- _ us, 
   Do -- mi -- ne De -- us, 
   Cre -- _ | a -- _ tor 
-  cae -- | li et ter -- rae,
-  | et ter -- _ rae,
+  Cae -- | li et Ter -- rae,
+  | et Ter -- _ rae,
 
   %102
   \emphasize
   Cre -- a -- tor 
-  cae -- li et ter -- | rae
+  Cae -- li et Ter -- | rae,
   \normal
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  | re -- spi -- ce, re -- spi -- _ | ce, 
+  | re -- spi -- ce, re -- spi -- _ | ce
 
   % 126
   | ad hu -- mi -- li -- ta -- _ _ tem 
@@ -2304,12 +2306,13 @@ wordsIVATenor = \lyricmode {
 
 wordsIVABaritone = \lyricmode {
   % 28
-  prae -- ter in | te, De -- _ us | Is -- ra -- el, prae -- ter in te, | De -- us | Is -- ra -- el,
+  prae -- ter in | te, De -- _ us | Is -- ra -- el, 
+  prae -- ter in te, | De -- us | Is -- ra -- el,
   
   % 38
   prae -- ter in | te, De -- _ us Is -- ra -- | el,
   Is -- ra -- el,
-  in te, De -- _ _ | _ us 
+  in te, De -- _ _ | _ us,
   in te, | De -- _ us 
   Is -- ra -- el,
   De -- us
@@ -2325,38 +2328,38 @@ wordsIVABaritone = \lyricmode {
   \emphasize
   pec -- ca -- ta ho -- mi -- | num,
   \normal
-  pec -- ca -- ta 
+  pec -- ca -- ta,
   pec -- ca -- ta ho -- mi -- num, 
-  ho -- mi -- num, 
+  ho -- mi -- num 
 
   % 74  
-  in | tri -- bu -- la -- ti -- o -- ne,
+  in | tri -- bu -- la -- ti -- o -- ne
   di -- mit -- tis,
   di | mit -- tis, di mit -- _ _ tis,
   
   % 86
   | di -- mit -- tis, 
-  di -- mit -- _ _ _ tis, 
+  di -- mit -- _ _ _ tis.
 
   % 92
   Do -- mi -- ne De -- _ _ _ | _ _ us,
   
   % 93
   Cre -- | a -- tor 
-  cae -- | li et ter -- rae, __ _ _ 
+  Cae -- | li et Ter -- rae, __ _ _ 
 
   % 99
-  et ter -- rae,
+  et Ter -- rae,
 
   % 102
   Cre -- a -- tor
-  cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  | re -- spi -- | ce,
+  | re -- spi -- | ce
   ad | hu -- mi -- li -- ta -- tem | no -- | stram,
   no -- _ _ stram,
   no -- _ stram,
@@ -2387,37 +2390,37 @@ wordsIVABass = \lyricmode {
   pec -- | ca -- ta ho -- mi -- | num, 
   \normal
   
-  pec -- ca -- ta ho -- mi -- num, 
+  pec -- ca -- ta ho -- mi -- num
 
   % 74  
   in | tri -- bu -- la -- ti -- | o -- ne di -- | mit -- | tis,
 
   % 86
-  di -- mit -- | tis, 
+  di -- mit -- | tis.
   
   % 92
   Do -- mi -- ne | De -- us,
   Cre -- | a -- tor
-  cae -- | li et ter -- rae,
+  Cae -- | li et Ter -- rae,
 
   % 102
   Cre -- a -- tor 
-  cae -- li et | ter -- rae,
+  Cae -- li et | Ter -- rae,
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  | re -- spi -- | ce,
+  | re -- spi -- | ce
 
   % 126
-  ad | hu -- mi -- li -- ta -- | tem  
+  ad | hu -- mi -- li -- ta -- | tem,
   \emphasize
-  ad hu -- mi -- li -- | ta -- tem  
+  ad hu -- mi -- li -- | ta -- tem
   \normal
   | no -- _ _ stram, 
   ad hu -- mi -- li -- | ta -- tem no -- _ _ | stram,
-  ad hu -- | mi -- li -- ta -- tem | no -- _ _ | _ stram
+  ad hu -- | mi -- li -- ta -- tem | no -- _ _ | _ stram,
   no -- stram,
   no -- _ stram,
   no -- stram, no -- | stram.
@@ -2445,9 +2448,9 @@ wordsIVBSoprano = \lyricmode {
   % 69
   et o -- mni -- | a
   pec -- ca -- ta ho -- mi -- num,
-  pec -- ca -- ta,
+  pec -- ca -- ta
   ho -- mi -- num,
-  ho -- _ mi -- num,
+  ho -- _ mi -- num
 
   % 74  
   \emphasize
@@ -2456,7 +2459,7 @@ wordsIVBSoprano = \lyricmode {
 
   % 86
   di -- _ mit -- _ tis,
-  | di -- mit -- _ _ tis,
+  | di -- mit -- _ _ tis.
   
   % 89
   \emphasize
@@ -2464,14 +2467,14 @@ wordsIVBSoprano = \lyricmode {
   \normal
   Do -- mi -- ne | De -- us, 
   Cre -- | a -- tor 
-  cae -- | li et ter -- _ _ _ _ rae,
+  Cae -- | li et Ter -- _ _ _ _ rae,
   \emphasize
-  et ter -- rae,
+  et Ter -- rae,
   \normal
 
   % 102
   Cre -- a -- _ tor 
-  cae -- li et | ter -- rae,
+  Cae -- li et | Ter -- rae,
 
   % 108
   re -- spi -- _ _ _ ce, re -- | spi -- _ _ _ ce,
@@ -2517,7 +2520,7 @@ wordsIVBAlto = \lyricmode {
   et o -- mni -- _ _ a
   pec -- | ca -- ta ho -- mi -- | num,
   pec -- ca -- ta ho -- mi -- num,
-  ho -- mi -- num,
+  ho -- mi -- num
   
   % 74  
   in tri -- bu -- la -- ti -- o -- _ ne 
@@ -2526,26 +2529,26 @@ wordsIVBAlto = \lyricmode {
 
   % 86
   | di -- mi -- tis, 
-  di -- | mi -- _ tis, 
+  di -- | mi -- _ tis.
   
   % 89
   Do -- mi -- ne | De -- us, 
   Do -- mi -- ne | De -- us, 
   Cre -- | a -- tor 
-  cae -- | li et ter -- _ _ rae,
+  Cae -- | li et Ter -- _ _ rae,
 
   % 99
-  | et ter -- _ _ rae,
+  | et Ter -- _ _ rae,
   
   % 102
   Cre -- a -- _ tor 
-  cae -- _ li et | ter -- rae
+  Cae -- _ li et | Ter -- rae
 
   % 108
   re -- spi -- ce, re -- spi -- _ _ ce, 
   
   % 122
-  | re --  spi -- | ce,
+  | re --  spi -- | ce
   ad hu -- mi -- li -- | ta -- _ tem,
   ad hu -- mi -- li -- ta -- _ tem 
   no -- | stram,
@@ -2560,10 +2563,6 @@ wordsIVBAlto = \lyricmode {
   no -- | stram,
   no -- stram,
   no -- stram, no -- _ _ stram, no -- | stram.
-  % ad | hu -- mi -- li -- ta -- _ tem
-  % no -- _ _ _ _ _ stram,
-  % no -- _ stram,
-  % no -- _ _ _ _ stram.
 }
 
 wordsIVBTenor = \lyricmode {
@@ -2583,7 +2582,7 @@ wordsIVBTenor = \lyricmode {
   et | o -- mni -- a
   pec -- ca -- ta ho -- mi -- num, 
   pec -- ca -- _ ta 
-  ho -- _ mi -- _ num, 
+  ho -- _ mi -- _ num
 
   % 74  
   in | tri -- bu -- la -- ti -- o -- ne,
@@ -2591,28 +2590,28 @@ wordsIVBTenor = \lyricmode {
   di -- mit -- _ _ _ | tis,
 
   % 86
-  | di -- mi -- _ _ | tis, 
+  | di -- mi -- _ _ | tis.
   
   % 89
   Do -- mi -- ne | De -- us, 
   \emphasize
   Do -- mi -- ne | De -- us, 
   Cre -- | a -- tor 
-  cae -- | li et ter -- rae,
+  Cae -- | li et Ter -- rae,
   \normal
 
   % 99
-  et ter -- _ rae,
+  et Ter -- _ rae,
 
   % 102
   Cre -- a -- tor 
-  cae -- li et ter -- _ rae
+  Cae -- li et Ter -- _ rae,
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  | re -- spi -- | ce,
+  | re -- spi -- | ce
 
   % 125
   ad hu -- mi -- | li -- ta -- tem no -- | stram,
@@ -2645,7 +2644,7 @@ wordsIVBBaritone = \lyricmode {
   | et o -- mni -- a pec -- ca -- ta ho -- mi -- num,
   pec -- | ca -- ta 
   ho -- mi -- num, 
-  ho -- mi -- num, 
+  ho -- mi -- num
 
   % 74  
   in tri -- bu -- la -- ti -- o -- ne,
@@ -2653,7 +2652,7 @@ wordsIVBBaritone = \lyricmode {
   
   % 86
   | di -- mit -- _ _ tis, 
-  di -- mit -- _ _ tis, 
+  di -- mit -- _ _ tis.
 
   % 92
   Do -- mi -- ne | De -- us,
@@ -2661,21 +2660,21 @@ wordsIVBBaritone = \lyricmode {
   
   % 93
   Cre -- a -- _ tor 
-  cae -- li et _ ter -- _ rae,
+  Cae -- li et _ Ter -- _ rae,
 
   % 99
-  et ter -- rae,
+  et Ter -- rae,
 
   % 102
   Cre -- a -- tor
-  cae -- li et ter -- rae,
+  Cae -- li et Ter -- rae,
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  | re -- spi -- | ce,
-  ad | hu -- mi -- li -- ta -- _ | tem 
+  | re -- spi -- | ce
+  ad | hu -- mi -- li -- ta -- _ | tem,
   ad | hu -- mi -- li -- ta -- tem 
   no -- _ stram,
   no -- stram,
@@ -2691,38 +2690,40 @@ wordsIVBBaritone = \lyricmode {
 
 wordsIVBBass = \lyricmode {
   % 23
-  prae -- ter in | te, De -- us | Is -- ra -- el, in | te, De -- _ _ us Is -- ra -- | el,
+  prae -- ter in | te, De -- us | Is -- ra -- el, 
+  in | te, De -- _ _ us Is -- ra -- | el,
   
   % 45
-  qui i -- | ra -- sce -- ris, et pro -- pi -- ti -- | us e -- _ | ris, et pro -- | pi -- ti -- _ _ is | e -- _ _ ris,
+  qui i -- | ra -- sce -- ris, et pro -- pi -- ti -- | us e -- _ | ris, 
+  et pro -- | pi -- ti -- _ _ is | e -- _ _ ris,
   
   % 69
   et | o -- mni -- | a,
-  pec -- ca -- ta | ho -- _ mi -- | num,
+  pec -- ca -- ta | ho -- _ mi -- | num
 
   % 74  
   in | tri -- bu -- la -- ti -- | o -- ne di -- | mit -- _ _ _ | tis,
 
   % 86
-  di -- mit -- | tis, 
+  di -- mit -- | tis.
   
   % 92
   Do -- mi -- ne | De -- us,
   Cre -- | a -- tor
-  cae -- | li et ter -- _ rae,
+  Cae -- | li et Ter -- _ rae,
 
   % 102
   Cre -- a -- _ | tor 
-  cae -- li et ter -- | rae,
+  Cae -- li et Ter -- | rae,
 
   % 108
-  re -- spi -- ce
+  re -- spi -- ce,
   
   % 122
-  | re -- spi -- | ce,
+  | re -- spi -- | ce
 
   % 124
-  ad | hu -- mi -- li -- ta -- _ | tem
+  ad | hu -- mi -- li -- ta -- _ | tem,
   ad | hu -- mi -- li -- ta -- tem no -- | _ stram, | no -- _ _ | stram, 
   ad hu -- mi -- li -- _ ta -- _ tem no -- _ stram, no -- | _ stram,
   no -- _ | stram.
