@@ -1,8 +1,8 @@
 \version "2.24.4"
 
 leadMark = \markup {
-  \with-color #red
-  \path #0.5 #'((moveto 0 0)(lineto 0 1)
+  \with-color #black % not red any more
+  \path #0.2 #'((moveto 0 0)(lineto 0 1)
      (lineto 1 1))
 }
 
@@ -19,8 +19,8 @@ ficta = {
 
 
 emphasize = {
-  \override Lyrics.LyricText.font-series = #'bold
-  \override Lyrics.LyricText.color = #red
+  \override Lyrics.LyricText.font-series = #'normal % not bold any more
+  \override Lyrics.LyricText.color = #black % not red any more
 }
 
 normal = {

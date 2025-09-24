@@ -564,10 +564,10 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(459.2193, 51.5196)">
 <rect x="-0.1746" y="0.6425" width="0.3493" height="2.6908" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(4431.4248, 13.1759)">
+<g transform="translate(4431.5635, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(4421.4248, 13.1759)">
+<g transform="translate(4421.5635, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(464.7611, 6.1279)">
@@ -783,13 +783,13 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(494.5726, 29.1101)">
 <path transform="scale(0.0040, -0.0040)" d="M0 190c6 0 12 -13 12 -28v-108l77 42c0 1 3 19 11 19c6 0 12 -12 12 -27v-250c0 -15 -6 -28 -12 -28s-12 13 -12 28v108l-77 -42c0 -1 -3 -19 -11 -19c-6 0 -12 12 -12 27v250c0 15 6 28 12 28zM88 41l-76 -42v-40l76 42v40z" fill="currentColor"/>
 </g>
-<g transform="translate(4403.1435, 13.1759)">
+<g transform="translate(4403.0795, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(4393.1435, 13.1759)">
+<g transform="translate(4393.0795, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(4383.1435, 13.1759)">
+<g transform="translate(4383.0795, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(499.7744, 29.6101)">
@@ -945,7 +945,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(522.5596, 41.1036)">
 <rect x="-0.1746" y="-0.3575" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(4370.9768, 13.1759)">
+<g transform="translate(4370.9448, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(526.8581, 4.6279)">
@@ -1027,7 +1027,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(532.5536, 29.1101)">
 <rect x="-0.1746" y="-2.5000" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(4365.6808, 13.1759)">
+<g transform="translate(4365.6488, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(534.2551, 5.1279)">
@@ -1723,7 +1723,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <tspan>21</tspan>
 </text>
 </g>
-<g transform="translate(4272.9212, 35.2356)">
+<g transform="translate(4272.9852, 35.2356)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(640.8192, 30.6101)">
@@ -1818,7 +1818,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(647.1487, 51.5196)">
 <rect x="-0.1746" y="0.6425" width="0.3493" height="2.6908" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(4268.4787, 35.2356)">
+<g transform="translate(4268.4467, 35.2356)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(649.4502, 29.6101)">
@@ -1879,7 +1879,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(655.8253, 32.4351)">
 <path transform="scale(0.0040, -0.0040)" d="M-96 111c0 -31 68 -49 74 -49h3h19v-62h-19h-2c-33 0 -123 72 -123 102c0 39 86 236 104 262c3 4 6 6 10 6c7 0 13 -6 13 -13c0 -3 -79 -173 -79 -246z" fill="currentColor"/>
 </g>
-<g transform="translate(4263.1826, 35.2356)">
+<g transform="translate(4263.1506, 35.2356)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(658.7492, 28.6101)">
@@ -5665,7 +5665,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(1840.2604, 41.1036)">
 <rect x="-0.1746" y="-0.3575" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3779.3296, 13.1759)">
+<g transform="translate(3779.4363, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(1845.6097, 28.1101)">
@@ -5872,10 +5872,10 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(1892.5605, 41.1036)">
 <rect x="-0.1746" y="-0.8575" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3754.5611, 13.1759)">
+<g transform="translate(3754.4971, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(3744.5611, 13.1759)">
+<g transform="translate(3744.4971, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(1896.8283, 30.6101)">
@@ -5906,7 +5906,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(1903.5268, 29.1101)">
 <rect x="-0.1746" y="0.1425" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3729.6221, 13.1759)">
+<g transform="translate(3729.5901, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(1907.8253, 29.6101)">
@@ -6012,7 +6012,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(1924.4743, 29.1101)">
 <rect x="-0.1746" y="0.1425" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3721.9102, 13.1759)">
+<g transform="translate(3721.8782, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(1926.7758, 39.6036)">
@@ -6392,13 +6392,13 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3669.9489, 24.2179)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(3692.6701, 13.1759)">
+<g transform="translate(3692.6061, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(3682.6701, 13.1759)">
+<g transform="translate(3682.6061, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(3672.6701, 13.1759)">
+<g transform="translate(3672.6061, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(359.7098, 4.5408)">
@@ -6515,7 +6515,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(1999.8648, 29.1101)">
 <rect x="-0.1746" y="0.1425" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3657.0784, 13.1759)">
+<g transform="translate(3657.0464, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2001.0003, 39.1036)">
@@ -6606,7 +6606,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(2016.0898, 29.1101)">
 <rect x="-0.1746" y="-2.5000" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3651.3701, 13.1759)">
+<g transform="translate(3651.3381, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2020.3883, 5.1279)">
@@ -7384,14 +7384,14 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(2234.6792, 2.9477)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(2234.6792, 3.0977)">
+<path stroke-width="0.2000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(2233.5851, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(2233.6492, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>pec</tspan>
 </text>
 </g>
@@ -7429,9 +7429,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(2243.3885, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(2243.4526, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ca</tspan>
 </text>
 </g>
@@ -7513,9 +7513,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(2253.5166, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(2253.6446, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ta</tspan>
 </text>
 </g>
@@ -7583,9 +7583,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(2261.2362, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(2261.3002, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ho</tspan>
 </text>
 </g>
@@ -7688,9 +7688,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(2272.8671, 4.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(2272.1999, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(2272.2639, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>mi</tspan>
 </text>
 </g>
@@ -7726,9 +7726,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(2277.2631, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(2277.4552, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>num</tspan>
 </text>
 </g>
@@ -8103,10 +8103,10 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(2330.7609, 44.4286)">
 <path transform="scale(0.0040, -0.0040)" d="M-96 111c0 -31 68 -49 74 -49h3h19v-62h-19h-2c-33 0 -123 72 -123 102c0 39 86 236 104 262c3 4 6 6 10 6c7 0 13 -6 13 -13c0 -3 -79 -173 -79 -246z" fill="currentColor"/>
 </g>
-<g transform="translate(3484.3454, 13.1759)">
+<g transform="translate(3484.2387, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(3474.3454, 13.1759)">
+<g transform="translate(3474.2387, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2333.6847, 16.0331)">
@@ -8436,7 +8436,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(2367.1645, 51.5196)">
 <rect x="-0.1746" y="-1.5000" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3447.2840, 13.1759)">
+<g transform="translate(3447.2520, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2371.4630, 4.1279)">
@@ -8625,7 +8625,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(2394.0095, 28.6101)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g transform="translate(3426.9302, 13.1759)">
+<g transform="translate(3427.0049, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2393.4703, 35.2356)">
@@ -8662,7 +8662,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <tspan>75</tspan>
 </text>
 </g>
-<g transform="translate(3420.3765, 13.1759)">
+<g transform="translate(3420.3231, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2398.9962, 7.6279)">
@@ -9089,7 +9089,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <tspan>80</tspan>
 </text>
 </g>
-<g transform="translate(3383.4054, 13.1759)">
+<g transform="translate(3383.3734, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(336.3046, 29.1101)">
@@ -9151,7 +9151,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <tspan>84</tspan>
 </text>
 </g>
-<g transform="translate(3357.0318, 13.1759)">
+<g transform="translate(3357.1065, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2695.4391, 5.6279)">
@@ -9303,7 +9303,7 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(2711.4015, 29.1101)">
 <rect x="-0.1746" y="-0.8575" width="0.3493" height="2.8575" ry="0.0500" fill="currentColor"/>
 </g>
-<g transform="translate(3350.2466, 13.1759)">
+<g transform="translate(3350.1933, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2716.7804, 6.1279)">
@@ -11820,14 +11820,14 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3346.6449, 4.6279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3346.6449, 3.4477)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3346.6449, 3.5977)">
+<path stroke-width="0.2000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3345.3802, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3345.5509, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>Cre</tspan>
 </text>
 </g>
@@ -11879,9 +11879,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3351.8466, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3351.9106, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>a</tspan>
 </text>
 </g>
@@ -11938,9 +11938,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3361.6393, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3361.8527, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>tor</tspan>
 </text>
 </g>
@@ -12022,14 +12022,14 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3379.9843, 4.6279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3379.9843, 3.4477)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3379.9843, 3.5977)">
+<path stroke-width="0.2000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3378.9543, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3379.0183, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>cae</tspan>
 </text>
 </g>
@@ -12076,9 +12076,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3385.0438, 5.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3385.0594, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>li</tspan>
 </text>
 </g>
@@ -12122,9 +12122,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3390.0408, 5.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3389.7790, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3389.8430, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>et</tspan>
 </text>
 </g>
@@ -12172,9 +12172,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3394.1587, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3394.3721, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ter</tspan>
 </text>
 </g>
@@ -12230,9 +12230,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3403.3906, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3403.6040, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>rae,</tspan>
 </text>
 </g>
@@ -12299,14 +12299,14 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3416.7123, 6.6279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3416.7123, 4.8597)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3416.7123, 5.0097)">
+<path stroke-width="0.2000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3415.4476, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3415.6183, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>Cre</tspan>
 </text>
 </g>
@@ -12321,9 +12321,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3422.0390, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3422.1030, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>a</tspan>
 </text>
 </g>
@@ -12377,9 +12377,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3431.2438, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3431.4572, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>tor</tspan>
 </text>
 </g>
@@ -12424,9 +12424,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3441.7224, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3441.7864, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>cae</tspan>
 </text>
 </g>
@@ -12481,9 +12481,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <tspan>7</tspan>
 </text>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3450.0485, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>li</tspan>
 </text>
 </g>
@@ -12521,9 +12521,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3454.2747, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3454.3387, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>etc</tspan>
 </text>
 </g>
@@ -12576,9 +12576,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3464.9563, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ter</tspan>
 </text>
 </g>
@@ -12719,9 +12719,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3491.3643, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3491.5777, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>rae</tspan>
 </text>
 </g>
@@ -13127,14 +13127,14 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3640.9212, 3.9477)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3640.9212, 4.0977)">
+<path stroke-width="0.2000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3640.3180, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3640.4461, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ad</tspan>
 </text>
 </g>
@@ -13146,9 +13146,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3647.4661, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3647.5941, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>hu</tspan>
 </text>
 </g>
@@ -13170,9 +13170,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3653.8699, 5.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3653.2027, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3653.2667, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>mi</tspan>
 </text>
 </g>
@@ -13198,9 +13198,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3658.8669, 5.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3658.8826, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>li</tspan>
 </text>
 </g>
@@ -13215,9 +13215,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3664.1139, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ta</tspan>
 </text>
 </g>
@@ -13380,9 +13380,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3699.8378, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3699.9658, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>tem</tspan>
 </text>
 </g>
@@ -13421,9 +13421,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3706.7176, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3706.8457, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ad</tspan>
 </text>
 </g>
@@ -13447,9 +13447,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3716.0025, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3716.1305, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>hu</tspan>
 </text>
 </g>
@@ -13491,9 +13491,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3726.4137, 5.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3725.7465, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3725.8105, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>mi</tspan>
 </text>
 </g>
@@ -13526,9 +13526,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(3731.4107, 5.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3731.4264, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>li</tspan>
 </text>
 </g>
@@ -13543,9 +13543,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3736.4077, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ta</tspan>
 </text>
 </g>
@@ -13688,9 +13688,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3761.3259, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3761.4539, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>tem</tspan>
 </text>
 </g>
@@ -13736,9 +13736,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(3770.5068, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>no</tspan>
 </text>
 </g>
@@ -13813,9 +13813,9 @@ l73 91l-73 91c-2 2 -3 6 -3 9zM25 -9l7 9l-7 9l-7 -9z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(3786.2089, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(3786.5503, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>stram,</tspan>
 </text>
 </g>
@@ -15923,14 +15923,14 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4250.3216, 25.9300)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4250.3216, 26.0800)">
+<path stroke-width="0.2000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4249.7184, 35.2356)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4249.8464, 35.2356)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ad</tspan>
 </text>
 </g>
@@ -15995,9 +15995,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(4260.3156, 27.1101)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4259.6484, 35.2356)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4259.7764, 35.2356)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>hu</tspan>
 </text>
 </g>
@@ -16037,9 +16037,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(4265.3126, 27.1101)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4264.6454, 35.2356)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4264.7094, 35.2356)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>mi</tspan>
 </text>
 </g>
@@ -16074,9 +16074,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(4270.2249, 27.1101)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4270.2406, 35.2356)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>li</tspan>
 </text>
 </g>
@@ -16115,9 +16115,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4274.8961, 35.2356)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4275.0242, 35.2356)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ta</tspan>
 </text>
 </g>
@@ -16164,9 +16164,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4282.9079, 35.2356)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4283.0359, 35.2356)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>tem,</tspan>
 </text>
 </g>
@@ -16564,14 +16564,14 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4353.7920, 2.9477)">
-<path stroke-width="0.5000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4353.7920, 3.0977)">
+<path stroke-width="0.2000" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M0 0L0 -1L1 -1"/>
 </g>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4353.1888, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4353.3168, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ad</tspan>
 </text>
 </g>
@@ -16618,9 +16618,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0040, -0.0040)" d="M271 -78l25 -25c13 -13 -4 -43 -26 -47c-7 -1 -13 0 -17 4l-25 25c-19 19 24 62 43 43zM271 146l25 -25c13 -13 -4 -43 -26 -47c-7 -1 -13 0 -17 4l-25 25c-19 19 24 62 43 43zM201 9c0 -99 -85 -185 -185 -185c-31 0 -12 52 19 52c66 0 115 49 115 115
 c0 73 -61 133 -134 133c-31 0 -12 52 19 52c93 0 166 -74 166 -167z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4362.1889, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4362.3169, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>hu</tspan>
 </text>
 </g>
@@ -16683,9 +16683,9 @@ c0 -9 -11 -13 -21 -13s-20 4 -20 13z" fill="currentColor"/>
 <g transform="translate(4367.7684, 4.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4367.1012, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4367.1652, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>mi</tspan>
 </text>
 </g>
@@ -16722,9 +16722,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <g transform="translate(4372.7654, 4.1279)">
 <path transform="scale(0.0050, -0.0050)" d="M2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4372.7810, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>li</tspan>
 </text>
 </g>
@@ -16763,9 +16763,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
 <g transform="translate(4377.7624, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>ta</tspan>
 </text>
 </g>
@@ -16906,9 +16906,9 @@ c0 -9 -11 -13 -21 -13s-20 4 -20 13z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4407.1360, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4407.2640, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>tem</tspan>
 </text>
 </g>
@@ -16949,9 +16949,9 @@ s-7 1 -9 4z" fill="currentColor"/>
 <path transform="scale(0.0050, -0.0050)" d="M73 54c-1 -2 -2 -4 -2 -6s1 -4 2 -6l91 -129c2 -3 5 -4 8 -4s7 1 9 4l23 33c1 2 2 4 2 6s-1 4 -2 6l-91 129c-2 3 -5 4 -8 4s-6 -1 -8 -4zM2 -6c-1 2 -2 4 -2 6s1 4 2 6l128 182c2 3 6 4 9 4s6 -1 8 -4l128 -182c1 -2 2 -4 2 -6s-1 -4 -2 -6l-128 -182c-2 -3 -5 -4 -8 -4
 s-7 1 -9 4z" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4416.3567, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4416.4208, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>no</tspan>
 </text>
 </g>
@@ -17037,9 +17037,9 @@ c0 20 -3 41 -20 41h-145c-17 0 -20 -21 -20 -41c0 -11 -8 -16 -16 -16s-17 5 -17 16v
 <g transform="translate(-0.0863, 29.5737)">
 <rect x="0.0000" y="-24.0040" width="0.1863" height="48.0081" ry="0.0582" fill="currentColor"/>
 </g>
-<g color="rgb(100.0000%, 0.0000%, 0.0000%)">
-<g transform="translate(4434.5494, 13.1759)">
-<text font-family="serif" font-weight="bold" font-size="2.4697" text-anchor="start" fill="currentColor">
+<g color="rgb(0.0000%, 0.0000%, 0.0000%)">
+<g transform="translate(4434.8909, 13.1759)">
+<text font-family="serif" font-size="2.4697" text-anchor="start" fill="currentColor">
 <tspan>stram.</tspan>
 </text>
 </g>
@@ -18576,7 +18576,7 @@ c0 20 -3 41 -20 41h-145c-17 0 -20 -21 -20 -41c0 -11 -8 -16 -16 -16s-17 5 -17 16v
 <g transform="translate(2241.4494, 35.2356)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(2249.2962, 13.1759)">
+<g transform="translate(2249.3282, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2247.0325, 24.2179)">
@@ -18612,7 +18612,7 @@ c0 20 -3 41 -20 41h-145c-17 0 -20 -21 -20 -41c0 -11 -8 -16 -16 -16s-17 5 -17 16v
 <g transform="translate(2277.1516, 24.2179)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
-<g transform="translate(2275.7672, 13.1759)">
+<g transform="translate(2275.8313, 13.1759)">
 <rect x="0.0000" y="-0.5714" width="0.6600" height="0.1514" ry="0.0466" fill="currentColor"/>
 </g>
 <g transform="translate(2281.6954, 46.6516)">
