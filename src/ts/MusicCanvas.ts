@@ -71,7 +71,7 @@ export class MusicCanvas extends MusicElement {
 
     // define array pulses[choir][part] to be min transparency which
     // will be pulsed when the choir is singing a note.
-    for (var c = 0; c < config.choirs; c++) {
+    for (var c = 0; c < config.choirs[0].length; c++) {
       this.pulses[c] = [];
       for (var p = 0; p < config.parts.length; p++) {
         this.pulses[c][p] = 1;
@@ -93,7 +93,7 @@ export class MusicCanvas extends MusicElement {
     this.canvas.style.height = "100%";
 
     this.barWidth = (this.canvas.width - (2 * this.canvasPadding)) / 140;
-    this.choirHeight = (this.canvas.height - (2 * this.canvasPadding)) / config.choirs;
+    this.choirHeight = (this.canvas.height - (2 * this.canvasPadding)) / config.choirs[0].length;
     this.partHeight = this.choirHeight / config.parts.length;
     // console.log("MusicCanvas: calculated bar choir and part sizes:", this.barWidth, this.choirHeight, this.partHeight);
   };
@@ -228,7 +228,7 @@ export class MusicCanvas extends MusicElement {
     // Draw each of the 40 voice parts
     ctx.lineWidth = 0.9 * this.partHeight;
     ctx.lineCap = "round";
-    for (var c = 0; c < config.choirs; c++) {
+    for (var c = 0; c < config.choirs[0].length; c++) {
       for (var p = 0; p < config.parts.length; p++) {
         const startY = this.canvasPadding + (c * this.choirHeight) + (p * this.partHeight);
 
@@ -287,9 +287,9 @@ export class MusicCanvas extends MusicElement {
     // if (!this.config) return { choir: 0, part: 0, bar: 0 };
 
     const rect = this.getBoundingClientRect();
-    const y = ((e.offsetY - this.canvasPadding) * config.choirs) / (rect.height - (2 * this.canvasPadding));
+    const y = ((e.offsetY - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
     return {
-      choir: Math.min(config.choirs - 1, Math.max(0, Math.floor(y))),
+      choir: Math.min(config.choirs[0].length - 1, Math.max(0, Math.floor(y))),
       part: Math.floor((y % 1) * config.parts.length),
       bar: Math.floor((e.offsetX * 140) / rect.width)
     };
@@ -315,9 +315,9 @@ export class MusicCanvas extends MusicElement {
   #getTouchPos(e: TouchEvent): Position {
     var rect = this.getBoundingClientRect();
 
-    const y = ((e.targetTouches[0].clientY - rect.top - this.canvasPadding) * config.choirs) / (rect.height - (2 * this.canvasPadding));
+    const y = ((e.targetTouches[0].clientY - rect.top - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
     return {
-      choir: Math.min(config.choirs - 1, Math.max(0, Math.floor(y))),
+      choir: Math.min(config.choirs[0].length - 1, Math.max(0, Math.floor(y))),
       part: "all",
       bar: Math.floor((e.targetTouches[0].clientX - rect.left - this.canvasPadding) * 140 / rect.width)
     };

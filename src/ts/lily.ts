@@ -2,8 +2,7 @@ import config from "./config";
 import lyGrammar from '../ohmjs/ly-grammar.ohm-bundle';
 import * as ohm from 'ohm-js';
 import { Duration, BarLine, Note, Rest, Component } from "./music-classes";
-import spem from '../lilypond/spem.ly?raw'
-
+import spem from '../lilypond/Hugh Keyte/spem.ly?raw'
 
 // Make an dictionary of music positions (hemidemisemiquavers/128) to array of notes {choir, part, note}
 export type Dictionary = {
@@ -58,8 +57,13 @@ function setupLilypondParser(): ohm.Semantics {
   s.addOperation('parse', {
     Version(_, _2, v, _3) {
       lilypondVersion = v.sourceString;
+      console.log("Lilypond: Version " + lilypondVersion);
     },
-    RelativeClause(variable, _, _2, _3, _4, music, _5) {
+    Include(_, _2, filename, _3) {
+      const f = filename.sourceString;
+      console.log("Lilypond: Include " + f);
+    },
+    RelativeClause(variable, _, _2, _3, _4, music, _6) {
       const v = variable.parse();
       // const n = note.parse();
       if (v[0] != undefined) {
@@ -71,8 +75,11 @@ function setupLilypondParser(): ohm.Semantics {
       const c = comp.parse();
       return c;
     },
-    command(_, _2, _3) {
+    command(_, _2) {
       // const command = _2.sourceString;
+    },
+    BarCheck(_, _2, _3) {
+      // console.log("Bar check: " + _3.sourceString);
     },
     barline(_) {
       return new BarLine();
@@ -84,7 +91,7 @@ function setupLilypondParser(): ohm.Semantics {
       const note = new Note(lastNote.notename, lastNote.accidental, '', d, s);
       return note;
     },
-    note(notename, accidental, octave, duration, _, slur) {
+    note(notename, accidental, octave, _, duration, _2, slur) {
       const n = notename.sourceString;
       const a = accidental.sourceString.length == 0 ? null : accidental.sourceString;
       const o = octave.sourceString.length == 0 ? null : octave.sourceString;
@@ -139,6 +146,11 @@ async function getFile(filename: string): Promise<string> {
   return text;
 }
 
+// -----------------------------------------------------
+// Process the lilypond input file, creating two data structures:
+// dict[position] = [ {choir, part, note}, ... ]
+// ranges[choir (0 to 7)][part (0 to 4)] = [ {from, to}, ... ]
+// -----------------------------------------------------
 export function processLilypond() {
 
   if (!semantics) {
@@ -153,13 +165,15 @@ export function processLilypond() {
 
   semantics(result).parse();
 
-  // Read lilypond input into dict{ position -> [ {choir, part, note}], ... }
-  // Read lilypond into ranges[choir][part] = [ {from, to}, ... ]
-  for (var choir = 0; choir < config.choirs; choir++) {
-    ranges[choir] = [];
-    for (var part = 0; part < config.parts.length; part++) {
-      ranges[choir][part] = [];
-      var key = "notes" + romanise(choir+1) + config.parts[part];
+  for (let c = 0; c < config.choirs[0].length; c++) {
+    const choir = config.choirs[0][c];
+    ranges[c] = [];
+    for (let p = 0; p < config.parts.length; p++) {
+      const part = config.parts[p]; 
+      ranges[c][p] = [];
+      var key = "notes" + choir.replace(/ /g, '') + part;
+
+      // get the lilypond for this choir and part
       var lilypond = scores[key];
 
       // console.log(lilypond.map(x => (typeof x == "undefined") ? "?" : x.toString()).join(" "));
@@ -177,13 +191,13 @@ export function processLilypond() {
           if (dict[pos] == undefined) {
             dict[pos] = [];
           }
-          dict[pos].push({ "c": choir, "p": part, "n": comp });
+          dict[pos].push({ "c": c, "p": p, "n": comp });
 
           if (comp.duration != null) pos += comp.duration.sfths / barsize;
         }
         else if (comp instanceof Rest) {
           if (from != undefined) {
-            ranges[choir][part].push({ "from": from, "to": pos });
+            ranges[c][p].push({ "from": from, "to": pos });
             from = undefined;
           }
 
@@ -192,7 +206,7 @@ export function processLilypond() {
       }
 
       if (from != undefined) {
-        ranges[choir][part].push({ "from": from, "to": pos });
+        ranges[c][p].push({ "from": from, "to": pos });
         from = undefined;
       }
     }

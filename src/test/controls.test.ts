@@ -72,7 +72,7 @@ describe("MusicControls custom element", () => {
     const choirs = document.getElementById("choir-select");
     expect(choirs).not.toBeNull();
     expect(choirs?.getAttribute("name")).toBe("choir");
-    expect(choirs?.querySelectorAll('option').length).toBe(config.choirs);
+    expect(choirs?.querySelectorAll('option').length).toBe(config.choirs[0].length);
 
     const parts = document.getElementById("part-select");
     expect(parts).not.toBeNull();
@@ -143,7 +143,7 @@ describe("MusicControls custom element", () => {
     expect(play?.style.display, document.body.innerHTML).toBe("none");
     expect(pause?.style.display, document.body.innerHTML).toBe("block");
     // Correct music should be playing
-    expect(elem.isSameAudio("default.mp3")).toBe(true);
+    expect(elem.isSameAudio("ALC/default.mp3")).toBe(true);
 
 
     // set up the listeners for paused event

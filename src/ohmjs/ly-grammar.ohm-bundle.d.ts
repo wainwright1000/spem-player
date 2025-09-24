@@ -15,8 +15,10 @@ export interface LilypondActionDict<T> extends BaseActionDict<T> {
   File?: (this: NonterminalNode, arg0: IterationNode) => T;
   Clause?: (this: NonterminalNode, arg0: NonterminalNode) => T;
   Version?: (this: NonterminalNode, arg0: TerminalNode, arg1: TerminalNode, arg2: IterationNode, arg3: TerminalNode) => T;
+  Include?: (this: NonterminalNode, arg0: TerminalNode, arg1: TerminalNode, arg2: IterationNode, arg3: TerminalNode) => T;
   RelativeClause?: (this: NonterminalNode, arg0: IterationNode, arg1: IterationNode, arg2: IterationNode, arg3: IterationNode, arg4: TerminalNode, arg5: NonterminalNode, arg6: TerminalNode) => T;
   Music?: (this: NonterminalNode, arg0: IterationNode) => T;
+  Command?: (this: NonterminalNode, arg0: NonterminalNode) => T;
   comment?: (this: NonterminalNode, arg0: TerminalNode, arg1: IterationNode, arg2: NonterminalNode | TerminalNode) => T;
   space?: (this: NonterminalNode, arg0: NonterminalNode | TerminalNode) => T;
   Component_note?: (this: NonterminalNode, arg0: NonterminalNode) => T;
@@ -24,9 +26,10 @@ export interface LilypondActionDict<T> extends BaseActionDict<T> {
   Component_rest?: (this: NonterminalNode, arg0: NonterminalNode) => T;
   Component_barline?: (this: NonterminalNode, arg0: NonterminalNode) => T;
   Component?: (this: NonterminalNode, arg0: NonterminalNode) => T;
-  command?: (this: NonterminalNode, arg0: TerminalNode, arg1: IterationNode, arg2: NonterminalNode | TerminalNode) => T;
+  command?: (this: NonterminalNode, arg0: TerminalNode, arg1: IterationNode) => T;
+  BarCheck?: (this: NonterminalNode, arg0: TerminalNode, arg1: TerminalNode, arg2: IterationNode) => T;
   barline?: (this: NonterminalNode, arg0: TerminalNode) => T;
-  note?: (this: NonterminalNode, arg0: NonterminalNode, arg1: IterationNode, arg2: IterationNode, arg3: IterationNode, arg4: IterationNode, arg5: IterationNode) => T;
+  note?: (this: NonterminalNode, arg0: NonterminalNode, arg1: IterationNode, arg2: IterationNode, arg3: IterationNode, arg4: IterationNode, arg5: IterationNode, arg6: IterationNode) => T;
   noteName?: (this: NonterminalNode, arg0: TerminalNode) => T;
   repeatedNote?: (this: NonterminalNode, arg0: NonterminalNode, arg1: IterationNode) => T;
   accidental_sharp?: (this: NonterminalNode, arg0: TerminalNode) => T;
@@ -39,6 +42,7 @@ export interface LilypondActionDict<T> extends BaseActionDict<T> {
   octave?: (this: NonterminalNode, arg0: NonterminalNode) => T;
   octaveUp?: (this: NonterminalNode, arg0: IterationNode) => T;
   octaveDown?: (this: NonterminalNode, arg0: IterationNode) => T;
+  courtesy?: (this: NonterminalNode, arg0: TerminalNode) => T;
   fraction?: (this: NonterminalNode, arg0: IterationNode, arg1: IterationNode, arg2: IterationNode) => T;
   durationScaled?: (this: NonterminalNode, arg0: NonterminalNode, arg1: IterationNode, arg2: IterationNode) => T;
   duration?: (this: NonterminalNode, arg0: TerminalNode, arg1: IterationNode) => T;

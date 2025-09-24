@@ -14,10 +14,12 @@ MusicCanvasWatcher.define("music-canvas-watcher");
 MusicControls.define("music-controls");
 MusicScore.define("music-score");
 
-const canvas = document.querySelector("music-canvas") as MusicCanvas;
-const canvasWatcher = document.querySelector("music-canvas-watcher") as MusicCanvasWatcher;
-const controls = document.querySelector("music-controls") as MusicControls;
+const container = document.querySelector(".split-container");
 const score = document.querySelector("music-score") as MusicScore;
+const splitter = document.querySelector(".splitter") as HTMLDivElement;
+const canvas = document.querySelector("music-canvas") as MusicCanvas;
+const controls = document.querySelector("music-controls") as MusicControls;
+const canvasWatcher = document.querySelector("music-canvas-watcher") as MusicCanvasWatcher;
 
 const info = document.getElementById('info') as HTMLSpanElement;
 const help = document.getElementById('help') as HTMLDivElement;
@@ -25,11 +27,13 @@ const backdrop = document.getElementById('backdrop') as HTMLDivElement;
 type SvgInHtml = HTMLElement & SVGElement;
 const darkswitch = document.getElementById('darkswitch') as SvgInHtml;
 const scoreswitch = document.getElementById('scoreswitch') as SvgInHtml;
-const versionswitch = document.getElementById('versionswitch') as SvgInHtml;
-const versionrecording = document.getElementById('versionrecording') as HTMLSpanElement;
+const recordingswitch = document.getElementById('recordingswitch') as SvgInHtml;
+const recordinglabel = document.getElementById('recordinglabel') as HTMLSpanElement;
+
+let isDragging = false;
 
 var current: State = {
-  version: 0, // 0 = ALC, 1 = CotE
+  recording: 0, // 0 = ALC, 1 = CotE
   viewmode: "dark",
   period: "modern",
   choir: 0,
@@ -49,20 +53,45 @@ var current: State = {
 // TODO: CMD-B to type in bar number
 // TODO: highlight part on score?
 // TODO: Add lyrics to footer
-// BUG: Soprano in choir 1 bar 13.  Breve or Longa?
 // BUG: loop() never finishes after playing to the end of spem
+
+
+// -----------------------------------------------------
+// Splitter to resize score and canvas
+// -----------------------------------------------------
+splitter.addEventListener('mousedown', (e)=> {
+  isDragging = true;
+  document.body.style.cursor = 'col.resize';
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const containerRect = container?.getBoundingClientRect();
+  if (!containerRect) return;
+  let newHeight = e.clientY - containerRect.top;
+  newHeight = Math.max(100, Math.min(newHeight, containerRect.height - 100));
+  score.style.height = `${newHeight}px`;
+});
+
+document.addEventListener('mouseup', () => {
+  isDragging = false;
+  document.body.style.cursor = '';
+});
 
 async function setChoir(c: number, forceChange = false) {
   if (current.choir == c && !forceChange) {
     return;
   }
-  current.choir = Math.min(Math.max(0, c), config.choirs - 1);
+  current.choir = Math.min(Math.max(0, c), config.choirs[0].length - 1);
 
   // Update the input field
   controls.setAttribute("choir", String(current.choir));
   
   // Update the score for this choir
   score.setAttribute("choir", String(current.choir));
+
+  // Set the recording of the audio to use
+  score.setAttribute("recording", String(current.recording));
   
   // Update the canvas
   canvas.setAttribute("choir", String(current.choir));
@@ -111,13 +140,14 @@ function parseURL() {
   const url = window.location.search.substring(1);
   const parms = url.split("&");
 
-  var version = 0; // ALC
+  var recording = 0; // ALC
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
-  var bar = 1 - config.intro_beats[version]/4;
+  var bar = 1 - config.intro_beats[recording]/4;
+  console.log("Initial bar is", bar);
   var dark = false;
   var early = false;
-  var v = 1; // Choir of the Earth
+  var r = 0; // ALC
 
   for (let i = 0; i < parms.length; i++) {
     const parm = parms[i].split("=");
@@ -134,15 +164,15 @@ function parseURL() {
     else if (parm[0] == "dark") {
       dark = true;
     }
-    else if (parm[0] == "version") {
-      if (parm[1] == "alc") v = 0;
-      else v = 1;
+    else if (parm[0] == "recording") {
+      if (parm[1] == "alc") r = 0;
+      else r = 1;
     }
     else if (parm[0] == "score") {
       early = (parm[1] == "early");
     }
   }
-  setVersion(v);
+  setRecording(r);
   setChoir(choir, true);
   setPart(part);
   setBar(bar);
@@ -172,13 +202,23 @@ function handleControlChange(e: CustomEvent) {
 // Keyboard events (wasd)
 // -----------------------------------------------------
 
-function keyboardTapped(e) {
+function keyboardTapped(e: KeyboardEvent) {
+  if (e === undefined || e.target === null) {
+    return keyboardTapped;
+  }
+
+   // Ensure e.target is an Element before accessing classList
+  if (!(e.target instanceof Element)) {
+    return;
+  }
+
   // don't handle keyboard events on the four control widgets
   // cos it messes with the UI interaction
   const classes = [...e.target.classList];
   if (classes.includes('control')) {
     return;
   }
+  // don't handle keyboard events if composing text (chinese characters)
   if (e.isComposing || e.keyCode === 229) {
     return;
   }
@@ -211,17 +251,17 @@ function keyboardTapped(e) {
     case 'Digit6':
     case 'Digit7':
     case 'Digit8':
-      setChoir(e.key - 1);
+      setChoir(Number(e.key) - 1);
       break;
     case 'KeyS':
     case 'KeyA':
     case 'KeyT':
     case 'KeyR':
     case 'KeyB':
-      setPart("satrb".indexOf(e.key));
+      setPart("satrb".indexOf(String(e.key).toLowerCase()));
       break;
     case 'KeyV':
-      toggleVersion();
+      toggleRecording();
       break;
     case 'KeyM':
       toggleScore();
@@ -248,10 +288,10 @@ function keyboardTapped(e) {
       e.preventDefault();
       break;
     case 'ArrowDown':
-      setChoir(current.choir >= config.choirs - 1 ? 0 : current.choir + 1);
+      setChoir(current.choir >= config.choirs[0].length - 1 ? 0 : current.choir + 1);
       break;
     case 'ArrowUp':
-      setChoir(current.choir <= 0 ? config.choirs - 1 : current.choir - 1);
+      setChoir(current.choir <= 0 ? config.choirs[0].length - 1 : current.choir - 1);
       break;
     case 'KeyX':
       setPart("all");
@@ -288,7 +328,7 @@ function toggleScore(forceEarly = false) {
     console.log("Toggle SCORE");
     current.period = "early";
     score.setAttribute("score-type", "early");
-    document.body.style.setProperty('--font', "Quintessential");
+    document.body.style.setProperty('--font', "Macondo Swash Caps");
   }
   else {
     current.period = "modern";
@@ -297,22 +337,20 @@ function toggleScore(forceEarly = false) {
   }
 }
 
-async function setVersion(v: number) {
-  v = toNum(v, false, config.version.length - 1);
-  if (current.version == v) {
-    return;
-  }
-  current.version = v;
-  console.log("Setting version to", config.version[current.version]);
-  versionrecording.textContent = config.version_label[current.version];
+async function setRecording(r: number) {
+  r = toNum(r, false, config.recording.length - 1);
+
+  current.recording = r;
+  console.log("Setting recording to", config.recording[current.recording]);
+  recordinglabel.textContent = config.recording_label[current.recording];
 
   // Update the input field
-  controls.setAttribute("version", String(current.version));
+  controls.setAttribute("recording", String(current.recording));
 }
 
 
-function toggleVersion() {
-  setVersion((current.version + 1) % config.version.length);
+function toggleRecording() {
+  setRecording((current.recording + 1) % config.recording.length);
 }
 
 function setVH() {
@@ -365,12 +403,12 @@ function init(): void {
   canvas.addEventListener("music-canvas-touchstart", handleCanvasClick as (e: Event) => void);
   canvas.addEventListener("music-canvas-touchmove", handleCanvasClick as (e: Event) => void);
 
-  document.addEventListener("keydown", keyboardTapped);
+  document.addEventListener("keydown", keyboardTapped as (e: KeyboardEvent) => void);
   info.addEventListener("click", () => showHelp(true));
   backdrop.addEventListener("click", () => showHelp(false));
   darkswitch.addEventListener("click", () => toggleDark());
   scoreswitch.addEventListener("click", () => toggleScore());
-  versionswitch.addEventListener("click", () => toggleVersion());
+  recordingswitch.addEventListener("click", () => toggleRecording());
 
   // watch for change in user's preference of color scheme
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {

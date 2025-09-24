@@ -120,17 +120,17 @@ header .header-spacer {
           flex-grow: 1;
 }
 header #scoreswitch,
-header #versionswitch,
+header #recordingswitch,
 header #darkswitch {
   cursor: pointer;
   margin-right: 5px;
 }
 header #scoreswitch path,
-header #versionswitch path,
+header #recordingswitch path,
 header #darkswitch path {
   fill: var(--color-title);
 }
-header #versionrecording {
+header #recordinglabel {
   font-size: 0.9rem;
   color: var(--color-title);
   text-align: right;
