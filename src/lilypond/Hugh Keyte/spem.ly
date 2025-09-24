@@ -3971,7 +3971,7 @@ notesIVBAlto = \relative c {
   d2 r4 a2 a4
 
   \barNumberCheck #40
-  d2 b4 g'2 g4. a8 b4
+  d2 g,4 g'2 g4. a8 b4
   r2 r4 e,2. b2
   r2 c2. e4 c g'2 %tie44
   g4 g2 r2 b,

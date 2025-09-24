@@ -151,6 +151,9 @@ tspan { white-space: pre; }
 <g transform="translate(0.0000, 21.1039)">
 <rect x="1219.6719" y="-0.1000" width="1.9563" height="0.2000" ry="0.1000" fill="currentColor"/>
 </g>
+<g transform="translate(0.0000, 22.1039)">
+<rect x="1219.6719" y="-0.1000" width="1.9563" height="0.2000" ry="0.1000" fill="currentColor"/>
+</g>
 <g transform="translate(0.0000, 21.1039)">
 <rect x="1207.2556" y="-0.1000" width="1.9563" height="0.2000" ry="0.1000" fill="currentColor"/>
 </g>
@@ -3640,7 +3643,7 @@ c25 17 88 50 188 50z" fill="currentColor"/>
 </text>
 </g>
 </g>
-<g transform="translate(1219.9979, 21.6039)">
+<g transform="translate(1219.9979, 22.6039)">
 <path transform="scale(0.0040, -0.0040)" d="M218 136c66 0 108 -36 108 -89c0 -89 -113 -183 -218 -183c-66 0 -108 36 -108 89c0 89 113 183 218 183z" fill="currentColor"/>
 </g>
 <g transform="translate(1219.9979, 29.6719)">
@@ -3661,7 +3664,7 @@ c25 17 88 50 188 50z" fill="currentColor"/>
 <path transform="scale(0.0040, -0.0040)" d="M-7 375c8 4 17 7 25 7s16 -3 24 -7l-2 -183l106 20h3c10 0 18 -7 18 -17l7 -570c-8 -4 -17 -7 -25 -7s-16 3 -24 7l2 183l-106 -20h-3c-10 0 -18 7 -18 17zM131 112l-92 -17l-3 -207l92 17z" fill="currentColor"/>
 </g>
 <g transform="translate(1221.2372, 18.1039)">
-<rect x="-0.0650" y="-0.0000" width="0.1300" height="3.3139" ry="0.0400" fill="currentColor"/>
+<rect x="-0.0650" y="-0.0000" width="0.1300" height="4.3139" ry="0.0400" fill="currentColor"/>
 </g>
 <g transform="translate(4321.2494, 25.4262)">
 <rect x="0.0000" y="-0.5500" width="0.6600" height="0.1300" ry="0.0400" fill="currentColor"/>
