@@ -19,7 +19,6 @@ const score = document.querySelector("music-score") as MusicScore;
 const splitter = document.querySelector(".splitter") as HTMLDivElement;
 const canvas = document.querySelector("music-canvas") as MusicCanvas;
 const controls = document.querySelector("music-controls") as MusicControls;
-const canvasWatcher = document.querySelector("music-canvas-watcher") as MusicCanvasWatcher;
 
 const info = document.getElementById('info') as HTMLSpanElement;
 const help = document.getElementById('help') as HTMLDivElement;
@@ -54,12 +53,12 @@ var current: State = {
 // TODO: highlight part on score?
 // TODO: Add lyrics to footer
 // BUG: loop() never finishes after playing to the end of spem
-
+// TODO: Add the space bar as a play/pause toggle (but only if not focused on an input field, and not if composing text for chinese characters)
 
 // -----------------------------------------------------
 // Splitter to resize score and canvas
 // -----------------------------------------------------
-splitter.addEventListener('mousedown', (e)=> {
+splitter.addEventListener('mousedown', () => {
   isDragging = true;
   document.body.style.cursor = 'col.resize';
 });
@@ -240,6 +239,16 @@ function keyboardTapped(e: KeyboardEvent) {
   }
   if (e.code == 'Enter') {
     controls.isPlaying() ? controls.pause() : controls.play();
+    return;
+  }
+  if (e.code == 'Space') {
+    if (e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement ||
+        e.target instanceof HTMLSelectElement) {
+      return;
+    }
+    controls.isPlaying() ? controls.pause() : controls.play();
+    e.preventDefault();
     return;
   }
   switch (e.code) {
