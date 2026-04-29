@@ -1,5 +1,5 @@
 import { MusicCanvas } from '../ts/MusicCanvas';
-import config from '../ts/config';
+// import config from '../ts/config';
 
 MusicCanvas.define("music-canvas");
 
