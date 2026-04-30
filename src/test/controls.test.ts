@@ -279,5 +279,29 @@ describe("MusicControls custom element", () => {
     expect(elem.isPlaying()).toBe(true);
   });
 
+  it("setPlaying false pauses audio", async () => {
+    const elem = document.querySelector('music-controls') as MusicControls;
+    elem.playing = true;
+    const waitingForPause = waitForEvent(elem, "music-controls-paused", handleAudioStarted);
+    elem.setPlaying(false);
+    const pauseResult = await waitingForPause;
+    expect(pauseResult).toBe(true);
+    expect(elem.isPlaying()).toBe(false);
+  });
+
+  it("changing select dropdowns fires change event", async () => {
+    const elem = document.querySelector('music-controls') as MusicControls;
+    const waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, 2, 1, 10);
+    const choir = document.getElementById('choir-select') as HTMLSelectElement;
+    const part = document.getElementById('part-select') as HTMLSelectElement;
+    const bar = document.getElementById('bar-field') as HTMLInputElement;
+    choir.value = "2";
+    part.value = "1";
+    bar.value = "10";
+    choir.dispatchEvent(new Event('change', { bubbles: true }));
+    const changeResult = await waitingforChange;
+    expect(changeResult).toBe(true);
+  });
+
 });
 
