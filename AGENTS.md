@@ -85,6 +85,17 @@ and resumption instructions.
 2. If `AGENTS-LOCAL.md` exists, read it and follow its Session Startup
    section for additional project-specific startup tasks.
 
+## Reminders
+
+<!-- Agents: check the current date against the reminder date.
+     If today >= reminder date, ask the user the question below. -->
+
+### Salvaged documentation files
+
+- **Set:** 2026-04-30
+- **Ask on or after:** 2026-04-30
+- **Question:** "Ask Mark about temp/ARCHITECTURE.md and temp/CONTRIBUTING.md: (1) Were these intended for the project? Should we revive and update them? (2) Does he prefer a documentation branch workflow or docs-in-main via PRs?"
+
 ## Local Instructions
 
 If `AGENTS-LOCAL.md` exists in this directory, read it for additional
