@@ -186,6 +186,11 @@ export class MusicCanvas extends MusicElement {
     ctx.fillStyle = colors().background;
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+    // Derive dull-note lightness from background mode (light vs dark)
+    const bgMatch = colors().background.match(/hsl\(\s*\d+\s*,\s*[\d.]+%\s*,\s*([\d.]+)%\s*\)/);
+    const bgLightness = bgMatch ? parseFloat(bgMatch[1]) : 20;
+    const dullBaseLightness = bgLightness > 50 ? 80 : 38;
+
     // Draw FPS number to the screen
     // if (fps) {
     //   ctx.font = '25px Arial';
@@ -273,7 +278,7 @@ export class MusicCanvas extends MusicElement {
           }
           else {
             saturation = 50;
-            lightness = 38 - (3 * p);
+            lightness = dullBaseLightness - (3 * p);
             transparency = 1;
           }
 
