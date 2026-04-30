@@ -59,6 +59,8 @@ export class MusicCanvas extends MusicElement {
     this.canvas.addEventListener('click', this.#canvasClicked.bind(this));
     this.canvas.addEventListener('mousemove', this.#canvasHovered.bind(this), false);
     this.canvas.addEventListener('touchstart', this.#touchStarted.bind(this), { passive: false });
+    this.addEventListener('touchmove', this.#touchMoved.bind(this), { passive: false });
+    this.addEventListener('touchend', this.#touchEnded.bind(this), { passive: false });
 
     this.#calculateCanvasSize();
     this.#showLoadingOnCanvas();
@@ -328,17 +330,18 @@ export class MusicCanvas extends MusicElement {
     this.#moveToPosition(this.#getTouchPos(e));
     this.fireEvent("music-canvas-touchstart");
     this.draw();
+  }
 
-    this.addEventListener("touchmove", (evt: TouchEvent) => {
-      evt.preventDefault();
-      this.#moveToPosition(this.#getTouchPos(evt));
-      this.fireEvent("music-canvas-touchmove");
-      this.draw();
-    });
-    this.addEventListener("touchend", (evt: TouchEvent) => {
-      evt.preventDefault();
-      this.fireEvent("music-canvas-touchend");
-      this.draw();
-    });
+  #touchMoved(evt: TouchEvent) {
+    evt.preventDefault();
+    this.#moveToPosition(this.#getTouchPos(evt));
+    this.fireEvent("music-canvas-touchmove");
+    this.draw();
+  }
+
+  #touchEnded(evt: TouchEvent) {
+    evt.preventDefault();
+    this.fireEvent("music-canvas-touchend");
+    this.draw();
   }
 }
