@@ -1,6 +1,21 @@
 import { MusicScore } from '../ts/MusicScore';
 import config from '../ts/config';
 
+// Polyfill DOMPoint for jsdom
+if (typeof DOMPoint === 'undefined') {
+  globalThis.DOMPoint = class DOMPoint {
+    x: number;
+    y: number;
+    constructor(x: number = 0, y: number = 0) {
+      this.x = x;
+      this.y = y;
+    }
+    matrixTransform(_matrix: any) {
+      return { x: this.x, y: this.y };
+    }
+  } as any;
+}
+
 // A helper function that allows us to detect events on element
 // of type eventName have been fired
 // HACK: duplicated with controls.test.ts
@@ -133,6 +148,17 @@ describe("MusicScore custom element", () => {
     expect(elem.highlightBar.getAttribute("x")).toBe(String(elem.bars[39]));
   });
 
+  it("Bar 138 highlight uses last bar width", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    // @ts-ignore
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(elem, "music-score-loaded", handleScoreLoaded, 0, null, 0);
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+    elem.setAttribute("bar", "138");
+    expect(elem.highlightBar.getAttribute("width")).not.toBe("0");
+  });
+
   it("Changing score type works", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
@@ -219,6 +245,33 @@ describe("MusicScore custom element", () => {
     expect(elem.highlightBar.getAttribute("x")).not.toBe(startpos); // highlight bar x pos has changed
     expect(elem.highlightBar.getAttribute("width")).not.toBe(width); // highlight bar width has changed
 
+  });
+
+  it("scoreClicked sets bar and fires event", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    // @ts-ignore
+    elem.scrollTo = vi.fn();
+
+    const waitingForLoaded = waitForEvent(elem, "music-score-loaded", handleScoreLoaded, 0, null, 0);
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    const svg = elem.svg!;
+    svg.getScreenCTM = vi.fn(() => ({
+      inverse: () => ({ a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 })
+    } as any));
+
+    elem.bars = [0, 100, 200, 300];
+
+    const clickPromise = new Promise<void>(resolve => {
+      elem.addEventListener("music-score-click", () => resolve(), { once: true });
+    });
+
+    const mockEvent = new MouseEvent("click", { clientX: 150, clientY: 50 });
+    elem.scoreClicked(mockEvent);
+
+    await clickPromise;
+    expect(elem.bar).toBe(2);
   });
 
 });

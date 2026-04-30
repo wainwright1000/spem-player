@@ -10,7 +10,17 @@ export default defineConfig({
   assetsInclude: ['**/*.ohm', '**/*.ly'],
   test: {
     globals: true,
-    environment: 'jsdom'
+    environment: 'jsdom',
+    coverage: {
+      exclude: [
+        '**/*.svg',
+        '**/*.scss',
+        '**/*.ly',
+        '**/ly-grammar.ohm-bundle.js',
+        '**/test/**',
+        '**/node_modules/**',
+      ]
+    }
   },
 
   // Ohmjs doesn't generate ES modules yet so we need to 
