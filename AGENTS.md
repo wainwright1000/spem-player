@@ -4,8 +4,6 @@
 
 A browser-based practice tool for singers learning Thomas Tallis's 40-part motet, _Spem in alium_. It plays accentuated recordings of individual voice parts (from two sources: Andrew Leslie Cooper and Choir of the Earth) while displaying synchronised sheet music and a visual overview of all 40 parts.
 
-Upstream repository: `wainwmr/spem-player` (Mark Wainwright). Forked to `wainwright1000/spem-player`.
-
 ## Tech Stack
 
 - **Language:** TypeScript (strict mode, ES2020 target, ESNext modules)
@@ -70,16 +68,23 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 
 ## Known Issues and TODOs
 
-All known bugs, hacks, todos, and technical debt are tracked in `BUGS.md` in the project root. See that document for the canonical register, including priorities, specifications, and the implementation roadmap.
+All known bugs, hacks, todos, and technical debt are tracked in `BUGS.md`
+in the project root. See that document for the canonical register,
+including priorities, specifications, and the implementation roadmap.
 
 ## Process
 
-Active work on bugs, hacks, and technical debt is managed via `TECH_DEBT.md` in the project root. See that document for the current phase, next item, and resumption instructions.
+Active work on bugs, hacks, and technical debt is managed via `TECH_DEBT.md`
+in the project root. See that document for the current phase, next item,
+and resumption instructions.
 
 ### Session Startup
 
-Run `python discover.py` at the start of each session to catch new TODO / BUG / HACK markers added by other contributors. The script scans source files, updates line numbers for moved markers, flags edited text, and appends any genuinely new items to `BUGS.md`.
+1. Read `BUGS.md` to check item statuses and the Implementation Roadmap.
+2. If `AGENTS-LOCAL.md` exists, read it and follow its Session Startup
+   section for additional project-specific startup tasks.
 
-## Session Notes
+## Local Instructions
 
-See `.kimi/session_notes.md` for active session state.
+If `AGENTS-LOCAL.md` exists in this directory, read it for additional
+project-specific instructions, scripts, workflows, and startup tasks.

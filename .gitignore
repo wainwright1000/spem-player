@@ -11,4 +11,5 @@ temp/*
 publish.py
 discover.py
 .markdownlint.json
+AGENTS-LOCAL.md
 
