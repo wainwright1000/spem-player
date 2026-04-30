@@ -1,6 +1,7 @@
 import config from "./config";
 import { getBarFromTime, getTimeFromBar } from "./common";
 import { MusicElement } from "./MusicElement";
+import { barCount } from "./lily";
 
 import loadingSVG from "../icons/loading.svg?raw";
 import pauseSVG from "../icons/pause.svg?raw";
@@ -92,7 +93,7 @@ export class MusicControls extends MusicElement {
     this.barinput.setAttribute("id", "bar-field");
     this.barinput.setAttribute("value", "0");
     this.barinput.setAttribute("min", "0");
-    this.barinput.setAttribute("max", "138"); // HACK : 138
+    this.barinput.setAttribute("max", String(barCount));
     label.append(this.barinput);
     this.append(label);
 

@@ -178,9 +178,9 @@ export class MusicScore extends MusicElement {
       left = 0;
       width = 0;
     }
-    else if (intbar >= 138) {
-      left = this.bars[137];
-      width = this.bars[138] - left;
+    else if (intbar >= this.bars.length - 1) {
+      left = this.bars[this.bars.length - 2];
+      width = this.bars[this.bars.length - 1] - left;
     }
     else {
       left = this.bars[intbar - 1];

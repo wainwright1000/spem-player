@@ -139,6 +139,7 @@ export type Range = {
   to: number;
 }
 export var ranges: Range[][][] = [];
+export var barCount: number = 0;
 
 async function getFile(filename: string): Promise<string> {
   const promise = await fetch(filename);
@@ -165,6 +166,7 @@ export function processLilypond() {
 
   semantics(result).parse();
 
+  barCount = 0;
   for (let c = 0; c < config.choirs[0].length; c++) {
     const choir = config.choirs[0][c];
     ranges[c] = [];
@@ -209,8 +211,13 @@ export function processLilypond() {
         ranges[c][p].push({ "from": from, "to": pos });
         from = undefined;
       }
+
+      if (pos > barCount) {
+        barCount = pos;
+      }
     }
   }
+  barCount = Math.floor(barCount) - 1;
 }
 
 export const exportedForTesting = {

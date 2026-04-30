@@ -2,7 +2,7 @@ import config from "./config";
 import { PartType, Position, colors } from "./common";
 import { MusicElement } from "./MusicElement";
 
-import { Dictionary, Range, processLilypond, dict, ranges } from "./lily";
+import { Dictionary, Range, processLilypond, dict, ranges, barCount } from "./lily";
 
 export class MusicCanvas extends MusicElement {
   static observedAttributes = ["choir", "part", "bar", "playing"];
@@ -129,7 +129,7 @@ export class MusicCanvas extends MusicElement {
       intbar = intbar + direction;
       const newsinging = (this.dict[intbar].filter(x => x.c == pos.choir).length != 0);
       changed = (singing != newsinging)
-    } while (!changed && intbar > 0 && intbar < 139);
+    } while (!changed && intbar > 0 && intbar <= barCount);
     return intbar;
   }
 
@@ -196,7 +196,7 @@ export class MusicCanvas extends MusicElement {
     // }
 
     // Draw bar highlight
-    if (this.bar > 0 && this.bar <= 139) {
+    if (this.bar > 0 && this.bar <= barCount) {
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(this.canvasPadding + (this.bar * this.barWidth), this.canvasPadding);
@@ -268,7 +268,7 @@ export class MusicCanvas extends MusicElement {
           //   saturation = 80;
           //   transparency = 1;
           // }
-          else if (this.bar === 0 || this.bar > 138) {
+          else if (this.bar === 0 || this.bar > barCount) {
             saturation = 50;
             lightness = 67 - (3 * p);
             transparency = 1;
