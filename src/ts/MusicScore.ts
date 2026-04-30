@@ -8,6 +8,7 @@ export class MusicScore extends MusicElement {
 
   svg: SVGGraphicsElement | null = null;
   svgWidth: number = 0;
+  svgHeight: number = 0;
 
   scoreType: string = "modern";
   recording: number = 0; // 0 = ALC, 1 = CotE
@@ -27,8 +28,8 @@ export class MusicScore extends MusicElement {
     this.highlightPosition.setAttribute("id", "hPos");
     this.highlightPosition.setAttribute("x", "0");
     this.highlightPosition.setAttribute("y", "0");
-    this.highlightPosition.setAttribute("width", "7");  // HACK: hard-coded!
-    this.highlightPosition.setAttribute("height", "200");  // HACK: need to calc actual height of SVG
+    this.highlightPosition.setAttribute("width", "7"); 
+    this.highlightPosition.setAttribute("height", "0");  // Will be set later when we know the height of the SVG
     this.highlightPosition.style.fill = colors().scoreHighlight; //Set stroke colour
     this.highlightPosition.style.fillOpacity = "0";  // initially invisible
     this.highlightPosition.style.strokeWidth = "5px"; //Set stroke width
@@ -36,7 +37,7 @@ export class MusicScore extends MusicElement {
     this.highlightBar.setAttribute("id", "hBar");
     this.highlightBar.setAttribute("x", "0");
     this.highlightBar.setAttribute("width", "0");
-    this.highlightBar.setAttribute("height", "200");  // HACK: need to calc actual height of SVG
+    this.highlightBar.setAttribute("height", "0");  // Will be set later when we know the height of the SVG
     this.highlightBar.style.fill = colors().scoreHighlight; //Set stroke colour
     this.highlightBar.style.fillOpacity = "0";  // initially invisible
     this.highlightBar.style.strokeWidth = "5px"; //Set stroke width
@@ -105,9 +106,13 @@ export class MusicScore extends MusicElement {
     }
 
     var viewBoxString = this.svg.getAttribute('viewBox');
-    this.svgWidth = Number(viewBoxString?.split(" ")[2]);
-    console.log("viewbox", this.svgWidth); // Example output: "0 0 65415 41616"
+    const viewBoxParts = viewBoxString?.split(" ") ?? [];
+    this.svgWidth = Number(viewBoxParts[2]);
+    this.svgHeight = Number(viewBoxParts[3]);
+    console.log("viewbox", this.svgWidth, this.svgHeight); // Example output: "0 0 65415 41616"
 
+    this.highlightPosition.setAttribute("height", String(this.svgHeight));
+    this.highlightBar.setAttribute("height", String(this.svgHeight));
     this.svg.prepend(this.highlightPosition);
     this.svg.prepend(this.highlightBar);
 
