@@ -132,8 +132,18 @@ header {
     #darkswitch {
         cursor: pointer;
         margin-right: 5px;
+    }
+
+    #scoreswitch,
+    #recordingswitch {
         path {
             fill: var(--color-title);
+        }
+    }
+
+    #darkswitch {
+        path {
+            stroke: var(--color-title);
         }
     }
 
