@@ -42,16 +42,19 @@ Toggle between recordings using the button in the top-right corner.
 
 | Key | Action |
 | --- | ------ |
-| `Space` | Play / pause |
-| `Enter` | Play / pause |
-| `1` – `8` | Select choir I – VIII |
+| `1` – `8` | Select choir |
 | `S` | Soprano |
 | `A` | Alto |
 | `T` | Tenor |
 | `R` | Baritone |
 | `B` | Bass |
-| `V` | Toggle recording (ALC / CotE) |
-| `Ctrl` + `←` / `→` | Seek to previous / next bar |
+| `X` | All voice parts |
+| `←` / `→` | Select bar |
+| `V` | Toggle between recordings |
+| `M` | Toggle modern / early notation |
+| `D` | Toggle dark / light mode |
+| `Enter` / `Space` | Start or stop |
+| `?` | Show help panel |
 
 Shortcuts are ignored when focus is on an input field or `<select>` element.
 
