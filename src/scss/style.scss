@@ -97,6 +97,7 @@ body {
     background: var(--color-background);
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
+    visibility: visible;
 }
 
 header {
