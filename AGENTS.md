@@ -14,7 +14,7 @@ Upstream repository: `wainwmr/spem-player` (Mark Wainwright). Forked to `wainwri
 - **Testing:** Vitest 3 with jsdom, coverage via `@vitest/coverage-v8`
 - **Parser:** Ohm.js for LilyPond grammar parsing
 - **Build scripts:** Bash (`buildScore.sh`, `buildAllScores.sh`) invoking LilyPond to generate SVG scores
-- **Deployment:** Netlify (build command `npm run build`, publish directory `dist`)
+- **Deployment:** Netlify (build command `npm run build`, publish directory `dist`). Automated deploy on merge to `main`. Live at [www.spemplayer.net](https://www.spemplayer.net).
 
 ## Architecture
 
@@ -78,6 +78,10 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 - The `getBarFromTime` / `getTimeFromBar` tempo calculation may fail at boundaries if `bartime`/`barno` arrays are out of sync.
 - Several UI improvements are noted in `index.ts`: CMD-B to jump to a bar number, better title graphic, visual effect for false relations, lyrics in footer, highlighting part on score.
 - Build pipeline: SVGs are not generated automatically during `npm run build`; they must be built separately via `npm run build:scores`.
+
+## Process
+
+Active work on bugs, hacks, and technical debt is managed via `TECH_DEBT.md` in the project root. See that document for the current phase, next item, and resumption instructions.
 
 ## Session Notes
 
