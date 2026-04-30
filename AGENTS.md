@@ -65,6 +65,7 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 - **SVG bar detection:** `MusicScore.getBars()` extracts bar positions by parsing `translate` attributes on `<g>` elements that contain numeric `<tspan>` text. It filters out values near the left edge to avoid false matches from tenor clef symbols.
 - **LilyPond parsing:** Only a subset of LilyPond is supported by the Ohm grammar. The parser relies on the exact structure of `spem.ly` and its included files.
 - **Version injection:** Version is managed via `BUGS.md` / `TECH_DEBT.md` roadmap (BUILD-001).
+- **Local ignore rules:** Personal ignore patterns (IDE configs, local scripts) belong in `.git/info/exclude`, not `.gitignore`, to avoid polluting the shared file.
 
 ## Known Issues and TODOs
 
