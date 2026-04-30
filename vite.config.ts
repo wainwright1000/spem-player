@@ -1,7 +1,10 @@
 /// <reference types="vitest" />
 import { defineConfig } from "vite"
 import commonjs from 'vite-plugin-commonjs'
+import { readFileSync } from 'fs'
+import { resolve } from 'path'
 
+const pkg = JSON.parse(readFileSync(resolve(__dirname, 'package.json'), 'utf-8'))
 
 export default defineConfig({
   assetsInclude: ['**/*.ohm', '**/*.ly'],
@@ -18,6 +21,14 @@ export default defineConfig({
       filter(id) {
         return id.match(/[\/]src[\/]ohmjs[\/]ly-grammar.ohm-bundle.js/) !== null;
       }
-    })
+    }),
+    {
+      name: 'html-version',
+      transformIndexHtml(html) {
+        return html
+          .replace(/%VERSION%/g, pkg.version)
+          .replace(/%YEAR%/g, new Date().getFullYear().toString())
+      }
+    }
   ]
 })
