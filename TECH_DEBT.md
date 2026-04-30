@@ -219,10 +219,3 @@ Process items in priority order (P0 first, then P1, etc.):
 7. **No silent pivots**: If during Assessment or Specification the scope of an item turns out to be much larger than expected, report it immediately rather than silently upgrading its difficulty.
 8. **Mark's preferences**: Incremental over monolithic. Tests for new behaviour. No build pipeline breakage. Preserve existing user-facing behaviour unless the change is the point.
 9. **Session resumption**: If a new session begins, the startup checks must read `session_notes.md` and `BUGS.md` to determine the current phase and next item. `AGENTS.md` must be updated to point to `TECH_DEBT.md` so future agents know where the process lives.
-
-## Setup Step (execute immediately after plan approval)
-
-1. Check whether LilyPond is installed and on `PATH`. If not, install it. This is needed for build pipeline assessment and any future SVG regeneration.
-2. Copy this plan to `TECH_DEBT.md` in the project root.
-3. Update `AGENTS.md` with a `## Process` subsection pointing to `TECH_DEBT.md`.
-4. Update `session_notes.md` to record that Phase 1 is about to begin.

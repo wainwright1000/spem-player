@@ -586,3 +586,66 @@ Process document: `TECH_DEBT.md`
 - **Test plan**: Run `npm run build` and assert `dist/index.html` contains the exact version string from `package.json`. Add a Playwright test that reads `#version` textContent and asserts it matches a semver regex.
 - **Dependencies**: None
 - **Notes**: Resolving this closes TODO-BUILD-003. Align package.json and index.html version strings as part of the same commit.
+
+## Implementation Roadmap
+
+### Batch 1: Config Centralisation
+
+- **Items**: HACK-CONFIG-002, TODO-CONFIG-001, HACK-CONFIG-001, HACK-UI-001, BUG-CONFIG-001
+- **Theme**: Move magic values into `config.ts` and fix boundary bugs.
+- **Risk**: Low. All changes are data-driven or defensive checks; no UI behaviour changes.
+- **Rollback**: Revert single commit.
+- **Dependencies**: None.
+
+### Batch 2: Canvas Interaction & Loop
+
+- **Items**: BUG-CANVAS-001, HACK-CANVAS-004, BUG-CANVAS-002, TODO-CANVAS-001
+- **Theme**: Fix the animation loop and canvas click handling.
+- **Risk**: Low–medium. BUG-CANVAS-001 adds an `ended` event listener; if mishandled, playback might stop prematurely.
+- **Rollback**: Revert single commit.
+- **Dependencies**: None.
+
+### Batch 3: Score Display Fixes
+
+- **Items**: BUG-SCORE-002, BUG-SCORE-001, HACK-SCORE-001, HACK-SCORE-002, HACK-SCORE-003, BUG-UI-001
+- **Theme**: Eliminate forced reflow on load and hard-coded SVG highlight dimensions.
+- **Risk**: Low. CSS and SVG attribute changes; visual regression tests cover the risk.
+- **Rollback**: Revert single commit.
+- **Dependencies**: None.
+
+### Batch 4: Canvas Architecture
+
+- **Items**: HACK-CANVAS-003, HACK-CANVAS-001, HACK-CANVAS-002
+- **Theme**: Refactor `processLilypond()` to return values instead of mutating globals, then fix the data types in `MusicCanvas`.
+- **Risk**: Medium. Changes the interface between `lily.ts` and `MusicCanvas`; tests must verify canvas rendering still works.
+- **Rollback**: Revert single commit.
+- **Dependencies**: None (can be done in parallel with Batch 2, but doing it after reduces cognitive load).
+
+### Batch 5: Build, Version & Grammar
+
+- **Items**: BUILD-001, TODO-BUILD-003, HACK-TEST-001, TODO-BUILD-002, HACK-LILY-001, TODO-BUILD-001
+- **Theme**: Auto-inject version, deduplicate test helpers, integrate LilyPond into the build pipeline, and fix the fraction grammar.
+- **Risk**: Low–medium. TODO-BUILD-002 touches the build pipeline; if it breaks, `npm run build` fails.
+- **Rollback**: Revert single commit.
+- **Dependencies**: None.
+
+### Batch 6: UI Enhancements
+
+- **Items**: TODO-UI-005, TODO-UI-002, TODO-UI-004
+- **Theme**: Keyboard shortcut, dark mode icons, title font.
+- **Risk**: Low. All additive features with existing patterns.
+- **Rollback**: Revert single commit.
+- **Dependencies**: None.
+
+### Architectural Trade-off
+
+**Batch 4 (Canvas Architecture)** is the only non-incremental proposal. It changes `processLilypond()` from a side-effecting function to a pure return function, which ripples into `MusicCanvas` and `lily.ts` tests. The payoff is fixing three items in one commit instead of three separate, conflicting refactors. It is kept as a standalone batch so it can be reviewed and reverted independently.
+
+### Ordering Rationale
+
+1. **Batch 1** first because it establishes config-driven patterns other batches can reuse.
+2. **Batch 2** next because BUG-CANVAS-001 is P1 and wastes CPU after playback ends.
+3. **Batch 3** next because BUG-SCORE-002 is P1 and affects initial load performance.
+4. **Batch 4** after Batch 2 so the simpler canvas fixes are already stable before the refactor.
+5. **Batch 5** can land anytime; it is build-side only.
+6. **Batch 6** last because it is lowest priority (P3 features).

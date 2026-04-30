@@ -10,4 +10,5 @@ coverage
 temp/*
 publish.py
 discover.py
+.markdownlint.json
 

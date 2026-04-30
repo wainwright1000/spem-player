@@ -66,18 +66,11 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 - **Time mapping:** `bartime` and `barno` arrays in `config.ts` map real audio time to bar numbers for each recording, accounting for tempo changes.
 - **SVG bar detection:** `MusicScore.getBars()` extracts bar positions by parsing `translate` attributes on `<g>` elements that contain numeric `<tspan>` text. It filters out values near the left edge to avoid false matches from tenor clef symbols.
 - **LilyPond parsing:** Only a subset of LilyPond is supported by the Ohm grammar. The parser relies on the exact structure of `spem.ly` and its included files.
-- **Version drift:** `package.json` declares version 2.0.0; `index.html` displays 2.1.0.
+- **Version injection:** Version is managed via `BUGS.md` / `TECH_DEBT.md` roadmap (BUILD-001).
 
-## Known Issues and TODOs (from source comments)
+## Known Issues and TODOs
 
-- `loop()` in `MusicCanvas` never finishes after playing to the end of the piece.
-- Scrolling up and down a small amount is possible in the score view.
-- Forced reflow warning in JavaScript during initial load, related to flex layout.
-- Canvas click handler has an untested edge case for clicks in the padding area.
-- `MusicScore` hard-codes SVG dimensions and highlight rectangle sizes.
-- The `getBarFromTime` / `getTimeFromBar` tempo calculation may fail at boundaries if `bartime`/`barno` arrays are out of sync.
-- Several UI improvements are noted in `index.ts`: CMD-B to jump to a bar number, better title graphic, visual effect for false relations, lyrics in footer, highlighting part on score.
-- Build pipeline: SVGs are not generated automatically during `npm run build`; they must be built separately via `npm run build:scores`.
+All known bugs, hacks, todos, and technical debt are tracked in `BUGS.md` in the project root. See that document for the canonical register, including priorities, specifications, and the implementation roadmap.
 
 ## Process
 
@@ -89,4 +82,4 @@ Run `python discover.py` at the start of each session to catch new TODO / BUG / 
 
 ## Session Notes
 
-No active session.
+See `.kimi/session_notes.md` for active session state.
