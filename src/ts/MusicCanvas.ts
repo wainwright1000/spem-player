@@ -273,8 +273,8 @@ export class MusicCanvas extends MusicElement {
           }
           else {
             saturation = 50;
-            lightness = 67 - (3 * p);
-            transparency = 0.5;
+            lightness = 38 - (3 * p);
+            transparency = 1;
           }
 
           ctx.strokeStyle = `hsla(${colors().choir[c]}, ${saturation}%, ${lightness}%, ${transparency})`;
