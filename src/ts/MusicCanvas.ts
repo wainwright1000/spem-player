@@ -186,10 +186,7 @@ export class MusicCanvas extends MusicElement {
     ctx.fillStyle = colors().background;
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // Derive dull-note lightness from background mode (light vs dark)
-    const bgMatch = colors().background.match(/hsl\(\s*\d+\s*,\s*[\d.]+%\s*,\s*([\d.]+)%\s*\)/);
-    const bgLightness = bgMatch ? parseFloat(bgMatch[1]) : 20;
-    const dullBaseLightness = bgLightness > 50 ? 80 : 38;
+    const dullBaseLightness = this.#isLightMode() ? 80 : 38;
 
     // Draw FPS number to the screen
     // if (fps) {
@@ -287,6 +284,13 @@ export class MusicCanvas extends MusicElement {
         });
       }
     }
+  }
+
+  #isLightMode(): boolean {
+    if (document.body.classList.contains('light-theme')) return true;
+    if (document.body.classList.contains('dark-theme')) return false;
+    if (typeof window.matchMedia !== 'function') return true;
+    return !window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   // BUG: what happens if you click in the canvas padding?
