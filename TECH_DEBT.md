@@ -218,4 +218,3 @@ Process items in priority order (P0 first, then P1, etc.):
 6. **Devil's advocate**: At the start of each phase, briefly challenge the approach. Is the phase too large? Are we missing a category of debt? Is a batch proposal too risky?
 7. **No silent pivots**: If during Assessment or Specification the scope of an item turns out to be much larger than expected, report it immediately rather than silently upgrading its difficulty.
 8. **Mark's preferences**: Incremental over monolithic. Tests for new behaviour. No build pipeline breakage. Preserve existing user-facing behaviour unless the change is the point.
-9. **Session resumption**: If a new session begins, the startup checks must read `session_notes.md` and `BUGS.md` to determine the current phase and next item. `AGENTS.md` must be updated to point to `TECH_DEBT.md` so future agents know where the process lives.

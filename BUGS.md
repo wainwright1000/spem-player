@@ -10,6 +10,20 @@ Process document: `TECH_DEBT.md`
 - Completed: 1
 - Open: 31
 
+## Awaiting Input from Mark
+
+The following items cannot be fully specified without clarification from
+Mark Wainwright:
+
+- **TODO-UI-001**: Should clicking on the score also select the voice part
+  (in addition to setting the bar)?
+- **TODO-UI-003**: What visual effect should be used to highlight false
+  relations, and how are they defined in this context?
+- **TODO-UI-006**: Should the currently selected voice part be highlighted
+  on the SVG score? If so, what style (colour, opacity, underline)?
+- **TODO-UI-007**: Where do the lyrics come from (LilyPond source,
+  separate file, or need to be added), and how should they be displayed?
+
 ## Items
 
 ### TODO-UI-001
