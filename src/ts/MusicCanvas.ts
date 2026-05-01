@@ -2,7 +2,7 @@ import config from "./config";
 import { PartType, Position, colors } from "./common";
 import { MusicElement } from "./MusicElement";
 
-import { Dictionary, Range, processLilypond, dict, ranges } from "./lily";
+import { Dictionary, Range, processLilypond, dict, ranges, barCount } from "./lily";
 
 export class MusicCanvas extends MusicElement {
   static observedAttributes = ["choir", "part", "bar", "playing"];
@@ -59,6 +59,8 @@ export class MusicCanvas extends MusicElement {
     this.canvas.addEventListener('click', this.#canvasClicked.bind(this));
     this.canvas.addEventListener('mousemove', this.#canvasHovered.bind(this), false);
     this.canvas.addEventListener('touchstart', this.#touchStarted.bind(this), { passive: false });
+    this.addEventListener('touchmove', this.#touchMoved.bind(this), { passive: false });
+    this.addEventListener('touchend', this.#touchEnded.bind(this), { passive: false });
 
     this.#calculateCanvasSize();
     this.#showLoadingOnCanvas();
@@ -127,7 +129,7 @@ export class MusicCanvas extends MusicElement {
       intbar = intbar + direction;
       const newsinging = (this.dict[intbar].filter(x => x.c == pos.choir).length != 0);
       changed = (singing != newsinging)
-    } while (!changed && intbar > 0 && intbar < 139);
+    } while (!changed && intbar > 0 && intbar <= barCount);
     return intbar;
   }
 
@@ -184,6 +186,8 @@ export class MusicCanvas extends MusicElement {
     ctx.fillStyle = colors().background;
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
+    const dullBaseLightness = this.#isLightMode() ? 80 : 38;
+
     // Draw FPS number to the screen
     // if (fps) {
     //   ctx.font = '25px Arial';
@@ -192,7 +196,7 @@ export class MusicCanvas extends MusicElement {
     // }
 
     // Draw bar highlight
-    if (this.bar > 0 && this.bar <= 139) {
+    if (this.bar > 0 && this.bar <= barCount) {
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(this.canvasPadding + (this.bar * this.barWidth), this.canvasPadding);
@@ -264,15 +268,15 @@ export class MusicCanvas extends MusicElement {
           //   saturation = 80;
           //   transparency = 1;
           // }
-          else if (this.bar === 0 || this.bar > 138) {
+          else if (this.bar === 0 || this.bar > barCount) {
             saturation = 50;
             lightness = 67 - (3 * p);
             transparency = 1;
           }
           else {
             saturation = 50;
-            lightness = 67 - (3 * p);
-            transparency = 0.5;
+            lightness = dullBaseLightness - (3 * p);
+            transparency = 1;
           }
 
           ctx.strokeStyle = `hsla(${colors().choir[c]}, ${saturation}%, ${lightness}%, ${transparency})`;
@@ -280,6 +284,13 @@ export class MusicCanvas extends MusicElement {
         });
       }
     }
+  }
+
+  #isLightMode(): boolean {
+    if (document.body.classList.contains('light-theme')) return true;
+    if (document.body.classList.contains('dark-theme')) return false;
+    if (typeof window.matchMedia !== 'function') return true;
+    return !window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   // BUG: what happens if you click in the canvas padding?
@@ -328,17 +339,18 @@ export class MusicCanvas extends MusicElement {
     this.#moveToPosition(this.#getTouchPos(e));
     this.fireEvent("music-canvas-touchstart");
     this.draw();
+  }
 
-    this.addEventListener("touchmove", (evt: TouchEvent) => {
-      evt.preventDefault();
-      this.#moveToPosition(this.#getTouchPos(evt));
-      this.fireEvent("music-canvas-touchmove");
-      this.draw();
-    });
-    this.addEventListener("touchend", (evt: TouchEvent) => {
-      evt.preventDefault();
-      this.fireEvent("music-canvas-touchend");
-      this.draw();
-    });
+  #touchMoved(evt: TouchEvent) {
+    evt.preventDefault();
+    this.#moveToPosition(this.#getTouchPos(evt));
+    this.fireEvent("music-canvas-touchmove");
+    this.draw();
+  }
+
+  #touchEnded(evt: TouchEvent) {
+    evt.preventDefault();
+    this.fireEvent("music-canvas-touchend");
+    this.draw();
   }
 }

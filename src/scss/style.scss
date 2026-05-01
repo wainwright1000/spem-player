@@ -14,6 +14,24 @@ body {
     --color-title: hsl(210, 65%, 20%);
     --color-highlight: hsl(210, 65%, 90%);
 }
+/* Dev-only badge: visible when deployed from a non-main branch */
+body[data-branch]:not([data-branch=""])::before {
+    content: attr(data-branch);
+    position: fixed;
+    top: 0;
+    left: 200px;
+    background: var(--color-title);
+    color: var(--color-background);
+    padding: 2px 8px;
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    z-index: 9999;
+    border-bottom-left-radius: 4px;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
 /* Dark theme colors */
 body.dark-theme { 
     --color-background: hsl(210, 65%, 20%);
@@ -79,6 +97,7 @@ body {
     background: var(--color-background);
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
+    visibility: visible;
 }
 
 header {
@@ -113,8 +132,18 @@ header {
     #darkswitch {
         cursor: pointer;
         margin-right: 5px;
+    }
+
+    #scoreswitch,
+    #recordingswitch {
         path {
             fill: var(--color-title);
+        }
+    }
+
+    #darkswitch {
+        path {
+            stroke: var(--color-title);
         }
     }
 

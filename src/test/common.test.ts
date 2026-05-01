@@ -1,4 +1,4 @@
-import { toNum, getBarFromTime, getTimeFromBar } from '../ts/common';
+import { toNum, getBarFromTime, getTimeFromBar, colors } from '../ts/common';
 
 describe("common", () => {
   it("toNum() converts string and numbers as expected", () => {
@@ -90,5 +90,24 @@ describe("common", () => {
     expect(result).toBe(0);
   });
 
+  it("colors() reads from CSS custom properties when available", () => {
+    document.body.style.setProperty('--color-background', '#123456');
+    document.body.style.setProperty('--color-highlight', '#abcdef');
+    document.body.style.setProperty('--color-score-highlight', '#ffffff');
+    for (let i = 1; i <= 8; i++) {
+      document.body.style.setProperty('--color-c' + i, String(i * 10));
+    }
+    const result = colors(true);
+    expect(result.background).toBe('#123456');
+    expect(result.highlight).toBe('#abcdef');
+    expect(result.choir[0]).toBe(10);
+    expect(result.choir[7]).toBe(80);
+  });
+
+  it("colors() returns cached value when reload is false", () => {
+    colors(true);
+    const result = colors(false);
+    expect(result).toBeTypeOf('object');
+  });
 
 })

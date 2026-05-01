@@ -9,6 +9,10 @@ import { MusicCanvasWatcher } from "./src/ts/MusicCanvasWatcher";
 import { MusicControls } from "./src/ts/MusicControls";
 import { MusicScore } from "./src/ts/MusicScore";
 
+import recordingswitchSvg from './src/icons/recordingswitch.svg?raw'
+import scoreswitchSvg from './src/icons/scoreswitch.svg?raw'
+import darkswitchSvg from './src/icons/darkswitch.svg?raw'
+
 MusicCanvas.define("music-canvas");
 MusicCanvasWatcher.define("music-canvas-watcher");
 MusicControls.define("music-controls");
@@ -23,11 +27,14 @@ const controls = document.querySelector("music-controls") as MusicControls;
 const info = document.getElementById('info') as HTMLSpanElement;
 const help = document.getElementById('help') as HTMLDivElement;
 const backdrop = document.getElementById('backdrop') as HTMLDivElement;
-type SvgInHtml = HTMLElement & SVGElement;
-const darkswitch = document.getElementById('darkswitch') as SvgInHtml;
-const scoreswitch = document.getElementById('scoreswitch') as SvgInHtml;
-const recordingswitch = document.getElementById('recordingswitch') as SvgInHtml;
+const darkswitch = document.getElementById('darkswitch') as HTMLElement;
+const scoreswitch = document.getElementById('scoreswitch') as HTMLElement;
+const recordingswitch = document.getElementById('recordingswitch') as HTMLElement;
 const recordinglabel = document.getElementById('recordinglabel') as HTMLSpanElement;
+
+recordingswitch.innerHTML = recordingswitchSvg;
+scoreswitch.innerHTML = scoreswitchSvg;
+darkswitch.innerHTML = darkswitchSvg;
 
 let isDragging = false;
 
@@ -41,7 +48,6 @@ var current: State = {
   status: "paused"
 }
 
-// TODO: click on score should send you to bar.  And part?
 // TODO: Change dark mode to moon/sun icons
 // TODO: Visual effect for false relations
 // TODO: Better font/graphic for Spem Player title
@@ -53,7 +59,6 @@ var current: State = {
 // TODO: highlight part on score?
 // TODO: Add lyrics to footer
 // BUG: loop() never finishes after playing to the end of spem
-// TODO: Add the space bar as a play/pause toggle (but only if not focused on an input field, and not if composing text for chinese characters)
 
 // -----------------------------------------------------
 // Splitter to resize score and canvas
@@ -184,6 +189,7 @@ function parseURL() {
     current.viewmode = "dark";
     colors(true);
   }
+  updateDarkIcon();
 }
 
 // -----------------------------------------------------
@@ -322,6 +328,13 @@ function showHelp(show = true) {
   }
 }
 
+function updateDarkIcon() {
+  const isDark = document.body.classList.contains('dark-theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches && !document.body.classList.contains('light-theme'));
+  document.getElementById('moon-icon')?.setAttribute('display', isDark ? 'none' : 'inline');
+  document.getElementById('sun-icon')?.setAttribute('display', isDark ? 'inline' : 'none');
+}
+
 function toggleDark() {
   if (prefersDarkScheme) {
     document.body.classList.toggle("light-theme");
@@ -330,6 +343,7 @@ function toggleDark() {
   }
   colors(true); // reload the colors from the stylesheet
   canvas.draw();
+  updateDarkIcon();
 }
 
 function toggleScore(forceEarly = false) {
@@ -440,5 +454,5 @@ function setColorScheme() {
     current.viewmode = "light";
   }
   colors(true);
-  // canvas.draw();
+  updateDarkIcon();
 }
