@@ -64,14 +64,15 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 - **Time mapping:** `bartime` and `barno` arrays in `config.ts` map real audio time to bar numbers for each recording, accounting for tempo changes.
 - **SVG bar detection:** `MusicScore.getBars()` extracts bar positions by parsing `translate` attributes on `<g>` elements that contain numeric `<tspan>` text. It filters out values near the left edge to avoid false matches from tenor clef symbols.
 - **LilyPond parsing:** Only a subset of LilyPond is supported by the Ohm grammar. The parser relies on the exact structure of `spem.ly` and its included files.
-- **Version injection:** Version is managed via `BUGS.md` / `TECH_DEBT.md` roadmap (BUILD-001).
+- **Version injection:** Version is managed via the GitHub Project board / `TECH_DEBT.md` roadmap (BUILD-001).
 - **Local ignore rules:** Personal ignore patterns (IDE configs, local scripts) belong in `.git/info/exclude`, not `.gitignore`, to avoid polluting the shared file.
 
 ## Known Issues and TODOs
 
-All known bugs, hacks, todos, and technical debt are tracked in `BUGS.md`
-in the project root. See that document for the canonical register,
-including priorities, specifications, and the implementation roadmap.
+All known bugs, hacks, todos, and technical debt are tracked on the
+**Spem Player** GitHub Project board (`https://github.com/users/wainwmr/projects/2`).
+The board is the canonical register, including priorities, specifications,
+and the implementation roadmap. `BUGS.md` is archived.
 
 ## Process
 
@@ -81,7 +82,8 @@ and resumption instructions.
 
 ### Session Startup
 
-1. Read `BUGS.md` to check item statuses and the Implementation Roadmap.
+1. Check the **Spem Player** GitHub Project board for item statuses and
+   the Implementation Roadmap.
 2. If `AGENTS-LOCAL.md` exists, read it and follow its Session Startup
    section for additional project-specific startup tasks.
 

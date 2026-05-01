@@ -6,7 +6,8 @@ The Spem Player codebase contains scattered TODOs, BUGs, HACKs, and ARGHs across
 
 ## Deliverables
 
-- `BUGS.md` in the project root: the canonical register of all items.
+- The **Spem Player** GitHub Project board (`https://github.com/users/wainwmr/projects/2`):
+  the canonical register of all items. `BUGS.md` is archived.
 
 ## Naming Convention
 
@@ -76,12 +77,12 @@ Status values: `discovered`, `assessed`, `specified`, `ready`, `in-progress`, `d
 2. Cross-reference with `AGENTS.md` Known Issues and `BUILD.md` Build Notes to capture issues documented there but not inline (e.g. version drift, `getBarFromTime` boundary failure).
 3. Record file path, line number, raw comment text, and surrounding context (5 lines).
 4. Run `git blame` or `git log -S` on each location to estimate the first commit where the marker appeared. Record the commit hash, date, and author.
-5. Create `BUGS.md` in the project root with a header and one section per item, assigning IDs and setting Status to `discovered`.
-6. Mark any already-resolved items (e.g. Space bar play/pause toggle, per `session_notes.md`) as `done` with a note.
+5. Create issues on the **Spem Player** GitHub Project board, assigning
+   IDs and setting Status to **Assessed**.
+6. Mark any already-resolved items as **Done**.
 7. Run `python discover.py` at the start of each session to catch new
-   markers added by other contributors. The script scans source files,
-   updates line numbers for moved markers, flags edited text, and appends
-   genuinely new items to `BUGS.md`.
+   markers added by other contributors. The script scans source files
+   and creates new issues on the board in the **Assessed** column.
 
 **Constraints**:
 
@@ -101,7 +102,7 @@ Status values: `discovered`, `assessed`, `specified`, `ready`, `in-progress`, `d
 
 **Activities**:
 
-For each item in `BUGS.md`, in ID order (or grouped by file if more convenient):
+For each item on the board, in ID order (or grouped by file if more convenient):
 
 1. **Interpret the description**: Read the source code around the marker. Determine whether the comment is still accurate or stale.
 2. **Determine PD required**:
@@ -113,7 +114,7 @@ For each item in `BUGS.md`, in ID order (or grouped by file if more convenient):
    - `spike`: Need a time-boxed technical investigation.
 3. **Assign initial Priority** (P0–P3) based on user impact and frequency.
 4. **Assign initial Difficulty** (XS–XL) based on complexity and blast radius.
-5. **Update `BUGS.md`** with the above fields. Update Status to `assessed`.
+5. **Update the issue** with the above fields. Move Status to **Assessed**.
 
 **Constraints**:
 
@@ -126,7 +127,7 @@ For each item in `BUGS.md`, in ID order (or grouped by file if more convenient):
 
 - After each item is assessed, output a visible summary to the user: item ID, priority, difficulty, PD required, and a one-sentence rationale.
 
-**Checkpoint**: End of Phase 2. `BUGS.md` should show every item as `assessed`.
+**Checkpoint**: End of Phase 2. The board should show every item as **Assessed**.
 
 ## Phase 3: Specification
 
@@ -146,7 +147,7 @@ Process items in priority order (P0 first, then P1, etc.):
    - Note risks or side effects.
    - Flag if the item should be grouped with others for an architectural change.
 3. Record dependencies between items (e.g. fixing `HACK-CANVAS-003` may unblock `BUG-CANVAS-005`).
-4. Update `BUGS.md` with `Recommended fix`, `Test plan`, and `Dependencies`. Update Status to `specified`.
+4. **Update the issue** with `Recommended fix`, `Test plan`, and `Dependencies`. Move Status to **Specified**.
 
 **Constraints**:
 
@@ -176,8 +177,8 @@ Process items in priority order (P0 first, then P1, etc.):
 4. **Architectural opportunities**: Flag any changes that address multiple items simultaneously (e.g. refactoring `processLilypond()` return type to eliminate three HACKs). Present these as explicit trade-offs against pure incrementalism.
 5. **Risk and rollback**: For each batch, note the risk level and how to roll back (git revert scope).
 6. **Update documentation**:
-   - Write the roadmap into `BUGS.md` under a new `## Implementation Roadmap` section.
-   - Update `AGENTS.md` Known Issues to reference `BUGS.md` and remove duplicated detail.
+   - Write the roadmap into the project board description or a pinned issue.
+   - Update `AGENTS.md` Known Issues to reference the board and remove duplicated detail.
    - Update `session_notes.md` with the plan summary.
 
 **Constraints**:
@@ -194,7 +195,7 @@ Process items in priority order (P0 first, then P1, etc.):
 ## General Best Practices Across All Phases
 
 1. **Visible output rule**: After every item or batch is processed, write a brief summary as visible text in the response before moving on. Thinking blocks are invisible; never use them as a substitute for user-facing status.
-2. **Documentation hygiene**: Update `BUGS.md` immediately after finishing any item's section.
+2. **Documentation hygiene**: Update the board immediately after finishing any item's section.
 3. **Diagnostics discipline**: Run `get_all_diagnostics` after any file write. Fix errors before proceeding.
 4. **Git archaeology**: Use `git log -S "marker text" --source --all -- <file>` or `git blame -L <line>,<line> <file>` to find first occurrence. Record the earliest commit hash and date.
 5. **Temporary files**: Any scratch files created for PD go in `temp/` and must be deleted before the phase concludes. Do not leave debris.
