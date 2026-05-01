@@ -71,7 +71,7 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 
 All known bugs, hacks, todos, and technical debt are tracked on the
 **Spem Player** GitHub Project board (`https://github.com/users/wainwmr/projects/2`).
-The board is the canonical register, including priorities, specifications,
+The board is the canonical register, including specifications
 and the implementation roadmap. `BUGS.md` is archived.
 
 ## Process
@@ -79,7 +79,7 @@ and the implementation roadmap. `BUGS.md` is archived.
 Active work on bugs, hacks, and technical debt is managed via the
 **Spem Player** GitHub Project board
 (`https://github.com/users/wainwmr/projects/2`). The board is the canonical
-register of all open items, including priorities, specifications, and status.
+register of all open items, including specifications and status.
 
 `WORKFLOW.md` in the project root documents the assessment and specification
 methodology used to populate the board. It is reference material, not an

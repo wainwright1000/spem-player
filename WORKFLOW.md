@@ -19,7 +19,7 @@ Mark's kanban workflow with explicit entry and exit criteria:
 
 | Status | Entry Criteria | Exit Criteria |
 | -------- | --------------- | --------------- |
-| **Todo** | New TODO/BUG/HACK reported | Type, Area, Priority, Difficulty defined. Description is clear enough to act on |
+| **Todo** | New TODO/BUG/HACK reported | Type, Area, Difficulty defined. Description is clear enough to act on |
 | **Specified** | Assessed; recommended fix exists or reproduction/test plan defined | Developer pulls it |
 | **In Progress** | Coding started, branch created | Code complete, tests pass, committed to `dev` |
 | **Ready for Main** | Committed to `dev`; awaiting final check before main merge | Merged to `main` |
@@ -57,7 +57,7 @@ Mark's kanban workflow with explicit entry and exit criteria:
 
 1. **Create**: A new ticket is created as a GitHub issue and added to the board
    with Status **Todo**.
-2. **Assess**: Set Type, Area, Priority, and Difficulty. Write a clear
+2. **Assess**: Set Type, Area, and Difficulty. Write a clear
    Description. Ticket remains in **Todo** until assessment is complete.
 3. **Specify**: Write Recommended fix, Test plan, and Dependencies. Move Status
    to **Specified**.
@@ -81,7 +81,7 @@ If a ticket is blocked by a question for Mark, add a `question` label and
 
 A well-formed ticket body contains:
 
-- **Type**, **Area**, **Status**, **Priority**, **Difficulty**
+- **Type**, **Area**, **Status**, **Difficulty**
 - **Source**: file path and line number
 - **First seen**: date and commit hash (from `git blame`)
 - **Description**: clear explanation of the problem or desired improvement
@@ -90,8 +90,6 @@ A well-formed ticket body contains:
 - **Test plan**: test cases, mocking requirements (populated during
   Specification)
 - **Dependencies**: other tickets that must precede or relate to this one
-
-Priority scale: `P0` (critical), `P1` (high), `P2` (medium), `P3` (low).
 
 ## Best Practices
 
