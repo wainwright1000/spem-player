@@ -60,7 +60,7 @@ describe("MusicCanvas custom element", () => {
   it("seek() finds next section change", () => {
     expect(canvas).not.toBeNull();
     expect(canvas!.dict.length).toBeGreaterThan(0);
-    const pos = { choir: 0, part: "all", bar: 1 };
+    const pos: { choir: number; part: "all"; bar: number } = { choir: 0, part: "all", bar: 1 };
     const next = canvas!.seek(pos, 1);
     expect(typeof next).toBe('number');
   });

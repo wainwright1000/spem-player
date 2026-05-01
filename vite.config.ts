@@ -1,5 +1,4 @@
-/// <reference types="vitest" />
-import { defineConfig } from "vite"
+import { defineConfig } from "vitest/config"
 import commonjs from 'vite-plugin-commonjs'
 import { readFileSync } from 'fs'
 import { resolve } from 'path'

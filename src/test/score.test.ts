@@ -108,7 +108,7 @@ describe("MusicScore custom element", () => {
 
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
-    for (var c = 0; c < config.choirs; c++) {
+    for (var c = 0; c < config.choirs[0].length; c++) {
       // wait for score to be loaded
       const waitingForLoaded = waitForEvent(elem, "music-score-loaded", handleScoreLoaded, 0, null, 0);
       elem?.setAttribute("choir", String(c));

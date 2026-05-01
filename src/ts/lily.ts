@@ -160,7 +160,7 @@ export function processLilypond() {
 
   // Parse lilypond from the ohm grammar
   const result = lyGrammar.match(spem);
-  if (!result.succeeded()) {
+  if (result.failed()) {
     console.error('Bad Lilypond ' + result.message);
   }
 
