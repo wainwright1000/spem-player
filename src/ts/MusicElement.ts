@@ -100,7 +100,7 @@ export class MusicElement extends HTMLElement {
     try {
       window.customElements.define(tag, this);
       // window.customElements.define(tag, this, { extends: "div" });
-    } catch (err) {
+    } catch {
       console.log(`Unable to (re)define ${tag}`);
     }
   }

@@ -190,7 +190,7 @@ export class MusicScore extends MusicElement {
     }
 
     // set the highlight for the current bar
-    var left = 0, width = 0;
+    var left, width;
     if (intbar < 1) {
       left = 0;
       width = 0;

@@ -40,7 +40,7 @@ export default defineConfig({
   plugins: [
     commonjs({
       filter(id) {
-        return id.match(/[\/]src[\/]ohmjs[\/]ly-grammar.ohm-bundle.js/) !== null;
+        return id.match(/[/]src[/]ohmjs[/]ly-grammar.ohm-bundle.js/) !== null;
       }
     }),
     {

@@ -1,5 +1,5 @@
 import { processLilypond, ranges, dict, exportedForTesting } from '../ts/lily';
-const { semantics, romanise, setupLilypondParser } = exportedForTesting;
+const { romanise, setupLilypondParser } = exportedForTesting;
 import * as ohm from 'ohm-js';
 import lyGrammar from '../ohmjs/ly-grammar.ohm-bundle';
 

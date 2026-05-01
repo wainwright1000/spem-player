@@ -209,7 +209,6 @@ export function processLilypond() {
 
       if (from != undefined) {
         ranges[c][p].push({ "from": from, "to": pos });
-        from = undefined;
       }
 
       if (pos > barCount) {

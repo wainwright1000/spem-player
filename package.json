@@ -9,6 +9,7 @@
     "ohm-js": "^17.2.1"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@ohm-js/cli": "^2.0.1",
     "@types/jest": "^30.0.0",
     "@types/jsdom": "^28.0.1",
@@ -18,9 +19,11 @@
     "canvas": "^3.2.0",
     "clean-css-cli": "^5.6.3",
     "eslint": "^10.2.1",
+    "globals": "^17.5.0",
     "jsdom": "^29.1.1",
     "sass-embedded": "^1.93.0",
     "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.1",
     "vite": "^8.0.10",
     "vite-plugin-commonjs": "^0.10.4",
     "vitest": "^4.1.5",

@@ -1,7 +1,6 @@
 import { MusicCanvas } from '../ts/MusicCanvas';
 import { MusicScore } from '../ts/MusicScore';
 import { MusicControls } from '../ts/MusicControls';
-import config from '../ts/config';
 
 describe("index.js", () => {
 

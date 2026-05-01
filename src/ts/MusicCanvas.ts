@@ -136,7 +136,7 @@ export class MusicCanvas extends MusicElement {
     const singing = choirnotes.length != 0;
 
     // loop until we find a bar where choir is not doing what it's doing in currentBar
-    var changed = false;
+    var changed;
     do {
       intbar = intbar + direction;
       const newsinging = (this.dict[intbar].filter(x => x.c == pos.choir).length != 0);
@@ -170,13 +170,12 @@ export class MusicCanvas extends MusicElement {
     }
 
     // Calculate frames per second
-    var fps = 0;
     if (this.playing) {
       const now: number = Date.now();
       const secondsPassed = (now - this.oldTimeStamp) / 1000;
       if (secondsPassed < 0.01) return; // HACK: throttle
       this.oldTimeStamp = now;
-      fps = secondsPassed === 0 ? 0 : Math.round(1 / secondsPassed);
+      // const fps = secondsPassed === 0 ? 0 : Math.round(1 / secondsPassed);
     }
 
 

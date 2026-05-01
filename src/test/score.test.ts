@@ -82,7 +82,6 @@ describe("MusicScore custom element", () => {
   it("Check that we can load the score correctly", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
-    // @ts-ignore
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
     // wait for score to be loaded
@@ -107,7 +106,6 @@ describe("MusicScore custom element", () => {
   it("Check all scores have the same number of bars", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
-    // @ts-ignore
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
     for (var c = 0; c < config.choirs; c++) {
@@ -130,7 +128,6 @@ describe("MusicScore custom element", () => {
   it("Changing bar sets the highlight correctly", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
-    // @ts-ignore
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
     // wait for score to be loaded
@@ -150,7 +147,6 @@ describe("MusicScore custom element", () => {
 
   it("Bar 138 highlight uses last bar width", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
-    // @ts-ignore
     elem.scrollTo = vi.fn();
     const waitingForLoaded = waitForEvent(elem, "music-score-loaded", handleScoreLoaded, 0, null, 0);
     elem?.setAttribute("choir", "0");
@@ -162,7 +158,6 @@ describe("MusicScore custom element", () => {
   it("Changing score type works", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
-    // @ts-ignore
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
     // wait for score to be loaded
@@ -180,7 +175,6 @@ describe("MusicScore custom element", () => {
   it("Changing score type to a bad one works", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
-    // @ts-ignore
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
     // wait for score to be loaded
@@ -198,7 +192,6 @@ describe("MusicScore custom element", () => {
   it("When playing, highlight bar disappears and position highligt shows", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
-    // @ts-ignore
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
     // wait for score to be loaded
@@ -222,7 +215,6 @@ describe("MusicScore custom element", () => {
   it("Changing score type results in different highlited bar", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
 
-    // @ts-ignore
     elem.scrollTo = vi.fn();  // jsdom doesn't seem to implement HTMLElement.scrollTo()
 
     // wait for score to be loaded
@@ -249,7 +241,6 @@ describe("MusicScore custom element", () => {
 
   it("scoreClicked sets bar and fires event", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
-    // @ts-ignore
     elem.scrollTo = vi.fn();
 
     const waitingForLoaded = waitForEvent(elem, "music-score-loaded", handleScoreLoaded, 0, null, 0);
