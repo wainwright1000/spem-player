@@ -49,7 +49,7 @@ export default defineConfig({
         return html
           .replace(/%VERSION%/g, versionWithBranch)
           .replace(/%YEAR%/g, new Date().getFullYear().toString())
-          .replace(/%BRANCH%/g, branch)
+          .replace(/data-branch="%BRANCH%"/g, branch && branch !== 'main' ? `data-branch="${branch}"` : '')
       }
     }
   ]
