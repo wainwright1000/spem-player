@@ -14,6 +14,8 @@ export class MusicCanvas extends MusicElement {
   choirHeight: number = 0;
   partHeight: number = 0;
   pulses: number[][] = [];
+  lastNoteStart: number[][] = [];
+  lastNoteDuration: number[][] = [];
   dict: Dictionary[][] = [];  // HACK: bad name and data type
   ranges: Range[][][] = []; // HACK: bad data type
   source: string | null = null;
@@ -87,8 +89,12 @@ export class MusicCanvas extends MusicElement {
     // will be pulsed when the choir is singing a note.
     for (var c = 0; c < config.choirs[0].length; c++) {
       this.pulses[c] = [];
+      this.lastNoteStart[c] = [];
+      this.lastNoteDuration[c] = [];
       for (var p = 0; p < config.parts.length; p++) {
         this.pulses[c][p] = 1;
+        this.lastNoteStart[c][p] = 0;
+        this.lastNoteDuration[c][p] = 0;
       }
     }
 
@@ -179,13 +185,31 @@ export class MusicCanvas extends MusicElement {
     }
 
 
-    // If there are notes playing, pulse the color's lightness for that voice part
+    // If there are notes starting now, record their onset and duration
     const quant = Math.floor(this.bar * 16) / 16;
     const notes = this.dict[quant];
     if (notes != undefined && notes.length > 0) {
       for (var n of notes) {
         if (n.n.duration != null) {
-          this.pulses[n.c][n.p] = this.#easeOutCubic(this.bar % quant, 1.4, -0.4, n.n.duration.sfths / 128);
+          this.lastNoteStart[n.c][n.p] = quant;
+          this.lastNoteDuration[n.c][n.p] = n.n.duration.sfths / 128;
+        }
+      }
+    }
+
+    // Update pulses for all parts based on elapsed time since last note onset
+    for (var c = 0; c < config.choirs[0].length; c++) {
+      for (var p = 0; p < config.parts.length; p++) {
+        const elapsed = this.bar - this.lastNoteStart[c][p];
+        if (elapsed >= 0 && elapsed < this.lastNoteDuration[c][p]) {
+          this.pulses[c][p] = this.#easeOutCubic(
+            elapsed,
+            1.4,
+            -0.4,
+            this.lastNoteDuration[c][p]
+          );
+        } else {
+          this.pulses[c][p] = 1;
         }
       }
     }
