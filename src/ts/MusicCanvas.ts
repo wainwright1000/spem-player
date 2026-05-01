@@ -9,6 +9,7 @@ import {
   dict,
   ranges,
   barCount,
+  falseRelations,
 } from "./lily";
 
 export class MusicCanvas extends MusicElement {
@@ -23,6 +24,7 @@ export class MusicCanvas extends MusicElement {
   pulses: number[][] = [];
   lastNoteStart: number[][] = [];
   lastNoteDuration: number[][] = [];
+  falseRelationPulses: number[] = [];
   dict: Dictionary[][] = []; // HACK: bad name and data type
   ranges: Range[][][] = []; // HACK: bad data type
   source: string | null = null;
@@ -116,6 +118,8 @@ export class MusicCanvas extends MusicElement {
         this.lastNoteDuration[c][p] = 0;
       }
     }
+
+    this.falseRelationPulses = new Array(falseRelations.length).fill(0);
 
     this.draw();
   }
@@ -231,6 +235,22 @@ export class MusicCanvas extends MusicElement {
         } else {
           this.pulses[c][p] = 1;
         }
+      }
+    }
+
+    // Pulse false relations
+    for (let i = 0; i < falseRelations.length; i++) {
+      const fr = falseRelations[i];
+      const pulseDuration = Math.max(fr.to - fr.from, 1.0);
+      if (this.bar >= fr.from && this.bar < fr.from + pulseDuration) {
+        this.falseRelationPulses[i] = this.#easeOutCubic(
+          this.bar - fr.from,
+          1.0,
+          -1.0,
+          pulseDuration
+        );
+      } else {
+        this.falseRelationPulses[i] = 0;
       }
     }
 
@@ -358,6 +378,27 @@ export class MusicCanvas extends MusicElement {
           ctx.stroke();
         });
       }
+    }
+
+    // Draw false-relation pulse circles
+    for (let i = 0; i < falseRelations.length; i++) {
+      const pulse = this.falseRelationPulses[i];
+      if (pulse <= 0) continue;
+
+      const fr = falseRelations[i];
+      const cx = this.canvasPadding + ((fr.from + fr.to) / 2) * this.barWidth;
+      const part = fr.pair[0];
+      const startY =
+        this.canvasPadding +
+        part.c * this.choirHeight +
+        part.p * this.partHeight;
+      const cy = startY + this.partHeight / 2;
+
+      const hue = colors().choir[part.c];
+      ctx.fillStyle = `hsla(${hue}, 90%, 85%, ${pulse * 0.7})`;
+      ctx.beginPath();
+      ctx.arc(cx, cy, this.partHeight * 4 * pulse, 0, Math.PI * 2);
+      ctx.fill();
     }
   }
 

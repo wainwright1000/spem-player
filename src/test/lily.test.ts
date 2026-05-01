@@ -1,5 +1,14 @@
-import { processLilypond, ranges, dict, exportedForTesting } from "../ts/lily";
-const { romanise, setupLilypondParser } = exportedForTesting;
+import {
+  processLilypond,
+  ranges,
+  dict,
+  exportedForTesting,
+  activeNotes,
+  falseRelations,
+  detectFalseRelations,
+} from "../ts/lily";
+const { romanise, setupLilypondParser, noteToPitchClass } = exportedForTesting;
+import { Note, Duration } from "../ts/music-classes";
 import * as ohm from "ohm-js";
 import lyGrammar from "../ohmjs/ly-grammar.ohm-bundle";
 
@@ -57,5 +66,100 @@ describe("lilypond parsing tests", () => {
         expect(last.to).toBe(139);
       }
     }
+  });
+
+  it("noteToPitchClass maps natural notes correctly", () => {
+    expect(
+      noteToPitchClass(new Note("c", null, null, new Duration("4"), null))
+    ).toBe(0);
+    expect(
+      noteToPitchClass(new Note("d", null, null, new Duration("4"), null))
+    ).toBe(2);
+    expect(
+      noteToPitchClass(new Note("e", null, null, new Duration("4"), null))
+    ).toBe(4);
+    expect(
+      noteToPitchClass(new Note("f", null, null, new Duration("4"), null))
+    ).toBe(5);
+    expect(
+      noteToPitchClass(new Note("g", null, null, new Duration("4"), null))
+    ).toBe(7);
+    expect(
+      noteToPitchClass(new Note("a", null, null, new Duration("4"), null))
+    ).toBe(9);
+    expect(
+      noteToPitchClass(new Note("b", null, null, new Duration("4"), null))
+    ).toBe(11);
+  });
+
+  it("noteToPitchClass maps accidentals correctly", () => {
+    expect(
+      noteToPitchClass(new Note("c", "is", null, new Duration("4"), null))
+    ).toBe(1);
+    expect(
+      noteToPitchClass(new Note("c", "es", null, new Duration("4"), null))
+    ).toBe(11);
+    expect(
+      noteToPitchClass(new Note("c", "isis", null, new Duration("4"), null))
+    ).toBe(2);
+    expect(
+      noteToPitchClass(new Note("c", "eses", null, new Duration("4"), null))
+    ).toBe(10);
+    expect(
+      noteToPitchClass(new Note("e", "es", null, new Duration("4"), null))
+    ).toBe(3); // E flat
+    expect(
+      noteToPitchClass(new Note("b", "es", null, new Duration("4"), null))
+    ).toBe(10); // B flat
+  });
+
+  it("detectFalseRelations finds false relations (same letter, different accidental)", () => {
+    activeNotes.clear();
+    activeNotes.set(1.0, [
+      { c: 0, p: 0, n: new Note("f", null, null, new Duration("4"), null) },
+      { c: 1, p: 0, n: new Note("f", "is", null, new Duration("4"), null) },
+    ]);
+    detectFalseRelations();
+    expect(falseRelations.length).toBe(1);
+    expect(falseRelations[0].from).toBe(1.0);
+    expect(falseRelations[0].to).toBe(1.0625);
+    expect(falseRelations[0].pair[0].c).toBe(0);
+    expect(falseRelations[0].pair[1].c).toBe(1);
+  });
+
+  it("detectFalseRelations ignores same-part clashes", () => {
+    activeNotes.clear();
+    activeNotes.set(1.0, [
+      { c: 0, p: 0, n: new Note("f", null, null, new Duration("4"), null) },
+      { c: 0, p: 0, n: new Note("f", "is", null, new Duration("4"), null) },
+    ]);
+    detectFalseRelations();
+    expect(falseRelations.length).toBe(0);
+  });
+
+  it("detectFalseRelations ignores different letters (even if semitone apart)", () => {
+    activeNotes.clear();
+    activeNotes.set(1.0, [
+      { c: 0, p: 0, n: new Note("e", null, null, new Duration("4"), null) },
+      { c: 1, p: 0, n: new Note("f", null, null, new Duration("4"), null) },
+    ]);
+    detectFalseRelations();
+    expect(falseRelations.length).toBe(0);
+  });
+
+  it("detectFalseRelations merges consecutive positions for same pair", () => {
+    activeNotes.clear();
+    activeNotes.set(1.0, [
+      { c: 0, p: 0, n: new Note("b", "es", null, new Duration("4"), null) },
+      { c: 1, p: 0, n: new Note("b", null, null, new Duration("4"), null) },
+    ]);
+    activeNotes.set(1.0625, [
+      { c: 0, p: 0, n: new Note("b", "es", null, new Duration("4"), null) },
+      { c: 1, p: 0, n: new Note("b", null, null, new Duration("4"), null) },
+    ]);
+    detectFalseRelations();
+    expect(falseRelations.length).toBe(1);
+    expect(falseRelations[0].from).toBe(1.0);
+    expect(falseRelations[0].to).toBe(1.125);
   });
 });

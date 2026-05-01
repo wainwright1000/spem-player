@@ -12,6 +12,19 @@ export type Dictionary = {
 };
 export const dict: Dictionary[][] = [];
 
+export type ActiveNote = { c: number; p: number; n: Note };
+export const activeNotes = new Map<number, ActiveNote[]>();
+
+export type FalseRelation = {
+  from: number;
+  to: number;
+  pair: [
+    { c: number; p: number; notename: string; accidental: string | null },
+    { c: number; p: number; notename: string; accidental: string | null },
+  ];
+};
+export const falseRelations: FalseRelation[] = [];
+
 // a dictionary to hold the muic in the lilypond input file
 export var scores: { [id: string]: Component[] } = {};
 
@@ -48,6 +61,99 @@ function romanise(num: number) {
     }
   }
   return roman;
+}
+
+export function noteToPitchClass(note: Note): number {
+  const base: Record<string, number> = {
+    c: 0,
+    d: 2,
+    e: 4,
+    f: 5,
+    g: 7,
+    a: 9,
+    b: 11,
+  };
+  let pc = base[note.notename] ?? 0;
+
+  if (note.accidental) {
+    if (note.accidental.includes("isis")) pc += 2;
+    else if (note.accidental.includes("eses")) pc -= 2;
+    else if (note.accidental.includes("is")) pc += 1;
+    else if (note.accidental.includes("es")) pc -= 1;
+  }
+
+  return ((pc % 12) + 12) % 12;
+}
+
+function pairKey(
+  a: { c: number; p: number },
+  b: { c: number; p: number }
+): string {
+  if (a.c < b.c || (a.c === b.c && a.p < b.p)) {
+    return `${a.c}-${a.p}-${b.c}-${b.p}`;
+  }
+  return `${b.c}-${b.p}-${a.c}-${a.p}`;
+}
+
+export function detectFalseRelations() {
+  falseRelations.length = 0;
+  const activePairs = new Map<string, FalseRelation>();
+
+  const positions = Array.from(activeNotes.keys()).sort((a, b) => a - b);
+
+  for (const pos of positions) {
+    const notes = activeNotes.get(pos) ?? [];
+    const clashes = new Set<string>();
+
+    for (let i = 0; i < notes.length; i++) {
+      for (let j = i + 1; j < notes.length; j++) {
+        const a = notes[i];
+        const b = notes[j];
+        if (a.c === b.c && a.p === b.p) continue;
+        if (
+          a.n.notename === b.n.notename &&
+          a.n.accidental !== b.n.accidental
+        ) {
+          const key = pairKey(a, b);
+          clashes.add(key);
+
+          if (activePairs.has(key)) {
+            activePairs.get(key)!.to = pos + 0.0625;
+          } else {
+            activePairs.set(key, {
+              from: pos,
+              to: pos + 0.0625,
+              pair: [
+                {
+                  c: a.c,
+                  p: a.p,
+                  notename: a.n.notename,
+                  accidental: a.n.accidental,
+                },
+                {
+                  c: b.c,
+                  p: b.p,
+                  notename: b.n.notename,
+                  accidental: b.n.accidental,
+                },
+              ],
+            });
+          }
+        }
+      }
+    }
+
+    for (const [key, fr] of Array.from(activePairs.entries())) {
+      if (!clashes.has(key)) {
+        falseRelations.push(fr);
+        activePairs.delete(key);
+      }
+    }
+  }
+
+  for (const fr of activePairs.values()) {
+    falseRelations.push(fr);
+  }
 }
 
 function setupLilypondParser(): ohm.Semantics {
@@ -178,6 +284,7 @@ export function processLilypond() {
 
   semantics(result).parse();
 
+  activeNotes.clear();
   barCount = 0;
   for (let c = 0; c < config.choirs[0].length; c++) {
     const choir = config.choirs[0][c];
@@ -196,8 +303,10 @@ export function processLilypond() {
 
       var pos = 1; // in hemidemisemiquavers (64ths)
       const barsize = 128; // hemidemisemiquavers in a bar
+      const step = 0.0625; // 1/16 bar
       for (var comp of lilypond) {
         if (comp instanceof Note) {
+          const noteStart = pos;
           if (from == undefined) {
             from = pos;
           }
@@ -208,6 +317,20 @@ export function processLilypond() {
           dict[pos].push({ c: c, p: p, n: comp });
 
           if (comp.duration != null) pos += comp.duration.sfths / barsize;
+
+          // Add to activeNotes for each 1/16 position in [noteStart, pos)
+          const noteEnd = pos;
+          const startIdx = Math.ceil(noteStart / step);
+          const endIdx = Math.ceil(noteEnd / step);
+          for (let i = startIdx; i < endIdx; i++) {
+            const p16 = i * step;
+            const entry = activeNotes.get(p16);
+            if (entry) {
+              entry.push({ c, p, n: comp });
+            } else {
+              activeNotes.set(p16, [{ c, p, n: comp }]);
+            }
+          }
         } else if (comp instanceof Rest) {
           if (from != undefined) {
             ranges[c][p].push({ from: from, to: pos });
@@ -228,6 +351,8 @@ export function processLilypond() {
     }
   }
   barCount = Math.floor(barCount) - 1;
+
+  detectFalseRelations();
 }
 
 export const exportedForTesting = {
@@ -235,4 +360,6 @@ export const exportedForTesting = {
   romanise,
   setupLilypondParser,
   getFile,
+  noteToPitchClass,
+  detectFalseRelations,
 };
