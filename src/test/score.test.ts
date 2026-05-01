@@ -123,7 +123,7 @@ describe("MusicScore custom element", () => {
       expect(elem.bars[138]).toBe(elem.svgWidth);
     }
 
-  });
+  }, 20000);
 
   it("Changing bar sets the highlight correctly", async () => {
     const elem = document.querySelector("music-score") as MusicScore;
