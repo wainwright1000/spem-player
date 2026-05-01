@@ -26,6 +26,20 @@ The UI is built around five custom HTML elements extending `HTMLElement`:
 
 The entry point is `index.ts`, which wires up events between components, handles keyboard input, and manages global state (recording, score period, dark/light mode).
 
+### State Management
+
+The central `State` interface (defined in `src/ts/common.ts`) tracks:
+
+- `recording` — 0 for ALC, 1 for CotE
+- `viewmode` — `"dark"` or `"light"`
+- `period` — `"modern"` or `"early"`
+- `choir` — 0 to 7
+- `part` — `"all"` or 0 to 4
+- `bar` — 0 to 139
+- `status` — `"playing"`, `"paused"`, or `"loading"`
+
+State changes flow through `index.ts` helper functions (`setChoir()`, `setPart()`, `setBar()`), which update component attributes. Components react via `attributeChangedCallback` and fire custom events to propagate changes back to `index.ts`.
+
 ## Source Layout
 
 - `index.html`: Single-page markup. Loads modules and defines the layout.

@@ -26,7 +26,7 @@ Toggle between recordings using the button in the top-right corner.
 
 ### Canvas Overview
 
-- Visual map of all 8 choirs × 5 parts across all 140 bars
+- Visual map of all 8 choirs by 5 parts across all 140 bars
 - Colour-coded by choir (HSL palette)
 - Pulse animation shows active notes during playback
 - Click or tap any bar to jump directly to that position
@@ -40,21 +40,19 @@ Toggle between recordings using the button in the top-right corner.
 
 ### Keyboard Shortcuts
 
-| Key | Action |
-| --- | ------ |
-| `1` – `8` | Select choir |
-| `S` | Soprano |
-| `A` | Alto |
-| `T` | Tenor |
-| `R` | Baritone |
-| `B` | Bass |
-| `X` | All voice parts |
-| `←` / `→` | Select bar |
-| `V` | Toggle between recordings |
-| `M` | Toggle modern / early notation |
-| `D` | Toggle dark / light mode |
-| `Enter` / `Space` | Start or stop |
-| `?` | Show help panel |
+- `1`–`8`: select choir
+- `S`: soprano
+- `A`: alto
+- `T`: tenor
+- `R`: baritone
+- `B`: bass
+- `X`: all voice parts
+- `←` / `→`: select bar
+- `V`: toggle between recordings
+- `M`: toggle modern / early notation
+- `D`: toggle dark / light mode
+- `Enter` or `Space`: start or stop playback
+- `?`: show help panel
 
 Shortcuts are ignored when focus is on an input field or `<select>` element.
 
@@ -64,29 +62,14 @@ Shortcuts are ignored when focus is on an input field or `<select>` element.
 - Responsive layout for desktop and mobile
 - Splitter between score and canvas allows resizing
 
-## Tech Stack
+## For Developers
 
-- TypeScript (strict, ES2020, ESNext modules)
-- Vite 7 + `vite-plugin-commonjs`
-- SCSS with CSS custom properties for theming
-- Vitest 3 + jsdom for testing
-- Ohm.js for LilyPond grammar parsing
-- Netlify deployment (auto-deploy on merge to `main`)
+- `BUILD.md` — development setup, build commands, and deployment
+- `TESTING.md` — running and writing tests
+- `CONTRIBUTING.md` — contribution process, code style, and board workflow
+- `WORKFLOW.md` — ticket lifecycle and best practices
+- `AGENTS.md` — architecture overview and conventions
 
-## Development
+## Licence
 
-```bash
-npm run dev          # Start dev server
-npm run build        # Production build (includes Ohm bundle generation)
-npm run build:ohm    # Regenerate Ohm grammar bundles
-npm run build:scores # Regenerate SVG scores from LilyPond
-npm run test         # Run tests in watch mode
-npm run coverage     # Single-run tests with coverage report
-```
-
-LilyPond SVG generation uses `buildScore.sh` / `buildAllScores.sh`.
-
-## Repository
-
-- **Upstream:** [wainwmr/spem-player](https://github.com/wainwmr/spem-player) (Mark Wainwright)
-- **Fork:** [wainwright1000/spem-player](https://github.com/wainwright1000/spem-player)
+MIT. See `LICENSE`.
