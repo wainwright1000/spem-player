@@ -27,6 +27,17 @@ export class MusicCanvas extends MusicElement {
     await this.#init();
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('wheel', this.#preventVerticalScroll);
+  }
+
+  #preventVerticalScroll = (e: WheelEvent) => {
+    if (e.deltaY !== 0) {
+      e.preventDefault();
+    }
+  };
+
   setChoir(c: string | number) {
     super.setChoir(c);
     this.draw();
@@ -61,6 +72,7 @@ export class MusicCanvas extends MusicElement {
     this.canvas.addEventListener('touchstart', this.#touchStarted.bind(this), { passive: false });
     this.addEventListener('touchmove', this.#touchMoved.bind(this), { passive: false });
     this.addEventListener('touchend', this.#touchEnded.bind(this), { passive: false });
+    this.addEventListener('wheel', this.#preventVerticalScroll, { passive: false });
 
     this.#calculateCanvasSize();
     this.#showLoadingOnCanvas();

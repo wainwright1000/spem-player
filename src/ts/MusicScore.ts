@@ -43,7 +43,19 @@ export class MusicScore extends MusicElement {
     this.highlightBar.style.strokeWidth = "5px"; //Set stroke width
 
     this.addEventListener("click", this.scoreClicked);
+    this.addEventListener("wheel", this.#preventVerticalScroll, { passive: false });
   }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener("wheel", this.#preventVerticalScroll);
+  }
+
+  #preventVerticalScroll = (e: WheelEvent) => {
+    if (e.deltaY !== 0) {
+      e.preventDefault();
+    }
+  };
 
   async attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
     if (name == "score-type") {
