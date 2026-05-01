@@ -304,16 +304,15 @@ export class MusicCanvas extends MusicElement {
     return !window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
-  // BUG: what happens if you click in the canvas padding?
   #getMousePos(e: MouseEvent): Position {
-    // if (!this.config) return { choir: 0, part: 0, bar: 0 };
-
     const rect = this.getBoundingClientRect();
-    const y = ((e.offsetY - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
+    const clampedX = Math.max(this.canvasPadding, Math.min(e.offsetX, rect.width - this.canvasPadding));
+    const clampedY = Math.max(this.canvasPadding, Math.min(e.offsetY, rect.height - this.canvasPadding));
+    const y = ((clampedY - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
     return {
       choir: Math.min(config.choirs[0].length - 1, Math.max(0, Math.floor(y))),
       part: Math.floor((y % 1) * config.parts.length),
-      bar: Math.floor((e.offsetX * 140) / rect.width)
+      bar: Math.floor((clampedX * 140) / rect.width)
     };
   }
 
@@ -336,12 +335,16 @@ export class MusicCanvas extends MusicElement {
 
   #getTouchPos(e: TouchEvent): Position {
     var rect = this.getBoundingClientRect();
+    const touchX = e.targetTouches[0].clientX - rect.left;
+    const touchY = e.targetTouches[0].clientY - rect.top;
+    const clampedX = Math.max(this.canvasPadding, Math.min(touchX, rect.width - this.canvasPadding));
+    const clampedY = Math.max(this.canvasPadding, Math.min(touchY, rect.height - this.canvasPadding));
 
-    const y = ((e.targetTouches[0].clientY - rect.top - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
+    const y = ((clampedY - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
     return {
       choir: Math.min(config.choirs[0].length - 1, Math.max(0, Math.floor(y))),
       part: "all",
-      bar: Math.floor((e.targetTouches[0].clientX - rect.left - this.canvasPadding) * 140 / rect.width)
+      bar: Math.floor((clampedX - this.canvasPadding) * 140 / rect.width)
     };
   }
 
