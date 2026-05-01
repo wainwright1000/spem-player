@@ -35,8 +35,6 @@
     "build:scores": "bash ./buildAllScores.sh",
     "build:ohm": "npx ohm generateBundles --withTypes src/ohmjs/ly-grammar.ohm",
     "preview": "vite preview",
-    "lint": "eslint . --max-warnings 0",
-    "lint:fix": "eslint . --fix",
     "test:ui": "vitest --ui",
     "test": "vitest",
     "coverage": "vitest run --coverage"
