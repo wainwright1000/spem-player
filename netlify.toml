@@ -1,6 +1,6 @@
 # Netlify configuration for spem-player
 [build]
-  command = "npm run build"
+  command = "npm run lint && npm run build"
   functions = "netlify/functions"
   publish = "dist"
 
