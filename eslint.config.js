@@ -44,6 +44,7 @@ export default tseslint.config(
       'dist/',
       'node_modules/',
       'coverage/',
+      '.netlify/',
       'src/ohmjs/*.ohm-bundle.js',
       'src/ohmjs/*.ohm-bundle.d.ts',
     ],
