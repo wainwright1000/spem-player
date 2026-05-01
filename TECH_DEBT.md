@@ -1,8 +1,8 @@
-# Plan: Bugs, Hacks, and Technical Debt Remediation
+# Technical Debt Methodology
 
 ## Context
 
-The Spem Player codebase contains scattered TODOs, BUGs, HACKs, and ARGHs across TypeScript, SCSS, HTML, and build scripts. AGENTS.md and BUILD.md also document known issues and version drift. There is no central register. This plan establishes a systematic, multi-phase process to inventory, assess, specify, and schedule remediation work, culminating in an implementation roadmap aligned with Mark Wainwright's preference for incremental, stable changes.
+The Spem Player codebase contains scattered TODOs, BUGs, HACKs, and ARGHs across TypeScript, SCSS, HTML, and build scripts. This document describes the systematic methodology used to inventory, assess, specify, and schedule remediation work. The methodology was applied to establish the **Spem Player** GitHub Project board, which is now the canonical register of all items. This document remains as reference material for the naming convention, tools, and best practices.
 
 ## Deliverables
 
@@ -23,9 +23,9 @@ Every item receives a unique identifier:
 
 Example: `BUG-SCORE-001` for the scroll-up issue in `index.ts`.
 
-## BUGS.md Schema
+## Issue Schema
 
-BUGS.md will contain one section per item, using a definition-list format:
+Board items are represented as GitHub issues. The body follows a definition-list format:
 
 ```markdown
 ### BUG-SCORE-001
@@ -78,11 +78,11 @@ Status values: `discovered`, `assessed`, `specified`, `ready`, `in-progress`, `d
 3. Record file path, line number, raw comment text, and surrounding context (5 lines).
 4. Run `git blame` or `git log -S` on each location to estimate the first commit where the marker appeared. Record the commit hash, date, and author.
 5. Create issues on the **Spem Player** GitHub Project board, assigning
-   IDs and setting Status to **Assessed**.
+   IDs and setting Status to **Todo**.
 6. Mark any already-resolved items as **Done**.
 7. Run `python discover.py` at the start of each session to catch new
    markers added by other contributors. The script scans source files
-   and creates new issues on the board in the **Assessed** column.
+   and creates new issues on the board in the **Todo** column.
 
 **Constraints**:
 
@@ -114,7 +114,7 @@ For each item on the board, in ID order (or grouped by file if more convenient):
    - `spike`: Need a time-boxed technical investigation.
 3. **Assign initial Priority** (P0–P3) based on user impact and frequency.
 4. **Assign initial Difficulty** (XS–XL) based on complexity and blast radius.
-5. **Update the issue** with the above fields. Move Status to **Assessed**.
+5. **Update the issue** with the above fields. Move Status to **Todo**.
 
 **Constraints**:
 
@@ -127,7 +127,7 @@ For each item on the board, in ID order (or grouped by file if more convenient):
 
 - After each item is assessed, output a visible summary to the user: item ID, priority, difficulty, PD required, and a one-sentence rationale.
 
-**Checkpoint**: End of Phase 2. The board should show every item as **Assessed**.
+**Checkpoint**: End of Phase 2. The board should show every item as **Todo**.
 
 ## Phase 3: Specification
 

@@ -60,7 +60,7 @@ Shortcuts are ignored when focus is on an input field or `<select>` element.
 
 ### Display
 
-- **Dark / light mode** toggle (top-right moon icon)
+- **Dark / light mode** toggle (top-right moon / sun icon)
 - Responsive layout for desktop and mobile
 - Splitter between score and canvas allows resizing
 

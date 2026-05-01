@@ -76,14 +76,19 @@ and the implementation roadmap. `BUGS.md` is archived.
 
 ## Process
 
-Active work on bugs, hacks, and technical debt is managed via `TECH_DEBT.md`
-in the project root. See that document for the current phase, next item,
-and resumption instructions.
+Active work on bugs, hacks, and technical debt is managed via the
+**Spem Player** GitHub Project board
+(`https://github.com/users/wainwmr/projects/2`). The board is the canonical
+register of all open items, including priorities, specifications, and status.
+
+`TECH_DEBT.md` in the project root documents the assessment and specification
+methodology used to populate the board. It is reference material, not an
+active plan.
 
 ### Session Startup
 
 1. Check the **Spem Player** GitHub Project board for item statuses and
-   the Implementation Roadmap.
+   upcoming work.
 2. If `AGENTS-LOCAL.md` exists, read it and follow its Session Startup
    section for additional project-specific startup tasks.
 
