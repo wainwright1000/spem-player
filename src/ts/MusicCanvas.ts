@@ -204,8 +204,8 @@ export class MusicCanvas extends MusicElement {
         if (elapsed >= 0 && elapsed < this.lastNoteDuration[c][p]) {
           this.pulses[c][p] = this.#easeOutCubic(
             elapsed,
-            1.4,
-            -0.4,
+            1.6,
+            -0.6,
             this.lastNoteDuration[c][p]
           );
         } else {
