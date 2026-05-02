@@ -202,10 +202,11 @@ export class MusicCanvas extends MusicElement {
       for (var p = 0; p < config.parts.length; p++) {
         const elapsed = this.bar - this.lastNoteStart[c][p];
         if (elapsed >= 0 && elapsed < this.lastNoteDuration[c][p]) {
+          const isLight = this.#isLightMode();
           this.pulses[c][p] = this.#easeOutCubic(
             elapsed,
-            1.6,
-            -0.6,
+            isLight ? 0.4 : 1.6,
+            isLight ? 0.6 : -0.6,
             this.lastNoteDuration[c][p]
           );
         } else {
