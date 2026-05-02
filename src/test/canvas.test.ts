@@ -1,4 +1,5 @@
 import { MusicCanvas } from '../ts/MusicCanvas';
+import config from '../ts/config';
 import { processLilypond, dict, ranges } from '../ts/lily';
 
 MusicCanvas.define("music-canvas");
@@ -144,6 +145,119 @@ describe("MusicCanvas custom element", () => {
     Object.defineProperty(touchEnd, 'preventDefault', { value: vi.fn() });
     canvas!.dispatchEvent(touchEnd);
     await endPromise;
+  });
+
+  it("getMousePos returns valid part for clicks in top padding", async () => {
+    expect(canvas).not.toBeNull();
+
+    const promise = new Promise<CustomEvent>((resolve) => {
+      canvas!.addEventListener("music-canvas-click", (e) => resolve(e as CustomEvent), { once: true });
+    });
+
+    canvas!.getBoundingClientRect = vi.fn(() => ({
+      width: 1400, height: 400, top: 0, left: 0, right: 1400, bottom: 400, x: 0, y: 0, toJSON: () => ({})
+    } as DOMRect));
+
+    const mouseEvent = new MouseEvent("click", {
+      bubbles: true, cancelable: true,
+      clientX: 100, clientY: 2
+    });
+    Object.defineProperty(mouseEvent, 'offsetX', { value: 100 });
+    Object.defineProperty(mouseEvent, 'offsetY', { value: 2 });
+
+    canvas!.querySelector("canvas")!.dispatchEvent(mouseEvent);
+    const event = await promise;
+    const pos = event.detail.position;
+    expect(pos.part).toBeGreaterThanOrEqual(0);
+    expect(pos.part).toBeLessThan(config.parts.length);
+    expect(pos.choir).toBeGreaterThanOrEqual(0);
+    expect(pos.choir).toBeLessThan(config.choirs[0].length);
+    expect(pos.bar).toBeGreaterThanOrEqual(0);
+    expect(pos.bar).toBeLessThan(140);
+  });
+
+  it("getMousePos returns valid bar for clicks in left padding", async () => {
+    expect(canvas).not.toBeNull();
+
+    const promise = new Promise<CustomEvent>((resolve) => {
+      canvas!.addEventListener("music-canvas-click", (e) => resolve(e as CustomEvent), { once: true });
+    });
+
+    canvas!.getBoundingClientRect = vi.fn(() => ({
+      width: 1400, height: 400, top: 0, left: 0, right: 1400, bottom: 400, x: 0, y: 0, toJSON: () => ({})
+    } as DOMRect));
+
+    const mouseEvent = new MouseEvent("click", {
+      bubbles: true, cancelable: true,
+      clientX: 2, clientY: 50
+    });
+    Object.defineProperty(mouseEvent, 'offsetX', { value: 2 });
+    Object.defineProperty(mouseEvent, 'offsetY', { value: 50 });
+
+    canvas!.querySelector("canvas")!.dispatchEvent(mouseEvent);
+    const event = await promise;
+    const pos = event.detail.position;
+    expect(pos.bar).toBeGreaterThanOrEqual(0);
+    expect(pos.bar).toBeLessThan(140);
+    expect(pos.choir).toBeGreaterThanOrEqual(0);
+    expect(pos.choir).toBeLessThan(config.choirs[0].length);
+    expect(pos.part).toBeGreaterThanOrEqual(0);
+    expect(pos.part).toBeLessThan(config.parts.length);
+  });
+
+  it("getMousePos returns valid bar for clicks in right padding", async () => {
+    expect(canvas).not.toBeNull();
+
+    const promise = new Promise<CustomEvent>((resolve) => {
+      canvas!.addEventListener("music-canvas-click", (e) => resolve(e as CustomEvent), { once: true });
+    });
+
+    canvas!.getBoundingClientRect = vi.fn(() => ({
+      width: 1400, height: 400, top: 0, left: 0, right: 1400, bottom: 400, x: 0, y: 0, toJSON: () => ({})
+    } as DOMRect));
+
+    const mouseEvent = new MouseEvent("click", {
+      bubbles: true, cancelable: true,
+      clientX: 1398, clientY: 50
+    });
+    Object.defineProperty(mouseEvent, 'offsetX', { value: 1398 });
+    Object.defineProperty(mouseEvent, 'offsetY', { value: 50 });
+
+    canvas!.querySelector("canvas")!.dispatchEvent(mouseEvent);
+    const event = await promise;
+    const pos = event.detail.position;
+    expect(pos.bar).toBeGreaterThanOrEqual(0);
+    expect(pos.bar).toBeLessThan(140);
+    expect(pos.choir).toBeGreaterThanOrEqual(0);
+    expect(pos.choir).toBeLessThan(config.choirs[0].length);
+    expect(pos.part).toBeGreaterThanOrEqual(0);
+    expect(pos.part).toBeLessThan(config.parts.length);
+  });
+
+  it("getTouchPos returns valid bar for touches in left padding", async () => {
+    expect(canvas).not.toBeNull();
+
+    const promise = new Promise<CustomEvent>((resolve) => {
+      canvas!.addEventListener("music-canvas-touchstart", (e) => resolve(e as CustomEvent), { once: true });
+    });
+
+    canvas!.getBoundingClientRect = vi.fn(() => ({
+      width: 1400, height: 400, top: 0, left: 0, right: 1400, bottom: 400, x: 0, y: 0, toJSON: () => ({})
+    } as DOMRect));
+
+    const innerCanvas = canvas!.querySelector("canvas")!;
+    const touch = { clientX: 2, clientY: 50, identifier: 0, target: innerCanvas };
+    const touchStart = new Event("touchstart", { bubbles: true, cancelable: true });
+    Object.defineProperty(touchStart, 'targetTouches', { value: [touch] });
+    Object.defineProperty(touchStart, 'preventDefault', { value: vi.fn() });
+
+    innerCanvas.dispatchEvent(touchStart);
+    const event = await promise;
+    const pos = event.detail.position;
+    expect(pos.bar).toBeGreaterThanOrEqual(0);
+    expect(pos.bar).toBeLessThan(140);
+    expect(pos.choir).toBeGreaterThanOrEqual(0);
+    expect(pos.choir).toBeLessThan(config.choirs[0].length);
   });
 
 });
