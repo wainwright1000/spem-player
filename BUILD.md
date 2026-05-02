@@ -97,6 +97,14 @@ The application version is hardcoded in `index.html` (`v2.1.0`) and is not deriv
 
 `npm run build` regenerates `src/ohmjs/ly-grammar.ohm-bundle.js` from `src/ohmjs/ly-grammar.ohm` via `@ohm-js/cli`. If you modify the grammar, rebuild before testing or deploying.
 
+## Build Output
+
+The production build writes to `dist/`:
+
+- `dist/assets/` — bundled JavaScript and CSS
+- `dist/audio/` — audio files copied from `public/`
+- Other files from `public/` (favicons, manifest, etc.)
+
 ## Deployment
 
 The project is configured for Netlify. `netlify.toml` specifies:
