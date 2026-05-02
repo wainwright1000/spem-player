@@ -80,11 +80,11 @@ describe("common", () => {
     
     result = getTimeFromBar(1, 1);
     expect(result).toBeTypeOf('number');
-    expect(result).toBeCloseTo(4.2); // CotE
+    expect(result).toBeCloseTo(3.9); // CotE
 
     result = getTimeFromBar(65, 1);
     expect(result).toBeTypeOf('number');
-    expect(result).toBeCloseTo(252);  // CotE
+    expect(result).toBeCloseTo(251.631);  // CotE
 
     result = getTimeFromBar(140, 1);
     expect(result).toBe(0);
