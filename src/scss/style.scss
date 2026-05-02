@@ -227,10 +227,26 @@ header {
     text-align: left;
   }
 
+  .help-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    .bmc-wrapper {
+      transform: scale(0.75);
+      transform-origin: left center;
+    }
+
+    .help-footer-right {
+      text-align: right;
+    }
+  }
+
   .copyright,
   .version {
-    text-align: right;
     font-size: smaller;
+    margin: 0;
   }
 }
 
