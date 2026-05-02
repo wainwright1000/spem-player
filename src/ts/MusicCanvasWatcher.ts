@@ -2,7 +2,6 @@ import config from "./config";
 import { MusicElement } from "./MusicElement";
 
 export class MusicCanvasWatcher extends MusicElement {
-
   choiroutput: HTMLSpanElement | null = null;
   partoutput: HTMLSpanElement | null = null;
   baroutput: HTMLSpanElement | null = null;
@@ -13,7 +12,7 @@ export class MusicCanvasWatcher extends MusicElement {
     this.choiroutput = document.createElement("span");
     this.choiroutput.setAttribute("id", "choir-output");
     this.append(this.choiroutput);
-    
+
     this.partoutput = document.createElement("span");
     this.partoutput.setAttribute("id", "part-output");
     this.append(this.partoutput);
@@ -25,8 +24,11 @@ export class MusicCanvasWatcher extends MusicElement {
     super.connectedCallback();
     const canvi = document.querySelectorAll("music-canvas");
     console.log("MusicCanvasWatcher: Number of canvases found: ", canvi.length);
-    canvi.forEach(c => {
-      c.addEventListener("music-canvas-hover", this.handleCanvasHover.bind(this) as (e: Event) => void);
+    canvi.forEach((c) => {
+      c.addEventListener(
+        "music-canvas-hover",
+        this.handleCanvasHover.bind(this) as (e: Event) => void
+      );
       console.log("MusicCanvasWatcher: adding listener for", c);
     });
   }
@@ -38,7 +40,7 @@ export class MusicCanvasWatcher extends MusicElement {
     const pos = e.detail.position;
 
     this.choiroutput.textContent = "Choir " + (pos.choir + 1);
-    if (pos.part != 'all') {
+    if (pos.part != "all") {
       this.partoutput.textContent = config.parts[pos.part];
     }
     this.baroutput.textContent = "Bar " + Math.floor(pos.bar);

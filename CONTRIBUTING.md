@@ -52,7 +52,7 @@ The CI pipeline runs `npm run lint` and `npx tsc --noEmit`. Pull requests must p
 
 The project uses an ESLint flat config (`eslint.config.js`) with `typescript-eslint`. Some rules are relaxed because the codebase predates them (for example, `no-var` and `@typescript-eslint/no-explicit-any` are currently off). Follow the existing patterns in the file you are editing rather than refactoring legacy code to meet stricter rules.
 
-Formatting standards are under active review (see issue #155). Until a formatter is adopted, match the indentation and quote style of the surrounding code.
+The project uses **Prettier** for automatic formatting. Run `npm run format` before committing, or configure your editor to format on save. The CI pipeline runs `npm run format:check` as part of the build gate.
 
 ## Component Conventions
 
@@ -71,9 +71,10 @@ When creating or modifying a component:
 1. Create a feature branch from `main`.
 2. Make your changes, add tests, and update documentation.
 3. Ensure tests pass: `npm test`.
-4. Check for lint and type errors:
+4. Check formatting, lint, and type errors:
 
    ```console
+   npm run format:check
    npm run lint
    npx tsc --noEmit
    ```

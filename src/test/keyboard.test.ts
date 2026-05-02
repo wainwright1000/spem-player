@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeAll, vi } from 'vitest';
-import { MusicControls } from '../ts/MusicControls';
+import { describe, it, expect, beforeAll, vi } from "vitest";
+import { MusicControls } from "../ts/MusicControls";
 
-describe('Space bar play/pause', () => {
+describe("Space bar play/pause", () => {
   beforeAll(async () => {
     vi.resetModules();
 
@@ -14,7 +14,7 @@ describe('Space bar play/pause', () => {
       dispatchEvent: vi.fn(),
     }));
 
-    vi.spyOn(window, 'requestAnimationFrame').mockReturnValue(0);
+    vi.spyOn(window, "requestAnimationFrame").mockReturnValue(0);
     if (!HTMLElement.prototype.scrollTo) {
       HTMLElement.prototype.scrollTo = () => {};
     }
@@ -44,69 +44,79 @@ describe('Space bar play/pause', () => {
       </div>
     `;
 
-    await import('../ts/MusicCanvas');
-    await import('../ts/MusicScore');
-    await import('../ts/MusicControls');
-    await import('../ts/MusicCanvasWatcher');
+    await import("../ts/MusicCanvas");
+    await import("../ts/MusicScore");
+    await import("../ts/MusicControls");
+    await import("../ts/MusicCanvasWatcher");
 
-    vi.spyOn(HTMLMediaElement.prototype, 'play').mockResolvedValue(undefined);
-    vi.spyOn(HTMLMediaElement.prototype, 'pause').mockReturnThis();
+    vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue(undefined);
+    vi.spyOn(HTMLMediaElement.prototype, "pause").mockReturnThis();
 
-    await import('../../index.ts');
-    window.dispatchEvent(new Event('load'));
+    await import("../../index.ts");
+    window.dispatchEvent(new Event("load"));
   }, 30000);
 
   afterAll(async () => {
-    const controls = document.querySelector('music-controls') as MusicControls;
+    const controls = document.querySelector("music-controls") as MusicControls;
     if (controls) controls.pause();
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     vi.restoreAllMocks();
   });
 
-  it('Space toggles play/pause when focus is on the document body', async () => {
-    const controls = document.querySelector('music-controls') as MusicControls;
+  it("Space toggles play/pause when focus is on the document body", async () => {
+    const controls = document.querySelector("music-controls") as MusicControls;
     controls.playing = false;
 
-    document.body.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', bubbles: true }));
-    await new Promise(resolve => setTimeout(resolve, 0));
+    document.body.dispatchEvent(
+      new KeyboardEvent("keydown", { code: "Space", bubbles: true })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
     expect(controls.isPlaying()).toBe(true);
 
-    document.body.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', bubbles: true }));
-    await new Promise(resolve => setTimeout(resolve, 0));
+    document.body.dispatchEvent(
+      new KeyboardEvent("keydown", { code: "Space", bubbles: true })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
     expect(controls.isPlaying()).toBe(false);
   });
 
-  it('Space does not toggle play/pause when an input element is focused', () => {
-    const controls = document.querySelector('music-controls') as MusicControls;
-    const input = document.createElement('input');
+  it("Space does not toggle play/pause when an input element is focused", () => {
+    const controls = document.querySelector("music-controls") as MusicControls;
+    const input = document.createElement("input");
     document.body.appendChild(input);
 
     controls.playing = false;
-    input.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', bubbles: true }));
+    input.dispatchEvent(
+      new KeyboardEvent("keydown", { code: "Space", bubbles: true })
+    );
     expect(controls.isPlaying()).toBe(false);
 
     document.body.removeChild(input);
   });
 
-  it('Space does not toggle play/pause when a select element is focused', () => {
-    const controls = document.querySelector('music-controls') as MusicControls;
-    const select = document.createElement('select');
+  it("Space does not toggle play/pause when a select element is focused", () => {
+    const controls = document.querySelector("music-controls") as MusicControls;
+    const select = document.createElement("select");
     document.body.appendChild(select);
 
     controls.playing = false;
-    select.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', bubbles: true }));
+    select.dispatchEvent(
+      new KeyboardEvent("keydown", { code: "Space", bubbles: true })
+    );
     expect(controls.isPlaying()).toBe(false);
 
     document.body.removeChild(select);
   });
 
-  it('Space does not toggle play/pause when a textarea is focused', () => {
-    const controls = document.querySelector('music-controls') as MusicControls;
-    const textarea = document.createElement('textarea');
+  it("Space does not toggle play/pause when a textarea is focused", () => {
+    const controls = document.querySelector("music-controls") as MusicControls;
+    const textarea = document.createElement("textarea");
     document.body.appendChild(textarea);
 
     controls.playing = false;
-    textarea.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', bubbles: true }));
+    textarea.dispatchEvent(
+      new KeyboardEvent("keydown", { code: "Space", bubbles: true })
+    );
     expect(controls.isPlaying()).toBe(false);
 
     document.body.removeChild(textarea);

@@ -1,5 +1,5 @@
-import { MusicControls } from '../ts/MusicControls';
-import config from '../ts/config'
+import { MusicControls } from "../ts/MusicControls";
+import config from "../ts/config";
 
 var expectedBar: any;
 var expectedChoir: any;
@@ -7,7 +7,14 @@ var expectedPart: any;
 
 // A helper function that allows us to detect events on element
 // of type eventName have been fired
-function waitForEvent(element: HTMLElement, eventName: string, handler: (event: Event) => Promise<any>, c?: any, p?: any, b?: any): Promise<any> {
+function waitForEvent(
+  element: HTMLElement,
+  eventName: string,
+  handler: (event: Event) => Promise<any>,
+  c?: any,
+  p?: any,
+  b?: any
+): Promise<any> {
   expectedChoir = c;
   expectedPart = p;
   expectedBar = b;
@@ -27,24 +34,22 @@ function waitForEvent(element: HTMLElement, eventName: string, handler: (event: 
 }
 
 function matchesWildcard(pattern: string, str: string): boolean {
-  const regex = new RegExp('^' + pattern.replace(/\*/g, '.*') + '$');
+  const regex = new RegExp("^" + pattern.replace(/\*/g, ".*") + "$");
   return regex.test(str);
 }
 
-
 describe("MusicControls custom element", () => {
-
   beforeAll(() => {
     MusicControls.define("music-controls");
 
     // mock the Media element so we know if it's being played
-    vi.spyOn(HTMLMediaElement.prototype, "load").mockReturnThis()
+    vi.spyOn(HTMLMediaElement.prototype, "load").mockReturnThis();
     vi.spyOn(HTMLMediaElement.prototype, "play").mockReturnThis();
     vi.spyOn(HTMLMediaElement.prototype, "pause").mockReturnThis();
   });
 
   beforeEach(() => {
-    document.body.innerHTML = `<music-controls></music-controls>`
+    document.body.innerHTML = `<music-controls></music-controls>`;
   });
 
   // <music-controls>
@@ -72,12 +77,16 @@ describe("MusicControls custom element", () => {
     const choirs = document.getElementById("choir-select");
     expect(choirs).not.toBeNull();
     expect(choirs?.getAttribute("name")).toBe("choir");
-    expect(choirs?.querySelectorAll('option').length).toBe(config.choirs[0].length);
+    expect(choirs?.querySelectorAll("option").length).toBe(
+      config.choirs[0].length
+    );
 
     const parts = document.getElementById("part-select");
     expect(parts).not.toBeNull();
     expect(parts?.getAttribute("name")).toBe("part");
-    expect(parts?.querySelectorAll('option').length).toBe(config.parts.length + 1);
+    expect(parts?.querySelectorAll("option").length).toBe(
+      config.parts.length + 1
+    );
 
     const bar = document.getElementById("bar-field");
     expect(bar).not.toBeNull();
@@ -102,7 +111,6 @@ describe("MusicControls custom element", () => {
     const pause = document.getElementById("pause");
     expect(pause, document.body.innerHTML).not.toBeNull();
     expect(pause?.style.display, document.body.innerHTML).toBe("none");
-
   });
 
   const handleAudioStarted = async (event: Event) => {
@@ -119,17 +127,24 @@ describe("MusicControls custom element", () => {
     });
   };
 
-
   // // https://www.the-koi.com/projects/vitest-how-to-assert-events/
   it("play and pause buttons starts/stop media and fires the correct events", async () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
+    const elem = document.querySelector("music-controls") as MusicControls;
     const spinner = document.getElementById("spinner");
     const play = document.getElementById("play");
     const pause = document.getElementById("pause");
 
     // set up the listeners for loading and playing
-    const waitingforLoad = waitForEvent(elem, "music-controls-loading", handleAudioStarted);
-    const waitingForPlay = waitForEvent(elem, "music-controls-playing", handleAudioStarted);
+    const waitingforLoad = waitForEvent(
+      elem,
+      "music-controls-loading",
+      handleAudioStarted
+    );
+    const waitingForPlay = waitForEvent(
+      elem,
+      "music-controls-playing",
+      handleAudioStarted
+    );
     // 'press' the play button
     elem?.playpause();
     // Wait for the loading and playing events to be fired
@@ -145,9 +160,12 @@ describe("MusicControls custom element", () => {
     // Correct music should be playing
     expect(elem.isSameAudio("ALC/default.mp3")).toBe(true);
 
-
     // set up the listeners for paused event
-    const waitingforPause = waitForEvent(elem, "music-controls-paused", handleAudioStarted);
+    const waitingforPause = waitForEvent(
+      elem,
+      "music-controls-paused",
+      handleAudioStarted
+    );
     // 'press' the pause button
     elem?.playpause();
     // Wait for the loading and playing events to be fired
@@ -159,19 +177,23 @@ describe("MusicControls custom element", () => {
     expect(spinner?.style.display, document.body.innerHTML).toBe("none");
     expect(play?.style.display, document.body.innerHTML).toBe("block");
     expect(pause?.style.display, document.body.innerHTML).toBe("none");
-
   });
 
   it("Changing choirs results in correct event being fired", async () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
-    const choir = document.getElementById('choir-select') as HTMLSelectElement;
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const choir = document.getElementById("choir-select") as HTMLSelectElement;
     expect(choir).not.toBeNull();
 
     // default choir is 1
     expect(elem.choir).toBe(0);
 
     // change the choir to choir 3
-    var waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, 0);
+    var waitingforChange = waitForEvent(
+      elem,
+      "music-controls-changed",
+      handleChange,
+      0
+    );
     elem.setAttribute("choir", "2");
     expect(elem.choir).toBe(2);
     // Wait for the loading and playing events to be fired
@@ -179,7 +201,12 @@ describe("MusicControls custom element", () => {
     expect(changeResult).toBe(true);
 
     // change the choir to choir 5
-    waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, 4);
+    waitingforChange = waitForEvent(
+      elem,
+      "music-controls-changed",
+      handleChange,
+      4
+    );
     elem.setAttribute("choir", "4");
     expect(elem.choir).toBe(4);
     // Wait for the loading and playing events to be fired
@@ -206,15 +233,21 @@ describe("MusicControls custom element", () => {
   };
 
   it("Changing parts results in correct event being fired", async () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
-    const part = document.getElementById('part-select') as HTMLSelectElement;
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const part = document.getElementById("part-select") as HTMLSelectElement;
     expect(part).not.toBeNull();
 
     // default part is all
     expect(elem.voicePart).toBe("all");
 
     // set up the listeners for paused event
-    var waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, undefined, 1);
+    var waitingforChange = waitForEvent(
+      elem,
+      "music-controls-changed",
+      handleChange,
+      undefined,
+      1
+    );
 
     // change the part to Alto
     elem.setAttribute("part", "1");
@@ -225,7 +258,13 @@ describe("MusicControls custom element", () => {
     expect(changeResult).toBe(true);
 
     // change the part to All
-    var waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, undefined, "all");
+    var waitingforChange = waitForEvent(
+      elem,
+      "music-controls-changed",
+      handleChange,
+      undefined,
+      "all"
+    );
     elem.setAttribute("part", "all");
     expect(elem.voicePart).toBe("all");
     // Wait for the loading and playing events to be fired
@@ -234,22 +273,36 @@ describe("MusicControls custom element", () => {
   });
 
   it("Changing bars results in correct event being fired", async () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
-    const bar = document.getElementById('bar-field') as HTMLInputElement;
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
     expect(bar).not.toBeNull();
 
     // default bar is 0
     expect(elem.bar).toBe(0);
 
     // change to bar 40
-    var waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, undefined, undefined, 40);
+    var waitingforChange = waitForEvent(
+      elem,
+      "music-controls-changed",
+      handleChange,
+      undefined,
+      undefined,
+      40
+    );
     elem.setAttribute("bar", "40");
     expect(elem.bar).toBe(40);
     var changeResult = await waitingforChange;
     expect(changeResult).toBe(true);
 
     // change the part to 120
-    var waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, undefined, undefined, 120);
+    var waitingforChange = waitForEvent(
+      elem,
+      "music-controls-changed",
+      handleChange,
+      undefined,
+      undefined,
+      120
+    );
     elem.setAttribute("bar", "120");
     expect(elem.bar).toBe(120);
     // Wait for the loading and playing events to be fired
@@ -258,31 +311,43 @@ describe("MusicControls custom element", () => {
   });
 
   it("getMP3filename works", () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
-    expect(matchesWildcard("/audio/*/default.mp3", elem.getMP3filename())).toBe(true);
+    const elem = document.querySelector("music-controls") as MusicControls;
+    expect(matchesWildcard("/audio/*/default.mp3", elem.getMP3filename())).toBe(
+      true
+    );
     elem.setChoir(2);
     elem.setPart(4);
-    expect(matchesWildcard("/audio/*/Choir 3-Bass.mp3", elem.getMP3filename())).toBe(true);
+    expect(
+      matchesWildcard("/audio/*/Choir 3-Bass.mp3", elem.getMP3filename())
+    ).toBe(true);
   });
 
   it("play, change choirs, should still be playing", async () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
-    const waitingForPlay = waitForEvent(elem, "music-controls-playing", handleAudioStarted);
-    
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const waitingForPlay = waitForEvent(
+      elem,
+      "music-controls-playing",
+      handleAudioStarted
+    );
+
     elem.setAttribute("playing", "true");
     // elem.play();
     var playResult = await waitingForPlay;
     expect(playResult).toStrictEqual(true);
     expect(elem.isPlaying()).toBe(true);
-    
+
     elem.setChoir(3);
     expect(elem.isPlaying()).toBe(true);
   });
 
   it("setPlaying false pauses audio", async () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
+    const elem = document.querySelector("music-controls") as MusicControls;
     elem.playing = true;
-    const waitingForPause = waitForEvent(elem, "music-controls-paused", handleAudioStarted);
+    const waitingForPause = waitForEvent(
+      elem,
+      "music-controls-paused",
+      handleAudioStarted
+    );
     elem.setPlaying(false);
     const pauseResult = await waitingForPause;
     expect(pauseResult).toBe(true);
@@ -290,18 +355,23 @@ describe("MusicControls custom element", () => {
   });
 
   it("changing select dropdowns fires change event", async () => {
-    const elem = document.querySelector('music-controls') as MusicControls;
-    const waitingforChange = waitForEvent(elem, "music-controls-changed", handleChange, 2, 1, 10);
-    const choir = document.getElementById('choir-select') as HTMLSelectElement;
-    const part = document.getElementById('part-select') as HTMLSelectElement;
-    const bar = document.getElementById('bar-field') as HTMLInputElement;
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const waitingforChange = waitForEvent(
+      elem,
+      "music-controls-changed",
+      handleChange,
+      2,
+      1,
+      10
+    );
+    const choir = document.getElementById("choir-select") as HTMLSelectElement;
+    const part = document.getElementById("part-select") as HTMLSelectElement;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
     choir.value = "2";
     part.value = "1";
     bar.value = "10";
-    choir.dispatchEvent(new Event('change', { bubbles: true }));
+    choir.dispatchEvent(new Event("change", { bubbles: true }));
     const changeResult = await waitingforChange;
     expect(changeResult).toBe(true);
   });
-
 });
-

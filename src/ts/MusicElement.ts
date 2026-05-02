@@ -2,7 +2,6 @@ import config from "./config";
 import { PartType, Position, toNum } from "./common";
 
 export class MusicElement extends HTMLElement {
-
   // state
   recording: number = 0; // 0 = ALC, 1 = CotE
   choir: number = 0;
@@ -26,12 +25,24 @@ export class MusicElement extends HTMLElement {
     console.log(this.constructor.name + ": moved to a new page");
   }
 
-  async attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+  async attributeChangedCallback(
+    name: string,
+    oldValue: string,
+    newValue: string
+  ) {
     if (oldValue == newValue) return;
-    
+
     switch (name) {
       case "recording":
-        console.log(this.constructor.name + ": attribute changed: " + name + " from " + oldValue + " to " + newValue);
+        console.log(
+          this.constructor.name +
+            ": attribute changed: " +
+            name +
+            " from " +
+            oldValue +
+            " to " +
+            newValue
+        );
         this.setRecording(newValue);
         break;
       case "choir":
@@ -54,27 +65,31 @@ export class MusicElement extends HTMLElement {
 
   setChoir(c: string | number) {
     this.choir = toNum(c, true, config.choirs[0].length - 1);
-    this.fireEvent('music-controls-changed');
+    this.fireEvent("music-controls-changed");
   }
 
   setPart(p: string | number) {
-    this.voicePart = typeof p == 'string' && p == 'all' ? 'all' : toNum(p, true, config.parts.length - 1);
-    this.fireEvent('music-controls-changed');
+    this.voicePart =
+      typeof p == "string" && p == "all"
+        ? "all"
+        : toNum(p, true, config.parts.length - 1);
+    this.fireEvent("music-controls-changed");
   }
 
   setBar(b: string | number) {
     this.bar = toNum(b, false);
-    this.fireEvent('music-controls-changed');
+    this.fireEvent("music-controls-changed");
   }
 
   setPlaying(playing: string | boolean) {
-    this.playing = typeof playing == 'string' && playing == 'true' || playing == true;
-    this.fireEvent('music-controls-changed');
+    this.playing =
+      (typeof playing == "string" && playing == "true") || playing == true;
+    this.fireEvent("music-controls-changed");
   }
 
   setRecording(v: number | string) {
     this.recording = toNum(v, true, config.recording.length - 1);
-    this.fireEvent('music-controls-changed');
+    this.fireEvent("music-controls-changed");
   }
 
   isPlaying(): boolean {
@@ -82,16 +97,18 @@ export class MusicElement extends HTMLElement {
   }
 
   fireEvent(type: string, pos?: Position) {
-    var position: Position = pos ? pos : {
-      choir: this.choir,
-      part: this.voicePart,
-      bar: this.bar
-    }
+    var position: Position = pos
+      ? pos
+      : {
+          choir: this.choir,
+          part: this.voicePart,
+          bar: this.bar,
+        };
     const myEvent = new CustomEvent(type, {
       detail: { position: position },
       bubbles: true,
       cancelable: true,
-      composed: false
+      composed: false,
     });
     this.dispatchEvent(myEvent);
   }
@@ -104,6 +121,4 @@ export class MusicElement extends HTMLElement {
       console.log(`Unable to (re)define ${tag}`);
     }
   }
-
-
 }

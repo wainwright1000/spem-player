@@ -1,5 +1,5 @@
-import { MusicElement } from '../ts/MusicElement';
-import { MusicControls } from '../ts/MusicControls';
+import { MusicElement } from "../ts/MusicElement";
+import { MusicControls } from "../ts/MusicControls";
 
 // Create a concrete subclass for testing
 class TestElement extends MusicElement {

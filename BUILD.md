@@ -28,10 +28,12 @@ This serves the application locally with hot module replacement. The `--host` fl
 npm run build
 ```
 
-This runs two steps in sequence:
+This runs steps in sequence:
 
-1. `npm run build:ohm` (generates the Ohm.js grammar bundle from `src/ohmjs/ly-grammar.ohm`)
-2. `vite build` (production bundle into `dist/`)
+1. `npm run format:check` — verifies Prettier formatting
+2. `npm run lint` — ESLint check
+3. `npm run build:ohm` — generates the Ohm.js grammar bundle from `src/ohmjs/ly-grammar.ohm`
+4. `vite build` — production bundle into `dist/`
 
 ## Preview the Production Build
 

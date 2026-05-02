@@ -1,10 +1,9 @@
-import { processLilypond, ranges, dict, exportedForTesting } from '../ts/lily';
+import { processLilypond, ranges, dict, exportedForTesting } from "../ts/lily";
 const { romanise, setupLilypondParser } = exportedForTesting;
-import * as ohm from 'ohm-js';
-import lyGrammar from '../ohmjs/ly-grammar.ohm-bundle';
+import * as ohm from "ohm-js";
+import lyGrammar from "../ohmjs/ly-grammar.ohm-bundle";
 
 describe("lilypond parsing tests", () => {
-
   it("romanise", () => {
     expect(romanise(1)).toBe("I");
     expect(romanise(2)).toBe("II");
@@ -19,7 +18,6 @@ describe("lilypond parsing tests", () => {
     expect(romanise(0)).toBe("");
     expect(romanise(-20)).toBe("");
     expect(romanise(9.2)).toBe("IX");
-
   });
 
   it("check lilypond parses OK", () => {
@@ -48,7 +46,6 @@ describe("lilypond parsing tests", () => {
   });
 
   it("processLilypond", () => {
-
     //assert on the response
     processLilypond();
     expect(dict.length).toBe(139); // bars including bar zero
@@ -61,7 +58,4 @@ describe("lilypond parsing tests", () => {
       }
     }
   });
-
-
-})
-
+});

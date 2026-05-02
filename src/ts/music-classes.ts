@@ -4,7 +4,7 @@ export class Duration {
   multiplier: number;
   sfths = 0; // sixtyfourth note
 
-  constructor(duration = '', dotted = '', multiplier = 1) {
+  constructor(duration = "", dotted = "", multiplier = 1) {
     this.duration = duration;
     this.dotted = dotted;
     this.multiplier = multiplier;
@@ -37,11 +37,11 @@ export class Duration {
         this.sfths = 1;
         break;
       default:
-        this.sfths = 0;  // How did you get here??
+        this.sfths = 0; // How did you get here??
         break;
     }
     if (dotted != undefined) {
-      this.sfths = this.sfths * (1.5 ** this.dotted.length);
+      this.sfths = this.sfths * 1.5 ** this.dotted.length;
     }
     if (multiplier != undefined) {
       this.sfths *= multiplier;
@@ -82,7 +82,7 @@ export class Duration {
 }
 
 export class Component {
-  duration: Duration | null; 
+  duration: Duration | null;
   constructor(duration: Duration | null) {
     this.duration = duration; // 0 length
   }
@@ -108,7 +108,13 @@ export class Note extends Component {
   // duration;
   slur: string | null;
 
-  constructor(notename: string, accidental: string | null, octave: string | null, duration: Duration, slur: string | null) {
+  constructor(
+    notename: string,
+    accidental: string | null,
+    octave: string | null,
+    duration: Duration,
+    slur: string | null
+  ) {
     super(duration);
     this.notename = notename;
     this.accidental = accidental;
@@ -124,7 +130,7 @@ export class Note extends Component {
     if (this.octave != undefined) str += this.octave;
     if (showDuration) str += this.duration;
     if (this.slur != undefined) str += this.slur;
-    return (str);
+    return str;
   }
 }
 
@@ -141,7 +147,7 @@ export class Rest extends Component {
     var str = "";
     str += this.restname;
     if (showDuration && this.duration != null) str += this.duration.toString();
-    return (str);
+    return str;
   }
 }
 

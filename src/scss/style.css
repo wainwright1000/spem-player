@@ -73,11 +73,11 @@ body {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   background: var(--color-background);
   height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
@@ -88,11 +88,11 @@ header {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-column-gap: 3px;
-     -moz-column-gap: 3px;
-          column-gap: 3px;
+  -moz-column-gap: 3px;
+  column-gap: 3px;
   margin-top: 5px;
   margin-bottom: 5px;
 }
@@ -104,8 +104,8 @@ header .title {
   color: var(--color-title);
   padding-left: 10px;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   margin: 0;
 }
 header #info {
@@ -116,8 +116,8 @@ header #info path {
 }
 header .header-spacer {
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 header #scoreswitch,
 header #recordingswitch,
@@ -139,8 +139,8 @@ header #recordinglabel {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 header #scoreswitch {
   position: relative;
@@ -231,8 +231,8 @@ music-score svg text {
 
 music-canvas {
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
   cursor: crosshair;
   width: 100%;
   overflow: auto;
@@ -242,8 +242,12 @@ kbd {
   background-color: #eee;
   border-radius: 3px;
   border: 1px solid #b4b4b4;
-  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  -webkit-box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.2),
+    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.2),
+    0 2px 0 0 rgba(255, 255, 255, 0.7) inset;
   color: #333;
   display: inline-block;
   font-size: 0.85em;
@@ -255,20 +259,20 @@ kbd {
 
 .footer {
   -ms-flex-preferred-size: 50px;
-      flex-basis: 50px;
+  flex-basis: 50px;
   padding: 0.5rem 0.2rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .footer music-controls {
   display: -webkit-box;
@@ -285,16 +289,17 @@ kbd {
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   border: 2px solid var(--color-border);
   border-radius: 50%;
   cursor: pointer;
 }
-.footer music-controls #playpausebutton:hover, .footer music-controls #playpausebutton:focus {
+.footer music-controls #playpausebutton:hover,
+.footer music-controls #playpausebutton:focus {
   background: var(--color-background-lighter);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -309,17 +314,21 @@ kbd {
 .footer music-controls #playpausebutton #spinner {
   display: none;
   -webkit-animation: rotator 1.4s linear infinite;
-          animation: rotator 1.4s linear infinite;
+  animation: rotator 1.4s linear infinite;
 }
 .footer music-controls #playpausebutton .path {
   width: 50px;
   stroke-dasharray: 24;
   stroke-dashoffset: 0;
   -webkit-transform-origin: center;
-      -ms-transform-origin: center;
-          transform-origin: center;
-  -webkit-animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
-          animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  -webkit-animation:
+    dash 1.4s ease-in-out infinite,
+    colors 5.6s ease-in-out infinite;
+  animation:
+    dash 1.4s ease-in-out infinite,
+    colors 5.6s ease-in-out infinite;
 }
 .footer music-controls #playpausebutton svg {
   height: 2rem;
@@ -327,22 +336,22 @@ kbd {
 }
 .footer music-controls label {
   -ms-flex-preferred-size: 4rem;
-      flex-basis: 4rem;
+  flex-basis: 4rem;
   margin: 0 5px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   text-align: left;
   color: var(--color-text);
 }
 .footer music-controls label input,
 .footer music-controls label select {
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   border: 2px solid var(--color-border);
   height: 2rem;
   padding: 2px;
@@ -352,19 +361,19 @@ kbd {
 }
 .footer .statusspacer {
   -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
 }
 .footer music-canvas-watcher {
   -ms-flex-preferred-size: 5rem;
-      flex-basis: 5rem;
+  flex-basis: 5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   font-size: 0.9rem;
   text-align: left;
   text-transform: capitalize;
@@ -384,22 +393,22 @@ kbd {
 @-webkit-keyframes rotator {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
+    transform: rotate(270deg);
   }
 }
 
 @keyframes rotator {
   0% {
     -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
+    transform: rotate(270deg);
   }
 }
 @-webkit-keyframes colors {
@@ -443,12 +452,12 @@ kbd {
   50% {
     stroke-dashoffset: 6;
     -webkit-transform: rotate(135deg);
-            transform: rotate(135deg);
+    transform: rotate(135deg);
   }
   100% {
     stroke-dashoffset: 24;
     -webkit-transform: rotate(450deg);
-            transform: rotate(450deg);
+    transform: rotate(450deg);
   }
 }
 @keyframes dash {
@@ -458,11 +467,11 @@ kbd {
   50% {
     stroke-dashoffset: 6;
     -webkit-transform: rotate(135deg);
-            transform: rotate(135deg);
+    transform: rotate(135deg);
   }
   100% {
     stroke-dashoffset: 24;
     -webkit-transform: rotate(450deg);
-            transform: rotate(450deg);
+    transform: rotate(450deg);
   }
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

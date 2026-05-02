@@ -1,4 +1,4 @@
-import { Duration, Note, Rest, BarLine, Command } from '../ts/music-classes';
+import { Duration, Note, Rest, BarLine, Command } from "../ts/music-classes";
 
 describe("Duration", () => {
   it("creates durations for all note values", () => {
