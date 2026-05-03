@@ -50,21 +50,12 @@ Tests live in `src/test/` and follow the naming convention `*.test.ts`.
 - `vitest-fetch-mock`: Fetch mocking utility
 - `@vitest/coverage-v8`: Coverage reporting
 
-## Testing Internal Functions
-
-Modules export an `exportedForTesting` object containing functions and state that are not part of the public API but require unit testing. For example, `lily.ts` exports `setupLilypondParser`, `romanise`, and parser state via this object.
-
-## Custom Elements in Tests
-
-The application defines custom HTML elements (`music-canvas`, `music-score`, `music-controls`, etc.). Tests that instantiate these elements must ensure they are defined in the jsdom document before assertions run. The `define(tag)` static method on each class handles registration.
-
 ## Coverage Output
 
 Coverage reports are written to the `coverage/` directory. This directory is gitignored.
 
 ## Local Tooling Tests
 
-Python helper scripts in `scripts/` (`discover.py`, `sync_upstream.py`,
-`ticket.py`) have their own test suite in `tests_local/`. These tests
-use `pytest` and `unittest.mock` to mock `subprocess` calls. They are separate
-from the Vitest suite and are not tracked in git.
+Python helper scripts in `scripts/` have their own test suite in `tests_local/`.
+These tests use `pytest` and `unittest.mock` to mock `subprocess` calls. They are
+separate from the Vitest suite and are not tracked in git.
