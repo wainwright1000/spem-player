@@ -21,8 +21,6 @@ export var scores: { [id: string]: Component[] } = {};
 
 var semantics: ohm.Semantics = setupLilypondParser();
 
-var lilypondVersion: string;
-
 function romanise(num: number) {
   var lookup: { [index: string]: number } = {
       M: 1000,
@@ -67,14 +65,8 @@ function setupLilypondParser(): ohm.Semantics {
   }
 
   s.addOperation("parse", {
-    Version(_, _2, v, _3) {
-      lilypondVersion = v.sourceString;
-      console.log("Lilypond: Version " + lilypondVersion);
-    },
-    Include(_, _2, filename, _3) {
-      const f = filename.sourceString;
-      console.log("Lilypond: Include " + f);
-    },
+    Version(_, _2, _v, _3) {},
+    Include(_, _2, _filename, _3) {},
     RelativeClause(variable, _, _2, _3, _4, music, _6) {
       const v = variable.parse();
       // const n = note.parse();

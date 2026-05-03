@@ -69,7 +69,6 @@ export class MusicCanvas extends MusicElement {
 
   async #init() {
     if (this.canvas != null) {
-      console.log("MusicCanvas: Already initialised. Nothing to do.");
       return;
     }
 
@@ -191,7 +190,6 @@ export class MusicCanvas extends MusicElement {
     if (!this.canvas) return;
 
     if (ranges.length === 0 || dict.length === 0) {
-      console.log("MusicCanvas: not ready to draw!");
       return;
     }
 
