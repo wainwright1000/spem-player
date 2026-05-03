@@ -90,13 +90,13 @@ async function setChoir(c: number, forceChange = false) {
 
   // Update the input field
   controls.setAttribute("choir", String(current.choir));
-  
+
   // Update the score for this choir
   score.setAttribute("choir", String(current.choir));
 
   // Set the recording of the audio to use
   score.setAttribute("recording", String(current.recording));
-  
+
   // Update the canvas
   canvas.setAttribute("choir", String(current.choir));
 }
@@ -132,10 +132,10 @@ function setBar(b: number) {
 
   // update the input field
   controls.setAttribute("bar", String(b));
-  
+
   // Highlight the bar on the score
   score.setAttribute("bar", String(b));
-  
+
   // Update the canvas
   canvas.setAttribute("bar", String(b));
 }
@@ -147,9 +147,9 @@ function parseURL() {
   var recording = 0; // ALC
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
-  var bar = 1 - config.intro_beats[recording]/4;
+  var bar = 1 - config.intro_beats[recording] / 4;
   console.log("Initial bar is", bar);
-  var dark = false;
+  var dark = true; // dark mode by default
   var early = false;
   var r = 0; // ALC
 
@@ -183,12 +183,14 @@ function parseURL() {
   if (early) {
     toggleScore();
   }
-  if (dark) {
-    document.body.classList.add("dark-theme");
+  if (!dark) {
+    document.body.classList.add("light-theme");
+    current.viewmode = "light";
+  } else {
     document.body.classList.remove("light-theme");
     current.viewmode = "dark";
-    colors(true);
   }
+  colors(true);
   updateDarkIcon();
 }
 
@@ -212,7 +214,7 @@ function keyboardTapped(e: KeyboardEvent) {
     return keyboardTapped;
   }
 
-   // Ensure e.target is an Element before accessing classList
+  // Ensure e.target is an Element before accessing classList
   if (!(e.target instanceof Element)) {
     return;
   }
@@ -249,8 +251,8 @@ function keyboardTapped(e: KeyboardEvent) {
   }
   if (e.code == 'Space') {
     if (e.target instanceof HTMLInputElement ||
-        e.target instanceof HTMLTextAreaElement ||
-        e.target instanceof HTMLSelectElement) {
+      e.target instanceof HTMLTextAreaElement ||
+      e.target instanceof HTMLSelectElement) {
       return;
     }
     controls.isPlaying() ? controls.pause() : controls.play();
@@ -329,18 +331,14 @@ function showHelp(show = true) {
 }
 
 function updateDarkIcon() {
-  const isDark = document.body.classList.contains('dark-theme') ||
-    (window.matchMedia('(prefers-color-scheme: dark)').matches && !document.body.classList.contains('light-theme'));
-  document.getElementById('moon-icon')?.setAttribute('display', isDark ? 'none' : 'inline');
-  document.getElementById('sun-icon')?.setAttribute('display', isDark ? 'inline' : 'none');
+  const isLight = document.body.classList.contains('light-theme');
+  document.getElementById('moon-icon')?.setAttribute('display', isLight ? 'inline' : 'none');
+  document.getElementById('sun-icon')?.setAttribute('display', isLight ? 'none' : 'inline');
 }
 
 function toggleDark() {
-  if (prefersDarkScheme) {
-    document.body.classList.toggle("light-theme");
-  } else {
-    document.body.classList.toggle("dark-theme");
-  }
+  document.body.classList.toggle("light-theme");
+  current.viewmode = document.body.classList.contains("light-theme") ? "light" : "dark";
   colors(true); // reload the colors from the stylesheet
   canvas.draw();
   updateDarkIcon();
@@ -411,7 +409,6 @@ function init(): void {
   // of the browser, but we don't want to include the browser's
   // header and footer in that, so calculate using visible vertical space.
   setVH();
-  setColorScheme();
 
   // read choir, part and bar from the URL
   parseURL();
@@ -433,26 +430,5 @@ function init(): void {
   scoreswitch.addEventListener("click", () => toggleScore());
   recordingswitch.addEventListener("click", () => toggleRecording());
 
-  // watch for change in user's preference of color scheme
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-    setColorScheme();
-  });
   window.addEventListener('resize', () => setVH());
-}
-
-var prefersDarkScheme: boolean;
-function setColorScheme() {
-  var mediaMatch = window.matchMedia('(prefers-color-scheme: dark)');
-  prefersDarkScheme = mediaMatch.matches;
-  if (prefersDarkScheme) {
-    console.log("preferred color scheme is dark");
-    document.body.classList.add('dark-theme');
-    current.viewmode = "dark";
-  } else {
-    console.log("preferred color scheme is light");
-    document.body.classList.remove('dark-theme');
-    current.viewmode = "light";
-  }
-  colors(true);
-  updateDarkIcon();
 }

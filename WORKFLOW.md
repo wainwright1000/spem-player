@@ -21,7 +21,7 @@ Mark's kanban workflow with explicit entry and exit criteria:
 | -------- | --------------- | --------------- |
 | **Todo** | New TODO/BUG/HACK reported | Type, Area, Difficulty defined. Description is clear enough to act on |
 | **Specified** | Assessed; recommended fix exists or reproduction/test plan defined | Developer pulls it |
-| **In Progress** | Coding started, branch created | Code complete, tests pass, committed to `dev` |
+| **In Progress** | Coding started, branch created | Code complete, tests pass, code in `dev` branch |
 | **Ready for Main** | Committed to `dev`; awaiting final check before main merge | Merged to `main` |
 | **Done** | On `main`; running in production | — |
 
@@ -62,13 +62,10 @@ Mark's kanban workflow with explicit entry and exit criteria:
 3. **Specify**: Write Recommended fix, Test plan, and Dependencies. Move Status
    to **Specified**.
 4. **Assign** (optional): The ticket can be assigned to a developer.
-5. **Develop**:
-
-   - **Mark**: claims the ticket, moves Status to **In Progress**, implements
-     the fix on a branch, and commits to `dev`.
-   - **Andrew**: waits until the ticket is assigned, works on a feature branch,
-     runs tests, and opens a PR against `dev`. Status is moved to
-     **In Progress** at PR creation.
+5. **Develop**: The developer claims or is assigned the ticket, moves Status
+   to **In Progress**, implements the fix on a feature branch, runs tests, and
+   opens a PR against `dev` (if working in a fork) or commits directly to `dev`
+   (if working in the upstream repository).
 
 6. **Integrate**: When code is complete and tests pass, commits are merged to
    `dev`. Status moves to **Ready for Main**.
@@ -111,6 +108,6 @@ A well-formed ticket body contains:
 
 ## Local Tooling
 
-This project uses local scripts in `scripts/` (gitignored) to interact with the
+This project uses local scripts in `scripts/` (tracked in git) to interact with the
 board. See `AGENTS-LOCAL.md` for the script catalog, session startup routine,
 and agent commands.
