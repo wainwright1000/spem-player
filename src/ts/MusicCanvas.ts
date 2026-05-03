@@ -199,6 +199,8 @@ export class MusicCanvas extends MusicElement {
       return;
     }
 
+    const isLight = this.#isLightMode();
+
     // Calculate frames per second
     if (this.playing) {
       const now: number = Date.now();
@@ -225,7 +227,6 @@ export class MusicCanvas extends MusicElement {
       for (var p = 0; p < config.parts.length; p++) {
         const elapsed = this.bar - this.lastNoteStart[c][p];
         if (elapsed >= 0 && elapsed < this.lastNoteDuration[c][p]) {
-          const isLight = this.#isLightMode();
           this.pulses[c][p] = this.#easeOutCubic(
             elapsed,
             isLight ? 0.4 : 1.6,
@@ -241,14 +242,12 @@ export class MusicCanvas extends MusicElement {
     // Pulse false relations
     for (let i = 0; i < falseRelations.length; i++) {
       const fr = falseRelations[i];
-      const pulseDuration = Math.max(fr.to - fr.from, 1.0);
+      const fade = 0.2;
+      const pulseDuration = fade;
       if (this.bar >= fr.from && this.bar < fr.from + pulseDuration) {
-        this.falseRelationPulses[i] = this.#easeOutCubic(
-          this.bar - fr.from,
-          1.0,
-          -1.0,
-          pulseDuration
-        );
+        const elapsed = this.bar - fr.from;
+        const t = Math.min(1, elapsed / fade);
+        this.falseRelationPulses[i] = Math.sqrt(1 - t);
       } else {
         this.falseRelationPulses[i] = 0;
       }
@@ -387,18 +386,40 @@ export class MusicCanvas extends MusicElement {
 
       const fr = falseRelations[i];
       const cx = this.canvasPadding + ((fr.from + fr.to) / 2) * this.barWidth;
-      const part = fr.pair[0];
-      const startY =
-        this.canvasPadding +
-        part.c * this.choirHeight +
-        part.p * this.partHeight;
-      const cy = startY + this.partHeight / 2;
+      const hue = colors().choir[fr.pair[0].c];
 
-      const hue = colors().choir[part.c];
-      ctx.fillStyle = `hsla(${hue}, 90%, 85%, ${pulse * 0.7})`;
-      ctx.beginPath();
-      ctx.arc(cx, cy, this.partHeight * 4 * pulse, 0, Math.PI * 2);
-      ctx.fill();
+      for (const part of fr.pair) {
+        const startY =
+          this.canvasPadding +
+          part.c * this.choirHeight +
+          part.p * this.partHeight;
+        const cy = startY + this.partHeight / 2;
+
+        const radius = this.partHeight * 4 * pulse;
+        const lightness = Math.min(100, isLight ? 50 * pulse : 90 * pulse);
+        const centerAlpha = Math.min(0.9, pulse * 0.85);
+        const gradient = ctx.createRadialGradient(
+          cx,
+          cy,
+          0,
+          cx,
+          cy,
+          radius
+        );
+        gradient.addColorStop(
+          0,
+          `hsla(${hue}, 100%, ${lightness}%, ${centerAlpha})`
+        );
+        gradient.addColorStop(
+          0.25,
+          `hsla(${hue}, 100%, ${lightness}%, ${centerAlpha * 0.4})`
+        );
+        gradient.addColorStop(1, `hsla(${hue}, 100%, ${lightness}%, 0)`);
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
   }
 
