@@ -6,33 +6,101 @@ See `doc/BUILD.md` for development setup, prerequisites, and build commands.
 
 ## Workflow
 
-The project uses a GitHub Project board as the canonical register of work. See `doc/WORKFLOW.md` for the full schema and lifecycle.
+The project uses a GitHub Project board as the canonical register of work.
+See the board at `https://github.com/users/wainwmr/projects/2`.
 
-### Board Statuses
+### Board Schema
 
-- **Todo** — new item. Exit when Type, Area, and Difficulty are defined and the Description is clear enough to act on.
-- **Specified** — assessed; recommended fix or test plan exists. Exit when a developer claims it.
-- **In Progress** — coding started, branch created. Exit when code is complete, tests pass, and work is committed to `dev`.
-- **Ready for Main** — committed to `dev`; awaiting final check. Exit when merged to `main`.
-- **Done** — on `main`; running in production.
+Mark's kanban workflow with explicit entry and exit criteria:
+
+- **Todo**
+  - Entry: New TODO/BUG/HACK reported
+  - Exit: Type, Area, Difficulty defined; description is clear enough to act on
+
+- **Specified**
+  - Entry: Assessed; recommended fix exists or reproduction/test plan defined
+  - Exit: Developer pulls it
+
+- **In Progress**
+  - Entry: Coding started, branch created
+  - Exit: Code complete, tests pass, code in `dev` branch
+
+- **Ready for Main**
+  - Entry: Committed to `dev`; awaiting final check before main merge
+  - Exit: Merged to `main`
+
+- **Done**
+  - Entry: On `main`; running in production
+  - Exit: —
+
+`dev` is the integration branch. `main` is production.
+
+#### Type
+
+- `bug` — defect
+- `todo` — planned improvement
+- `hack` — workaround or temporary fix
+- `build` — build/pipeline issue
+
+#### Area
+
+- `UI` — user interface
+- `Score` — sheet music display
+- `Canvas` — overview canvas
+- `Lily` — LilyPond/grammar
+- `Config` — configuration and constants
+- `Test` — test suite
+- `Tooling` — build scripts and tooling
+- `Controls` — playback controls
+- `Other` — uncategorised
+
+#### Difficulty
+
+- `XS` — trivial
+- `S` — small
+- `M` — medium
+- `L` — large
 
 ### Branching
 
 - `main` — production branch.
 - `dev` — integration branch.
-- Feature branches are created from `upstream/dev`.
+- Feature branches are created from `upstream/dev` (fork contributors) or from `dev` (direct collaborators).
 
-Pull requests from this fork target `upstream/dev`.
+Pull requests from forks target `upstream/dev`.
 
 ### Ticket Lifecycle
 
-1. Create a GitHub issue and add it to the board with Status **Todo**.
-2. Assess: set Type, Area, and Difficulty. Write a clear Description.
-3. Specify: write Recommended fix, Test plan, and Dependencies. Move to **Specified**.
-4. Develop: claim the ticket, create a feature branch, implement, and test.
-5. Open a PR against `upstream/dev`. Move Status to **In Progress**.
-6. When merged to `dev`, move to **Ready for Main**.
-7. When `dev` is merged to `main`, move to **Done**.
+1. **Create**: A new ticket is created as a GitHub issue and added to the board
+   with Status **Todo**.
+2. **Assess**: Set Type, Area, and Difficulty. Write a clear
+   Description. Ticket remains in **Todo** until assessment is complete.
+3. **Specify**: Write Recommended fix, Test plan, and Dependencies. Move Status
+   to **Specified**.
+4. **Assign** (optional): The ticket can be assigned to a developer.
+5. **Develop**: The developer claims or is assigned the ticket, moves Status
+   to **In Progress**, implements the fix on a feature branch, runs tests, and
+   opens a PR against `dev`.
+6. **Integrate**: When code is complete and tests pass, commits are merged to
+   `dev`. Status moves to **Ready for Main**.
+7. **Release**: Mark merges `dev` to `main`. Status moves to **Done**.
+
+If a ticket is blocked by a question for Mark, add a `question` label and
+@mention him, but leave Status as **Todo** until the question is resolved.
+
+### Ticket Format
+
+A well-formed ticket body contains:
+
+- **Type**, **Area**, **Status**, **Difficulty**
+- **Source**: file path and line number
+- **First seen**: date and commit hash (from `git blame`)
+- **Description**: clear explanation of the problem or desired improvement
+- **Recommended fix**: approach, files to change, risks (populated during
+  Specification)
+- **Test plan**: test cases, mocking requirements (populated during
+  Specification)
+- **Dependencies**: other tickets that must precede or relate to this one
 
 ## Code Style
 
@@ -66,9 +134,28 @@ When creating or modifying a component:
 4. Use `fireEvent()` to communicate state changes.
 5. Register the element via a static `define(tag)` method.
 
+## Writing Tests
+
+Tests use Vitest 3 with the jsdom environment. See `doc/TESTING.md` for
+commands and configuration.
+
+### Testing Internal Functions
+
+Modules export an `exportedForTesting` object containing functions and state
+that are not part of the public API but require unit testing. For example,
+`lily.ts` exports `setupLilypondParser`, `romanise`, and parser state via this
+object.
+
+### Custom Elements in Tests
+
+The application defines custom HTML elements (`music-canvas`, `music-score`,
+`music-controls`, etc.). Tests that instantiate these elements must ensure they
+are defined in the jsdom document before assertions run. The `define(tag)`
+static method on each class handles registration.
+
 ## Pull Request Process
 
-1. Create a feature branch from `main`.
+1. Create a feature branch from `upstream/dev`.
 2. Make your changes, add tests, and update documentation.
 3. Ensure tests pass: `npm test`.
 4. Check formatting, lint, and type errors:
@@ -95,10 +182,6 @@ Use conventional commit format where possible:
 - `refactor:` — code restructuring
 - `build:` — build system or tooling
 
-## Testing
-
-See `doc/TESTING.md` for test framework details, running tests, and coverage.
-
 ## Best Practices
 
 - Incremental changes over monolithic refactors.
@@ -111,4 +194,4 @@ See `doc/TESTING.md` for test framework details, running tests, and coverage.
 
 ## Questions
 
-Open an issue for discussion or refer to `AGENTS.md` and `AGENTS-LOCAL.md` for project conventions.
+Open an issue for discussion or refer to `AGENTS.md` for project conventions.
