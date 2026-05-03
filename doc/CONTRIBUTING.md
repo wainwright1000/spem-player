@@ -136,7 +136,8 @@ When creating or modifying a component:
 
 ## Writing Tests
 
-Tests use Vitest 3 with the jsdom environment. See `doc/TESTING.md` for
+Unit and integration tests use Vitest 3 with the jsdom environment. End-to-end
+tests use Playwright in a real Chromium browser. See `doc/TESTING.md` for
 commands and configuration.
 
 ### Testing Internal Functions
@@ -157,7 +158,13 @@ static method on each class handles registration.
 
 1. Create a feature branch from `upstream/dev`.
 2. Make your changes, add tests, and update documentation.
-3. Ensure tests pass: `npm test`.
+3. Ensure tests pass:
+
+   ```console
+   npm run test
+   npm run test:e2e
+   ```
+
 4. Check formatting, lint, and type errors:
 
    ```console

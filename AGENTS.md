@@ -9,7 +9,7 @@ A browser-based practice tool for singers learning Thomas Tallis's 40-part motet
 - **Language:** TypeScript (strict mode, ES2020 target, ESNext modules)
 - **Bundler:** Vite 7 with `vite-plugin-commonjs`
 - **Styling:** SCSS (compiled by `sass-embedded`), CSS custom properties for theming
-- **Testing:** Vitest 3 with jsdom, coverage via `@vitest/coverage-v8`
+- **Testing:** Vitest 3 with jsdom, coverage via `@vitest/coverage-v8`; Playwright for end-to-end browser testing
 - **Parser:** Ohm.js for LilyPond grammar parsing
 - **Build scripts:** Bash (`build/buildScore.sh`, `build/buildAllScores.sh`) invoking LilyPond to generate SVG scores
 - **Deployment:** Netlify (build command `npm run build`, publish directory `dist`). Automated deploy on merge to `main`. Live at [www.spemplayer.net](https://www.spemplayer.net).
@@ -63,6 +63,9 @@ State changes flow through `index.ts` helper functions (`setChoir()`, `setPart()
 - `npm run build:scores`: Runs `build/buildAllScores.sh` to regenerate SVGs from LilyPond
 - `npm run test`: Vitest in watch mode
 - `npm run coverage`: Single-run test with coverage report
+- `npm run test:e2e`: Playwright headless run
+- `npm run test:e2e:ui`: Playwright interactive UI mode
+- `npm run test:e2e:report`: Show last Playwright HTML report
 
 The LilyPond build scripts (`build/buildScore.sh`, `build/buildAllScores.sh`) run `lilypond --svg` and strip `height` and `width` attributes from the first line of each SVG. The `sed` command uses macOS-style `-i ''` syntax.
 

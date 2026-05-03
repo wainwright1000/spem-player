@@ -54,6 +54,43 @@ Tests live in `src/test/` and follow the naming convention `*.test.ts`.
 
 Coverage reports are written to the `coverage/` directory. This directory is gitignored.
 
+## End-to-End Tests
+
+End-to-end tests run in a real browser using Playwright. They live in `e2e/` and follow the naming convention `*.spec.ts`.
+
+### Prerequisites
+
+The production build must exist before e2e tests run:
+
+```console
+npm run build
+```
+
+### Running E2E Tests
+
+Headless run:
+
+```console
+npm run test:e2e
+```
+
+Interactive UI mode:
+
+```console
+npm run test:e2e:ui
+```
+
+View the last HTML report:
+
+```console
+npm run test:e2e:report
+```
+
+### Key Dependencies
+
+- `@playwright/test`: test runner and browser automation
+- `chromium`: browser under test (installed via `npx playwright install chromium`)
+
 ## Local Tooling Tests
 
 Python helper scripts in `scripts/` have their own test suite in `tests_local/`.
