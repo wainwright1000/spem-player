@@ -9,4 +9,7 @@ dist
 coverage
 temp/*
 publish.py
+test-results/
+playwright-report/
+playwright/.cache/
 
