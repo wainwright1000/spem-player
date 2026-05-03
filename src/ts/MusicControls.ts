@@ -157,7 +157,6 @@ export class MusicControls extends MusicElement {
       newfile =
         "Choir " + (this.choir + 1) + "-" + config.parts[this.voicePart];
     }
-    console.log("MusicControls: " + config.recording[this.recording]);
     return (
       config.audio_prefix +
       config.recording[this.recording] +
@@ -171,7 +170,6 @@ export class MusicControls extends MusicElement {
     // Load the new audio if necessary
     const newfile = this.getMP3filename();
     if (!this.isSameAudio(newfile)) {
-      console.log("MusicControls: loading:", newfile);
       // set the play button spinner while loading audio
       this.playing = false;
       if (this.svgPlay && this.svgLoading && this.svgPause) {
@@ -216,12 +214,6 @@ export class MusicControls extends MusicElement {
   }
 
   pause() {
-    console.log(
-      "MusicControls: paused at bar " +
-        this.bar +
-        ", time " +
-        this.audio.currentTime
-    );
     this.playing = false;
     if (this.svgPlay && this.svgLoading && this.svgPause) {
       this.svgPlay.style.display = "block";
@@ -235,7 +227,6 @@ export class MusicControls extends MusicElement {
   setChoir(c: string | number) {
     if (!this.choirselect) return;
     super.setChoir(c);
-    console.log(`MusicControls: changing choir to ${this.choir}`);
 
     this.choirselect.value = String(this.choir);
     if (this.isPlaying()) this.play();
@@ -250,7 +241,6 @@ export class MusicControls extends MusicElement {
   setPart(p: string | number) {
     if (!this.partselect) return;
     super.setPart(p);
-    console.log(`MusicControls: changing part to ${this.part}`);
 
     this.partselect.value = String(p);
     if (this.isPlaying()) this.play();
@@ -261,18 +251,15 @@ export class MusicControls extends MusicElement {
     const intbar = Number(b);
     if (intbar === this.bar) return;
     super.setBar(b);
-    console.log(`MusicControls: changing bar to ${b}`);
 
     this.bar = intbar;
     this.audio.currentTime = getTimeFromBar(this.bar, this.recording);
 
-    console.log("setting currentTime to " + this.audio.currentTime);
     this.barinput.value = String(Math.floor(this.bar));
   }
 
   setPlaying(playing: string | boolean) {
     super.setPlaying(playing);
-    console.log(`MusicControls: changing playing to ${this.playing}`);
     if (this.playing) {
       this.play();
     } else {

@@ -13,17 +13,11 @@ export class MusicElement extends HTMLElement {
     super();
   }
 
-  async connectedCallback() {
-    console.log(this.constructor.name + ": added to page");
-  }
+  async connectedCallback() {}
 
-  disconnectedCallback() {
-    console.log(this.constructor.name + ": removed from page");
-  }
+  disconnectedCallback() {}
 
-  adoptedCallback() {
-    console.log(this.constructor.name + ": moved to a new page");
-  }
+  adoptedCallback() {}
 
   async attributeChangedCallback(
     name: string,
@@ -34,15 +28,6 @@ export class MusicElement extends HTMLElement {
 
     switch (name) {
       case "recording":
-        console.log(
-          this.constructor.name +
-            ": attribute changed: " +
-            name +
-            " from " +
-            oldValue +
-            " to " +
-            newValue
-        );
         this.setRecording(newValue);
         break;
       case "choir":
@@ -58,7 +43,6 @@ export class MusicElement extends HTMLElement {
         this.setPlaying(newValue);
         break;
       default:
-        console.log("MusicControls: bad attribute: " + newValue);
         break;
     }
   }
@@ -118,7 +102,7 @@ export class MusicElement extends HTMLElement {
       window.customElements.define(tag, this);
       // window.customElements.define(tag, this, { extends: "div" });
     } catch {
-      console.log(`Unable to (re)define ${tag}`);
+      /* empty: custom element may already be defined */
     }
   }
 }

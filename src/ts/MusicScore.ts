@@ -81,16 +81,13 @@ export class MusicScore extends MusicElement {
     if (!this.svg) return;
 
     var pt: DOMPoint = new DOMPoint(e.clientX, e.clientY);
-    console.log("score clicked", pt);
 
     // The cursor point, translated into svg coordinates
     const m = this.svg.getScreenCTM();
     var cursorpt = pt.matrixTransform(m?.inverse());
-    console.log("clicked at (" + cursorpt.x + ", " + cursorpt.y + ")");
 
     var result = this.bars.find((x) => x > cursorpt.x);
     if (result) {
-      console.log("selected bar", this.bars.indexOf(result));
       this.setBar(this.bars.indexOf(result));
       this.fireEvent("music-score-click");
     }
@@ -111,24 +108,10 @@ export class MusicScore extends MusicElement {
   };
 
   async #loadScore() {
-    const choirName = config.choirs[this.recording][this.choir];
-    const filename =
-      config.svg_prefix +
-      "/Hugh Keyte/" +
-      this.scoreType +
-      "/" +
-      choirName +
-      ".svg";
-    console.log("MusicScore: fetching", filename);
-    var starttime = performance.now();
-
     const svgComp = await this.#loadSvg();
     if (svgComp) {
       this.innerHTML = svgComp;
     }
-
-    var endtime = performance.now();
-    console.log("SVG load time", endtime - starttime);
     this.svg = document.querySelector("music-score svg");
 
     if (!this.svg) {
@@ -140,7 +123,6 @@ export class MusicScore extends MusicElement {
     const viewBoxParts = viewBoxString?.split(" ") ?? [];
     this.svgWidth = Number(viewBoxParts[2]);
     this.svgHeight = Number(viewBoxParts[3]);
-    console.log("viewbox", this.svgWidth, this.svgHeight); // Example output: "0 0 65415 41616"
 
     this.highlightPosition.setAttribute("height", String(this.svgHeight));
     this.highlightBar.setAttribute("height", String(this.svgHeight));
@@ -148,10 +130,7 @@ export class MusicScore extends MusicElement {
     this.svg.prepend(this.highlightBar);
 
     // determine what the bar positions are for this score
-    var starttime = performance.now();
     this.bars = this.getBars();
-    var endtime = performance.now();
-    console.log("getBars() time taken:", endtime - starttime);
 
     // Highlight and scroll to the current bar
     this.highlight();

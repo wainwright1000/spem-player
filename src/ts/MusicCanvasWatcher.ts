@@ -23,13 +23,11 @@ export class MusicCanvasWatcher extends MusicElement {
 
     super.connectedCallback();
     const canvi = document.querySelectorAll("music-canvas");
-    console.log("MusicCanvasWatcher: Number of canvases found: ", canvi.length);
     canvi.forEach((c) => {
       c.addEventListener(
         "music-canvas-hover",
         this.handleCanvasHover.bind(this) as (e: Event) => void
       );
-      console.log("MusicCanvasWatcher: adding listener for", c);
     });
   }
 
