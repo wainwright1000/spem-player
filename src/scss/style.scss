@@ -107,19 +107,45 @@ header {
   margin-top: 5px;
   margin-bottom: 5px;
 
+  .title-group {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    margin-left: 10px;
+  }
+
   .title {
     display: inline-flex;
-    font-size: 1.5rem;
+    font-family: "Macondo Swash Caps", cursive;
+    font-size: 2rem;
     color: var(--color-title);
-    padding-left: 10px;
+    padding-left: 6px;
     align-items: center;
     margin: 0;
+    white-space: nowrap;
   }
   #info {
     cursor: pointer;
+    margin-left: 12px;
 
-    path {
-      fill: var(--color-title);
+    .help-button {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: bold;
+      font-variant: small-caps;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      color: var(--color-background);
+      background: var(--color-title);
+      border-radius: 4px;
+      padding: 2px 4px;
     }
   }
 
