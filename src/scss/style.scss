@@ -7,12 +7,12 @@ html {
   font-family: Helvetica neue;
 }
 
-/* Default colors */
+/* Default colors (dark theme) */
 body {
-  --color-background: hsl(210, 65%, 100%);
-  --color-text: hsl(210, 65%, 30%);
-  --color-title: hsl(210, 65%, 20%);
-  --color-highlight: hsl(210, 65%, 90%);
+  --color-background: hsl(210, 65%, 20%);
+  --color-text: hsl(0, 0%, 92%);
+  --color-title: hsl(210, 65%, 80%);
+  --color-highlight: hsl(210, 65%, 25%);
 }
 /* Dev-only badge: visible when deployed from a non-main branch */
 body[data-branch]:not([data-branch=""])::before {
@@ -32,30 +32,12 @@ body[data-branch]:not([data-branch=""])::before {
   pointer-events: none;
 }
 
-/* Dark theme colors */
-body.dark-theme {
-  --color-background: hsl(210, 65%, 20%);
-  --color-text: hsl(0, 0%, 92%);
-  --color-title: hsl(210, 65%, 80%);
-  --color-highlight: hsl(210, 65%, 25%);
-}
-
-/* Styles for users who prefer dark mode at the OS level */
-@media (prefers-color-scheme: dark) {
-  /* defaults to dark theme */
-  body {
-    --color-background: hsl(210, 65%, 20%);
-    --color-text: hsl(0, 0%, 92%);
-    --color-title: hsl(210, 65%, 80%);
-    --color-highlight: hsl(210, 65%, 25%);
-  }
-  /* Override dark mode with light mode styles if the user decides to swap */
-  body.light-theme {
-    --color-background: hsl(210, 65%, 100%);
-    --color-text: hsl(210, 65%, 30%);
-    --color-title: hsl(210, 65%, 20%);
-    --color-highlight: hsl(210, 65%, 90%);
-  }
+/* Light theme override */
+body.light-theme {
+  --color-background: hsl(210, 65%, 100%);
+  --color-text: hsl(210, 65%, 30%);
+  --color-title: hsl(210, 65%, 20%);
+  --color-highlight: hsl(210, 65%, 90%);
 }
 
 body {

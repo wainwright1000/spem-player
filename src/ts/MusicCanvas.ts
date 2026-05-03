@@ -362,10 +362,7 @@ export class MusicCanvas extends MusicElement {
   }
 
   #isLightMode(): boolean {
-    if (document.body.classList.contains("light-theme")) return true;
-    if (document.body.classList.contains("dark-theme")) return false;
-    if (typeof window.matchMedia !== "function") return true;
-    return !window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return document.body.classList.contains("light-theme");
   }
 
   #getMousePos(e: MouseEvent): Position {
