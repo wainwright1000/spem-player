@@ -2,11 +2,11 @@
 
 ## Getting Started
 
-See `BUILD.md` for development setup, prerequisites, and build commands.
+See `doc/BUILD.md` for development setup, prerequisites, and build commands.
 
 ## Workflow
 
-The project uses a GitHub Project board as the canonical register of work. See `WORKFLOW.md` for the full schema and lifecycle.
+The project uses a GitHub Project board as the canonical register of work. See `doc/WORKFLOW.md` for the full schema and lifecycle.
 
 ### Board Statuses
 
@@ -97,7 +97,7 @@ Use conventional commit format where possible:
 
 ## Testing
 
-See `TESTING.md` for test framework details, running tests, and coverage.
+See `doc/TESTING.md` for test framework details, running tests, and coverage.
 
 ## Best Practices
 

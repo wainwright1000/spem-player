@@ -11,7 +11,7 @@ A browser-based practice tool for singers learning Thomas Tallis's 40-part motet
 - **Styling:** SCSS (compiled by `sass-embedded`), CSS custom properties for theming
 - **Testing:** Vitest 3 with jsdom, coverage via `@vitest/coverage-v8`
 - **Parser:** Ohm.js for LilyPond grammar parsing
-- **Build scripts:** Bash (`buildScore.sh`, `buildAllScores.sh`) invoking LilyPond to generate SVG scores
+- **Build scripts:** Bash (`build/buildScore.sh`, `build/buildAllScores.sh`) invoking LilyPond to generate SVG scores
 - **Deployment:** Netlify (build command `npm run build`, publish directory `dist`). Automated deploy on merge to `main`. Live at [www.spemplayer.net](https://www.spemplayer.net).
 
 ## Architecture
@@ -60,11 +60,11 @@ State changes flow through `index.ts` helper functions (`setChoir()`, `setPart()
 - `npm run dev`: Vite dev server with `--host`
 - `npm run build`: Builds Ohm grammar bundles, then Vite production build
 - `npm run build:ohm`: Generates `ly-grammar.ohm-bundle.js` and `.d.ts` from `.ohm`
-- `npm run build:scores`: Runs `buildAllScores.sh` to regenerate SVGs from LilyPond
+- `npm run build:scores`: Runs `build/buildAllScores.sh` to regenerate SVGs from LilyPond
 - `npm run test`: Vitest in watch mode
 - `npm run coverage`: Single-run test with coverage report
 
-The LilyPond build scripts (`buildScore.sh`, `buildAllScores.sh`) run `lilypond --svg` and strip `height` and `width` attributes from the first line of each SVG. The `sed` command uses macOS-style `-i ''` syntax.
+The LilyPond build scripts (`build/buildScore.sh`, `build/buildAllScores.sh`) run `lilypond --svg` and strip `height` and `width` attributes from the first line of each SVG. The `sed` command uses macOS-style `-i ''` syntax.
 
 ## Testing Conventions
 
@@ -95,7 +95,7 @@ Active work on bugs, hacks, and technical debt is managed via the
 (`https://github.com/users/wainwmr/projects/2`). The board is the canonical
 register of all open items, including specifications and status.
 
-`WORKFLOW.md` in the project root documents the assessment and specification
+`doc/WORKFLOW.md` documents the assessment and specification
 methodology used to populate the board. It is reference material, not an
 active plan.
 

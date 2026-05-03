@@ -4,7 +4,7 @@
 
 - Node.js and npm
 - LilyPond (only if regenerating SVG scores from source)
-- A POSIX shell such as Bash (for `buildScore.sh` and `buildAllScores.sh`)
+- A POSIX shell such as Bash (for `build/buildScore.sh` and `build/buildAllScores.sh`)
 
 ## Install Dependencies
 
@@ -50,7 +50,7 @@ The SVG files in `src/scores/` are generated from LilyPond source files in `src/
 Build a single score:
 
 ```console
-bash buildScore.sh "src/lilypond/Hugh Keyte/modern/Choir I A.ly"
+bash build/buildScore.sh "src/lilypond/Hugh Keyte/modern/Choir I A.ly"
 ```
 
 Build all scores:
@@ -63,7 +63,7 @@ This iterates over all `Choir*.ly` files under `src/lilypond/Hugh Keyte/` and ru
 
 ### Platform Note for Score Generation
 
-`buildScore.sh` uses `sed -i ''`, which is macOS syntax. On Linux or Windows with GNU sed, change the last line to:
+`build/buildScore.sh` uses `sed -i ''`, which is macOS syntax. On Linux or Windows with GNU sed, change the last line to:
 
 ```bash
 sed -i -E '1,1s/ height="[0-9.]+[a-zA-Z]*"//g; 1,1s/ width="[0-9.]+[a-zA-Z]*"//g' "$svg"
