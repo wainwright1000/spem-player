@@ -158,17 +158,18 @@ export class MusicCanvas extends MusicElement {
 
   seek(pos: Position, direction: 1 | -1) {
     var intbar = Math.floor(pos.bar);
-    const choirnotes = this.dict[intbar].filter((x) => x.c == pos.choir);
+    const choirnotes = (this.dict[intbar] ?? []).filter(
+      (x) => x.c == pos.choir
+    );
     const singing = choirnotes.length != 0;
 
     // loop until we find a bar where choir is not doing what it's doing in currentBar
-    var changed;
-    do {
+    while (intbar + direction >= 0 && intbar + direction <= barCount) {
       intbar = intbar + direction;
       const newsinging =
         this.dict[intbar].filter((x) => x.c == pos.choir).length != 0;
-      changed = singing != newsinging;
-    } while (!changed && intbar > 0 && intbar <= barCount);
+      if (singing !== newsinging) break;
+    }
     return intbar;
   }
 
