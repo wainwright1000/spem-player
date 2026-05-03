@@ -8,7 +8,7 @@ import pauseSVG from "../icons/pause.svg?raw";
 import playSVG from "../icons/play.svg?raw";
 
 export class MusicControls extends MusicElement {
-  static observedAttributes = [ "choir", "part", "bar", "playing", "recording" ];
+  static observedAttributes = ["choir", "part", "bar", "playing", "recording"];
 
   audio = new Audio();
 
@@ -24,7 +24,7 @@ export class MusicControls extends MusicElement {
 
   constructor() {
     super();
-  };
+  }
 
   async connectedCallback(): Promise<void> {
     super.connectedCallback();
@@ -33,9 +33,15 @@ export class MusicControls extends MusicElement {
     this.playpausebutton = document.createElement("div");
     this.playpausebutton.setAttribute("id", "playpausebutton");
     this.playpausebutton.setAttribute("tabindex", "0");
-    this.svgLoading = new DOMParser().parseFromString(loadingSVG, 'image/svg+xml').querySelector('svg');
-    this.svgPause = new DOMParser().parseFromString(pauseSVG, 'image/svg+xml').querySelector('svg');
-    this.svgPlay = new DOMParser().parseFromString(playSVG, 'image/svg+xml').querySelector('svg');
+    this.svgLoading = new DOMParser()
+      .parseFromString(loadingSVG, "image/svg+xml")
+      .querySelector("svg");
+    this.svgPause = new DOMParser()
+      .parseFromString(pauseSVG, "image/svg+xml")
+      .querySelector("svg");
+    this.svgPlay = new DOMParser()
+      .parseFromString(playSVG, "image/svg+xml")
+      .querySelector("svg");
     if (this.svgLoading) {
       this.svgLoading.style.display = "none";
       this.playpausebutton.append(this.svgLoading);
@@ -78,7 +84,7 @@ export class MusicControls extends MusicElement {
     for (var p = 0; p < config.parts.length; p++) {
       const opt = document.createElement("option");
       opt.setAttribute("value", String(p));
-      opt.appendChild(document.createTextNode(config.parts[p]))
+      opt.appendChild(document.createTextNode(config.parts[p]));
       this.partselect.append(opt);
     }
     label.append(this.partselect);
@@ -97,35 +103,45 @@ export class MusicControls extends MusicElement {
     label.append(this.barinput);
     this.append(label);
 
-    this.choirselect.addEventListener("change", this.#handleControlsChanged.bind(this));
-    this.partselect.addEventListener("change", this.#handleControlsChanged.bind(this));
-    this.barinput.addEventListener("change", this.#handleControlsChanged.bind(this));
-    if (this.playpausebutton) this.playpausebutton.addEventListener('click', this.playpause.bind(this));
+    this.choirselect.addEventListener(
+      "change",
+      this.#handleControlsChanged.bind(this)
+    );
+    this.partselect.addEventListener(
+      "change",
+      this.#handleControlsChanged.bind(this)
+    );
+    this.barinput.addEventListener(
+      "change",
+      this.#handleControlsChanged.bind(this)
+    );
+    if (this.playpausebutton)
+      this.playpausebutton.addEventListener("click", this.playpause.bind(this));
   }
 
   async #handleControlsChanged() {
     if (!this.barinput || !this.partselect || !this.choirselect) return;
     this.choir = Number(this.choirselect.value);
-    this.voicePart = this.partselect.value == "all" ? "all" : Number(this.partselect.value);
+    this.voicePart =
+      this.partselect.value == "all" ? "all" : Number(this.partselect.value);
     this.bar = Number(this.barinput.value);
-    this.fireEvent('music-controls-changed');
+    this.fireEvent("music-controls-changed");
   }
 
   playpause() {
     if (!this.playing) {
       this.play();
-    }
-    else {
+    } else {
       this.pause();
     }
   }
 
   // Returns true if the filename of the current audio source the same as that of the new (input) filename?
   isSameAudio(file: string): boolean {
-    const thisrecording = this.audio.src.split("/").slice(-2, -1)[0]; 
+    const thisrecording = this.audio.src.split("/").slice(-2, -1)[0];
     const thatrecording = file.split("/").slice(-2, -1)[0];
     if (thisrecording != thatrecording) return false; // different recordings, so definitely not the same audio
-    
+
     const thisfile = this.audio.src.split("/").pop();
     const thatfile = file.split("/").pop();
     return thisfile == thatfile;
@@ -133,23 +149,28 @@ export class MusicControls extends MusicElement {
 
   getMP3filename() {
     var newfile = "default";
-    if (this.choir >= 0 &&
+    if (
+      this.choir >= 0 &&
       this.choir < config.choirs[0].length &&
-      this.voicePart != "all") {
-      newfile = "Choir " + (this.choir + 1) + "-" + config.parts[this.voicePart];
+      this.voicePart != "all"
+    ) {
+      newfile =
+        "Choir " + (this.choir + 1) + "-" + config.parts[this.voicePart];
     }
     console.log("MusicControls: " + config.recording[this.recording]);
-    return config.audio_prefix + config.recording[this.recording] + "/" + newfile + ".mp3";
+    return (
+      config.audio_prefix +
+      config.recording[this.recording] +
+      "/" +
+      newfile +
+      ".mp3"
+    );
   }
-
-
-
 
   async play() {
     // Load the new audio if necessary
     const newfile = this.getMP3filename();
     if (!this.isSameAudio(newfile)) {
-
       console.log("MusicControls: loading:", newfile);
       // set the play button spinner while loading audio
       this.playing = false;
@@ -158,7 +179,7 @@ export class MusicControls extends MusicElement {
         this.svgPause.style.display = "none";
         this.svgLoading.style.display = "block";
       }
-      this.fireEvent('music-controls-loading');
+      this.fireEvent("music-controls-loading");
 
       // load the new audio
       this.audio.src = newfile;
@@ -174,19 +195,18 @@ export class MusicControls extends MusicElement {
       this.svgPause.style.display = "block";
       this.svgLoading.style.display = "none";
     }
-    this.fireEvent('music-controls-playing');
+    this.fireEvent("music-controls-playing");
 
     const self = this;
 
     function loop() {
-
       self.bar = getBarFromTime(self.audio.currentTime, self.recording);
 
       const intbar = Math.floor(self.bar);
       if (self.barinput && Number(self.barinput.value) != intbar) {
         self.barinput.value = String(intbar);
       }
-      self.fireEvent('music-controls-changed');
+      self.fireEvent("music-controls-changed");
 
       if (self.isPlaying()) {
         window.requestAnimationFrame(loop);
@@ -196,7 +216,12 @@ export class MusicControls extends MusicElement {
   }
 
   pause() {
-    console.log("MusicControls: paused at bar " + this.bar + ", time " + this.audio.currentTime);
+    console.log(
+      "MusicControls: paused at bar " +
+        this.bar +
+        ", time " +
+        this.audio.currentTime
+    );
     this.playing = false;
     if (this.svgPlay && this.svgLoading && this.svgPause) {
       this.svgPlay.style.display = "block";
@@ -204,7 +229,7 @@ export class MusicControls extends MusicElement {
       this.svgLoading.style.display = "none";
     }
     this.audio.pause();
-    this.fireEvent('music-controls-paused');
+    this.fireEvent("music-controls-paused");
   }
 
   setChoir(c: string | number) {
@@ -216,7 +241,7 @@ export class MusicControls extends MusicElement {
     if (this.isPlaying()) this.play();
   }
 
-  setRecording(v: number | string): void { 
+  setRecording(v: number | string): void {
     super.setRecording(v);
     this.audio.currentTime = getTimeFromBar(this.bar, this.recording);
     if (this.isPlaying()) this.play();
@@ -231,28 +256,26 @@ export class MusicControls extends MusicElement {
     if (this.isPlaying()) this.play();
   }
 
-
   setBar(b: string | number) {
     if (!this.barinput) return;
     const intbar = Number(b);
     if (intbar === this.bar) return;
     super.setBar(b);
     console.log(`MusicControls: changing bar to ${b}`);
-    
+
     this.bar = intbar;
     this.audio.currentTime = getTimeFromBar(this.bar, this.recording);
 
     console.log("setting currentTime to " + this.audio.currentTime);
     this.barinput.value = String(Math.floor(this.bar));
   }
-  
+
   setPlaying(playing: string | boolean) {
     super.setPlaying(playing);
     console.log(`MusicControls: changing playing to ${this.playing}`);
     if (this.playing) {
       this.play();
-    }
-    else {
+    } else {
       this.pause();
     }
   }

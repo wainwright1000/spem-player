@@ -28,10 +28,12 @@ This serves the application locally with hot module replacement. The `--host` fl
 npm run build
 ```
 
-This runs two steps in sequence:
+This runs steps in sequence:
 
-1. `npm run build:ohm` (generates the Ohm.js grammar bundle from `src/ohmjs/ly-grammar.ohm`)
-2. `vite build` (production bundle into `dist/`)
+1. `npm run format:check` — verifies Prettier formatting
+2. `npm run lint` — ESLint check
+3. `npm run build:ohm` — generates the Ohm.js grammar bundle from `src/ohmjs/ly-grammar.ohm`
+4. `vite build` — production bundle into `dist/`
 
 ## Preview the Production Build
 
@@ -97,11 +99,23 @@ The application version is hardcoded in `index.html` (`v2.1.0`) and is not deriv
 
 `npm run build` regenerates `src/ohmjs/ly-grammar.ohm-bundle.js` from `src/ohmjs/ly-grammar.ohm` via `@ohm-js/cli`. If you modify the grammar, rebuild before testing or deploying.
 
+## Build Output
+
+The production build writes to `dist/`:
+
+- `dist/assets/` — bundled JavaScript and CSS
+- `dist/audio/` — audio files copied from `public/`
+- Other files from `public/` (favicons, manifest, etc.)
+
 ## Deployment
 
 The project is configured for Netlify. `netlify.toml` specifies:
 
 - Build command: `npm run build`
 - Publish directory: `dist`
+
+Deployment is automated: merging to `main` triggers a Netlify build and deploy.
+
+**Live site:** [www.spemplayer.net](https://www.spemplayer.net)
 
 Ensure SVG scores are up to date before deploying, as the build pipeline does not invoke LilyPond automatically.

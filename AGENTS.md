@@ -4,8 +4,6 @@
 
 A browser-based practice tool for singers learning Thomas Tallis's 40-part motet, _Spem in alium_. It plays accentuated recordings of individual voice parts (from two sources: Andrew Leslie Cooper and Choir of the Earth) while displaying synchronised sheet music and a visual overview of all 40 parts.
 
-Upstream repository: `wainwmr/spem-player` (Mark Wainwright). Forked to `wainwright1000/spem-player`.
-
 ## Tech Stack
 
 - **Language:** TypeScript (strict mode, ES2020 target, ESNext modules)
@@ -27,6 +25,20 @@ The UI is built around five custom HTML elements extending `HTMLElement`:
 - `music-element` (`MusicElement.ts`): Abstract base class holding shared state (choir, part, bar, playing, recording) and custom event dispatch.
 
 The entry point is `index.ts`, which wires up events between components, handles keyboard input, and manages global state (recording, score period, dark/light mode).
+
+### State Management
+
+The central `State` interface (defined in `src/ts/common.ts`) tracks:
+
+- `recording` — 0 for ALC, 1 for CotE
+- `viewmode` — `"dark"` or `"light"`
+- `period` — `"modern"` or `"early"`
+- `choir` — 0 to 7
+- `part` — `"all"` or 0 to 4
+- `bar` — 0 to 139
+- `status` — `"playing"`, `"paused"`, or `"loading"`
+
+State changes flow through `index.ts` helper functions (`setChoir()`, `setPart()`, `setBar()`), which update component attributes. Components react via `attributeChangedCallback` and fire custom events to propagate changes back to `index.ts`.
 
 ## Source Layout
 
@@ -66,23 +78,35 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 - **Time mapping:** `bartime` and `barno` arrays in `config.ts` map real audio time to bar numbers for each recording, accounting for tempo changes.
 - **SVG bar detection:** `MusicScore.getBars()` extracts bar positions by parsing `translate` attributes on `<g>` elements that contain numeric `<tspan>` text. It filters out values near the left edge to avoid false matches from tenor clef symbols.
 - **LilyPond parsing:** Only a subset of LilyPond is supported by the Ohm grammar. The parser relies on the exact structure of `spem.ly` and its included files.
-- **Version drift:** `package.json` declares version 2.0.0; `index.html` displays 2.1.0.
+- **Version injection:** Version is managed via the GitHub Project board.
+- **Local ignore rules:** Personal ignore patterns (IDE configs, local scripts) belong in `.git/info/exclude`, not `.gitignore`, to avoid polluting the shared file.
 
-## Known Issues and TODOs (from source comments)
+## Known Issues and TODOs
 
-- `loop()` in `MusicCanvas` never finishes after playing to the end of the piece.
-- Scrolling up and down a small amount is possible in the score view.
-- Forced reflow warning in JavaScript during initial load, related to flex layout.
-- Canvas click handler has an untested edge case for clicks in the padding area.
-- `MusicScore` hard-codes SVG dimensions and highlight rectangle sizes.
-- The `getBarFromTime` / `getTimeFromBar` tempo calculation may fail at boundaries if `bartime`/`barno` arrays are out of sync.
-- Several UI improvements are noted in `index.ts`: CMD-B to jump to a bar number, better title graphic, visual effect for false relations, lyrics in footer, highlighting part on score.
-- Build pipeline: SVGs are not generated automatically during `npm run build`; they must be built separately via `npm run build:scores`.
+All known bugs, hacks, todos, and technical debt are tracked on the
+**Spem Player** GitHub Project board (`https://github.com/users/wainwmr/projects/2`).
+The board is the canonical register, including specifications
+and the implementation roadmap. `BUGS.md` is archived.
 
 ## Process
 
-Active work on bugs, hacks, and technical debt is managed via `TECH_DEBT.md` in the project root. See that document for the current phase, next item, and resumption instructions.
+Active work on bugs, hacks, and technical debt is managed via the
+**Spem Player** GitHub Project board
+(`https://github.com/users/wainwmr/projects/2`). The board is the canonical
+register of all open items, including specifications and status.
 
-## Session Notes
+`WORKFLOW.md` in the project root documents the assessment and specification
+methodology used to populate the board. It is reference material, not an
+active plan.
 
-No active session.
+### Session Startup
+
+1. Check the **Spem Player** GitHub Project board for item statuses and
+   upcoming work.
+2. If `AGENTS-LOCAL.md` exists, read it and follow its Session Startup
+   section for additional project-specific startup tasks.
+
+## Local Instructions
+
+If `AGENTS-LOCAL.md` exists in this directory, read it for additional
+project-specific instructions, scripts, workflows, and startup tasks.

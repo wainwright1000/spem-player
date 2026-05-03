@@ -15,12 +15,18 @@ export class MusicScore extends MusicElement {
 
   bars: number[] = [];
 
-  highlightBar: SVGRectElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect')
-  highlightPosition: SVGRectElement = document.createElementNS("http://www.w3.org/2000/svg", 'rect')
+  highlightBar: SVGRectElement = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "rect"
+  );
+  highlightPosition: SVGRectElement = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "rect"
+  );
 
   constructor() {
     super();
-  };
+  }
 
   async connectedCallback() {
     super.connectedCallback();
@@ -28,28 +34,45 @@ export class MusicScore extends MusicElement {
     this.highlightPosition.setAttribute("id", "hPos");
     this.highlightPosition.setAttribute("x", "0");
     this.highlightPosition.setAttribute("y", "0");
-    this.highlightPosition.setAttribute("width", "7"); 
-    this.highlightPosition.setAttribute("height", "0");  // Will be set later when we know the height of the SVG
+    this.highlightPosition.setAttribute("width", "7");
+    this.highlightPosition.setAttribute("height", "0"); // Will be set later when we know the height of the SVG
     this.highlightPosition.style.fill = colors().scoreHighlight; //Set stroke colour
-    this.highlightPosition.style.fillOpacity = "0";  // initially invisible
+    this.highlightPosition.style.fillOpacity = "0"; // initially invisible
     this.highlightPosition.style.strokeWidth = "5px"; //Set stroke width
 
     this.highlightBar.setAttribute("id", "hBar");
     this.highlightBar.setAttribute("x", "0");
     this.highlightBar.setAttribute("width", "0");
-    this.highlightBar.setAttribute("height", "0");  // Will be set later when we know the height of the SVG
+    this.highlightBar.setAttribute("height", "0"); // Will be set later when we know the height of the SVG
     this.highlightBar.style.fill = colors().scoreHighlight; //Set stroke colour
-    this.highlightBar.style.fillOpacity = "0";  // initially invisible
+    this.highlightBar.style.fillOpacity = "0"; // initially invisible
     this.highlightBar.style.strokeWidth = "5px"; //Set stroke width
 
     this.addEventListener("click", this.scoreClicked);
+    this.addEventListener("wheel", this.#preventVerticalScroll, {
+      passive: false,
+    });
   }
 
-  async attributeChangedCallback(name: string, _oldValue: string, newValue: string) {
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener("wheel", this.#preventVerticalScroll);
+  }
+
+  #preventVerticalScroll = (e: WheelEvent) => {
+    if (e.deltaY !== 0) {
+      e.preventDefault();
+    }
+  };
+
+  async attributeChangedCallback(
+    name: string,
+    _oldValue: string,
+    newValue: string
+  ) {
     if (name == "score-type") {
       this.setScoreType(newValue);
-    }
-    else {
+    } else {
       super.attributeChangedCallback(name, _oldValue, newValue);
     }
   }
@@ -65,7 +88,7 @@ export class MusicScore extends MusicElement {
     var cursorpt = pt.matrixTransform(m?.inverse());
     console.log("clicked at (" + cursorpt.x + ", " + cursorpt.y + ")");
 
-    var result = this.bars.find(x => x > cursorpt.x);
+    var result = this.bars.find((x) => x > cursorpt.x);
     if (result) {
       console.log("selected bar", this.bars.indexOf(result));
       this.setBar(this.bars.indexOf(result));
@@ -76,7 +99,9 @@ export class MusicScore extends MusicElement {
   #loadSvg = async (): Promise<string | null> => {
     try {
       const choirName = config.choirs[this.recording][this.choir];
-      const svgModule = await import(`../scores/Hugh Keyte/${this.scoreType}/Choir ${choirName}.svg?raw`);
+      const svgModule = await import(
+        `../scores/Hugh Keyte/${this.scoreType}/Choir ${choirName}.svg?raw`
+      );
       this.fireEvent("music-score-loaded");
       return svgModule.default;
     } catch (error) {
@@ -87,16 +112,22 @@ export class MusicScore extends MusicElement {
 
   async #loadScore() {
     const choirName = config.choirs[this.recording][this.choir];
-    const filename = config.svg_prefix + "/Hugh Keyte/" + this.scoreType + "/" + choirName + ".svg";
+    const filename =
+      config.svg_prefix +
+      "/Hugh Keyte/" +
+      this.scoreType +
+      "/" +
+      choirName +
+      ".svg";
     console.log("MusicScore: fetching", filename);
-    var starttime = performance.now()
+    var starttime = performance.now();
 
     const svgComp = await this.#loadSvg();
     if (svgComp) {
       this.innerHTML = svgComp;
     }
 
-    var endtime = performance.now()
+    var endtime = performance.now();
     console.log("SVG load time", endtime - starttime);
     this.svg = document.querySelector("music-score svg");
 
@@ -105,7 +136,7 @@ export class MusicScore extends MusicElement {
       return;
     }
 
-    var viewBoxString = this.svg.getAttribute('viewBox');
+    var viewBoxString = this.svg.getAttribute("viewBox");
     const viewBoxParts = viewBoxString?.split(" ") ?? [];
     this.svgWidth = Number(viewBoxParts[2]);
     this.svgHeight = Number(viewBoxParts[3]);
@@ -117,13 +148,13 @@ export class MusicScore extends MusicElement {
     this.svg.prepend(this.highlightBar);
 
     // determine what the bar positions are for this score
-    var starttime = performance.now()
+    var starttime = performance.now();
     this.bars = this.getBars();
     var endtime = performance.now();
     console.log("getBars() time taken:", endtime - starttime);
 
     // Highlight and scroll to the current bar
-    this.highlight()
+    this.highlight();
     this.scrollSmooth();
   }
 
@@ -162,49 +193,55 @@ export class MusicScore extends MusicElement {
     const frameWidth = this.offsetWidth; // the width of the visible score on the screen
     const scoreWidth = this.svg.getBoundingClientRect().width; // the total width of the score
     const barstartpct = intbar <= 0 ? 0 : this.bars[intbar - 1] / this.svgWidth; // % along the score of this bar
-    const barendpct = intbar >= this.bars.length ? 1 : this.bars[intbar] / this.svgWidth; // % along the score of the next bar
-    const barcurrentpct = ((this.bar - intbar) * (barendpct - barstartpct)) + barstartpct; // % along the score of current position in the bar
-    const idealPos = (barcurrentpct * scoreWidth) - (idealBarPercentage * frameWidth);
+    const barendpct =
+      intbar >= this.bars.length ? 1 : this.bars[intbar] / this.svgWidth; // % along the score of the next bar
+    const barcurrentpct =
+      (this.bar - intbar) * (barendpct - barstartpct) + barstartpct; // % along the score of current position in the bar
+    const idealPos =
+      barcurrentpct * scoreWidth - idealBarPercentage * frameWidth;
 
     this.scrollTo({
       top: 0,
       left: idealPos,
-      behavior: "instant"
+      behavior: "instant",
     });
 
     // set highlight the current position
     if (this.bar >= 1) {
-      this.highlightPosition.setAttribute("x", String((barcurrentpct * this.svgWidth) - 2.5));
+      this.highlightPosition.setAttribute(
+        "x",
+        String(barcurrentpct * this.svgWidth - 2.5)
+      );
     }
 
     // set the highlight for the current bar
-    var left = 0, width = 0;
+    var left, width;
     if (intbar < 1) {
       left = 0;
       width = 0;
-    }
-    else if (intbar >= this.bars.length - 1) {
+    } else if (intbar >= this.bars.length - 1) {
       left = this.bars[this.bars.length - 2];
       width = this.bars[this.bars.length - 1] - left;
-    }
-    else {
+    } else {
       left = this.bars[intbar - 1];
       width = this.bars[intbar] - left;
     }
     this.highlightBar.setAttribute("x", String(left));
-    this.highlightBar.setAttribute("width", String(isNaN(width) ? this.svgWidth : width));
+    this.highlightBar.setAttribute(
+      "width",
+      String(isNaN(width) ? this.svgWidth : width)
+    );
   }
 
   highlight() {
     if (this.playing) {
       this.highlightPosition.style.fillOpacity = this.bar > 1 ? "0.1" : "0";
       this.highlightBar.style.fillOpacity = "0";
-      this.style.overflow = 'hidden'; // hide the scroll bar while playing
-    }
-    else {
+      this.style.overflow = "hidden"; // hide the scroll bar while playing
+    } else {
       this.highlightBar.style.fillOpacity = "0.1";
       this.highlightPosition.style.fillOpacity = "0";
-      this.style.overflow = 'auto';
+      this.style.overflow = "auto";
     }
   }
 
@@ -228,21 +265,23 @@ export class MusicScore extends MusicElement {
   // </g>
   getBars() {
     if (!this.svg) return [];
-    var bars: number[] = [...this.svg.querySelectorAll('tspan')]    // get all the tspans the SVG element
-      .filter(tspan => !isNaN(Number(tspan.innerHTML)))     // keep only those containing a bar number 
-      .map(tspan => {
+    var bars: number[] = [...this.svg.querySelectorAll("tspan")] // get all the tspans the SVG element
+      .filter((tspan) => !isNaN(Number(tspan.innerHTML))) // keep only those containing a bar number
+      .map((tspan) => {
         // e.g. transform = "translate(137.1800, 2.8299)"
-        if (!tspan.parentElement || !tspan.parentElement.parentElement) return 0;
-        const translate = tspan.parentElement.parentElement.getAttribute("transform");
+        if (!tspan.parentElement || !tspan.parentElement.parentElement)
+          return 0;
+        const translate =
+          tspan.parentElement.parentElement.getAttribute("transform");
         if (!translate) return 0;
-        const commaPos = translate.indexOf(",")
-        const x = Number(translate.substring(10, commaPos))
-        return x
+        const commaPos = translate.indexOf(",");
+        const x = Number(translate.substring(10, commaPos));
+        return x;
       })
       .sort((a, b) => a - b) // sort numerically
-      .filter(bar => bar > 6);  // any supposed bars that are too close to the beginning 
+      .filter((bar) => bar > 6); // any supposed bars that are too close to the beginning
     // of the score are probably part of the tenor clef and not proper bar numbers
-    bars.unshift(0);  // Add the initial bar line                              
+    bars.unshift(0); // Add the initial bar line
     bars.push(this.svgWidth); // Add the final bar line
     return bars;
   }

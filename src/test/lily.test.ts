@@ -1,10 +1,9 @@
-import { processLilypond, ranges, dict, exportedForTesting } from '../ts/lily';
-const { semantics, romanise, setupLilypondParser } = exportedForTesting;
-import * as ohm from 'ohm-js';
-import lyGrammar from '../ohmjs/ly-grammar.ohm-bundle';
+import { processLilypond, ranges, dict, exportedForTesting } from "../ts/lily";
+const { romanise, setupLilypondParser } = exportedForTesting;
+import * as ohm from "ohm-js";
+import lyGrammar from "../ohmjs/ly-grammar.ohm-bundle";
 
 describe("lilypond parsing tests", () => {
-
   it("romanise", () => {
     expect(romanise(1)).toBe("I");
     expect(romanise(2)).toBe("II");
@@ -19,20 +18,24 @@ describe("lilypond parsing tests", () => {
     expect(romanise(0)).toBe("");
     expect(romanise(-20)).toBe("");
     expect(romanise(9.2)).toBe("IX");
-
   });
 
   it("check lilypond parses OK", () => {
     var a: ohm.MatchResult;
-    expect((a = lyGrammar.match("{ a b c d }")).succeeded(), a.message).toBe(true);
-    expect(a.message).toBeUndefined();
-    expect((a = lyGrammar.match("\\relative c { a b c d e f g }")).succeeded(), a.message).toBe(true);
-    expect((a = lyGrammar.match("\\relative c'' { a2 b4. c1 d\\breve e\\longa f g }")).succeeded(), a.message).toBe(true);
-    expect((a = lyGrammar.match("\\relative c' { aes'''4*9~ }")).succeeded(), a.message).toBe(true);
-    expect((a = lyGrammar.match("sopOne = \\relative c'' { g2 f e d }")).succeeded(), a.message).toBe(true);
+    a = lyGrammar.match("{ a b c d }");
+    expect(a.succeeded()).toBe(true);
+    a = lyGrammar.match("\\relative c { a b c d e f g }");
+    expect(a.succeeded()).toBe(true);
+    a = lyGrammar.match("\\relative c'' { a2 b4. c1 d\\breve e\\longa f g }");
+    expect(a.succeeded()).toBe(true);
+    a = lyGrammar.match("\\relative c' { aes'''4*9~ }");
+    expect(a.succeeded()).toBe(true);
+    a = lyGrammar.match("sopOne = \\relative c'' { g2 f e d }");
+    expect(a.succeeded()).toBe(true);
     // Cannot have digits in a lilypond variable name, so the next one should fail
-    expect((a = lyGrammar.match("sop987 = \\relative c'' { g2 f \\ficta e dis }")).succeeded()).toBe(false);
-    expect(a.message).contain("sop987");
+    a = lyGrammar.match("sop987 = \\relative c'' { g2 f \\ficta e dis }");
+    expect(a.succeeded()).toBe(false);
+    expect(a.failed() && a.message.includes("sop987")).toBe(true);
   });
 
   it("setupLilypondParser", () => {
@@ -43,7 +46,6 @@ describe("lilypond parsing tests", () => {
   });
 
   it("processLilypond", () => {
-
     //assert on the response
     processLilypond();
     expect(dict.length).toBe(139); // bars including bar zero
@@ -56,7 +58,4 @@ describe("lilypond parsing tests", () => {
       }
     }
   });
-
-
-})
-
+});

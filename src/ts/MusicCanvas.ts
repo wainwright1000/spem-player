@@ -2,30 +2,50 @@ import config from "./config";
 import { PartType, Position, colors } from "./common";
 import { MusicElement } from "./MusicElement";
 
-import { Dictionary, Range, processLilypond, dict, ranges, barCount } from "./lily";
+import {
+  Dictionary,
+  Range,
+  processLilypond,
+  dict,
+  ranges,
+  barCount,
+} from "./lily";
 
 export class MusicCanvas extends MusicElement {
   static observedAttributes = ["choir", "part", "bar", "playing"];
 
   canvas: HTMLCanvasElement | null = null;
 
-  canvasPadding: number = 5;  // padding in px of the canvas
+  canvasPadding: number = 5; // padding in px of the canvas
   barWidth: number = 0;
   choirHeight: number = 0;
   partHeight: number = 0;
   pulses: number[][] = [];
-  dict: Dictionary[][] = [];  // HACK: bad name and data type
+  lastNoteStart: number[][] = [];
+  lastNoteDuration: number[][] = [];
+  dict: Dictionary[][] = []; // HACK: bad name and data type
   ranges: Range[][][] = []; // HACK: bad data type
   source: string | null = null;
 
   constructor() {
     super();
-  };
+  }
 
   async connectedCallback() {
     super.connectedCallback();
     await this.#init();
   }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener("wheel", this.#preventVerticalScroll);
+  }
+
+  #preventVerticalScroll = (e: WheelEvent) => {
+    if (e.deltaY !== 0) {
+      e.preventDefault();
+    }
+  };
 
   setChoir(c: string | number) {
     super.setChoir(c);
@@ -56,11 +76,24 @@ export class MusicCanvas extends MusicElement {
     this.canvas = document.createElement("canvas");
     this.append(this.canvas);
 
-    this.canvas.addEventListener('click', this.#canvasClicked.bind(this));
-    this.canvas.addEventListener('mousemove', this.#canvasHovered.bind(this), false);
-    this.canvas.addEventListener('touchstart', this.#touchStarted.bind(this), { passive: false });
-    this.addEventListener('touchmove', this.#touchMoved.bind(this), { passive: false });
-    this.addEventListener('touchend', this.#touchEnded.bind(this), { passive: false });
+    this.canvas.addEventListener("click", this.#canvasClicked.bind(this));
+    this.canvas.addEventListener(
+      "mousemove",
+      this.#canvasHovered.bind(this),
+      false
+    );
+    this.canvas.addEventListener("touchstart", this.#touchStarted.bind(this), {
+      passive: false,
+    });
+    this.addEventListener("touchmove", this.#touchMoved.bind(this), {
+      passive: false,
+    });
+    this.addEventListener("touchend", this.#touchEnded.bind(this), {
+      passive: false,
+    });
+    this.addEventListener("wheel", this.#preventVerticalScroll, {
+      passive: false,
+    });
 
     this.#calculateCanvasSize();
     this.#showLoadingOnCanvas();
@@ -75,8 +108,12 @@ export class MusicCanvas extends MusicElement {
     // will be pulsed when the choir is singing a note.
     for (var c = 0; c < config.choirs[0].length; c++) {
       this.pulses[c] = [];
+      this.lastNoteStart[c] = [];
+      this.lastNoteDuration[c] = [];
       for (var p = 0; p < config.parts.length; p++) {
         this.pulses[c][p] = 1;
+        this.lastNoteStart[c][p] = 0;
+        this.lastNoteDuration[c][p] = 0;
       }
     }
 
@@ -94,11 +131,12 @@ export class MusicCanvas extends MusicElement {
     this.canvas.style.width = "100%";
     this.canvas.style.height = "100%";
 
-    this.barWidth = (this.canvas.width - (2 * this.canvasPadding)) / 140;
-    this.choirHeight = (this.canvas.height - (2 * this.canvasPadding)) / config.choirs[0].length;
+    this.barWidth = (this.canvas.width - 2 * this.canvasPadding) / 140;
+    this.choirHeight =
+      (this.canvas.height - 2 * this.canvasPadding) / config.choirs[0].length;
     this.partHeight = this.choirHeight / config.parts.length;
     // console.log("MusicCanvas: calculated bar choir and part sizes:", this.barWidth, this.choirHeight, this.partHeight);
-  };
+  }
 
   #showLoadingOnCanvas() {
     if (this.canvas == null) return;
@@ -120,15 +158,16 @@ export class MusicCanvas extends MusicElement {
 
   seek(pos: Position, direction: 1 | -1) {
     var intbar = Math.floor(pos.bar);
-    const choirnotes = this.dict[intbar].filter(x => x.c == pos.choir);
+    const choirnotes = this.dict[intbar].filter((x) => x.c == pos.choir);
     const singing = choirnotes.length != 0;
 
     // loop until we find a bar where choir is not doing what it's doing in currentBar
-    var changed = false;
+    var changed;
     do {
       intbar = intbar + direction;
-      const newsinging = (this.dict[intbar].filter(x => x.c == pos.choir).length != 0);
-      changed = (singing != newsinging)
+      const newsinging =
+        this.dict[intbar].filter((x) => x.c == pos.choir).length != 0;
+      changed = singing != newsinging;
     } while (!changed && intbar > 0 && intbar <= barCount);
     return intbar;
   }
@@ -145,7 +184,6 @@ export class MusicCanvas extends MusicElement {
     }
     window.requestAnimationFrame(loop);
     // setTimeout(frame, config.tempo / 10);
-
   }
 
   oldTimeStamp: number = 0;
@@ -158,23 +196,40 @@ export class MusicCanvas extends MusicElement {
     }
 
     // Calculate frames per second
-    var fps = 0;
     if (this.playing) {
       const now: number = Date.now();
       const secondsPassed = (now - this.oldTimeStamp) / 1000;
       if (secondsPassed < 0.01) return; // HACK: throttle
       this.oldTimeStamp = now;
-      fps = secondsPassed === 0 ? 0 : Math.round(1 / secondsPassed);
+      // const fps = secondsPassed === 0 ? 0 : Math.round(1 / secondsPassed);
     }
 
-
-    // If there are notes playing, pulse the color's lightness for that voice part
+    // If there are notes starting now, record their onset and duration
     const quant = Math.floor(this.bar * 16) / 16;
     const notes = this.dict[quant];
     if (notes != undefined && notes.length > 0) {
       for (var n of notes) {
         if (n.n.duration != null) {
-          this.pulses[n.c][n.p] = this.#easeOutCubic(this.bar % quant, 1.4, -0.4, n.n.duration.sfths / 128);
+          this.lastNoteStart[n.c][n.p] = quant;
+          this.lastNoteDuration[n.c][n.p] = n.n.duration.sfths / 128;
+        }
+      }
+    }
+
+    // Update pulses for all parts based on elapsed time since last note onset
+    for (var c = 0; c < config.choirs[0].length; c++) {
+      for (var p = 0; p < config.parts.length; p++) {
+        const elapsed = this.bar - this.lastNoteStart[c][p];
+        if (elapsed >= 0 && elapsed < this.lastNoteDuration[c][p]) {
+          const isLight = this.#isLightMode();
+          this.pulses[c][p] = this.#easeOutCubic(
+            elapsed,
+            isLight ? 0.4 : 1.6,
+            isLight ? 0.6 : -0.6,
+            this.lastNoteDuration[c][p]
+          );
+        } else {
+          this.pulses[c][p] = 1;
         }
       }
     }
@@ -199,8 +254,14 @@ export class MusicCanvas extends MusicElement {
     if (this.bar > 0 && this.bar <= barCount) {
       ctx.save();
       ctx.beginPath();
-      ctx.moveTo(this.canvasPadding + (this.bar * this.barWidth), this.canvasPadding);
-      ctx.lineTo(this.canvasPadding + (this.bar * this.barWidth), this.canvas.height - this.canvasPadding);
+      ctx.moveTo(
+        this.canvasPadding + this.bar * this.barWidth,
+        this.canvasPadding
+      );
+      ctx.lineTo(
+        this.canvasPadding + this.bar * this.barWidth,
+        this.canvas.height - this.canvasPadding
+      );
       ctx.lineWidth = this.barWidth * 1.4;
       ctx.strokeStyle = colors().highlight;
       ctx.lineCap = "square";
@@ -211,18 +272,29 @@ export class MusicCanvas extends MusicElement {
     // Draw highlight line for the selected choir or choir and part
     var startY: number, width: number;
     if (this.voicePart != "all") {
-      startY = this.canvasPadding + (this.choir * this.choirHeight) + (this.voicePart * this.partHeight);
+      startY =
+        this.canvasPadding +
+        this.choir * this.choirHeight +
+        this.voicePart * this.partHeight;
       width = this.partHeight * 1.4;
-    }
-    else {
+    } else {
       // center the highlight on the middle tenor line
-      startY = this.canvasPadding + (this.choir * this.choirHeight) + (2 * this.partHeight);
-      width = (this.partHeight * 5.8);
+      startY =
+        this.canvasPadding +
+        this.choir * this.choirHeight +
+        2 * this.partHeight;
+      width = this.partHeight * 5.8;
     }
     ctx.save();
     ctx.beginPath();
-    ctx.moveTo(this.canvasPadding + this.barWidth, startY + (this.partHeight / 2));
-    ctx.lineTo(this.canvasPadding + (140 * this.barWidth) - this.barWidth, startY + (this.partHeight / 2));
+    ctx.moveTo(
+      this.canvasPadding + this.barWidth,
+      startY + this.partHeight / 2
+    );
+    ctx.lineTo(
+      this.canvasPadding + 140 * this.barWidth - this.barWidth,
+      startY + this.partHeight / 2
+    );
     ctx.lineWidth = width;
     ctx.strokeStyle = colors().highlight;
     ctx.lineCap = "round";
@@ -234,18 +306,19 @@ export class MusicCanvas extends MusicElement {
     ctx.lineCap = "round";
     for (var c = 0; c < config.choirs[0].length; c++) {
       for (var p = 0; p < config.parts.length; p++) {
-        const startY = this.canvasPadding + (c * this.choirHeight) + (p * this.partHeight);
+        const startY =
+          this.canvasPadding + c * this.choirHeight + p * this.partHeight;
 
-        const list: { "from": number, "to": number }[] = this.ranges[c][p];
-        list.forEach(r => {
+        const list: { from: number; to: number }[] = this.ranges[c][p];
+        list.forEach((r) => {
           const from = r.from;
           const to = r.to;
 
           ctx.beginPath();
           // The weird 0.3 is because we're using rounded lines
-          const startX = this.canvasPadding + ((from + 0.3) * this.barWidth);
-          const endX = this.canvasPadding + ((to - 0.3) * this.barWidth);
-          const Y = startY + (this.partHeight / 2);
+          const startX = this.canvasPadding + (from + 0.3) * this.barWidth;
+          const endX = this.canvasPadding + (to - 0.3) * this.barWidth;
+          const Y = startY + this.partHeight / 2;
           ctx.moveTo(startX, Y);
           ctx.lineTo(endX, Y);
 
@@ -254,13 +327,16 @@ export class MusicCanvas extends MusicElement {
           // If current bar is highlighted
           if (this.bar >= from && this.bar < to) {
             saturation = 80;
-            lightness = (67 - (3 * p)) * this.pulses[c][p];
+            lightness = (67 - 3 * p) * this.pulses[c][p];
             transparency = 1; // pulses[c][p];
           }
           // if current choir/part is highlighted
-          else if (c == this.choir && (this.voicePart == "all" || p == this.voicePart)) {
+          else if (
+            c == this.choir &&
+            (this.voicePart == "all" || p == this.voicePart)
+          ) {
             saturation = 80;
-            lightness = 67 - (3 * p);
+            lightness = 67 - 3 * p;
             transparency = 1;
           }
           // else if (c == currentChoir && p == currentPart) {
@@ -270,12 +346,11 @@ export class MusicCanvas extends MusicElement {
           // }
           else if (this.bar === 0 || this.bar > barCount) {
             saturation = 50;
-            lightness = 67 - (3 * p);
+            lightness = 67 - 3 * p;
             transparency = 1;
-          }
-          else {
+          } else {
             saturation = 50;
-            lightness = dullBaseLightness - (3 * p);
+            lightness = dullBaseLightness - 3 * p;
             transparency = 1;
           }
 
@@ -287,22 +362,29 @@ export class MusicCanvas extends MusicElement {
   }
 
   #isLightMode(): boolean {
-    if (document.body.classList.contains('light-theme')) return true;
-    if (document.body.classList.contains('dark-theme')) return false;
-    if (typeof window.matchMedia !== 'function') return true;
-    return !window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (document.body.classList.contains("light-theme")) return true;
+    if (document.body.classList.contains("dark-theme")) return false;
+    if (typeof window.matchMedia !== "function") return true;
+    return !window.matchMedia("(prefers-color-scheme: dark)").matches;
   }
 
-  // BUG: what happens if you click in the canvas padding?
   #getMousePos(e: MouseEvent): Position {
-    // if (!this.config) return { choir: 0, part: 0, bar: 0 };
-
     const rect = this.getBoundingClientRect();
-    const y = ((e.offsetY - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
+    const clampedX = Math.max(
+      this.canvasPadding,
+      Math.min(e.offsetX, rect.width - this.canvasPadding)
+    );
+    const clampedY = Math.max(
+      this.canvasPadding,
+      Math.min(e.offsetY, rect.height - this.canvasPadding)
+    );
+    const y =
+      ((clampedY - this.canvasPadding) * config.choirs[0].length) /
+      (rect.height - 2 * this.canvasPadding);
     return {
       choir: Math.min(config.choirs[0].length - 1, Math.max(0, Math.floor(y))),
       part: Math.floor((y % 1) * config.parts.length),
-      bar: Math.floor((e.offsetX * 140) / rect.width)
+      bar: Math.floor((clampedX * 140) / rect.width),
     };
   }
 
@@ -325,12 +407,24 @@ export class MusicCanvas extends MusicElement {
 
   #getTouchPos(e: TouchEvent): Position {
     var rect = this.getBoundingClientRect();
+    const touchX = e.targetTouches[0].clientX - rect.left;
+    const touchY = e.targetTouches[0].clientY - rect.top;
+    const clampedX = Math.max(
+      this.canvasPadding,
+      Math.min(touchX, rect.width - this.canvasPadding)
+    );
+    const clampedY = Math.max(
+      this.canvasPadding,
+      Math.min(touchY, rect.height - this.canvasPadding)
+    );
 
-    const y = ((e.targetTouches[0].clientY - rect.top - this.canvasPadding) * config.choirs[0].length) / (rect.height - (2 * this.canvasPadding));
+    const y =
+      ((clampedY - this.canvasPadding) * config.choirs[0].length) /
+      (rect.height - 2 * this.canvasPadding);
     return {
       choir: Math.min(config.choirs[0].length - 1, Math.max(0, Math.floor(y))),
       part: "all",
-      bar: Math.floor((e.targetTouches[0].clientX - rect.left - this.canvasPadding) * 140 / rect.width)
+      bar: Math.floor(((clampedX - this.canvasPadding) * 140) / rect.width),
     };
   }
 

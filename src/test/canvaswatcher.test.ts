@@ -1,5 +1,5 @@
-import { MusicCanvas } from '../ts/MusicCanvas';
-import { MusicCanvasWatcher } from '../ts/MusicCanvasWatcher';
+import { MusicCanvas } from "../ts/MusicCanvas";
+import { MusicCanvasWatcher } from "../ts/MusicCanvasWatcher";
 
 MusicCanvas.define("music-canvas");
 MusicCanvasWatcher.define("music-canvas-watcher");
@@ -25,20 +25,20 @@ describe("MusicCanvasWatcher custom element", () => {
 
   it("handleCanvasHover updates display and shows watcher", () => {
     expect(watcher).not.toBeNull();
-    
+
     const canvas = document.querySelector("music-canvas");
     expect(canvas).not.toBeNull();
-    
+
     const event = new CustomEvent("music-canvas-hover", {
-      detail: { position: { choir: 2, part: 1, bar: 42.5 } }
+      detail: { position: { choir: 2, part: 1, bar: 42.5 } },
     });
-    
+
     canvas!.dispatchEvent(event);
-    
+
     const choirOutput = watcher!.querySelector("#choir-output");
     const partOutput = watcher!.querySelector("#part-output");
     const barOutput = watcher!.querySelector("#bar-output");
-    
+
     expect(choirOutput?.textContent).toBe("Choir 3");
     expect(partOutput?.textContent).toBe("Alto");
     expect(barOutput?.textContent).toBe("Bar 42");
@@ -47,16 +47,16 @@ describe("MusicCanvasWatcher custom element", () => {
 
   it("handleCanvasHover hides part output for 'all' parts", () => {
     expect(watcher).not.toBeNull();
-    
+
     const canvas = document.querySelector("music-canvas");
     expect(canvas).not.toBeNull();
-    
+
     const event = new CustomEvent("music-canvas-hover", {
-      detail: { position: { choir: 0, part: "all", bar: 10 } }
+      detail: { position: { choir: 0, part: "all", bar: 10 } },
     });
-    
+
     canvas!.dispatchEvent(event);
-    
+
     const partOutput = watcher!.querySelector("#part-output");
     expect(partOutput?.textContent).toBe("");
   });

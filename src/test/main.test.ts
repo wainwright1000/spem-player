@@ -1,17 +1,14 @@
-import { MusicCanvas } from '../ts/MusicCanvas';
-import { MusicScore } from '../ts/MusicScore';
-import { MusicControls } from '../ts/MusicControls';
-import config from '../ts/config';
+import { MusicCanvas } from "../ts/MusicCanvas";
+import { MusicScore } from "../ts/MusicScore";
+import { MusicControls } from "../ts/MusicControls";
 
 describe("index.js", () => {
-
   beforeAll(() => {
     MusicCanvas.define("music-canvas");
     MusicControls.define("music-controls");
     MusicScore.define("music-score");
 
     // vi.spyOn(HTMLElement.prototype, "scrollTo").mockReturnValue();
-
   });
 
   afterAll(() => {
@@ -36,14 +33,13 @@ describe("index.js", () => {
     expect(score).not.toBeNull();
     expect(controls).not.toBeNull();
     // expect(canvas).not.toBeNull();
-    
+
     expect(document.querySelector("svg")).not.toBe(null);
     console.log(score?.innerHTML);
     expect(document.querySelector("div[id='playpausebutton']")).not.toBe(null);
     // expect(document.querySelector("music-canvas canvas")).not.toBe(null);
-    
   });
-  
+
   it("Selecting a bar in the score updates the bar in controls", () => {
     expect(score).not.toBeNull();
     // const eMock = vi.fn(() => ({
@@ -54,6 +50,4 @@ describe("index.js", () => {
 
     // expect(score?.getAttribute("bar")).toBe("8");
   });
-
-
 });
