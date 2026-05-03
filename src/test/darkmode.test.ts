@@ -56,7 +56,9 @@ describe("Dark/light mode toggle", () => {
   }, 30000);
 
   afterAll(async () => {
-    const controls = document.querySelector("music-controls") as HTMLMediaElement;
+    const controls = document.querySelector(
+      "music-controls"
+    ) as HTMLMediaElement;
     if (controls) controls.pause();
     await new Promise((resolve) => setTimeout(resolve, 100));
     vi.restoreAllMocks();
