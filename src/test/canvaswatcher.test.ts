@@ -13,6 +13,7 @@ describe("MusicCanvasWatcher custom element", () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     vi.clearAllMocks();
   });
 
@@ -59,5 +60,86 @@ describe("MusicCanvasWatcher custom element", () => {
 
     const partOutput = watcher!.querySelector("#part-output");
     expect(partOutput?.textContent).toBe("");
+  });
+
+  it("uses setTimeout instead of setInterval for auto-hide", () => {
+    const setTimeoutSpy = vi.spyOn(globalThis, "setTimeout");
+    const setIntervalSpy = vi.spyOn(globalThis, "setInterval");
+
+    const canvas = document.querySelector("music-canvas");
+    const event = new CustomEvent("music-canvas-hover", {
+      detail: { position: { choir: 0, part: 0, bar: 10 } },
+    });
+
+    canvas!.dispatchEvent(event);
+
+    expect(setTimeoutSpy).toHaveBeenCalledOnce();
+    expect(setIntervalSpy).not.toHaveBeenCalled();
+
+    setTimeoutSpy.mockRestore();
+    setIntervalSpy.mockRestore();
+  });
+
+  it("clears previous timeout on re-hover", () => {
+    const clearTimeoutSpy = vi.spyOn(globalThis, "clearTimeout");
+
+    const canvas = document.querySelector("music-canvas");
+    const event = new CustomEvent("music-canvas-hover", {
+      detail: { position: { choir: 0, part: 0, bar: 10 } },
+    });
+
+    canvas!.dispatchEvent(event);
+    canvas!.dispatchEvent(event);
+
+    expect(clearTimeoutSpy).toHaveBeenCalledOnce();
+
+    clearTimeoutSpy.mockRestore();
+  });
+
+  it("does not call clearTimeout on first hover", () => {
+    const clearTimeoutSpy = vi.spyOn(globalThis, "clearTimeout");
+
+    const canvas = document.querySelector("music-canvas");
+    const event = new CustomEvent("music-canvas-hover", {
+      detail: { position: { choir: 0, part: 0, bar: 10 } },
+    });
+
+    canvas!.dispatchEvent(event);
+
+    expect(clearTimeoutSpy).not.toHaveBeenCalled();
+
+    clearTimeoutSpy.mockRestore();
+  });
+
+  it("adds hide class after timeout expires", () => {
+    vi.useFakeTimers();
+
+    const canvas = document.querySelector("music-canvas");
+    const event = new CustomEvent("music-canvas-hover", {
+      detail: { position: { choir: 0, part: 0, bar: 10 } },
+    });
+
+    canvas!.dispatchEvent(event);
+    expect(watcher!.classList.contains("hide")).toBe(false);
+
+    vi.advanceTimersByTime(1500);
+    expect(watcher!.classList.contains("hide")).toBe(true);
+  });
+
+  it("does not repeatedly hide after timeout fires once", () => {
+    vi.useFakeTimers();
+
+    const canvas = document.querySelector("music-canvas");
+    const event = new CustomEvent("music-canvas-hover", {
+      detail: { position: { choir: 0, part: 0, bar: 10 } },
+    });
+
+    canvas!.dispatchEvent(event);
+    vi.advanceTimersByTime(1500);
+    expect(watcher!.classList.contains("hide")).toBe(true);
+
+    watcher!.classList.remove("hide");
+    vi.advanceTimersByTime(1500);
+    expect(watcher!.classList.contains("hide")).toBe(false);
   });
 });

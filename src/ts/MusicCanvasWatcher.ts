@@ -31,7 +31,7 @@ export class MusicCanvasWatcher extends MusicElement {
     });
   }
 
-  intId: NodeJS.Timeout | null = null;
+  intId: ReturnType<typeof setTimeout> | null = null;
 
   handleCanvasHover(e: CustomEvent) {
     if (!this.choiroutput || !this.partoutput || !this.baroutput) return;
@@ -43,9 +43,9 @@ export class MusicCanvasWatcher extends MusicElement {
     }
     this.baroutput.textContent = "Bar " + Math.floor(pos.bar);
     this.classList.remove("hide");
-    if (this.intId) clearInterval(this.intId);
+    if (this.intId) clearTimeout(this.intId);
     const self = this;
-    this.intId = setInterval(function () {
+    this.intId = setTimeout(function () {
       self.classList.add("hide");
     }, 1500);
   }
