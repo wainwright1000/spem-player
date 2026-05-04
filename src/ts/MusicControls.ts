@@ -121,8 +121,17 @@ export class MusicControls extends MusicElement {
     );
     this.barinput.addEventListener("keydown", (e) => {
       const allowed = [
-        "Backspace", "Delete", "ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown",
-        "Tab", "Enter", "Escape", "Home", "End",
+        "Backspace",
+        "Delete",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+        "Tab",
+        "Enter",
+        "Escape",
+        "Home",
+        "End",
       ];
       if (allowed.includes(e.key) || /^[0-9]$/.test(e.key)) {
         return;

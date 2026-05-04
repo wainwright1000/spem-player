@@ -378,10 +378,18 @@ describe("MusicControls custom element", () => {
   });
 
   it("adds control class to all interactive elements (#182)", () => {
-    expect(document.getElementById("playpausebutton")?.classList.contains("control")).toBe(true);
-    expect(document.getElementById("choir-select")?.classList.contains("control")).toBe(true);
-    expect(document.getElementById("part-select")?.classList.contains("control")).toBe(true);
-    expect(document.getElementById("bar-field")?.classList.contains("control")).toBe(true);
+    expect(
+      document.getElementById("playpausebutton")?.classList.contains("control")
+    ).toBe(true);
+    expect(
+      document.getElementById("choir-select")?.classList.contains("control")
+    ).toBe(true);
+    expect(
+      document.getElementById("part-select")?.classList.contains("control")
+    ).toBe(true);
+    expect(
+      document.getElementById("bar-field")?.classList.contains("control")
+    ).toBe(true);
   });
 
   it("rejects letter keydown on bar input (#184)", () => {
