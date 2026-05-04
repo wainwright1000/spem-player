@@ -1,5 +1,6 @@
 import { MusicControls } from "../ts/MusicControls";
 import config from "../ts/config";
+import { processLilypond, barCount } from "../ts/lily";
 
 var expectedBar: any;
 var expectedChoir: any;
@@ -41,6 +42,7 @@ function matchesWildcard(pattern: string, str: string): boolean {
 describe("MusicControls custom element", () => {
   beforeAll(() => {
     MusicControls.define("music-controls");
+    processLilypond();
 
     // mock the Media element so we know if it's being played
     vi.spyOn(HTMLMediaElement.prototype, "load").mockReturnThis();
@@ -373,5 +375,69 @@ describe("MusicControls custom element", () => {
     choir.dispatchEvent(new Event("change", { bubbles: true }));
     const changeResult = await waitingforChange;
     expect(changeResult).toBe(true);
+  });
+
+  it("adds control class to all interactive elements (#182)", () => {
+    expect(document.getElementById("playpausebutton")?.classList.contains("control")).toBe(true);
+    expect(document.getElementById("choir-select")?.classList.contains("control")).toBe(true);
+    expect(document.getElementById("part-select")?.classList.contains("control")).toBe(true);
+    expect(document.getElementById("bar-field")?.classList.contains("control")).toBe(true);
+  });
+
+  it("rejects letter keydown on bar input (#184)", () => {
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const event = new KeyboardEvent("keydown", { key: "d", bubbles: true });
+    const preventDefaultSpy = vi.spyOn(event, "preventDefault");
+    bar.dispatchEvent(event);
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
+  it("accepts digit keydown on bar input (#184)", () => {
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const event = new KeyboardEvent("keydown", { key: "5", bubbles: true });
+    const preventDefaultSpy = vi.spyOn(event, "preventDefault");
+    bar.dispatchEvent(event);
+    expect(preventDefaultSpy).not.toHaveBeenCalled();
+  });
+
+  it("sanitises non-numeric bar input to 0 on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    bar.value = "4d";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(0);
+    expect(bar.value).toBe("0");
+  });
+
+  it("clamps out-of-range bar input to max on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const maxBar = barCount > 0 ? barCount - 1 : 0;
+    bar.value = "999";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(maxBar);
+    expect(bar.value).toBe(String(maxBar));
+  });
+
+  it("clamps negative bar input to 0 on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    bar.value = "-5";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(0);
+    expect(bar.value).toBe("0");
+  });
+
+  it("handles empty bar input as 0 on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    bar.value = "";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(0);
+    expect(bar.value).toBe("0");
   });
 });
