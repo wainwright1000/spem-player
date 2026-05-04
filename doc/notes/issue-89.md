@@ -187,12 +187,34 @@ Detected from the Hugh Keyte edition of *Spem in alium*.
 
 ---
 
+## Changelog
+
+### 2026-05-03
+
+- Removed stale TODO from `index.ts`.
+- Added static white hotspot circles to `MusicCanvas.draw()`.
+  - Radius: `partHeight / 2` (diameter equals part line height).
+  - Colour: `rgba(255, 255, 255, 0.4)`.
+  - Drawn after voice lines and before FR pulse circles so hotspots are always visible and pulses overlay on top.
+- Added canvas test: `draw() renders false-relation hotspot circles when falseRelations are populated`.
+
+## Future work: shimmer hotspots
+
+The current white hotspots are functional but visually blunt. A proposed evolution is to render hotspots in the part's own choir colour and make them visible only through a "shimmer" animation. Four implementation options were considered:
+
+1. **Wandering radial highlight.** A faint base circle with a small radial gradient whose centre orbits on a sine/cosine path. Cheap and distinctive, but may look chaotic in dense clusters such as bar 86.
+2. **Rotating linear sheen.** A faint base circle with a narrow bright linear-gradient band that rotates continuously like a specular reflection. Elegant, but requires trigonometry per frame to rotate gradient vectors.
+3. **Phase-offset opacity breathing.** Each hotspot pulses on its own sine wave with a randomised phase. Very simple, but risks looking identical to the existing note-pulse effect.
+4. **Animated dash stroke.** Outline only, using `setLineDash` with animated `lineDashOffset`. Extremely cheap, but resembles UI chrome rather than a musical cue.
+
+Recommended direction: Option 1 (wandering radial highlight) or Option 2 (rotating sheen). Both keep the base circle low-contrast so the shimmer carries the visual weight. A key open question is whether same-colour hotspots will be noticeable enough against the already-coloured voice lines; an alternative is to keep a neutral base (white or near-white) and tint the shimmer with the part hue.
+
 ## Branch status
 
 - Branch: `issue-89`
-- Rebased onto `dev` at v2.2.0.
-- No merge conflicts with `dev` at time of writing.
-- Ready for PR.
+- Merged `dev` into `issue-89` on 2026-05-03.
+- All tests pass (89/89).
+- Feature is functional. Shimmer enhancement is deferred.
 
 ---
 
@@ -206,5 +228,7 @@ Detected from the Hugh Keyte edition of *Spem in alium*.
 | `src/ts/MusicCanvas.ts` | ~17 | `falseRelationPulses` property |
 | `src/ts/MusicCanvas.ts` | ~96 | `falseRelationPulses` initialisation |
 | `src/ts/MusicCanvas.ts` | ~242-256 | FR pulse computation |
-| `src/ts/MusicCanvas.ts` | ~384-425 | FR circle drawing (both voices, radial gradient) |
+| `src/ts/MusicCanvas.ts` | ~380-422 | FR hotspot circles (white, always visible) |
+| `src/ts/MusicCanvas.ts` | ~424-445 | FR pulse circles (both voices, radial gradient) |
 | `src/test/lily.test.ts` | ~71-165 | 6 false-relation tests |
+| `src/test/canvas.test.ts` | ~33-41 | FR hotspot render test |

@@ -1,6 +1,6 @@
 import { MusicCanvas } from "../ts/MusicCanvas";
 import config from "../ts/config";
-import { processLilypond, dict, ranges, barCount } from "../ts/lily";
+import { processLilypond, dict, ranges, barCount, falseRelations } from "../ts/lily";
 
 MusicCanvas.define("music-canvas");
 processLilypond();
@@ -55,6 +55,12 @@ describe("MusicCanvas custom element", () => {
     canvas!.bar = 10;
     canvas!.draw();
     canvas!.voicePart = "all";
+  });
+
+  it("draw() renders false-relation hotspot circles when falseRelations are populated", async () => {
+    expect(canvas).not.toBeNull();
+    expect(falseRelations.length).toBeGreaterThan(0);
+    canvas!.draw();
   });
 
   it("seek() clamps to lower bound when seeking backward from bar 0", () => {

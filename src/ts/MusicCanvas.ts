@@ -378,6 +378,25 @@ export class MusicCanvas extends MusicElement {
       }
     }
 
+    // Draw false-relation hotspot circles
+    for (let i = 0; i < falseRelations.length; i++) {
+      const fr = falseRelations[i];
+      const cx = this.canvasPadding + ((fr.from + fr.to) / 2) * this.barWidth;
+
+      for (const part of fr.pair) {
+        const startY =
+          this.canvasPadding +
+          part.c * this.choirHeight +
+          part.p * this.partHeight;
+        const cy = startY + this.partHeight / 2;
+
+        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.beginPath();
+        ctx.arc(cx, cy, this.partHeight / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
     // Draw false-relation pulse circles
     for (let i = 0; i < falseRelations.length; i++) {
       const pulse = this.falseRelationPulses[i];

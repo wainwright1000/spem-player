@@ -49,7 +49,6 @@ var current: State = {
 }
 
 // TODO: Change dark mode to moon/sun icons
-// TODO: Visual effect for false relations
 // TODO: Better font/graphic for Spem Player title
 // BUG: can scroll up and down a tiny bit in score
 // BUG: [Violation] Forced reflow while executing JavaScript took 36ms  (this doesn't happen when you have already manually adjusted the height of the score - something to do with the flex: 1 after the reload?)
