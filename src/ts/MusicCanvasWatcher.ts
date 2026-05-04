@@ -21,7 +21,6 @@ export class MusicCanvasWatcher extends MusicElement {
     this.baroutput.setAttribute("id", "bar-output");
     this.append(this.baroutput);
 
-    super.connectedCallback();
     const canvi = document.querySelectorAll("music-canvas");
     canvi.forEach((c) => {
       c.addEventListener(
