@@ -1,6 +1,6 @@
 import { MusicCanvas } from "../ts/MusicCanvas";
 import config from "../ts/config";
-import { processLilypond, dict, ranges } from "../ts/lily";
+import { processLilypond, dict, ranges, barCount } from "../ts/lily";
 
 MusicCanvas.define("music-canvas");
 processLilypond();
@@ -57,16 +57,24 @@ describe("MusicCanvas custom element", () => {
     canvas!.voicePart = "all";
   });
 
-  it("seek() finds next section change", () => {
+  it("seek() clamps to lower bound when seeking backward from bar 0", () => {
     expect(canvas).not.toBeNull();
-    expect(canvas!.dict.length).toBeGreaterThan(0);
-    const pos: { choir: number; part: "all"; bar: number } = {
-      choir: 0,
-      part: "all",
-      bar: 1,
-    };
-    const next = canvas!.seek(pos, 1);
-    expect(typeof next).toBe("number");
+    const pos = { choir: 0, part: "all" as const, bar: 0 };
+    expect(canvas!.seek(pos, -1)).toBe(0);
+  });
+
+  it("seek() clamps to upper bound when seeking forward from last bar", () => {
+    expect(canvas).not.toBeNull();
+    const pos = { choir: 0, part: "all" as const, bar: barCount };
+    expect(canvas!.seek(pos, +1)).toBe(barCount);
+  });
+
+  it("seek() finds next section change forward from bar 1", () => {
+    expect(canvas).not.toBeNull();
+    const pos = { choir: 0, part: "all" as const, bar: 1 };
+    const result = canvas!.seek(pos, +1);
+    expect(result).toBeGreaterThanOrEqual(0);
+    expect(result).toBeLessThanOrEqual(barCount);
   });
 
   it("canvas click fires music-canvas-click event", async () => {

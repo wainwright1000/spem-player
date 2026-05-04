@@ -50,21 +50,49 @@ Tests live in `src/test/` and follow the naming convention `*.test.ts`.
 - `vitest-fetch-mock`: Fetch mocking utility
 - `@vitest/coverage-v8`: Coverage reporting
 
-## Testing Internal Functions
-
-Modules export an `exportedForTesting` object containing functions and state that are not part of the public API but require unit testing. For example, `lily.ts` exports `setupLilypondParser`, `romanise`, and parser state via this object.
-
-## Custom Elements in Tests
-
-The application defines custom HTML elements (`music-canvas`, `music-score`, `music-controls`, etc.). Tests that instantiate these elements must ensure they are defined in the jsdom document before assertions run. The `define(tag)` static method on each class handles registration.
-
 ## Coverage Output
 
 Coverage reports are written to the `coverage/` directory. This directory is gitignored.
 
+## End-to-End Tests
+
+End-to-end tests run in a real browser using Playwright. They live in `e2e/` and follow the naming convention `*.spec.ts`.
+
+### Prerequisites
+
+The production build must exist before e2e tests run:
+
+```console
+npm run build
+```
+
+### Running E2E Tests
+
+Headless run:
+
+```console
+npm run test:e2e
+```
+
+Interactive UI mode:
+
+```console
+npm run test:e2e:ui
+```
+
+View the last HTML report:
+
+```console
+npm run test:e2e:report
+```
+
+### Key Dependencies
+
+- `@playwright/test`: test runner and browser automation
+- `chromium`: browser under test (installed via `npx playwright install chromium`)
+
 ## Local Tooling Tests
 
-Python helper scripts in `scripts/` (`discover.py`, `sync_upstream.py`,
-`ticket.py`) have their own test suite in `tests_local/`. These tests
-use `pytest` and `unittest.mock` to mock `subprocess` calls. They are separate
-from the Vitest suite and are not tracked in git.
+Python helper scripts in `scripts/` have their own test suite in `tests_local/`.
+These tests use `pytest` and `unittest.mock` to mock `subprocess` calls. They are
+separate from the Vitest suite and are not tracked in git.

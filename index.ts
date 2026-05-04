@@ -148,7 +148,6 @@ function parseURL() {
   var choir = 0; // choir 1 because it is zero indexed
   var part: PartType = "all";
   var bar = 1 - config.intro_beats[recording] / 4;
-  console.log("Initial bar is", bar);
   var dark = true; // dark mode by default
   var early = false;
   var r = 0; // ALC
@@ -230,7 +229,6 @@ function keyboardTapped(e: KeyboardEvent) {
     return;
   }
   if (e.metaKey || e.ctrlKey) {
-    console.log('meta or ctrl pressed');
     switch (e.code) {
       case 'ArrowRight':
         controls.pause();
@@ -314,7 +312,6 @@ function keyboardTapped(e: KeyboardEvent) {
       setPart("all");
       break;
     default:
-      console.log("key pressed: ", e.code);
   }
 
 }
@@ -346,7 +343,6 @@ function toggleDark() {
 
 function toggleScore(forceEarly = false) {
   if (current.period === "modern" || forceEarly) {
-    console.log("Toggle SCORE");
     current.period = "early";
     score.setAttribute("score-type", "early");
     document.body.style.setProperty('--font', "Macondo Swash Caps");
@@ -362,7 +358,6 @@ async function setRecording(r: number) {
   r = toNum(r, false, config.recording.length - 1);
 
   current.recording = r;
-  console.log("Setting recording to", config.recording[current.recording]);
   recordinglabel.textContent = config.recording_label[current.recording];
 
   // Update the input field

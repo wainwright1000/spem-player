@@ -1,6 +1,6 @@
 # Spem Player
 
-<img src="SpemPlayer.png" alt="Spem Player screenshot" align="right" width="400" />
+<img src="doc/SpemPlayerv2.2.0.png" alt="Spem Player screenshot" align="right" width="400" />
 
 Are you about to perform Thomas Tallis's 40-part motet, _Spem in alium_? Worried about your entry on the "staircase of doom"? This player helps singers practice their parts with accentuated recordings of each of the 40 voices.
 
@@ -64,10 +64,10 @@ Shortcuts are ignored when focus is on an input field or `<select>` element.
 
 ## For Developers
 
-- `BUILD.md` — development setup, build commands, and deployment
-- `TESTING.md` — running and writing tests
-- `CONTRIBUTING.md` — contribution process, code style, and board workflow
-- `WORKFLOW.md` — ticket lifecycle and best practices
+- `doc/BUILD.md` — development setup, build commands, and deployment
+- `doc/TESTING.md` — running and writing tests
+- `doc/CONTRIBUTING.md` — contribution process, code style, and board workflow
+- `doc/WORKFLOW.md` — ticket lifecycle and best practices
 - `AGENTS.md` — architecture overview and conventions
 
 ## Licence
