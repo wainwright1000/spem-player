@@ -1,7 +1,7 @@
 # Issue #89: False Relations — Progress Notes
 
-> **Status:** Visual tuning complete on branch `issue-89`. Ready for PR to `dev`.  
-> **Last worked on:** 2026-04-29
+> **Status:** Shimmer implementation in progress on branch `issue-89`. Neutral colour approach being evaluated. Not ready for PR.  
+> **Last worked on:** 2026-05-06
 
 ---
 
@@ -33,7 +33,7 @@ Same-part clashes (e.g. both in Alto 1) are ignored because those are voice-lead
     { c, p, notename, accidental }   // second voice
   ];
 }
-```text
+```
 
 #### `detectFalseRelations()` algorithm
 
@@ -196,23 +196,36 @@ Detected from the Hugh Keyte edition of *Spem in alium*.
   - Drawn after voice lines and before FR pulse circles so hotspots are always visible and pulses overlay on top.
 - Added canvas test: `draw() renders false-relation hotspot circles when falseRelations are populated`.
 
-## Future work: shimmer hotspots
+### 2026-05-06
 
-The current white hotspots are functional but visually blunt. A proposed evolution is to render hotspots in the part's own choir colour and make them visible only through a "shimmer" animation. Four implementation options were considered:
+- Merged `dev` into `issue-89` (15 commits).
+- Implemented **phase-offset opacity breathing shimmer** (Option 3) for FR hotspots.
+  - Added `shimmerPhases` array with randomised per-FR phase offsets.
+  - Added continuous `requestAnimationFrame` shimmer loop that runs when playback is paused.
+  - Hotspots oscillate between alpha values via `Math.sin(shimmerTime * speed + phase)`.
+- Replaced static white hotspots with **neutral greyscale radial-gradient circles**.
+  - Saturation: 0% (hue-independent).
+  - Lightness: 90% in dark mode, 30% in light mode.
+  - Gradient: three-stop radial (centre alpha → mid alpha × 0.4 → transparent edge).
+- Extracted all FR visual tuning constants to `static readonly` fields on `MusicCanvas`:
+  - `FR_PULSE_*` constants for playback pulse timing, radius, colour, and gradient.
+  - `FR_HOTSPOT_*` constants for shimmer speed, alpha range, radius, lightness, and gradient.
+- Made playback pulse circles use the **same neutral colour as hotspots** (previously used the first voice's choir hue).
+- Fixed `defaultColors.choir` in `common.ts` to include all 8 hues, resolving `undefined` values in test environments.
 
-1. **Wandering radial highlight.** A faint base circle with a small radial gradient whose centre orbits on a sine/cosine path. Cheap and distinctive, but may look chaotic in dense clusters such as bar 86.
-2. **Rotating linear sheen.** A faint base circle with a narrow bright linear-gradient band that rotates continuously like a specular reflection. Elegant, but requires trigonometry per frame to rotate gradient vectors.
-3. **Phase-offset opacity breathing.** Each hotspot pulses on its own sine wave with a randomised phase. Very simple, but risks looking identical to the existing note-pulse effect.
-4. **Animated dash stroke.** Outline only, using `setLineDash` with animated `lineDashOffset`. Extremely cheap, but resembles UI chrome rather than a musical cue.
+## Future work
 
-Recommended direction: Option 1 (wandering radial highlight) or Option 2 (rotating sheen). Both keep the base circle low-contrast so the shimmer carries the visual weight. A key open question is whether same-colour hotspots will be noticeable enough against the already-coloured voice lines; an alternative is to keep a neutral base (white or near-white) and tint the shimmer with the part hue.
+- **Visibility on highlighted parts.** Neutral greyscale hotspots are clearly visible against dull voice lines but can be camouflaged against bright, saturated highlighted parts. Options: increase hotspot alpha range, use a contrasting outline, or darken/lighten the hotspot further when the underlying part is selected.
+- **Shimmer speed tuning.** Current speed is 6 rad/s. Slower speeds may feel calmer; faster speeds may feel more urgent.
+- **Alternative effects.** The other three options (wandering radial highlight, rotating sheen, animated dash stroke) remain available if the breathing approach proves unsatisfactory.
 
 ## Branch status
 
 - Branch: `issue-89`
-- Merged `dev` into `issue-89` on 2026-05-03.
-- All tests pass (89/89).
-- Feature is functional. Shimmer enhancement is deferred.
+- Merged `dev` into `issue-89` on 2026-05-06.
+- All tests pass (102/102).
+- Core FR detection and pulse effects are functional.
+- Shimmer hotspots implemented but still under visual evaluation.
 
 ---
 
@@ -223,10 +236,15 @@ Recommended direction: Option 1 (wandering radial highlight) or Option 2 (rotati
 | `src/ts/lily.ts` | ~12-22 | `activeNotes`, `FalseRelation`, `falseRelations` exports |
 | `src/ts/lily.ts` | ~47-120 | `noteToPitchClass`, `pairKey`, `detectFalseRelations` |
 | `src/ts/lily.ts` | ~269-355 | `activeNotes` construction inside `processLilypond()` |
-| `src/ts/MusicCanvas.ts` | ~17 | `falseRelationPulses` property |
-| `src/ts/MusicCanvas.ts` | ~96 | `falseRelationPulses` initialisation |
-| `src/ts/MusicCanvas.ts` | ~242-256 | FR pulse computation |
-| `src/ts/MusicCanvas.ts` | ~380-422 | FR hotspot circles (white, always visible) |
-| `src/ts/MusicCanvas.ts` | ~424-445 | FR pulse circles (both voices, radial gradient) |
-| `src/test/lily.test.ts` | ~71-165 | 6 false-relation tests |
-| `src/test/canvas.test.ts` | ~33-41 | FR hotspot render test
+| `src/ts/lily.ts` | ~12-22 | `activeNotes`, `FalseRelation`, `falseRelations` exports |
+| `src/ts/lily.ts` | ~47-120 | `noteToPitchClass`, `pairKey`, `detectFalseRelations` |
+| `src/ts/lily.ts` | ~269-355 | `activeNotes` construction inside `processLilypond()` |
+| `src/ts/MusicCanvas.ts` | ~27-32 | `falseRelationPulses`, `shimmerPhases`, `shimmerLoopId` properties |
+| `src/ts/MusicCanvas.ts` | ~37-72 | FR visual tuning constants (`FR_PULSE_*`, `FR_HOTSPOT_*`) |
+| `src/ts/MusicCanvas.ts` | ~89-97 | `#startShimmerLoop()` method |
+| `src/ts/MusicCanvas.ts` | ~174-175 | `falseRelationPulses` and `shimmerPhases` initialisation |
+| `src/ts/MusicCanvas.ts` | ~296-309 | FR pulse computation |
+| `src/ts/MusicCanvas.ts` | ~437-482 | FR hotspot circles (shimmer, neutral greyscale) |
+| `src/ts/MusicCanvas.ts` | ~484-531 | FR pulse circles (neutral greyscale, radial gradient) |
+| `src/test/lily.test.ts` | ~66-129 | 6 false-relation tests |
+| `src/test/canvas.test.ts` | ~60-68 | FR shimmer phase and render tests |

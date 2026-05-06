@@ -25,9 +25,51 @@ export class MusicCanvas extends MusicElement {
   lastNoteStart: number[][] = [];
   lastNoteDuration: number[][] = [];
   falseRelationPulses: number[] = [];
+  shimmerPhases: number[] = [];
   dict: Dictionary[][] = []; // HACK: bad name and data type
   ranges: Range[][][] = []; // HACK: bad data type
   source: string | null = null;
+  shimmerLoopId: number = 0;
+
+  // --- False-relation visual tuning constants ---
+
+  // Playback pulse: how long the flash lasts after the FR starts (bars).
+  static readonly FR_PULSE_FADE_BARS = 0.2;
+  // Playback pulse: radius as a multiple of partHeight.
+  static readonly FR_PULSE_RADIUS_MULTIPLIER = 3;
+  // Playback pulse: HSL saturation (%).
+  static readonly FR_PULSE_SATURATION = 100;
+  // Playback pulse: peak lightness in dark mode (%).
+  static readonly FR_PULSE_LIGHTNESS_DARK = 90;
+  // Playback pulse: peak lightness in light mode (%).
+  static readonly FR_PULSE_LIGHTNESS_LIGHT = 50;
+  // Playback pulse: maximum opacity (0-1).
+  static readonly FR_PULSE_MAX_ALPHA = 0.9;
+  // Playback pulse: opacity multiplier applied to pulse strength.
+  static readonly FR_PULSE_ALPHA_FACTOR = 0.85;
+  // Playback pulse: gradient mid-stop position (0 = centre, 1 = edge).
+  static readonly FR_PULSE_GRADIENT_MID_STOP = 0.25;
+  // Playback pulse: opacity at mid-stop as a fraction of centre alpha.
+  static readonly FR_PULSE_GRADIENT_MID_ALPHA_FACTOR = 0.4;
+
+  // Hotspot shimmer: speed of the breathing sine wave (radians per second).
+  static readonly FR_HOTSPOT_SHIMMER_SPEED = 6;
+  // Hotspot shimmer: midpoint opacity around which the sine wave oscillates.
+  static readonly FR_HOTSPOT_BASE_ALPHA = 0.2;
+  // Hotspot shimmer: amplitude of the opacity oscillation.
+  static readonly FR_HOTSPOT_ALPHA_RANGE = 0.2;
+  // Hotspot: radius as a fraction of partHeight.
+  static readonly FR_HOTSPOT_RADIUS_MULTIPLIER = 0.6;
+  // Hotspot: HSL saturation (%). Set to 0 for neutral greyscale.
+  static readonly FR_HOTSPOT_SATURATION = 0;
+  // Hotspot: lightness in dark mode (%). High for contrast on dark background.
+  static readonly FR_HOTSPOT_LIGHTNESS_DARK = 90;
+  // Hotspot: lightness in light mode (%). Low for contrast on light background.
+  static readonly FR_HOTSPOT_LIGHTNESS_LIGHT = 0;
+  // Hotspot: gradient mid-stop position (0 = centre, 1 = edge).
+  static readonly FR_HOTSPOT_GRADIENT_MID_STOP = 0.25;
+  // Hotspot: opacity at mid-stop as a fraction of centre alpha.
+  static readonly FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR = 0.4;
 
   constructor() {
     super();
@@ -41,6 +83,17 @@ export class MusicCanvas extends MusicElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener("wheel", this.#preventVerticalScroll);
+    cancelAnimationFrame(this.shimmerLoopId);
+  }
+
+  #startShimmerLoop() {
+    const loop = () => {
+      if (!this.playing) {
+        this.draw();
+      }
+      this.shimmerLoopId = requestAnimationFrame(loop);
+    };
+    this.shimmerLoopId = requestAnimationFrame(loop);
   }
 
   #preventVerticalScroll = (e: WheelEvent) => {
@@ -119,8 +172,10 @@ export class MusicCanvas extends MusicElement {
     }
 
     this.falseRelationPulses = new Array(falseRelations.length).fill(0);
+    this.shimmerPhases = falseRelations.map(() => Math.random() * Math.PI * 2);
 
     this.draw();
+    this.#startShimmerLoop();
   }
 
   #calculateCanvasSize() {
@@ -241,11 +296,12 @@ export class MusicCanvas extends MusicElement {
     // Pulse false relations
     for (let i = 0; i < falseRelations.length; i++) {
       const fr = falseRelations[i];
-      const fade = 0.2;
-      const pulseDuration = fade;
-      if (this.bar >= fr.from && this.bar < fr.from + pulseDuration) {
+      if (
+        this.bar >= fr.from &&
+        this.bar < fr.from + MusicCanvas.FR_PULSE_FADE_BARS
+      ) {
         const elapsed = this.bar - fr.from;
-        const t = Math.min(1, elapsed / fade);
+        const t = Math.min(1, elapsed / MusicCanvas.FR_PULSE_FADE_BARS);
         this.falseRelationPulses[i] = Math.sqrt(1 - t);
       } else {
         this.falseRelationPulses[i] = 0;
@@ -378,10 +434,18 @@ export class MusicCanvas extends MusicElement {
       }
     }
 
-    // Draw false-relation hotspot circles
+    // Draw false-relation hotspot circles (shimmer)
+    const shimmerTime = Date.now() / 1000;
     for (let i = 0; i < falseRelations.length; i++) {
       const fr = falseRelations[i];
       const cx = this.canvasPadding + ((fr.from + fr.to) / 2) * this.barWidth;
+      const phase = this.shimmerPhases[i];
+      const alpha =
+        MusicCanvas.FR_HOTSPOT_BASE_ALPHA +
+        MusicCanvas.FR_HOTSPOT_ALPHA_RANGE *
+        Math.sin(
+          shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase
+        );
 
       for (const part of fr.pair) {
         const startY =
@@ -389,10 +453,30 @@ export class MusicCanvas extends MusicElement {
           part.c * this.choirHeight +
           part.p * this.partHeight;
         const cy = startY + this.partHeight / 2;
+        const hue = colors().choir[part.c];
+        const lightness = isLight
+          ? MusicCanvas.FR_HOTSPOT_LIGHTNESS_LIGHT
+          : MusicCanvas.FR_HOTSPOT_LIGHTNESS_DARK;
 
-        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        const radius =
+          this.partHeight * MusicCanvas.FR_HOTSPOT_RADIUS_MULTIPLIER;
+        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+        gradient.addColorStop(
+          0,
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${alpha})`
+        );
+        gradient.addColorStop(
+          MusicCanvas.FR_HOTSPOT_GRADIENT_MID_STOP,
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
+          })`
+        );
+        gradient.addColorStop(
+          1,
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, 0)`
+        );
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(cx, cy, this.partHeight / 2, 0, Math.PI * 2);
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
         ctx.fill();
       }
     }
@@ -404,7 +488,6 @@ export class MusicCanvas extends MusicElement {
 
       const fr = falseRelations[i];
       const cx = this.canvasPadding + ((fr.from + fr.to) / 2) * this.barWidth;
-      const hue = colors().choir[fr.pair[0].c];
 
       for (const part of fr.pair) {
         const startY =
@@ -413,26 +496,29 @@ export class MusicCanvas extends MusicElement {
           part.p * this.partHeight;
         const cy = startY + this.partHeight / 2;
 
-        const radius = this.partHeight * 4 * pulse;
-        const lightness = Math.min(100, isLight ? 50 * pulse : 90 * pulse);
-        const centerAlpha = Math.min(0.9, pulse * 0.85);
-        const gradient = ctx.createRadialGradient(
-          cx,
-          cy,
-          0,
-          cx,
-          cy,
-          radius
+        const radius =
+          this.partHeight * MusicCanvas.FR_PULSE_RADIUS_MULTIPLIER * pulse;
+        const lightness = isLight
+          ? MusicCanvas.FR_HOTSPOT_LIGHTNESS_LIGHT
+          : MusicCanvas.FR_HOTSPOT_LIGHTNESS_DARK;
+        const centerAlpha = Math.min(
+          MusicCanvas.FR_PULSE_MAX_ALPHA,
+          pulse * MusicCanvas.FR_PULSE_ALPHA_FACTOR
         );
+        const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
         gradient.addColorStop(
           0,
-          `hsla(${hue}, 100%, ${lightness}%, ${centerAlpha})`
+          `hsla(0, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha})`
         );
         gradient.addColorStop(
-          0.25,
-          `hsla(${hue}, 100%, ${lightness}%, ${centerAlpha * 0.4})`
+          MusicCanvas.FR_PULSE_GRADIENT_MID_STOP,
+          `hsla(0, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
+          })`
         );
-        gradient.addColorStop(1, `hsla(${hue}, 100%, ${lightness}%, 0)`);
+        gradient.addColorStop(
+          1,
+          `hsla(0, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, 0)`
+        );
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(cx, cy, radius, 0, Math.PI * 2);

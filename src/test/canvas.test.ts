@@ -57,7 +57,14 @@ describe("MusicCanvas custom element", () => {
     canvas!.voicePart = "all";
   });
 
-  it("draw() renders false-relation hotspot circles when falseRelations are populated", async () => {
+  it("initialises shimmer phases for each false relation", () => {
+    expect(canvas).not.toBeNull();
+    expect(canvas!.shimmerPhases.length).toBe(falseRelations.length);
+    expect(canvas!.shimmerPhases[0]).toBeGreaterThanOrEqual(0);
+    expect(canvas!.shimmerPhases[0]).toBeLessThan(Math.PI * 2);
+  });
+
+  it("draw() renders false-relation shimmer circles when falseRelations are populated", async () => {
     expect(canvas).not.toBeNull();
     expect(falseRelations.length).toBeGreaterThan(0);
     canvas!.draw();

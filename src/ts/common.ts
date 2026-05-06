@@ -44,7 +44,7 @@ const defaultColors: Colors = {
   background: "hsl(210, 65%, 100%);",
   highlight: "hsl(210, 65%, 90%);",
   scoreHighlight: "hsl(210, 65%, 90%);",
-  choir: [360],
+  choir: [360, 320, 30, 50, 110, 150, 190, 220],
 };
 var loadedColors: Colors;
 
