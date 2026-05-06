@@ -26,6 +26,12 @@ export class MusicCanvas extends MusicElement {
   dict: Dictionary[][] = []; // HACK: bad name and data type
   ranges: Range[][][] = []; // HACK: bad data type
   source: string | null = null;
+  showFps =
+    document.body.dataset.branch !== undefined &&
+    document.body.dataset.branch !== "";  // "" means we're on main branch (production)
+  fpsFrameCount = 0;
+  fpsLastTime = 0;
+  fpsValue = 0;
 
   constructor() {
     super();
@@ -186,21 +192,11 @@ export class MusicCanvas extends MusicElement {
     // setTimeout(frame, config.tempo / 10);
   }
 
-  oldTimeStamp: number = 0;
   draw() {
     if (!this.canvas) return;
 
     if (ranges.length === 0 || dict.length === 0) {
       return;
-    }
-
-    // Calculate frames per second
-    if (this.playing) {
-      const now: number = Date.now();
-      const secondsPassed = (now - this.oldTimeStamp) / 1000;
-      if (secondsPassed < 0.01) return; // HACK: throttle
-      this.oldTimeStamp = now;
-      // const fps = secondsPassed === 0 ? 0 : Math.round(1 / secondsPassed);
     }
 
     // If there are notes starting now, record their onset and duration
@@ -357,6 +353,21 @@ export class MusicCanvas extends MusicElement {
           ctx.stroke();
         });
       }
+    }
+
+    if (this.showFps) {
+      const now = Date.now();
+      this.fpsFrameCount++;
+      if (now - this.fpsLastTime >= 1000) {
+        this.fpsValue = Math.round(
+          (this.fpsFrameCount * 1000) / (now - this.fpsLastTime)
+        );
+        this.fpsFrameCount = 0;
+        this.fpsLastTime = now;
+      }
+      ctx.fillStyle = this.#isLightMode() ? "black" : "white";
+      ctx.font = "20px Arial";
+      ctx.fillText(`FPS: ${this.fpsValue}`, 10, this.canvas.height - 10);
     }
   }
 

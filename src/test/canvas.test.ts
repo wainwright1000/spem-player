@@ -41,10 +41,9 @@ describe("MusicCanvas custom element", () => {
     ranges.push(...savedRanges);
   });
 
-  it("draw() with playing=true hits FPS branch", async () => {
+  it("draw() executes during playback without throttling", () => {
     expect(canvas).not.toBeNull();
     canvas!.playing = true;
-    canvas!.oldTimeStamp = Date.now() - 100; // ensure > 0.01s passed
     canvas!.draw();
     canvas!.playing = false;
   });
@@ -55,6 +54,38 @@ describe("MusicCanvas custom element", () => {
     canvas!.bar = 10;
     canvas!.draw();
     canvas!.voicePart = "all";
+  });
+
+  it("draw() displays FPS when showFps is true", () => {
+    expect(canvas).not.toBeNull();
+    const ctx = canvas!.canvas!.getContext("2d")!;
+    const fillTextSpy = vi.spyOn(ctx, "fillText");
+
+    canvas!.showFps = true;
+    canvas!.draw();
+
+    const fpsCalls = fillTextSpy.mock.calls.filter(
+      (call) => typeof call[0] === "string" && call[0].startsWith("FPS:")
+    );
+    expect(fpsCalls.length).toBeGreaterThan(0);
+
+    fillTextSpy.mockRestore();
+  });
+
+  it("draw() does not display FPS when showFps is false", () => {
+    expect(canvas).not.toBeNull();
+    const ctx = canvas!.canvas!.getContext("2d")!;
+    const fillTextSpy = vi.spyOn(ctx, "fillText");
+
+    canvas!.showFps = false;
+    canvas!.draw();
+
+    const fpsCalls = fillTextSpy.mock.calls.filter(
+      (call) => typeof call[0] === "string" && call[0].startsWith("FPS:")
+    );
+    expect(fpsCalls.length).toBe(0);
+
+    fillTextSpy.mockRestore();
   });
 
   it("seek() clamps to lower bound when seeking backward from bar 0", () => {
