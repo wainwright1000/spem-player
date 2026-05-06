@@ -73,7 +73,11 @@ export function colors(reload = false): Colors {
   return loadedColors;
 }
 
-export const HDSQTIME = 0.05; // HACK: needs to be time of a 64th note
+// the time of a hemidemisemiquaver (64th note) in seconds, derived from the default recording tempo
+export const HDSQTIME =
+  config.bartime[0][config.bartime[0].length - 1] /
+  config.barno[0][config.barno[0].length - 1] /
+  64;
 
 export function toNum(
   s: string | number,

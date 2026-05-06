@@ -2,7 +2,7 @@ import "./src/scss/style.scss";
 
 import config from "./src/ts/config";
 
-import { PartType, State, colors, toNum, HDSQTIME } from "./src/ts/common";
+import { PartType, State, colors, toNum } from "./src/ts/common";
 
 import { MusicCanvas } from "./src/ts/MusicCanvas";
 import { MusicCanvasWatcher } from "./src/ts/MusicCanvasWatcher";
@@ -293,12 +293,12 @@ function keyboardTapped(e: KeyboardEvent) {
       break;
     case "ArrowRight":
       controls.pause();
-      setBar(Math.floor(current.bar + HDSQTIME) + 1);
+      setBar(toNum(current.bar) + 1);
       e.preventDefault();
       break;
     case "ArrowLeft":
       controls.pause();
-      setBar(Math.floor(current.bar + HDSQTIME) - 1);
+      setBar(toNum(current.bar) - 1);
       e.preventDefault();
       break;
     case "ArrowDown":
