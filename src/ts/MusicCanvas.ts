@@ -28,7 +28,7 @@ export class MusicCanvas extends MusicElement {
   source: string | null = null;
   showFps =
     document.body.dataset.branch !== undefined &&
-    document.body.dataset.branch !== "";  // "" means we're on main branch (production)
+    document.body.dataset.branch !== ""; // "" means we're on main branch (production)
   fpsFrameCount = 0;
   fpsLastTime = 0;
   fpsValue = 0;
