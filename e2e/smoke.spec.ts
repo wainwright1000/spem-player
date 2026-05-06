@@ -67,4 +67,33 @@ test.describe("Spem Player smoke tests", () => {
 
     await expect(controls).toHaveAttribute("choir", "3");
   });
+
+  test("bar input typing does not change choir (#182)", async ({ page }) => {
+    await page.goto("/");
+
+    const controls = page.locator("music-controls");
+    const barInput = page.locator("#bar-field");
+    await expect(controls).toHaveAttribute("choir", "0");
+
+    await barInput.fill("2");
+    await barInput.blur();
+
+    await expect(controls).toHaveAttribute("choir", "0");
+    await expect(controls).toHaveAttribute("bar", "2");
+  });
+
+  test("bar input clamps out-of-range values (#184)", async ({ page }) => {
+    await page.goto("/");
+
+    const controls = page.locator("music-controls");
+    const barInput = page.locator("#bar-field");
+
+    await barInput.fill("999");
+    await barInput.blur();
+    await expect(controls).toHaveAttribute("bar", "137");
+
+    await barInput.fill("-5");
+    await barInput.blur();
+    await expect(controls).toHaveAttribute("bar", "0");
+  });
 });

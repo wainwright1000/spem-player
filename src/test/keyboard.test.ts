@@ -121,4 +121,26 @@ describe("Space bar play/pause", () => {
 
     document.body.removeChild(textarea);
   });
+
+  it("Digit2 in bar input does not change choir (#182)", async () => {
+    const controls = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    bar.focus();
+    bar.dispatchEvent(
+      new KeyboardEvent("keydown", { code: "Digit2", key: "2", bubbles: true })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(controls.getAttribute("choir")).toBe("0");
+  });
+
+  it("KeyD in choir select does not toggle dark mode (#182)", async () => {
+    const select = document.getElementById("choir-select") as HTMLSelectElement;
+    select.focus();
+    const wasLight = document.body.classList.contains("light-theme");
+    select.dispatchEvent(
+      new KeyboardEvent("keydown", { code: "KeyD", key: "d", bubbles: true })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(document.body.classList.contains("light-theme")).toBe(wasLight);
+  });
 });

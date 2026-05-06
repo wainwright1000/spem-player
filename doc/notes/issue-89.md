@@ -5,7 +5,7 @@
 
 ---
 
-## What is a false relation?
+## What is a false relation
 
 Two notes with the **same letter name** but **different accidentals** sounding simultaneously (or in close proximity) across different voices — e.g. F♮ in one part against F♯ in another.
 
@@ -17,14 +17,13 @@ Same-part clashes (e.g. both in Alto 1) are ignored because those are voice-lead
 
 ### 1. Data structures (`src/ts/lily.ts`)
 
-| Export | Type | Purpose |
-|--------|------|---------|
-| `activeNotes` | `Map<number, ActiveNote[]>` | All notes sounding at each 1/16-bar position |
-| `falseRelations` | `FalseRelation[]` | Detected false-relation intervals |
-| `noteToPitchClass()` | `(Note) => number` | 0-11 chromatic pitch class |
-| `detectFalseRelations()` | `() => void` | Populates `falseRelations` from `activeNotes` |
+- `activeNotes` - `Map<number, ActiveNote[]>` - All notes sounding at each 1/16-bar position
+- `falseRelations` - `FalseRelation[]` - Detected false-relation intervals
+- `noteToPitchClass()` - `(Note) => number` - 0-11 chromatic pitch class
+- `detectFalseRelations()` - `() => void` - Populates `falseRelations` from `activeNotes`
 
-**`FalseRelation` shape:**
+#### `FalseRelation` shape
+
 ```typescript
 {
   from: number;   // start bar position
@@ -34,9 +33,10 @@ Same-part clashes (e.g. both in Alto 1) are ignored because those are voice-lead
     { c, p, notename, accidental }   // second voice
   ];
 }
-```
+```text
 
-**`detectFalseRelations()` algorithm:**
+#### `detectFalseRelations()` algorithm
+
 1. Iterates every 1/16-bar position in `activeNotes` (sorted).
 2. For each position, compares all pairs of active notes.
 3. If `notename` matches, `accidental` differs, and they are from **different parts** (`!(c===c && p===p)`), it's a false relation.
@@ -44,7 +44,7 @@ Same-part clashes (e.g. both in Alto 1) are ignored because those are voice-lead
 5. **Merges consecutive positions** for the same pair into a single interval (`from`…`to`).
 6. When a pair stops clashing, the accumulated interval is pushed to `falseRelations`.
 
-**`activeNotes` construction:**
+#### `activeNotes` construction
 - Built inside `processLilypond()` as notes are parsed.
 - Each note is pushed into every 1/16-bar position in `[noteStart, noteEnd)`.
 - Step size: `0.0625` (1/16 bar).
@@ -83,14 +83,12 @@ The gradient uses **three stops** for a steeper falloff — a hot opaque core th
 
 6 tests added:
 
-| Test | What it checks |
-|------|----------------|
-| `noteToPitchClass maps natural notes correctly` | C=0, D=2, E=4, F=5, G=7, A=9, B=11 |
-| `noteToPitchClass maps accidentals correctly` | `is` +1, `es` −1, `isis` +2, `eses` −2, wrap-around |
-| `detectFalseRelations finds false relations` | F♮ vs F♯ across two choirs → 1 hit |
-| `detectFalseRelations ignores same-part clashes` | Two F's in same part → 0 hits |
-| `detectFalseRelations ignores different letters` | E vs F (semitone, different letter) → 0 hits |
-| `detectFalseRelations merges consecutive positions` | Two adjacent 1/16 positions for same pair → single interval `1.0` to `1.125` |
+- `noteToPitchClass maps natural notes correctly` - C=0, D=2, E=4, F=5, G=7, A=9, B=11
+- `noteToPitchClass maps accidentals correctly` - `is` +1, `es` −1, `isis` +2, `eses` −2, wrap-around
+- `detectFalseRelations finds false relations` - F♮ vs F♯ across two choirs → 1 hit
+- `detectFalseRelations ignores same-part clashes` - Two F's in same part → 0 hits
+- `detectFalseRelations ignores different letters` - E vs F (semitone, different letter) → 0 hits
+- `detectFalseRelations merges consecutive positions` - Two adjacent 1/16 positions for same pair → single interval `1.0` to `1.125`
 
 ---
 
@@ -231,4 +229,4 @@ Recommended direction: Option 1 (wandering radial highlight) or Option 2 (rotati
 | `src/ts/MusicCanvas.ts` | ~380-422 | FR hotspot circles (white, always visible) |
 | `src/ts/MusicCanvas.ts` | ~424-445 | FR pulse circles (both voices, radial gradient) |
 | `src/test/lily.test.ts` | ~71-165 | 6 false-relation tests |
-| `src/test/canvas.test.ts` | ~33-41 | FR hotspot render test |
+| `src/test/canvas.test.ts` | ~33-41 | FR hotspot render test
