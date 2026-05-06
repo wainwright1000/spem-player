@@ -390,7 +390,6 @@ export class MusicCanvas extends MusicElement {
     this.bar = pos.bar;
   }
 
-  // TODO: combine canvasClicked and Hovered?
   #canvasClicked(e: MouseEvent) {
     this.#moveToPosition(this.#getMousePos(e));
     this.fireEvent("music-canvas-click");
