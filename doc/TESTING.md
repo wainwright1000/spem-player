@@ -93,6 +93,6 @@ npm run test:e2e:report
 
 ## Local Tooling Tests
 
-Python helper scripts in `scripts/` have their own test suite in `tests_local/`.
+Python helper scripts in `scripts/` have their own test suite in `tests-local/`.
 These tests use `pytest` and `unittest.mock` to mock `subprocess` calls. They are
 separate from the Vitest suite and are not tracked in git.
