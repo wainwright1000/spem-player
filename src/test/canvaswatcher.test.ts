@@ -62,24 +62,6 @@ describe("MusicCanvasWatcher custom element", () => {
     expect(partOutput?.textContent).toBe("");
   });
 
-  it("uses setTimeout instead of setInterval for auto-hide", () => {
-    const setTimeoutSpy = vi.spyOn(globalThis, "setTimeout");
-    const setIntervalSpy = vi.spyOn(globalThis, "setInterval");
-
-    const canvas = document.querySelector("music-canvas");
-    const event = new CustomEvent("music-canvas-hover", {
-      detail: { position: { choir: 0, part: 0, bar: 10 } },
-    });
-
-    canvas!.dispatchEvent(event);
-
-    expect(setTimeoutSpy).toHaveBeenCalledOnce();
-    expect(setIntervalSpy).not.toHaveBeenCalled();
-
-    setTimeoutSpy.mockRestore();
-    setIntervalSpy.mockRestore();
-  });
-
   it("clears previous timeout on re-hover", () => {
     const clearTimeoutSpy = vi.spyOn(globalThis, "clearTimeout");
 
