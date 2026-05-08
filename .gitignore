@@ -8,6 +8,8 @@ dist
 .netlify
 coverage
 temp/*
+src/scss/*.css
+src/scss/*.css.map
 publish.py
 test-results/
 playwright-report/
