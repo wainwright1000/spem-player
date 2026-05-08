@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright (c) 2024 Mark Wainwright
+# SPDX-License-Identifier: MIT
 set -euo pipefail
 
 echo "$(date): Building all scores..."

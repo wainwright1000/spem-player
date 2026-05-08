@@ -1,3 +1,6 @@
+// Copyright (c) 2024 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 import config from "./config";
 import lyGrammar from "../ohmjs/ly-grammar.ohm-bundle";
 import * as ohm from "ohm-js";

@@ -1,3 +1,6 @@
+// Copyright (c) 2024 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 import config from "./config";
 import { getBarFromTime, getTimeFromBar } from "./common";
 import { MusicElement } from "./MusicElement";
