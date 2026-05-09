@@ -3,10 +3,10 @@ import {
   ranges,
   dict,
   exportedForTesting,
-  activeNotes,
   frLocations,
   detectFalseRelations,
 } from "../ts/lily";
+import type { ActiveNote } from "../ts/lily";
 const { romanise, setupLilypondParser, noteToPitchClass } = exportedForTesting;
 import { Note, Duration } from "../ts/music-classes";
 import * as ohm from "ohm-js";
@@ -114,12 +114,12 @@ describe("lilypond parsing tests", () => {
   });
 
   it("detectFalseRelations finds false relations (same letter, different accidental)", () => {
-    activeNotes.clear();
+    const activeNotes = new Map<number, ActiveNote[]>();
     activeNotes.set(1.0, [
       { c: 0, p: 0, n: new Note("f", null, null, new Duration("4"), null) },
       { c: 1, p: 0, n: new Note("f", "is", null, new Duration("4"), null) },
     ]);
-    detectFalseRelations();
+    detectFalseRelations(activeNotes);
     expect(frLocations.length).toBe(2);
     expect(frLocations[0].from).toBe(1.0);
     expect(frLocations[0].to).toBe(1.0625);
@@ -128,27 +128,27 @@ describe("lilypond parsing tests", () => {
   });
 
   it("detectFalseRelations ignores same-part clashes", () => {
-    activeNotes.clear();
+    const activeNotes = new Map<number, ActiveNote[]>();
     activeNotes.set(1.0, [
       { c: 0, p: 0, n: new Note("f", null, null, new Duration("4"), null) },
       { c: 0, p: 0, n: new Note("f", "is", null, new Duration("4"), null) },
     ]);
-    detectFalseRelations();
+    detectFalseRelations(activeNotes);
     expect(frLocations.length).toBe(0);
   });
 
   it("detectFalseRelations ignores different letters (even if semitone apart)", () => {
-    activeNotes.clear();
+    const activeNotes = new Map<number, ActiveNote[]>();
     activeNotes.set(1.0, [
       { c: 0, p: 0, n: new Note("e", null, null, new Duration("4"), null) },
       { c: 1, p: 0, n: new Note("f", null, null, new Duration("4"), null) },
     ]);
-    detectFalseRelations();
+    detectFalseRelations(activeNotes);
     expect(frLocations.length).toBe(0);
   });
 
   it("detectFalseRelations merges consecutive positions for same part", () => {
-    activeNotes.clear();
+    const activeNotes = new Map<number, ActiveNote[]>();
     activeNotes.set(1.0, [
       { c: 0, p: 0, n: new Note("b", "es", null, new Duration("4"), null) },
       { c: 1, p: 0, n: new Note("b", null, null, new Duration("4"), null) },
@@ -157,7 +157,7 @@ describe("lilypond parsing tests", () => {
       { c: 0, p: 0, n: new Note("b", "es", null, new Duration("4"), null) },
       { c: 1, p: 0, n: new Note("b", null, null, new Duration("4"), null) },
     ]);
-    detectFalseRelations();
+    detectFalseRelations(activeNotes);
     expect(frLocations.length).toBe(2);
     expect(frLocations[0].from).toBe(1.0);
     expect(frLocations[0].to).toBe(1.125);

@@ -13,7 +13,6 @@ export type Dictionary = {
 export const dict: Dictionary[][] = [];
 
 export type ActiveNote = { c: number; p: number; n: Note };
-export const activeNotes = new Map<number, ActiveNote[]>();
 
 export type FRlocation = {
   c: number;
@@ -83,7 +82,9 @@ export function noteToPitchClass(note: Note): number {
   return ((pc % 12) + 12) % 12;
 }
 
-export function detectFalseRelations() {
+export function detectFalseRelations(
+  activeNotes: Map<number, ActiveNote[]>
+) {
   frLocations.length = 0;
   const activeLocs = new Map<string, FRlocation>();
 
@@ -282,7 +283,7 @@ export function processLilypond() {
 
   semantics(result).parse();
 
-  activeNotes.clear();
+  const activeNotes = new Map<number, ActiveNote[]>();
   barCount = 0;
   for (let c = 0; c < config.choirs[0].length; c++) {
     const choir = config.choirs[0][c];
@@ -350,7 +351,7 @@ export function processLilypond() {
   }
   barCount = Math.floor(barCount) - 1;
 
-  detectFalseRelations();
+  detectFalseRelations(activeNotes);
 }
 
 export const exportedForTesting = {
