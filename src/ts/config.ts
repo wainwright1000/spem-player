@@ -1,3 +1,6 @@
+// Copyright (c) 2024 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 export default {
   parts: ["Soprano", "Alto", "Tenor", "Baritone", "Bass"],
   scores: ["modern", "early"],

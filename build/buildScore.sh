@@ -1,4 +1,6 @@
 #!/bin/bash
+# Copyright (c) 2024 Mark Wainwright
+# SPDX-License-Identifier: MIT
 set -euo pipefail
 
 if [ $# -eq 0 ] || [ ! -f "$1" ]; then
