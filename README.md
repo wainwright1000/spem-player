@@ -67,7 +67,6 @@ Shortcuts are ignored when focus is on an input field or `<select>` element.
 - `doc/BUILD.md` — development setup, build commands, and deployment
 - `doc/TESTING.md` — running and writing tests
 - `doc/CONTRIBUTING.md` — contribution process, code style, and board workflow
-- `doc/WORKFLOW.md` — ticket lifecycle and best practices
 - `AGENTS.md` — architecture overview and conventions
 
 ## Licence
