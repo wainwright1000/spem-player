@@ -19,7 +19,7 @@ describe("Duration", () => {
 
   it("handles dotted notes", () => {
     expect(new Duration("4", ".").sfths).toBe(24); // 16 * 1.5
-    expect(new Duration("4", "..").sfths).toBe(36); // 16 * 2.25
+    expect(new Duration("4", "..").sfths).toBe(28); // 16 * 1.75
   });
 
   it("handles multiplier", () => {
