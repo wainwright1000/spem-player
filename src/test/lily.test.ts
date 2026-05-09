@@ -4,7 +4,7 @@ import {
   dict,
   exportedForTesting,
   activeNotes,
-  falseRelations,
+  frLocations,
   detectFalseRelations,
 } from "../ts/lily";
 const { romanise, setupLilypondParser, noteToPitchClass } = exportedForTesting;
@@ -120,11 +120,11 @@ describe("lilypond parsing tests", () => {
       { c: 1, p: 0, n: new Note("f", "is", null, new Duration("4"), null) },
     ]);
     detectFalseRelations();
-    expect(falseRelations.length).toBe(1);
-    expect(falseRelations[0].from).toBe(1.0);
-    expect(falseRelations[0].to).toBe(1.0625);
-    expect(falseRelations[0].pair[0].c).toBe(0);
-    expect(falseRelations[0].pair[1].c).toBe(1);
+    expect(frLocations.length).toBe(2);
+    expect(frLocations[0].from).toBe(1.0);
+    expect(frLocations[0].to).toBe(1.0625);
+    expect(frLocations[0].c).toBe(0);
+    expect(frLocations[1].c).toBe(1);
   });
 
   it("detectFalseRelations ignores same-part clashes", () => {
@@ -134,7 +134,7 @@ describe("lilypond parsing tests", () => {
       { c: 0, p: 0, n: new Note("f", "is", null, new Duration("4"), null) },
     ]);
     detectFalseRelations();
-    expect(falseRelations.length).toBe(0);
+    expect(frLocations.length).toBe(0);
   });
 
   it("detectFalseRelations ignores different letters (even if semitone apart)", () => {
@@ -144,10 +144,10 @@ describe("lilypond parsing tests", () => {
       { c: 1, p: 0, n: new Note("f", null, null, new Duration("4"), null) },
     ]);
     detectFalseRelations();
-    expect(falseRelations.length).toBe(0);
+    expect(frLocations.length).toBe(0);
   });
 
-  it("detectFalseRelations merges consecutive positions for same pair", () => {
+  it("detectFalseRelations merges consecutive positions for same part", () => {
     activeNotes.clear();
     activeNotes.set(1.0, [
       { c: 0, p: 0, n: new Note("b", "es", null, new Duration("4"), null) },
@@ -158,8 +158,10 @@ describe("lilypond parsing tests", () => {
       { c: 1, p: 0, n: new Note("b", null, null, new Duration("4"), null) },
     ]);
     detectFalseRelations();
-    expect(falseRelations.length).toBe(1);
-    expect(falseRelations[0].from).toBe(1.0);
-    expect(falseRelations[0].to).toBe(1.125);
+    expect(frLocations.length).toBe(2);
+    expect(frLocations[0].from).toBe(1.0);
+    expect(frLocations[0].to).toBe(1.125);
+    expect(frLocations[1].from).toBe(1.0);
+    expect(frLocations[1].to).toBe(1.125);
   });
 });

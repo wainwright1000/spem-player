@@ -212,7 +212,8 @@ export class MusicScore extends MusicElement {
   }
 
   highlight() {
-    if (this.playing) {
+    const isFractional = Math.abs(this.bar - Math.round(this.bar)) > 0.001;
+    if (this.playing || isFractional) {
       this.highlightPosition.style.fillOpacity = this.bar > 1 ? "0.1" : "0";
       this.highlightBar.style.fillOpacity = "0";
       this.style.overflow = "hidden"; // hide the scroll bar while playing

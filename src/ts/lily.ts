@@ -15,15 +15,15 @@ export const dict: Dictionary[][] = [];
 export type ActiveNote = { c: number; p: number; n: Note };
 export const activeNotes = new Map<number, ActiveNote[]>();
 
-export type FalseRelation = {
+export type FRlocation = {
+  c: number;
+  p: number;
+  notename: string;
+  accidental: string | null;
   from: number;
   to: number;
-  pair: [
-    { c: number; p: number; notename: string; accidental: string | null },
-    { c: number; p: number; notename: string; accidental: string | null },
-  ];
 };
-export const falseRelations: FalseRelation[] = [];
+export const frLocations: FRlocation[] = [];
 
 // a dictionary to hold the muic in the lilypond input file
 export var scores: { [id: string]: Component[] } = {};
@@ -83,25 +83,15 @@ export function noteToPitchClass(note: Note): number {
   return ((pc % 12) + 12) % 12;
 }
 
-function pairKey(
-  a: { c: number; p: number },
-  b: { c: number; p: number }
-): string {
-  if (a.c < b.c || (a.c === b.c && a.p < b.p)) {
-    return `${a.c}-${a.p}-${b.c}-${b.p}`;
-  }
-  return `${b.c}-${b.p}-${a.c}-${a.p}`;
-}
-
 export function detectFalseRelations() {
-  falseRelations.length = 0;
-  const activePairs = new Map<string, FalseRelation>();
+  frLocations.length = 0;
+  const activeLocs = new Map<string, FRlocation>();
 
   const positions = Array.from(activeNotes.keys()).sort((a, b) => a - b);
 
   for (const pos of positions) {
     const notes = activeNotes.get(pos) ?? [];
-    const clashes = new Set<string>();
+    const involved = new Set<string>();
 
     for (let i = 0; i < notes.length; i++) {
       for (let j = i + 1; j < notes.length; j++) {
@@ -112,45 +102,61 @@ export function detectFalseRelations() {
           a.n.notename === b.n.notename &&
           a.n.accidental !== b.n.accidental
         ) {
-          const key = pairKey(a, b);
-          clashes.add(key);
-
-          if (activePairs.has(key)) {
-            activePairs.get(key)!.to = pos + 0.0625;
-          } else {
-            activePairs.set(key, {
-              from: pos,
-              to: pos + 0.0625,
-              pair: [
-                {
-                  c: a.c,
-                  p: a.p,
-                  notename: a.n.notename,
-                  accidental: a.n.accidental,
-                },
-                {
-                  c: b.c,
-                  p: b.p,
-                  notename: b.n.notename,
-                  accidental: b.n.accidental,
-                },
-              ],
-            });
-          }
+          involved.add(`${a.c}-${a.p}`);
+          involved.add(`${b.c}-${b.p}`);
         }
       }
     }
 
-    for (const [key, fr] of Array.from(activePairs.entries())) {
-      if (!clashes.has(key)) {
-        falseRelations.push(fr);
-        activePairs.delete(key);
+    for (const note of notes) {
+      const key = `${note.c}-${note.p}`;
+      const existing = activeLocs.get(key);
+
+      if (involved.has(key)) {
+        if (existing) {
+          if (
+            existing.notename !== note.n.notename ||
+            existing.accidental !== note.n.accidental
+          ) {
+            frLocations.push(existing);
+            activeLocs.set(key, {
+              c: note.c,
+              p: note.p,
+              notename: note.n.notename,
+              accidental: note.n.accidental,
+              from: pos,
+              to: pos + 0.0625,
+            });
+          } else {
+            existing.to = pos + 0.0625;
+          }
+        } else {
+          activeLocs.set(key, {
+            c: note.c,
+            p: note.p,
+            notename: note.n.notename,
+            accidental: note.n.accidental,
+            from: pos,
+            to: pos + 0.0625,
+          });
+        }
+      } else if (existing) {
+        frLocations.push(existing);
+        activeLocs.delete(key);
+      }
+    }
+
+    for (const [key, loc] of Array.from(activeLocs.entries())) {
+      const present = notes.some((n) => n.c === loc.c && n.p === loc.p);
+      if (!present) {
+        frLocations.push(loc);
+        activeLocs.delete(key);
       }
     }
   }
 
-  for (const fr of activePairs.values()) {
-    falseRelations.push(fr);
+  for (const loc of activeLocs.values()) {
+    frLocations.push(loc);
   }
 }
 

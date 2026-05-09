@@ -292,12 +292,16 @@ function keyboardTapped(e: KeyboardEvent) {
       break;
     case "ArrowRight":
       controls.pause();
-      setBar(toNum(current.bar) + 1);
+      setBar(
+        e.altKey ? toNum(current.bar, false) + 0.0625 : toNum(current.bar) + 1
+      );
       e.preventDefault();
       break;
     case "ArrowLeft":
       controls.pause();
-      setBar(toNum(current.bar) - 1);
+      setBar(
+        e.altKey ? toNum(current.bar, false) - 0.0625 : toNum(current.bar) - 1
+      );
       e.preventDefault();
       break;
     case "ArrowDown":

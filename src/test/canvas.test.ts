@@ -5,7 +5,7 @@ import {
   dict,
   ranges,
   barCount,
-  falseRelations,
+  frLocations,
 } from "../ts/lily";
 
 MusicCanvas.define("music-canvas");
@@ -62,12 +62,12 @@ describe("MusicCanvas custom element", () => {
     canvas!.voicePart = "all";
   });
 
-  it("draw() displays FPS when showFps is true", () => {
+  it("draw() displays dev info when isOnDevBranch is true", () => {
     expect(canvas).not.toBeNull();
     const ctx = canvas!.canvas!.getContext("2d")!;
     const fillTextSpy = vi.spyOn(ctx, "fillText");
 
-    canvas!.showFps = true;
+    canvas!.isOnDevBranch = true;
     canvas!.draw();
 
     const fpsCalls = fillTextSpy.mock.calls.filter(
@@ -78,12 +78,12 @@ describe("MusicCanvas custom element", () => {
     fillTextSpy.mockRestore();
   });
 
-  it("draw() does not display FPS when showFps is false", () => {
+  it("draw() does not display dev info when isOnDevBranch is false", () => {
     expect(canvas).not.toBeNull();
     const ctx = canvas!.canvas!.getContext("2d")!;
     const fillTextSpy = vi.spyOn(ctx, "fillText");
 
-    canvas!.showFps = false;
+    canvas!.isOnDevBranch = false;
     canvas!.draw();
 
     const fpsCalls = fillTextSpy.mock.calls.filter(
@@ -94,16 +94,16 @@ describe("MusicCanvas custom element", () => {
     fillTextSpy.mockRestore();
   });
 
-  it("initialises shimmer phases for each false relation", () => {
+  it("initialises shimmer phases for each FR location", () => {
     expect(canvas).not.toBeNull();
-    expect(canvas!.shimmerPhases.length).toBe(falseRelations.length);
+    expect(canvas!.shimmerPhases.length).toBe(frLocations.length);
     expect(canvas!.shimmerPhases[0]).toBeGreaterThanOrEqual(0);
     expect(canvas!.shimmerPhases[0]).toBeLessThan(Math.PI * 2);
   });
 
-  it("draw() renders false-relation shimmer circles when falseRelations are populated", async () => {
+  it("draw() renders false-relation shimmer circles when frLocations are populated", async () => {
     expect(canvas).not.toBeNull();
-    expect(falseRelations.length).toBeGreaterThan(0);
+    expect(frLocations.length).toBeGreaterThan(0);
     canvas!.draw();
   });
 
