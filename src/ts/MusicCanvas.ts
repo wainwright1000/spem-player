@@ -39,6 +39,13 @@ export class MusicCanvas extends MusicElement {
   shimmerLoopId: number = 0;
   oldTimeStamp: number = 0;
 
+  // Base lightness for unselected parts in light mode.
+  static readonly DULL_BASE_LIGHTNESS_LIGHT = 80;
+  // Base lightness for unselected parts in dark mode.
+  static readonly DULL_BASE_LIGHTNESS_DARK = 38;
+  // Base lightness for selected parts before part-index offset.
+  static readonly SELECTED_BASE_LIGHTNESS = 67;
+
   // --- False-relation visual tuning constants ---
 
   // Playback pulse: how long the flash lasts after the FR starts (bars).
@@ -74,13 +81,6 @@ export class MusicCanvas extends MusicElement {
   static readonly FR_HOTSPOT_GRADIENT_MID_STOP = 0.25;
   // Hotspot: opacity at mid-stop as a fraction of centre alpha.
   static readonly FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR = 0.4;
-
-  // Base lightness for unselected parts in light mode.
-  static readonly DULL_BASE_LIGHTNESS_LIGHT = 80;
-  // Base lightness for unselected parts in dark mode.
-  static readonly DULL_BASE_LIGHTNESS_DARK = 38;
-  // Base lightness for selected parts before part-index offset.
-  static readonly SELECTED_BASE_LIGHTNESS = 67;
 
   constructor() {
     super();
@@ -458,7 +458,7 @@ export class MusicCanvas extends MusicElement {
       const alpha =
         MusicCanvas.FR_HOTSPOT_BASE_ALPHA +
         MusicCanvas.FR_HOTSPOT_ALPHA_RANGE *
-          Math.sin(shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase);
+        Math.sin(shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase);
 
       for (const part of fr.pair) {
         const startY =
@@ -478,8 +478,7 @@ export class MusicCanvas extends MusicElement {
         );
         gradient.addColorStop(
           MusicCanvas.FR_HOTSPOT_GRADIENT_MID_STOP,
-          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
-            alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
           })`
         );
         gradient.addColorStop(
@@ -511,7 +510,7 @@ export class MusicCanvas extends MusicElement {
         const radius =
           this.partHeight * MusicCanvas.FR_PULSE_RADIUS_MULTIPLIER * pulse;
         const hue = colors().choir[part.c];
-        const lightness = this.#getHotspotLightness(part.c, part.p);
+        const lightness = MusicCanvas.SELECTED_BASE_LIGHTNESS;
         const centerAlpha = Math.min(
           MusicCanvas.FR_PULSE_MAX_ALPHA,
           pulse * MusicCanvas.FR_PULSE_ALPHA_FACTOR
@@ -523,8 +522,7 @@ export class MusicCanvas extends MusicElement {
         );
         gradient.addColorStop(
           MusicCanvas.FR_PULSE_GRADIENT_MID_STOP,
-          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
-            centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
           })`
         );
         gradient.addColorStop(
