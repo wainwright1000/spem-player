@@ -57,23 +57,19 @@ State changes flow through `index.ts` helper functions (`setChoir()`, `setPart()
 
 ## Build and Development
 
-- `npm run dev`: Vite dev server with `--host`
-- `npm run build`: Builds Ohm grammar bundles, then Vite production build
-- `npm run build:ohm`: Generates `ly-grammar.ohm-bundle.js` and `.d.ts` from `.ohm`
-- `npm run build:scores`: Runs `build/buildAllScores.sh` to regenerate SVGs from LilyPond
-- `npm run test`: Vitest in watch mode
-- `npm run coverage`: Single-run test with coverage report
-- `npm run test:e2e`: Playwright headless run
-- `npm run test:e2e:ui`: Playwright interactive UI mode
-- `npm run test:e2e:report`: Show last Playwright HTML report
+See `doc/BUILD.md` for build commands and `doc/TESTING.md` for test commands.
 
-**Playwright setup:** `@playwright/test` is installed via npm, but browser binaries must be downloaded separately. Run `npx playwright install chromium` after `npm install` to fetch the Chromium binary. Playwright caches browsers in `%LOCALAPPDATA%\ms-playwright` (Windows).
+Agent-critical notes:
 
-The LilyPond build scripts (`build/buildScore.sh`, `build/buildAllScores.sh`) run `lilypond --svg` and strip `height` and `width` attributes from the first line of each SVG. The `sed` command uses macOS-style `-i ''` syntax.
+- `npm run build:ohm` is required before tests can run.
+- Playwright browser binaries are not auto-installed; run `npx playwright install chromium` after `npm install`.
+- LilyPond build scripts (`build/buildScore.sh`, `build/buildAllScores.sh`) use macOS `sed -i ''` syntax and will fail on GNU sed.
 
 ## Testing Conventions
 
-Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enabled. Tests import `exportedForTesting` from modules to access internal functions. `canvas` and `jsdom` are available for DOM and Canvas testing.
+See `doc/TESTING.md` for framework configuration and commands.
+
+Agent note: modules expose internal functions and state via `exportedForTesting` for unit testing. `canvas` and `jsdom` are available in the test environment.
 
 ## Key Conventions and Quirks
 
@@ -83,7 +79,7 @@ Tests live in `src/test/` and use Vitest with jsdom. Global test APIs are enable
 - **Time mapping:** `bartime` and `barno` arrays in `config.ts` map real audio time to bar numbers for each recording, accounting for tempo changes.
 - **SVG bar detection:** `MusicScore.getBars()` extracts bar positions by parsing `translate` attributes on `<g>` elements that contain numeric `<tspan>` text. It filters out values near the left edge to avoid false matches from tenor clef symbols.
 - **LilyPond parsing:** Only a subset of LilyPond is supported by the Ohm grammar. The parser relies on the exact structure of `spem.ly` and its included files.
-- **Version injection:** Version is managed via the GitHub Project board.
+- **Version injection:** The build pipeline injects `package.json` version into `index.html` at build time. See `doc/BUILD.md`.
 - **Local ignore rules:** Personal ignore patterns (IDE configs, local scripts) belong in `.git/info/exclude`, not `.gitignore`, to avoid polluting the shared file.
 
 ## Known Issues and TODOs
@@ -93,6 +89,11 @@ All known bugs, hacks, todos, and technical debt are tracked on the
 The board is the canonical register, including specifications
 and the implementation roadmap. `BUGS.md` is archived.
 
+Not every GitHub issue is a board ticket. Issues that are not on the board
+(debris, hidden items, release PRs) should not be investigated or reported on
+unless explicitly requested. See `doc/CONTRIBUTING.md` for the full board
+workflow and ticket lifecycle.
+
 ## Process
 
 Active work on bugs, hacks, and technical debt is managed via the
@@ -100,16 +101,12 @@ Active work on bugs, hacks, and technical debt is managed via the
 (`https://github.com/users/wainwmr/projects/2`). The board is the canonical
 register of all open items, including specifications and status.
 
-`doc/WORKFLOW.md` documents the assessment and specification
-methodology used to populate the board. It is reference material, not an
-active plan.
+`doc/CONTRIBUTING.md` documents the board workflow, ticket lifecycle, and
+assessment methodology.
 
 ### Session Startup
 
-1. Check the **Spem Player** GitHub Project board for item statuses and
-   upcoming work.
-2. If `AGENTS-LOCAL.md` exists, read it and follow its Session Startup
-   section for additional project-specific startup tasks.
+1. Read `AGENTS-LOCAL.md` and follow its Session Startup section.
 
 ## Local Instructions
 
