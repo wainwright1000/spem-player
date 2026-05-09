@@ -29,6 +29,13 @@ export class MusicCanvas extends MusicElement {
   dict: Dictionary[][] = []; // HACK: bad name and data type
   ranges: Range[][][] = []; // HACK: bad data type
   source: string | null = null;
+
+  showFps =
+    document.body.dataset.branch !== undefined &&
+    document.body.dataset.branch !== ""; // "" means we're on main branch (production)
+  fpsFrameCount = 0;
+  fpsLastTime = 0;
+  fpsValue = 0;
   shimmerLoopId: number = 0;
 
   // --- False-relation visual tuning constants ---
@@ -70,6 +77,12 @@ export class MusicCanvas extends MusicElement {
   static readonly FR_HOTSPOT_GRADIENT_MID_STOP = 0.25;
   // Hotspot: opacity at mid-stop as a fraction of centre alpha.
   static readonly FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR = 0.4;
+  showFps =
+    document.body.dataset.branch !== undefined &&
+    document.body.dataset.branch !== ""; // "" means we're on main branch (production)
+  fpsFrameCount = 0;
+  fpsLastTime = 0;
+  fpsValue = 0;
 
   constructor() {
     super();
@@ -245,7 +258,6 @@ export class MusicCanvas extends MusicElement {
     // setTimeout(frame, config.tempo / 10);
   }
 
-  oldTimeStamp: number = 0;
   draw() {
     if (!this.canvas) return;
 
@@ -434,6 +446,21 @@ export class MusicCanvas extends MusicElement {
       }
     }
 
+    if (this.showFps) {
+      const now = Date.now();
+      this.fpsFrameCount++;
+      if (now - this.fpsLastTime >= 1000) {
+        this.fpsValue = Math.round(
+          (this.fpsFrameCount * 1000) / (now - this.fpsLastTime)
+        );
+        this.fpsFrameCount = 0;
+        this.fpsLastTime = now;
+      }
+      ctx.fillStyle = this.#isLightMode() ? "black" : "white";
+      ctx.font = "20px Arial";
+      ctx.fillText(`FPS: ${this.fpsValue}`, 10, this.canvas.height - 10);
+    }
+
     // Draw false-relation hotspot circles (shimmer)
     const shimmerTime = Date.now() / 1000;
     for (let i = 0; i < falseRelations.length; i++) {
@@ -557,7 +584,6 @@ export class MusicCanvas extends MusicElement {
     this.bar = pos.bar;
   }
 
-  // TODO: combine canvasClicked and Hovered?
   #canvasClicked(e: MouseEvent) {
     this.#moveToPosition(this.#getMousePos(e));
     this.fireEvent("music-canvas-click");

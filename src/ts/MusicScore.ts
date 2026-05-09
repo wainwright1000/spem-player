@@ -1,5 +1,5 @@
 import config from "./config";
-import { colors, HDSQTIME } from "./common";
+import { colors, toNum } from "./common";
 
 import { MusicElement } from "./MusicElement";
 
@@ -165,9 +165,8 @@ export class MusicScore extends MusicElement {
     if (this.svg == null) {
       return 0;
     }
-    var intbar = Math.floor(this.bar + HDSQTIME);
     // we can't scroll past the last bar for this choir
-    intbar = Math.min(intbar, this.bars.length);
+    var intbar = toNum(this.bar, true, this.bars.length);
     const idealBarPercentage = 0.25;
     const frameWidth = this.offsetWidth; // the width of the visible score on the screen
     const scoreWidth = this.svg.getBoundingClientRect().width; // the total width of the score
