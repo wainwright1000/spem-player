@@ -44,14 +44,14 @@ export class MusicCanvas extends MusicElement {
   // Base lightness for unselected parts in dark mode.
   static readonly DULL_BASE_LIGHTNESS_DARK = 38;
   // Base lightness for selected parts before part-index offset.
-  static readonly SELECTED_BASE_LIGHTNESS = 67;
+  static readonly SELECTED_BASE_LIGHTNESS = 45;
 
   // --- False-relation visual tuning constants ---
 
   // Playback pulse: how long the flash lasts after the FR starts (bars).
   static readonly FR_PULSE_FADE_BARS = 0.4;
   // Playback pulse: radius as a multiple of partHeight.
-  static readonly FR_PULSE_RADIUS_MULTIPLIER = 3;
+  static readonly FR_PULSE_RADIUS_MULTIPLIER = 2.5;
   // Playback pulse: HSL saturation (%).
   static readonly FR_PULSE_SATURATION = 100;
   // Playback pulse: peak lightness in dark mode (%).
@@ -61,9 +61,9 @@ export class MusicCanvas extends MusicElement {
   // Playback pulse: maximum opacity (0-1).
   static readonly FR_PULSE_MAX_ALPHA = 1.0;
   // Playback pulse: opacity multiplier applied to pulse strength.
-  static readonly FR_PULSE_ALPHA_FACTOR = 0.85;
+  static readonly FR_PULSE_ALPHA_FACTOR = 1;
   // Playback pulse: gradient mid-stop position (0 = centre, 1 = edge).
-  static readonly FR_PULSE_GRADIENT_MID_STOP = 0.6;
+  static readonly FR_PULSE_GRADIENT_MID_STOP = 0.5;
   // Playback pulse: opacity at mid-stop as a fraction of centre alpha.
   static readonly FR_PULSE_GRADIENT_MID_ALPHA_FACTOR = 0.7;
 
@@ -349,8 +349,7 @@ export class MusicCanvas extends MusicElement {
       this.canvasPadding + this.bar * this.barWidth,
       this.canvas!.height - this.canvasPadding
     );
-    const isFractional = Math.abs(this.bar - Math.round(this.bar)) > 0.001;
-    ctx.lineWidth = isFractional ? 3 : this.barWidth * 1.4;
+    ctx.lineWidth = this.barWidth * 1.4;
     ctx.strokeStyle = colors().highlight;
     ctx.lineCap = "square";
     ctx.stroke();
@@ -470,7 +469,7 @@ export class MusicCanvas extends MusicElement {
       const alpha =
         MusicCanvas.FR_HOTSPOT_BASE_ALPHA +
         MusicCanvas.FR_HOTSPOT_ALPHA_RANGE *
-          Math.sin(shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase);
+        Math.sin(shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase);
 
       const startY =
         this.canvasPadding + loc.c * this.choirHeight + loc.p * this.partHeight;
@@ -486,8 +485,7 @@ export class MusicCanvas extends MusicElement {
       );
       gradient.addColorStop(
         MusicCanvas.FR_HOTSPOT_GRADIENT_MID_STOP,
-        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
-          alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
         })`
       );
       gradient.addColorStop(
@@ -528,8 +526,7 @@ export class MusicCanvas extends MusicElement {
       );
       gradient.addColorStop(
         MusicCanvas.FR_PULSE_GRADIENT_MID_STOP,
-        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
-          centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
         })`
       );
       gradient.addColorStop(
