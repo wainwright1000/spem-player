@@ -43,10 +43,10 @@ export class Duration {
         this.sfths = 0; // How did you get here??
         break;
     }
-    if (dotted != undefined) {
-      this.sfths = this.sfths * 1.5 ** this.dotted.length;
+    if (dotted != undefined && this.dotted.length > 0) {
+      this.sfths = this.sfths * (2 - 0.5 ** this.dotted.length);
     }
-    if (multiplier != undefined) {
+    if (multiplier != undefined && multiplier !== 1) {
       this.sfths *= multiplier;
     }
   }
