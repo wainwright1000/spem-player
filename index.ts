@@ -1,3 +1,6 @@
+// Copyright (c) 2024 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 import "./src/scss/style.scss";
 
 import config from "./src/ts/config";
