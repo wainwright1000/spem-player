@@ -3,6 +3,7 @@
 ## Getting Started
 
 See `doc/BUILD.md` for development setup, prerequisites, and build commands.
+See `AGENTS.md` for architecture overview and agent-specific conventions.
 
 ## Workflow
 
@@ -133,6 +134,7 @@ A well-formed ticket body contains:
 
    ```console
    npm run test
+   npm run build
    npm run test:e2e
    ```
 
@@ -150,7 +152,7 @@ A well-formed ticket body contains:
 8. Include `See #NNN` in the PR description to link it to the board item.
    Do not use `Fixes`, `Closes`, or `Resolves`.
 
-### For Mark (Maintainer)
+### For the Maintainer
 
 #### What has changed
 
@@ -253,6 +255,6 @@ Use conventional commit format where possible:
 - Tests for new behaviour.
 - Do not break the build pipeline.
 - Preserve existing user-facing behaviour unless the change is the point.
-- Run diagnostics after file writes and fix errors before proceeding.
-- Scratch files go in `temp/` and should be deleted before the session ends.
+- Run linters and type checks after making changes.
+- Temporary working files go in `temp/` and should be deleted before committing.
 - Report scope creep immediately rather than silently upgrading difficulty.
