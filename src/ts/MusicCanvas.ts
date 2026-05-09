@@ -470,18 +470,15 @@ export class MusicCanvas extends MusicElement {
       const alpha =
         MusicCanvas.FR_HOTSPOT_BASE_ALPHA +
         MusicCanvas.FR_HOTSPOT_ALPHA_RANGE *
-        Math.sin(shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase);
+          Math.sin(shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase);
 
       const startY =
-        this.canvasPadding +
-        loc.c * this.choirHeight +
-        loc.p * this.partHeight;
+        this.canvasPadding + loc.c * this.choirHeight + loc.p * this.partHeight;
       const cy = startY + this.partHeight / 2;
       const hue = colors().choir[loc.c];
       const lightness = this.#getHotspotLightness(loc.c, loc.p);
 
-      const radius =
-        this.partHeight * MusicCanvas.FR_HOTSPOT_RADIUS_MULTIPLIER;
+      const radius = this.partHeight * MusicCanvas.FR_HOTSPOT_RADIUS_MULTIPLIER;
       const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
       gradient.addColorStop(
         0,
@@ -489,7 +486,8 @@ export class MusicCanvas extends MusicElement {
       );
       gradient.addColorStop(
         MusicCanvas.FR_HOTSPOT_GRADIENT_MID_STOP,
-        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
+          alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
         })`
       );
       gradient.addColorStop(
@@ -512,9 +510,7 @@ export class MusicCanvas extends MusicElement {
       const cx = this.canvasPadding + ((loc.from + loc.to) / 2) * this.barWidth;
 
       const startY =
-        this.canvasPadding +
-        loc.c * this.choirHeight +
-        loc.p * this.partHeight;
+        this.canvasPadding + loc.c * this.choirHeight + loc.p * this.partHeight;
       const cy = startY + this.partHeight / 2;
 
       const radius =
@@ -532,7 +528,8 @@ export class MusicCanvas extends MusicElement {
       );
       gradient.addColorStop(
         MusicCanvas.FR_PULSE_GRADIENT_MID_STOP,
-        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
+          centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
         })`
       );
       gradient.addColorStop(

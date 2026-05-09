@@ -82,9 +82,7 @@ export function noteToPitchClass(note: Note): number {
   return ((pc % 12) + 12) % 12;
 }
 
-export function detectFalseRelations(
-  activeNotes: Map<number, ActiveNote[]>
-) {
+export function detectFalseRelations(activeNotes: Map<number, ActiveNote[]>) {
   frLocations.length = 0;
   const activeLocs = new Map<string, FRlocation>();
 
