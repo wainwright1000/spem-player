@@ -37,11 +37,12 @@ export class MusicCanvas extends MusicElement {
   fpsLastTime = 0;
   fpsValue = 0;
   shimmerLoopId: number = 0;
+  oldTimeStamp: number = 0;
 
   // --- False-relation visual tuning constants ---
 
   // Playback pulse: how long the flash lasts after the FR starts (bars).
-  static readonly FR_PULSE_FADE_BARS = 0.2;
+  static readonly FR_PULSE_FADE_BARS = 0.4;
   // Playback pulse: radius as a multiple of partHeight.
   static readonly FR_PULSE_RADIUS_MULTIPLIER = 3;
   // Playback pulse: HSL saturation (%).
@@ -67,22 +68,19 @@ export class MusicCanvas extends MusicElement {
   static readonly FR_HOTSPOT_ALPHA_RANGE = 0.2;
   // Hotspot: radius as a fraction of partHeight.
   static readonly FR_HOTSPOT_RADIUS_MULTIPLIER = 0.6;
-  // Hotspot: HSL saturation (%). Set to 0 for neutral greyscale.
-  static readonly FR_HOTSPOT_SATURATION = 0;
-  // Hotspot: lightness in dark mode (%). High for contrast on dark background.
-  static readonly FR_HOTSPOT_LIGHTNESS_DARK = 90;
-  // Hotspot: lightness in light mode (%). Low for contrast on light background.
-  static readonly FR_HOTSPOT_LIGHTNESS_LIGHT = 0;
+  // Hotspot: HSL saturation (%).
+  static readonly FR_HOTSPOT_SATURATION = 100;
   // Hotspot: gradient mid-stop position (0 = centre, 1 = edge).
   static readonly FR_HOTSPOT_GRADIENT_MID_STOP = 0.25;
   // Hotspot: opacity at mid-stop as a fraction of centre alpha.
   static readonly FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR = 0.4;
-  showFps =
-    document.body.dataset.branch !== undefined &&
-    document.body.dataset.branch !== ""; // "" means we're on main branch (production)
-  fpsFrameCount = 0;
-  fpsLastTime = 0;
-  fpsValue = 0;
+
+  // Base lightness for unselected parts in light mode.
+  static readonly DULL_BASE_LIGHTNESS_LIGHT = 80;
+  // Base lightness for unselected parts in dark mode.
+  static readonly DULL_BASE_LIGHTNESS_DARK = 38;
+  // Base lightness for selected parts before part-index offset.
+  static readonly SELECTED_BASE_LIGHTNESS = 67;
 
   constructor() {
     super();
@@ -327,14 +325,9 @@ export class MusicCanvas extends MusicElement {
     ctx.fillStyle = colors().background;
     ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    const dullBaseLightness = this.#isLightMode() ? 80 : 38;
-
-    // Draw FPS number to the screen
-    // if (fps) {
-    //   ctx.font = '25px Arial';
-    //   ctx.fillStyle = '#CCC';
-    //   ctx.fillText("FPS: " + fps, 10, this.canvas.height - 30);
-    // }
+    const dullBaseLightness = this.#isLightMode()
+      ? MusicCanvas.DULL_BASE_LIGHTNESS_LIGHT
+      : MusicCanvas.DULL_BASE_LIGHTNESS_DARK;
 
     // Draw bar highlight
     if (this.bar > 0 && this.bar <= barCount) {
@@ -413,7 +406,8 @@ export class MusicCanvas extends MusicElement {
           // If current bar is highlighted
           if (this.bar >= from && this.bar < to) {
             saturation = 80;
-            lightness = (67 - 3 * p) * this.pulses[c][p];
+            lightness =
+              (MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p) * this.pulses[c][p];
             transparency = 1; // pulses[c][p];
           }
           // if current choir/part is highlighted
@@ -422,17 +416,11 @@ export class MusicCanvas extends MusicElement {
             (this.voicePart == "all" || p == this.voicePart)
           ) {
             saturation = 80;
-            lightness = 67 - 3 * p;
+            lightness = MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p;
             transparency = 1;
-          }
-          // else if (c == currentChoir && p == currentPart) {
-          //   lightness = 67 - (3 * p);
-          //   saturation = 80;
-          //   transparency = 1;
-          // }
-          else if (this.bar === 0 || this.bar > barCount) {
+          } else if (this.bar === 0 || this.bar > barCount) {
             saturation = 50;
-            lightness = 67 - 3 * p;
+            lightness = MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p;
             transparency = 1;
           } else {
             saturation = 50;
@@ -479,9 +467,7 @@ export class MusicCanvas extends MusicElement {
           part.p * this.partHeight;
         const cy = startY + this.partHeight / 2;
         const hue = colors().choir[part.c];
-        const lightness = isLight
-          ? MusicCanvas.FR_HOTSPOT_LIGHTNESS_LIGHT
-          : MusicCanvas.FR_HOTSPOT_LIGHTNESS_DARK;
+        const lightness = this.#getHotspotLightness(part.c, part.p);
 
         const radius =
           this.partHeight * MusicCanvas.FR_HOTSPOT_RADIUS_MULTIPLIER;
@@ -524,9 +510,8 @@ export class MusicCanvas extends MusicElement {
 
         const radius =
           this.partHeight * MusicCanvas.FR_PULSE_RADIUS_MULTIPLIER * pulse;
-        const lightness = isLight
-          ? MusicCanvas.FR_HOTSPOT_LIGHTNESS_LIGHT
-          : MusicCanvas.FR_HOTSPOT_LIGHTNESS_DARK;
+        const hue = colors().choir[part.c];
+        const lightness = this.#getHotspotLightness(part.c, part.p);
         const centerAlpha = Math.min(
           MusicCanvas.FR_PULSE_MAX_ALPHA,
           pulse * MusicCanvas.FR_PULSE_ALPHA_FACTOR
@@ -534,17 +519,17 @@ export class MusicCanvas extends MusicElement {
         const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
         gradient.addColorStop(
           0,
-          `hsla(0, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha})`
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha})`
         );
         gradient.addColorStop(
           MusicCanvas.FR_PULSE_GRADIENT_MID_STOP,
-          `hsla(0, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
             centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
           })`
         );
         gradient.addColorStop(
           1,
-          `hsla(0, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, 0)`
+          `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, 0)`
         );
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -556,6 +541,20 @@ export class MusicCanvas extends MusicElement {
 
   #isLightMode(): boolean {
     return document.body.classList.contains("light-theme");
+  }
+
+  #getHotspotLightness(c: number, p: number): number {
+    const isLight = this.#isLightMode();
+    const isSelected =
+      c == this.choir && (this.voicePart == "all" || p == this.voicePart);
+    const dullBase = isLight
+      ? MusicCanvas.DULL_BASE_LIGHTNESS_LIGHT
+      : MusicCanvas.DULL_BASE_LIGHTNESS_DARK;
+    const baseLight = isSelected
+      ? MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p
+      : dullBase - 3 * p;
+    const lineLight = baseLight * this.pulses[c][p];
+    return (lineLight + 50) % 100;
   }
 
   #getMousePos(e: MouseEvent): Position {
