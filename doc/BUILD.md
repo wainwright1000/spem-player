@@ -97,9 +97,11 @@ npm run test:e2e
 
 ## Build Notes
 
-### Version Synchronisation
+### Version Injection
 
-The application version is hardcoded in `index.html` (`v2.1.0`) and is not derived from `package.json` (`2.0.0`). When releasing, update both files manually. If you want automated injection, add a `define` block to `vite.config.ts` referencing `JSON.stringify(process.env.npm_package_version)` or `import { version } from './package.json'`.
+The build pipeline injects the version from `package.json` into `index.html` at build time. `index.html` contains the placeholder `v%VERSION%`, which is replaced by a Vite plugin (`html-version` in `vite.config.ts`). On non-main branches, the current branch name is appended (for example, `2.3.0-fix-123`).
+
+When releasing, update `package.json` only. The build will propagate the new version into the generated HTML.
 
 ### Ohm Grammar
 
