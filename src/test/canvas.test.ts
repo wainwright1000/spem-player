@@ -1,6 +1,12 @@
 import { MusicCanvas } from "../ts/MusicCanvas";
 import config from "../ts/config";
-import { processLilypond, dict, ranges, barCount, falseRelations } from "../ts/lily";
+import {
+  processLilypond,
+  dict,
+  ranges,
+  barCount,
+  falseRelations,
+} from "../ts/lily";
 
 MusicCanvas.define("music-canvas");
 processLilypond();
