@@ -338,4 +338,78 @@ describe("MusicScore custom element", () => {
     await clickPromise;
     expect(elem.bar).toBe(2);
   });
+
+  it("creates a clef overlay on load", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    const overlay = elem.querySelector(".score-clef-overlay");
+    expect(overlay).not.toBeNull();
+
+    const overlaySvg = overlay!.querySelector("svg");
+    expect(overlaySvg).not.toBeNull();
+  });
+
+  it("removes old clef overlay when loading a new score", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+
+    var waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    expect(elem.querySelectorAll(".score-clef-overlay").length).toBe(1);
+
+    waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "1");
+    await waitingForLoaded;
+
+    expect(elem.querySelectorAll(".score-clef-overlay").length).toBe(1);
+  });
+
+  it("clef overlay does not contain highlight elements", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    const overlay = elem.querySelector(".score-clef-overlay");
+    expect(overlay).not.toBeNull();
+    expect(overlay!.querySelector("#hPos")).toBeNull();
+    expect(overlay!.querySelector("#hBar")).toBeNull();
+  });
 });

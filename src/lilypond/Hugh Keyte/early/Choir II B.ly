@@ -2,6 +2,7 @@
 
 \include "layout.ly"
 \include "../spem.ly"
+shiftFirstNote = { \once \override NoteColumn.X-offset = #1 }
 \include "../spem words.ly"
 
 \score {
@@ -12,6 +13,7 @@
       <<
         \new Voice {
           \clef "mensural-c1"  
+          \shiftFirstNote
           \notesIIBSoprano
         }
         \addlyrics { \wordsIIBSoprano }
@@ -19,6 +21,7 @@
       <<
         \new Voice {
           \clef "mensural-c2"  
+          \shiftFirstNote
           \notesIIBAlto
         }
         \addlyrics \wordsIIBAlto
@@ -26,6 +29,7 @@
       <<
         \new Voice {
           \clef "mensural-c3"  
+          \shiftFirstNote
           \notesIIBTenor
         }
         \addlyrics \wordsIIBTenor
@@ -33,6 +37,7 @@
       <<
         \new Voice {
           \clef "mensural-f"
+          \shiftFirstNote
           \notesIIBBaritone
         }
         \addlyrics \wordsIIBBaritone
@@ -40,6 +45,7 @@
       <<
         \new Voice {
           \clef "mensural-f"
+          \shiftFirstNote
           \notesIIBBass
         }
         \addlyrics \wordsIIBBass

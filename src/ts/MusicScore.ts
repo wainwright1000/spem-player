@@ -26,6 +26,8 @@ export class MusicScore extends MusicElement {
     "http://www.w3.org/2000/svg",
     "rect"
   );
+  scrollArea: HTMLDivElement | null = null;
+  clefOverlay: HTMLDivElement | null = null;
 
   constructor() {
     super();
@@ -55,16 +57,31 @@ export class MusicScore extends MusicElement {
     this.addEventListener("wheel", this.#preventVerticalScroll, {
       passive: false,
     });
+    this.addEventListener("mousemove", this.#handleMouseMove);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener("wheel", this.#preventVerticalScroll);
+    this.removeEventListener("mousemove", this.#handleMouseMove);
+    if (this.clefOverlay) {
+      this.clefOverlay.remove();
+      this.clefOverlay = null;
+    }
   }
 
   #preventVerticalScroll = (e: WheelEvent) => {
-    if (e.deltaY !== 0) {
+    if (e.deltaY !== 0 && this.scrollArea) {
       e.preventDefault();
+      this.scrollArea.scrollLeft += e.deltaY;
+    }
+  };
+
+  #handleMouseMove = (e: MouseEvent) => {
+    if (this.clefOverlay) {
+      const overlayRect = this.clefOverlay.getBoundingClientRect();
+      this.style.cursor =
+        e.clientX < overlayRect.right ? "default" : "crosshair";
     }
   };
 
@@ -82,6 +99,12 @@ export class MusicScore extends MusicElement {
 
   scoreClicked(e: MouseEvent) {
     if (!this.svg) return;
+
+    // Ignore clicks on the overlay area
+    if (this.clefOverlay) {
+      const overlayRect = this.clefOverlay.getBoundingClientRect();
+      if (e.clientX < overlayRect.right) return;
+    }
 
     var pt: DOMPoint = new DOMPoint(e.clientX, e.clientY);
 
@@ -113,9 +136,10 @@ export class MusicScore extends MusicElement {
   async #loadScore() {
     const svgComp = await this.#loadSvg();
     if (svgComp) {
-      this.innerHTML = svgComp;
+      this.innerHTML = `<div class="score-scroll-area">${svgComp}</div>`;
     }
-    this.svg = document.querySelector("music-score svg");
+    this.scrollArea = this.querySelector(".score-scroll-area");
+    this.svg = this.scrollArea?.querySelector("svg") ?? null;
 
     if (!this.svg) {
       console.error("Could not load score for choir " + (this.choir + 1));
@@ -131,6 +155,8 @@ export class MusicScore extends MusicElement {
     this.highlightBar.setAttribute("height", String(this.svgHeight));
     this.svg.prepend(this.highlightPosition);
     this.svg.prepend(this.highlightBar);
+
+    this.#createClefOverlay();
 
     // determine what the bar positions are for this score
     this.bars = this.getBars();
@@ -181,11 +207,9 @@ export class MusicScore extends MusicElement {
     const idealPos =
       barcurrentpct * scoreWidth - idealBarPercentage * frameWidth;
 
-    this.scrollTo({
-      top: 0,
-      left: idealPos,
-      behavior: "instant",
-    });
+    if (this.scrollArea) {
+      this.scrollArea.scrollLeft = idealPos;
+    }
 
     // set highlight the current position
     if (this.bar >= 1) {
@@ -219,11 +243,15 @@ export class MusicScore extends MusicElement {
     if (this.playing || isFractional) {
       this.highlightPosition.style.fillOpacity = this.bar > 1 ? "0.1" : "0";
       this.highlightBar.style.fillOpacity = "0";
-      this.style.overflow = "hidden"; // hide the scroll bar while playing
+      if (this.scrollArea) {
+        this.scrollArea.style.overflow = "hidden"; // hide the scroll bar while playing
+      }
     } else {
       this.highlightBar.style.fillOpacity = "0.1";
       this.highlightPosition.style.fillOpacity = "0";
-      this.style.overflow = "auto";
+      if (this.scrollArea) {
+        this.scrollArea.style.overflow = "auto";
+      }
     }
   }
 
@@ -233,6 +261,29 @@ export class MusicScore extends MusicElement {
       this.scoreType = config.scores[0];
     }
     await this.#loadScore();
+  }
+
+  #createClefOverlay() {
+    if (!this.svg || !this.scrollArea) return;
+
+    const overlay = document.createElement("div");
+    overlay.className = "score-clef-overlay";
+
+    const clone = this.svg.cloneNode(true) as SVGSVGElement;
+    clone.querySelectorAll("#hPos, #hBar").forEach((el) => el.remove());
+
+    const headerWidthSvg = 11.5;
+    const scale = this.svg.clientWidth / this.svgWidth;
+    let overlayWidth = headerWidthSvg * scale;
+    if (overlayWidth < 10) {
+      overlayWidth = 100;
+    }
+
+    overlay.style.width = `${overlayWidth}px`;
+    overlay.appendChild(clone);
+    this.appendChild(overlay);
+
+    this.clefOverlay = overlay;
   }
 
   // Lilypond (currently) outputs SVG with bar numbers looking as follows.  The x position

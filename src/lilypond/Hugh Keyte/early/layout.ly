@@ -13,6 +13,8 @@
 
 \header { tagline = ##f }
 
+shiftFirstNote = { \once \override NoteColumn.X-offset = #2 }
+
 #(set-global-staff-size 16)
 
 \layout {
@@ -58,9 +60,9 @@
 %       \override Staff.Accidental.alteration-glyph-name-alist = #standard-alteration-glyph-name-alist
     % \override NoteHead.style = #'baroque
 
-%     % \consists Ambitus_engraver
-%     % \override VerticalAxisGroup
-%     %           .default-staff-staff-spacing
-%     %           .basic-distance = #12
+    \consists Ambitus_engraver
+%     \override VerticalAxisGroup
+%               .default-staff-staff-spacing
+%               .basic-distance = #12
   }
 }

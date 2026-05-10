@@ -14,6 +14,8 @@
 
 \header { tagline = ##f }
 
+shiftFirstNote = { \once \override NoteColumn.X-offset = #2 }
+
 \layout {
   \context {
     \Staff
