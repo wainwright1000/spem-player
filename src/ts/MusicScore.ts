@@ -26,6 +26,10 @@ export class MusicScore extends MusicElement {
     "http://www.w3.org/2000/svg",
     "rect"
   );
+  highlightPart: SVGRectElement = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "rect"
+  );
   scrollArea: HTMLDivElement | null = null;
   clefOverlay: HTMLDivElement | null = null;
 
@@ -41,7 +45,7 @@ export class MusicScore extends MusicElement {
     this.highlightPosition.setAttribute("y", "0");
     this.highlightPosition.setAttribute("width", "7");
     this.highlightPosition.setAttribute("height", "0"); // Will be set later when we know the height of the SVG
-    this.highlightPosition.style.fill = colors().scoreHighlight; //Set stroke colour
+    this.highlightPosition.style.fill = `hsla(${colors().choir[0]}, 80%, 55%, 1)`;
     this.highlightPosition.style.fillOpacity = "0"; // initially invisible
     this.highlightPosition.style.strokeWidth = "5px"; //Set stroke width
 
@@ -49,9 +53,16 @@ export class MusicScore extends MusicElement {
     this.highlightBar.setAttribute("x", "0");
     this.highlightBar.setAttribute("width", "0");
     this.highlightBar.setAttribute("height", "0"); // Will be set later when we know the height of the SVG
-    this.highlightBar.style.fill = colors().scoreHighlight; //Set stroke colour
+    this.highlightBar.style.fill = `hsla(${colors().choir[0]}, 80%, 55%, 1)`;
     this.highlightBar.style.fillOpacity = "0"; // initially invisible
     this.highlightBar.style.strokeWidth = "5px"; //Set stroke width
+
+    this.highlightPart.setAttribute("id", "hPart");
+    this.highlightPart.setAttribute("x", "0");
+    this.highlightPart.setAttribute("y", "0");
+    this.highlightPart.setAttribute("width", "0");
+    this.highlightPart.setAttribute("height", "0"); // Will be set later when we know the height of the SVG
+    this.highlightPart.style.fillOpacity = "0"; // initially invisible
 
     this.addEventListener("click", this.scoreClicked);
     this.addEventListener("wheel", this.#preventVerticalScroll, {
@@ -155,6 +166,9 @@ export class MusicScore extends MusicElement {
     this.highlightBar.setAttribute("height", String(this.svgHeight));
     this.svg.prepend(this.highlightPosition);
     this.svg.prepend(this.highlightBar);
+    this.svg.prepend(this.highlightPart);
+
+    this.#updatePartHighlight();
 
     this.#createClefOverlay();
 
@@ -169,11 +183,15 @@ export class MusicScore extends MusicElement {
   async setChoir(c: string | number) {
     super.setChoir(c);
 
+    const choirColor = `hsla(${colors().choir[this.choir]}, 80%, 55%, 1)`;
+    this.highlightPosition.style.fill = choirColor;
+    this.highlightBar.style.fill = choirColor;
+
     // load the correct score for this choir
     await this.#loadScore();
 
     // set the border color to match
-    this.style.borderColor = `hsla(${colors().choir[this.choir]}, 80%, 55%, 1)`;
+    this.style.borderColor = choirColor;
   }
 
   setBar(b: string | number) {
@@ -182,6 +200,11 @@ export class MusicScore extends MusicElement {
     // scroll smootlhy and highlight the current position
     this.highlight();
     this.scrollSmooth();
+  }
+
+  setPart(p: string | number) {
+    super.setPart(p);
+    this.#updatePartHighlight();
   }
 
   setPlaying(p: string | boolean) {
@@ -255,6 +278,67 @@ export class MusicScore extends MusicElement {
     }
   }
 
+  #updatePartHighlight() {
+    if (!this.svg || this.voicePart === "all") {
+      this.highlightPart.style.fillOpacity = "0";
+      return;
+    }
+
+    // Find all staff <line> elements and group by parent transform Y
+    const lines = Array.from(this.svg.querySelectorAll("line"));
+    const clusters: { minY: number; maxY: number }[] = [];
+
+    for (const line of lines) {
+      const parent = line.parentElement;
+      if (!parent) continue;
+      const transform = parent.getAttribute("transform");
+      if (!transform) continue;
+      const match = transform.match(/translate\([^,]+,\s*([0-9.]+)\)/);
+      if (!match) continue;
+      const y = parseFloat(match[1]);
+
+      // Cluster lines that are within 2 units of each other
+      let found = false;
+      for (const cluster of clusters) {
+        if (Math.abs(y - cluster.minY) < 2) {
+          cluster.minY = Math.min(cluster.minY, y);
+          cluster.maxY = Math.max(cluster.maxY, y);
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        clusters.push({ minY: y, maxY: y });
+      }
+    }
+
+    if (clusters.length !== 5) {
+      console.warn("Expected 5 staff clusters, found", clusters.length);
+      this.highlightPart.style.fillOpacity = "0";
+      return;
+    }
+
+    clusters.sort((a, b) => a.minY - b.minY);
+    const partIndex = typeof this.voicePart === "number" ? this.voicePart : 0;
+    const cluster = clusters[partIndex];
+    if (!cluster) {
+      this.highlightPart.style.fillOpacity = "0";
+      return;
+    }
+
+    const paddingTop = 2;
+    const paddingBottom = 5;
+    const y = Math.max(0, cluster.minY - paddingTop);
+    const height = cluster.maxY - cluster.minY + paddingTop + paddingBottom;
+
+    this.highlightPart.setAttribute("x", "0");
+    this.highlightPart.setAttribute("width", String(this.svgWidth));
+    this.highlightPart.setAttribute("y", String(y));
+    this.highlightPart.setAttribute("height", String(height));
+    this.highlightPart.style.fill = `hsla(${colors().choir[this.choir]}, 80%, 55%, 1)`;
+    this.highlightPart.style.fillOpacity = "0.12";
+  }
+
   async setScoreType(s: string) {
     this.scoreType = s;
     if (config.scores.indexOf(s) < 0) {
@@ -270,7 +354,7 @@ export class MusicScore extends MusicElement {
     overlay.className = "score-clef-overlay";
 
     const clone = this.svg.cloneNode(true) as SVGSVGElement;
-    clone.querySelectorAll("#hPos, #hBar").forEach((el) => el.remove());
+    clone.querySelectorAll("#hPos, #hBar, #hPart").forEach((el) => el.remove());
 
     const headerWidthSvg = 11.5;
     const scale = this.svg.clientWidth / this.svgWidth;
