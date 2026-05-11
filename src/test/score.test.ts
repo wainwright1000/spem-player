@@ -412,4 +412,85 @@ describe("MusicScore custom element", () => {
     expect(overlay!.querySelector("#hPos")).toBeNull();
     expect(overlay!.querySelector("#hBar")).toBeNull();
   });
+
+  it("part highlight element exists after load", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    const hPart = document.querySelector(
+      "svg rect[id='hPart']"
+    ) as SVGRectElement;
+    expect(hPart).not.toBeNull();
+  });
+
+  it("setting part makes highlight visible", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    elem.setAttribute("part", "0");
+    expect(elem.highlightPart.style.fillOpacity).not.toBe("0");
+    expect(elem.highlightPart.getAttribute("width")).toBe(
+      String(elem.svgWidth)
+    );
+  });
+
+  it("setting part to 'all' hides highlight", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    elem.setAttribute("part", "0");
+    expect(elem.highlightPart.style.fillOpacity).not.toBe("0");
+
+    elem.setAttribute("part", "all");
+    expect(elem.highlightPart.style.fillOpacity).toBe("0");
+  });
+
+  it("clef overlay does not contain part highlight", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    const overlay = elem.querySelector(".score-clef-overlay");
+    expect(overlay).not.toBeNull();
+    expect(overlay!.querySelector("#hPart")).toBeNull();
+  });
 });

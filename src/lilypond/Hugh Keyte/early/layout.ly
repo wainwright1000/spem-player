@@ -1,6 +1,6 @@
 \version "2.24.4"
 
-\pointAndClickOff
+\pointAndClickOn
 
 \paper {
   page-breaking = #ly:one-line-breaking

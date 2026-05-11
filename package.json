@@ -22,7 +22,9 @@
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^17.6.0",
+    "husky": "^9.1.7",
     "jsdom": "^29.1.1",
+    "lint-staged": "^17.0.4",
     "prettier": "^3.8.3",
     "sass-embedded": "^1.93.0",
     "typescript": "^6.0.3",
@@ -48,7 +50,13 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:report": "playwright show-report",
-    "ci": "npm run build && vitest --run && npm run test:e2e"
+    "ci": "npm run build && vitest --run && npm run test:e2e",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx,js,jsx,json,scss,css,html,md}": [
+      "prettier --write"
+    ]
   },
   "author": "Mark Wainwright",
   "license": "MIT"
