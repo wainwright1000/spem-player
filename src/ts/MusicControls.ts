@@ -1,3 +1,6 @@
+// Copyright (c) 2024 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 import config from "./config";
 import { getBarFromTime, getTimeFromBar } from "./common";
 import { MusicElement } from "./MusicElement";
@@ -22,6 +25,8 @@ export class MusicControls extends MusicElement {
   svgPlay: SVGElement | null = null;
   svgPause: SVGElement | null = null;
 
+  #isLooping = false;
+
   constructor() {
     super();
   }
@@ -33,6 +38,7 @@ export class MusicControls extends MusicElement {
     this.playpausebutton = document.createElement("div");
     this.playpausebutton.setAttribute("id", "playpausebutton");
     this.playpausebutton.setAttribute("tabindex", "0");
+    this.playpausebutton.setAttribute("class", "control");
     this.svgLoading = new DOMParser()
       .parseFromString(loadingSVG, "image/svg+xml")
       .querySelector("svg");
@@ -62,6 +68,7 @@ export class MusicControls extends MusicElement {
     this.choirselect = document.createElement("select");
     this.choirselect.setAttribute("name", "choir");
     this.choirselect.setAttribute("id", "choir-select");
+    this.choirselect.setAttribute("class", "control");
     for (var c in config.choirs[0]) {
       const opt = document.createElement("option");
       opt.setAttribute("value", c);
@@ -77,6 +84,7 @@ export class MusicControls extends MusicElement {
     this.partselect = document.createElement("select");
     this.partselect.setAttribute("name", "part");
     this.partselect.setAttribute("id", "part-select");
+    this.partselect.setAttribute("class", "control");
     const opt = document.createElement("option");
     opt.setAttribute("value", "all");
     opt.appendChild(document.createTextNode("All"));
@@ -100,6 +108,7 @@ export class MusicControls extends MusicElement {
     this.barinput.setAttribute("value", "0");
     this.barinput.setAttribute("min", "0");
     this.barinput.setAttribute("max", String(barCount));
+    this.barinput.setAttribute("class", "control");
     label.append(this.barinput);
     this.append(label);
 
@@ -115,6 +124,25 @@ export class MusicControls extends MusicElement {
       "change",
       this.#handleControlsChanged.bind(this)
     );
+    this.barinput.addEventListener("keydown", (e) => {
+      const allowed = [
+        "Backspace",
+        "Delete",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+        "Tab",
+        "Enter",
+        "Escape",
+        "Home",
+        "End",
+      ];
+      if (allowed.includes(e.key) || /^[0-9]$/.test(e.key)) {
+        return;
+      }
+      e.preventDefault();
+    });
     if (this.playpausebutton)
       this.playpausebutton.addEventListener("click", this.playpause.bind(this));
   }
@@ -124,7 +152,18 @@ export class MusicControls extends MusicElement {
     this.choir = Number(this.choirselect.value);
     this.voicePart =
       this.partselect.value == "all" ? "all" : Number(this.partselect.value);
-    this.bar = Number(this.barinput.value);
+
+    const raw = this.barinput.value;
+    const parsed = Number(raw);
+    if (Number.isNaN(parsed) || raw === "") {
+      this.bar = 0;
+    } else {
+      this.bar = Math.max(0, parsed);
+      if (barCount > 0) {
+        this.bar = Math.min(this.bar, barCount - 1);
+      }
+    }
+    this.barinput.value = String(this.bar);
     this.fireEvent("music-controls-changed");
   }
 
@@ -185,7 +224,17 @@ export class MusicControls extends MusicElement {
       this.audio.currentTime = getTimeFromBar(this.bar, this.recording);
     }
 
-    await this.audio.play();
+    try {
+      await this.audio.play();
+    } catch {
+      if (this.svgPlay && this.svgLoading && this.svgPause) {
+        this.svgPlay.style.display = "block";
+        this.svgPause.style.display = "none";
+        this.svgLoading.style.display = "none";
+      }
+      this.playing = false;
+      return;
+    }
 
     this.playing = true;
     if (this.svgPlay && this.svgLoading && this.svgPause) {
@@ -194,6 +243,9 @@ export class MusicControls extends MusicElement {
       this.svgLoading.style.display = "none";
     }
     this.fireEvent("music-controls-playing");
+
+    if (this.#isLooping) return;
+    this.#isLooping = true;
 
     const self = this;
 
@@ -208,6 +260,8 @@ export class MusicControls extends MusicElement {
 
       if (self.isPlaying()) {
         window.requestAnimationFrame(loop);
+      } else {
+        self.#isLooping = false;
       }
     }
     window.requestAnimationFrame(loop);
@@ -215,6 +269,7 @@ export class MusicControls extends MusicElement {
 
   pause() {
     this.playing = false;
+    this.#isLooping = false;
     if (this.svgPlay && this.svgLoading && this.svgPause) {
       this.svgPlay.style.display = "block";
       this.svgPause.style.display = "none";

@@ -4,7 +4,7 @@
 
 - Node.js and npm
 - LilyPond (only if regenerating SVG scores from source)
-- A POSIX shell such as Bash (for `build/buildScore.sh` and `build/buildAllScores.sh`)
+- LilyPond (only if regenerating SVG scores from source)
 
 ## Install Dependencies
 
@@ -47,27 +47,20 @@ Serves the contents of `dist/` locally.
 
 The SVG files in `src/scores/` are generated from LilyPond source files in `src/lilypond/`. If you modify the LilyPond sources, regenerate the scores before building.
 
-Build a single score:
-
-```console
-bash build/buildScore.sh "src/lilypond/Hugh Keyte/modern/Choir I A.ly"
-```
-
-Build all scores:
+Build all scores (default: Hugh Keyte, modern notation):
 
 ```console
 npm run build:scores
 ```
 
-This iterates over all `Choir*.ly` files under `src/lilypond/Hugh Keyte/` and runs `lilypond --svg` for each. It then strips `height` and `width` attributes from the first line of each generated SVG.
+Build a single score:
 
-### Platform Note for Score Generation
-
-`build/buildScore.sh` uses `sed -i ''`, which is macOS syntax. On Linux or Windows with GNU sed, change the last line to:
-
-```bash
-sed -i -E '1,1s/ height="[0-9.]+[a-zA-Z]*"//g; 1,1s/ width="[0-9.]+[a-zA-Z]*"//g' "$svg"
+```console
+npm run build:scores -- --choir="I A"
+npm run build:scores -- --version="Hugh Keyte" --notation=early --choir="II B"
 ```
+
+This iterates over matching `Choir*.ly` files under `src/lilypond/` and runs `lilypond --svg` for each, then post-processes the generated SVG with `build/postprocessSvg.py`.
 
 ## Testing
 
@@ -89,11 +82,19 @@ Open the Vitest UI:
 npm run test:ui
 ```
 
+Run end-to-end tests in a real browser:
+
+```console
+npm run test:e2e
+```
+
 ## Build Notes
 
-### Version Synchronisation
+### Version Injection
 
-The application version is hardcoded in `index.html` (`v2.1.0`) and is not derived from `package.json` (`2.0.0`). When releasing, update both files manually. If you want automated injection, add a `define` block to `vite.config.ts` referencing `JSON.stringify(process.env.npm_package_version)` or `import { version } from './package.json'`.
+The build pipeline injects the version from `package.json` into `index.html` at build time. `index.html` contains the placeholder `v%VERSION%`, which is replaced by a Vite plugin (`html-version` in `vite.config.ts`). On non-main branches, the current branch name is appended (for example, `2.3.0-fix-123`).
+
+When releasing, update `package.json` only. The build will propagate the new version into the generated HTML.
 
 ### Ohm Grammar
 

@@ -1,3 +1,6 @@
+// Copyright (c) 2024 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 import config from "./config";
 import lyGrammar from "../ohmjs/ly-grammar.ohm-bundle";
 import * as ohm from "ohm-js";
@@ -11,6 +14,18 @@ export type Dictionary = {
   n: Note;
 };
 export const dict: Dictionary[][] = [];
+
+export type ActiveNote = { c: number; p: number; n: Note };
+
+export type FRlocation = {
+  c: number;
+  p: number;
+  notename: string;
+  accidental: string | null;
+  from: number;
+  to: number;
+};
+export const frLocations: FRlocation[] = [];
 
 // a dictionary to hold the muic in the lilypond input file
 export var scores: { [id: string]: Component[] } = {};
@@ -46,6 +61,105 @@ function romanise(num: number) {
     }
   }
   return roman;
+}
+
+export function noteToPitchClass(note: Note): number {
+  const base: Record<string, number> = {
+    c: 0,
+    d: 2,
+    e: 4,
+    f: 5,
+    g: 7,
+    a: 9,
+    b: 11,
+  };
+  let pc = base[note.notename] ?? 0;
+
+  if (note.accidental) {
+    if (note.accidental.includes("isis")) pc += 2;
+    else if (note.accidental.includes("eses")) pc -= 2;
+    else if (note.accidental.includes("is")) pc += 1;
+    else if (note.accidental.includes("es")) pc -= 1;
+  }
+
+  return ((pc % 12) + 12) % 12;
+}
+
+export function detectFalseRelations(activeNotes: Map<number, ActiveNote[]>) {
+  frLocations.length = 0;
+  const activeLocs = new Map<string, FRlocation>();
+
+  const positions = Array.from(activeNotes.keys()).sort((a, b) => a - b);
+
+  for (const pos of positions) {
+    const notes = activeNotes.get(pos) ?? [];
+    const involved = new Set<string>();
+
+    for (let i = 0; i < notes.length; i++) {
+      for (let j = i + 1; j < notes.length; j++) {
+        const a = notes[i];
+        const b = notes[j];
+        if (a.c === b.c && a.p === b.p) continue;
+        if (
+          a.n.notename === b.n.notename &&
+          a.n.accidental !== b.n.accidental
+        ) {
+          involved.add(`${a.c}-${a.p}`);
+          involved.add(`${b.c}-${b.p}`);
+        }
+      }
+    }
+
+    for (const note of notes) {
+      const key = `${note.c}-${note.p}`;
+      const existing = activeLocs.get(key);
+
+      if (involved.has(key)) {
+        if (existing) {
+          if (
+            existing.notename !== note.n.notename ||
+            existing.accidental !== note.n.accidental
+          ) {
+            frLocations.push(existing);
+            activeLocs.set(key, {
+              c: note.c,
+              p: note.p,
+              notename: note.n.notename,
+              accidental: note.n.accidental,
+              from: pos,
+              to: pos + 0.0625,
+            });
+          } else {
+            existing.to = pos + 0.0625;
+          }
+        } else {
+          activeLocs.set(key, {
+            c: note.c,
+            p: note.p,
+            notename: note.n.notename,
+            accidental: note.n.accidental,
+            from: pos,
+            to: pos + 0.0625,
+          });
+        }
+      } else if (existing) {
+        frLocations.push(existing);
+        activeLocs.delete(key);
+      }
+    }
+
+    for (const [key, loc] of Array.from(activeLocs.entries())) {
+      const present = notes.some((n) => n.c === loc.c && n.p === loc.p);
+      if (!present) {
+        frLocations.push(loc);
+        activeLocs.delete(key);
+      }
+    }
+  }
+
+  for (const loc of activeLocs.values()) {
+    frLocations.push(loc);
+  }
 }
 
 function setupLilypondParser(): ohm.Semantics {
@@ -170,6 +284,7 @@ export function processLilypond() {
 
   semantics(result).parse();
 
+  const activeNotes = new Map<number, ActiveNote[]>();
   barCount = 0;
   for (let c = 0; c < config.choirs[0].length; c++) {
     const choir = config.choirs[0][c];
@@ -188,8 +303,10 @@ export function processLilypond() {
 
       var pos = 1; // in hemidemisemiquavers (64ths)
       const barsize = 128; // hemidemisemiquavers in a bar
+      const step = 0.0625; // 1/16 bar
       for (var comp of lilypond) {
         if (comp instanceof Note) {
+          const noteStart = pos;
           if (from == undefined) {
             from = pos;
           }
@@ -200,6 +317,20 @@ export function processLilypond() {
           dict[pos].push({ c: c, p: p, n: comp });
 
           if (comp.duration != null) pos += comp.duration.sfths / barsize;
+
+          // Add to activeNotes for each 1/16 position in [noteStart, pos)
+          const noteEnd = pos;
+          const startIdx = Math.ceil(noteStart / step);
+          const endIdx = Math.ceil(noteEnd / step);
+          for (let i = startIdx; i < endIdx; i++) {
+            const p16 = i * step;
+            const entry = activeNotes.get(p16);
+            if (entry) {
+              entry.push({ c, p, n: comp });
+            } else {
+              activeNotes.set(p16, [{ c, p, n: comp }]);
+            }
+          }
         } else if (comp instanceof Rest) {
           if (from != undefined) {
             ranges[c][p].push({ from: from, to: pos });
@@ -220,6 +351,8 @@ export function processLilypond() {
     }
   }
   barCount = Math.floor(barCount) - 1;
+
+  detectFalseRelations(activeNotes);
 }
 
 export const exportedForTesting = {
@@ -227,4 +360,6 @@ export const exportedForTesting = {
   romanise,
   setupLilypondParser,
   getFile,
+  noteToPitchClass,
+  detectFalseRelations,
 };

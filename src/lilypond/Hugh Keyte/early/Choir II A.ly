@@ -12,6 +12,7 @@
       <<
         \new Voice {
           \clef "mensural-c1"  
+          \shiftFirstNote
           \notesIIASoprano
         }
         \addlyrics { \wordsIIASoprano }
@@ -19,6 +20,7 @@
       <<
         \new Voice {
           \clef "mensural-c2"  
+          \shiftFirstNote
           \notesIIAAlto
         }
         \addlyrics \wordsIIAAlto
@@ -26,6 +28,7 @@
       <<
         \new Voice {
           \clef "mensural-c3"  
+          \shiftFirstNote
           \notesIIATenor
         }
         \addlyrics \wordsIIATenor
@@ -33,6 +36,7 @@
       <<
         \new Voice {
           \clef "mensural-f"
+          \shiftFirstNote
           \notesIIABaritone
         }
         \addlyrics \wordsIIABaritone
@@ -40,6 +44,7 @@
       <<
         \new Voice {
           \clef "mensural-f"
+          \shiftFirstNote
           \notesIIABass
         }
         \addlyrics \wordsIIABass

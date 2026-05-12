@@ -1,6 +1,6 @@
 \version "2.24.4"
 
-\pointAndClickOff
+\pointAndClickOn
 
 \paper {
 
@@ -13,6 +13,8 @@
 }
 
 \header { tagline = ##f }
+
+shiftFirstNote = { \once \override NoteColumn.X-offset = #2 }
 
 \layout {
   \context {

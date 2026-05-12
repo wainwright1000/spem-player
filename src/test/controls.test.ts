@@ -1,5 +1,6 @@
 import { MusicControls } from "../ts/MusicControls";
 import config from "../ts/config";
+import { processLilypond, barCount } from "../ts/lily";
 
 var expectedBar: any;
 var expectedChoir: any;
@@ -41,6 +42,7 @@ function matchesWildcard(pattern: string, str: string): boolean {
 describe("MusicControls custom element", () => {
   beforeAll(() => {
     MusicControls.define("music-controls");
+    processLilypond();
 
     // mock the Media element so we know if it's being played
     vi.spyOn(HTMLMediaElement.prototype, "load").mockReturnThis();
@@ -373,5 +375,189 @@ describe("MusicControls custom element", () => {
     choir.dispatchEvent(new Event("change", { bubbles: true }));
     const changeResult = await waitingforChange;
     expect(changeResult).toBe(true);
+  });
+
+  it("adds control class to all interactive elements (#182)", () => {
+    expect(
+      document.getElementById("playpausebutton")?.classList.contains("control")
+    ).toBe(true);
+    expect(
+      document.getElementById("choir-select")?.classList.contains("control")
+    ).toBe(true);
+    expect(
+      document.getElementById("part-select")?.classList.contains("control")
+    ).toBe(true);
+    expect(
+      document.getElementById("bar-field")?.classList.contains("control")
+    ).toBe(true);
+  });
+
+  it("rejects letter keydown on bar input (#184)", () => {
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const event = new KeyboardEvent("keydown", { key: "d", bubbles: true });
+    const preventDefaultSpy = vi.spyOn(event, "preventDefault");
+    bar.dispatchEvent(event);
+    expect(preventDefaultSpy).toHaveBeenCalled();
+  });
+
+  it("accepts digit keydown on bar input (#184)", () => {
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const event = new KeyboardEvent("keydown", { key: "5", bubbles: true });
+    const preventDefaultSpy = vi.spyOn(event, "preventDefault");
+    bar.dispatchEvent(event);
+    expect(preventDefaultSpy).not.toHaveBeenCalled();
+  });
+
+  it("sanitises non-numeric bar input to 0 on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    bar.value = "4d";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(0);
+    expect(bar.value).toBe("0");
+  });
+
+  it("clamps out-of-range bar input to max on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const maxBar = barCount > 0 ? barCount - 1 : 0;
+    bar.value = "999";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(maxBar);
+    expect(bar.value).toBe(String(maxBar));
+  });
+
+  it("clamps negative bar input to 0 on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    bar.value = "-5";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(0);
+    expect(bar.value).toBe("0");
+  });
+
+  it("handles empty bar input as 0 on change (#184)", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    bar.value = "";
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(elem.bar).toBe(0);
+    expect(bar.value).toBe("0");
+  });
+
+  it("calling play() while already playing does not start a duplicate rAF loop", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+
+    // Capture all requestAnimationFrame callbacks
+    const rafCallbacks: Array<(time: number) => void> = [];
+    const originalRAF = window.requestAnimationFrame;
+    window.requestAnimationFrame = (callback: (time: number) => void) => {
+      rafCallbacks.push(callback);
+      return rafCallbacks.length;
+    };
+
+    // Start playback (schedules the first loop)
+    const waitingForPlay = waitForEvent(
+      elem,
+      "music-controls-playing",
+      handleAudioStarted
+    );
+    elem.setAttribute("playing", "true");
+    await waitingForPlay;
+
+    // Call play() again, as setChoir/setPart/setRecording would
+    await elem.play();
+
+    // Count music-controls-changed events when running captured callbacks
+    let _eventCount = 0;
+    const countListener = () => {
+      _eventCount++;
+    };
+    elem.addEventListener("music-controls-changed", countListener);
+
+    // Run each captured callback once
+    rafCallbacks.forEach((cb) => cb(0));
+
+    // Before the fix: two loops fire, so two events
+    // After the fix: one loop fires, so one event
+    expect(_eventCount).toBe(1);
+
+    // Cleanup
+    elem.removeEventListener("music-controls-changed", countListener);
+    window.requestAnimationFrame = originalRAF;
+  });
+
+  it("pausing after duplicate play() clears all loops without zombies", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+
+    const rafCallbacks: Array<(time: number) => void> = [];
+    const originalRAF = window.requestAnimationFrame;
+    window.requestAnimationFrame = (callback: (time: number) => void) => {
+      rafCallbacks.push(callback);
+      return rafCallbacks.length;
+    };
+
+    // Start playback and duplicate the loop
+    const waitingForPlay = waitForEvent(
+      elem,
+      "music-controls-playing",
+      handleAudioStarted
+    );
+    elem.setAttribute("playing", "true");
+    await waitingForPlay;
+    await elem.play();
+
+    // Pause
+    const waitingForPause = waitForEvent(
+      elem,
+      "music-controls-paused",
+      handleAudioStarted
+    );
+    elem.pause();
+    await waitingForPause;
+
+    // Run all captured callbacks that were scheduled before or during pause
+    const callbacksBeforeRun = rafCallbacks.length;
+    let _eventCount = 0;
+    const countListener = () => {
+      _eventCount++;
+    };
+    elem.addEventListener("music-controls-changed", countListener);
+    rafCallbacks.forEach((cb) => cb(0));
+
+    // After pause, no loop should reschedule itself, so the callback count
+    // should not grow beyond what existed before the run
+    expect(rafCallbacks.length).toBe(callbacksBeforeRun);
+    expect(elem.isPlaying()).toBe(false);
+
+    elem.removeEventListener("music-controls-changed", countListener);
+    window.requestAnimationFrame = originalRAF;
+  });
+
+  it("play() rejection resets the button to the play icon", async () => {
+    const elem = document.querySelector("music-controls") as MusicControls;
+    const spinner = document.getElementById("spinner");
+    const play = document.getElementById("play");
+    const pause = document.getElementById("pause");
+
+    // Override the play mock to reject (autoplay blocked)
+    vi.mocked(HTMLMediaElement.prototype.play).mockRejectedValueOnce(
+      new DOMException("NotAllowedError", "NotAllowedError")
+    );
+
+    // Call play() — the rejection is caught internally
+    await elem.play();
+
+    // After rejection: spinner hidden, play icon visible, pause hidden
+    expect(spinner?.style.display, document.body.innerHTML).toBe("none");
+    expect(play?.style.display, document.body.innerHTML).toBe("block");
+    expect(pause?.style.display, document.body.innerHTML).toBe("none");
+
+    // Internal state must be consistent
+    expect(elem.isPlaying()).toBe(false);
   });
 });

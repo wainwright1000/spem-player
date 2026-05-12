@@ -14,7 +14,7 @@
           \remove Note_heads_engraver
           \consists Completion_heads_engraver
       }
-      { \clef "treble" \notesIASoprano }
+      { \clef "treble" \shiftFirstNote \notesIASoprano }
       \addlyrics \wordsIASoprano
     >>
     <<
@@ -22,7 +22,7 @@
           \remove Note_heads_engraver
           \consists Completion_heads_engraver
       }
-      { \clef "treble" \notesIAAlto }
+      { \clef "treble" \shiftFirstNote \notesIAAlto }
       \addlyrics \wordsIAAlto
     >>
     <<
@@ -30,7 +30,7 @@
           \remove Note_heads_engraver
           \consists Completion_heads_engraver
       }
-      { \clef "treble_8" \notesIATenor }
+      { \clef "treble_8" \shiftFirstNote \notesIATenor }
       \addlyrics \wordsIATenor
     >>
     <<
@@ -38,7 +38,7 @@
           \remove Note_heads_engraver
           \consists Completion_heads_engraver
       }
-      { \clef "treble_8" \notesIABaritone }
+      { \clef "treble_8" \shiftFirstNote \notesIABaritone }
       \addlyrics \wordsIABaritone
     >>
     <<
@@ -46,7 +46,7 @@
           \remove Note_heads_engraver
           \consists Completion_heads_engraver
       }
-      { \clef "bass" \notesIABass }
+      { \clef "bass" \shiftFirstNote \notesIABass }
       \addlyrics \wordsIABass
     >>
   >>

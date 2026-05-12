@@ -1,3 +1,6 @@
+// Copyright (c) 2024 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 import config from "./config";
 import { PartType, Position, colors } from "./common";
 import { MusicElement } from "./MusicElement";
@@ -9,6 +12,7 @@ import {
   dict,
   ranges,
   barCount,
+  frLocations,
 } from "./lily";
 
 export class MusicCanvas extends MusicElement {
@@ -23,9 +27,63 @@ export class MusicCanvas extends MusicElement {
   pulses: number[][] = [];
   lastNoteStart: number[][] = [];
   lastNoteDuration: number[][] = [];
+  falseRelationPulses: number[] = [];
+  shimmerPhases: number[] = [];
   dict: Dictionary[][] = []; // HACK: bad name and data type
   ranges: Range[][][] = []; // HACK: bad data type
   source: string | null = null;
+
+  isOnDevBranch =
+    document.body.dataset.branch !== undefined &&
+    document.body.dataset.branch !== ""; // "" means we're on main branch (production)
+  fpsFrameCount = 0;
+  fpsLastTime = 0;
+  fpsValue = 0;
+  shimmerLoopId: number = 0;
+  oldTimeStamp: number = 0;
+
+  // Base lightness for unselected parts in light mode.
+  static readonly DULL_BASE_LIGHTNESS_LIGHT = 80;
+  // Base lightness for unselected parts in dark mode.
+  static readonly DULL_BASE_LIGHTNESS_DARK = 38;
+  // Base lightness for selected parts before part-index offset.
+  static readonly SELECTED_BASE_LIGHTNESS = 45;
+
+  // --- False-relation visual tuning constants ---
+
+  // Playback pulse: how long the flash lasts after the FR starts (bars).
+  static readonly FR_PULSE_FADE_BARS = 0.4;
+  // Playback pulse: radius as a multiple of partHeight.
+  static readonly FR_PULSE_RADIUS_MULTIPLIER = 2.5;
+  // Playback pulse: HSL saturation (%).
+  static readonly FR_PULSE_SATURATION = 100;
+  // Playback pulse: peak lightness in dark mode (%).
+  static readonly FR_PULSE_LIGHTNESS_DARK = 90;
+  // Playback pulse: peak lightness in light mode (%).
+  static readonly FR_PULSE_LIGHTNESS_LIGHT = 50;
+  // Playback pulse: maximum opacity (0-1).
+  static readonly FR_PULSE_MAX_ALPHA = 1.0;
+  // Playback pulse: opacity multiplier applied to pulse strength.
+  static readonly FR_PULSE_ALPHA_FACTOR = 1;
+  // Playback pulse: gradient mid-stop position (0 = centre, 1 = edge).
+  static readonly FR_PULSE_GRADIENT_MID_STOP = 0.5;
+  // Playback pulse: opacity at mid-stop as a fraction of centre alpha.
+  static readonly FR_PULSE_GRADIENT_MID_ALPHA_FACTOR = 0.7;
+
+  // Hotspot shimmer: speed of the breathing sine wave (radians per second).
+  static readonly FR_HOTSPOT_SHIMMER_SPEED = 6;
+  // Hotspot shimmer: midpoint opacity around which the sine wave oscillates.
+  static readonly FR_HOTSPOT_BASE_ALPHA = 0.8;
+  // Hotspot shimmer: amplitude of the opacity oscillation.
+  static readonly FR_HOTSPOT_ALPHA_RANGE = 0.2;
+  // Hotspot: radius as a fraction of partHeight.
+  static readonly FR_HOTSPOT_RADIUS_MULTIPLIER = 0.6;
+  // Hotspot: HSL saturation (%).
+  static readonly FR_HOTSPOT_SATURATION = 100;
+  // Hotspot: gradient mid-stop position (0 = centre, 1 = edge).
+  static readonly FR_HOTSPOT_GRADIENT_MID_STOP = 0.25;
+  // Hotspot: opacity at mid-stop as a fraction of centre alpha.
+  static readonly FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR = 0.4;
 
   constructor() {
     super();
@@ -39,6 +97,17 @@ export class MusicCanvas extends MusicElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener("wheel", this.#preventVerticalScroll);
+    cancelAnimationFrame(this.shimmerLoopId);
+  }
+
+  #startShimmerLoop() {
+    const loop = () => {
+      if (!this.playing) {
+        this.draw();
+      }
+      this.shimmerLoopId = requestAnimationFrame(loop);
+    };
+    this.shimmerLoopId = requestAnimationFrame(loop);
   }
 
   #preventVerticalScroll = (e: WheelEvent) => {
@@ -116,7 +185,11 @@ export class MusicCanvas extends MusicElement {
       }
     }
 
+    this.falseRelationPulses = new Array(frLocations.length).fill(0);
+    this.shimmerPhases = frLocations.map(() => Math.random() * Math.PI * 2);
+
     this.draw();
+    this.#startShimmerLoop();
   }
 
   #calculateCanvasSize() {
@@ -186,22 +259,36 @@ export class MusicCanvas extends MusicElement {
     // setTimeout(frame, config.tempo / 10);
   }
 
-  oldTimeStamp: number = 0;
   draw() {
     if (!this.canvas) return;
+    if (ranges.length === 0 || dict.length === 0) return;
+    if (!this.#shouldDraw()) return;
 
-    if (ranges.length === 0 || dict.length === 0) {
-      return;
-    }
+    this.#updatePulses();
 
-    // Calculate frames per second
-    if (this.playing) {
-      const now: number = Date.now();
-      const secondsPassed = (now - this.oldTimeStamp) / 1000;
-      if (secondsPassed < 0.01) return; // HACK: throttle
-      this.oldTimeStamp = now;
-      // const fps = secondsPassed === 0 ? 0 : Math.round(1 / secondsPassed);
-    }
+    const ctx = this.canvas.getContext("2d");
+    if (ctx == null) return;
+
+    this.#clearCanvas(ctx);
+    this.#drawBarHighlight(ctx);
+    this.#drawSelectionHighlight(ctx);
+    this.#drawVoiceParts(ctx);
+    this.#drawDev(ctx);
+    this.#drawFalseRelationHotspot(ctx);
+    this.#drawFalseRelationPulses(ctx);
+  }
+
+  #shouldDraw(): boolean {
+    if (!this.playing) return true;
+    const now = Date.now();
+    const secondsPassed = (now - this.oldTimeStamp) / 1000;
+    if (secondsPassed < 0.01) return false;
+    this.oldTimeStamp = now;
+    return true;
+  }
+
+  #updatePulses() {
+    const isLight = this.#isLightMode();
 
     // If there are notes starting now, record their onset and duration
     const quant = Math.floor(this.bar * 16) / 16;
@@ -220,7 +307,6 @@ export class MusicCanvas extends MusicElement {
       for (var p = 0; p < config.parts.length; p++) {
         const elapsed = this.bar - this.lastNoteStart[c][p];
         if (elapsed >= 0 && elapsed < this.lastNoteDuration[c][p]) {
-          const isLight = this.#isLightMode();
           this.pulses[c][p] = this.#easeOutCubic(
             elapsed,
             isLight ? 0.4 : 1.6,
@@ -233,42 +319,47 @@ export class MusicCanvas extends MusicElement {
       }
     }
 
-    // Blank out the whole canvas
-    const ctx = this.canvas.getContext("2d");
-    if (ctx == null) return;
-
-    ctx.fillStyle = colors().background;
-    ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
-
-    const dullBaseLightness = this.#isLightMode() ? 80 : 38;
-
-    // Draw FPS number to the screen
-    // if (fps) {
-    //   ctx.font = '25px Arial';
-    //   ctx.fillStyle = '#CCC';
-    //   ctx.fillText("FPS: " + fps, 10, this.canvas.height - 30);
-    // }
-
-    // Draw bar highlight
-    if (this.bar > 0 && this.bar <= barCount) {
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(
-        this.canvasPadding + this.bar * this.barWidth,
-        this.canvasPadding
-      );
-      ctx.lineTo(
-        this.canvasPadding + this.bar * this.barWidth,
-        this.canvas.height - this.canvasPadding
-      );
-      ctx.lineWidth = this.barWidth * 1.4;
-      ctx.strokeStyle = colors().highlight;
-      ctx.lineCap = "square";
-      ctx.stroke();
-      ctx.restore();
+    // Pulse false relations
+    for (let i = 0; i < frLocations.length; i++) {
+      const loc = frLocations[i];
+      if (
+        this.bar >= loc.from &&
+        this.bar < loc.from + MusicCanvas.FR_PULSE_FADE_BARS
+      ) {
+        const elapsed = this.bar - loc.from;
+        const t = Math.min(1, elapsed / MusicCanvas.FR_PULSE_FADE_BARS);
+        this.falseRelationPulses[i] = Math.sqrt(1 - t);
+      } else {
+        this.falseRelationPulses[i] = 0;
+      }
     }
+  }
 
-    // Draw highlight line for the selected choir or choir and part
+  #clearCanvas(ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = colors().background;
+    ctx.fillRect(0, 0, this.canvas!.width, this.canvas!.height);
+  }
+
+  #drawBarHighlight(ctx: CanvasRenderingContext2D) {
+    if (this.bar <= 0 || this.bar > barCount) return;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(
+      this.canvasPadding + this.bar * this.barWidth,
+      this.canvasPadding
+    );
+    ctx.lineTo(
+      this.canvasPadding + this.bar * this.barWidth,
+      this.canvas!.height - this.canvasPadding
+    );
+    ctx.lineWidth = this.barWidth * 1.4;
+    ctx.strokeStyle = colors().highlight;
+    ctx.lineCap = "square";
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  #drawSelectionHighlight(ctx: CanvasRenderingContext2D) {
     var startY: number, width: number;
     if (this.voicePart != "all") {
       startY =
@@ -277,7 +368,6 @@ export class MusicCanvas extends MusicElement {
         this.voicePart * this.partHeight;
       width = this.partHeight * 1.4;
     } else {
-      // center the highlight on the middle tenor line
       startY =
         this.canvasPadding +
         this.choir * this.choirHeight +
@@ -299,8 +389,13 @@ export class MusicCanvas extends MusicElement {
     ctx.lineCap = "round";
     ctx.stroke();
     ctx.restore();
+  }
 
-    // Draw each of the 40 voice parts
+  #drawVoiceParts(ctx: CanvasRenderingContext2D) {
+    const dullBaseLightness = this.#isLightMode()
+      ? MusicCanvas.DULL_BASE_LIGHTNESS_LIGHT
+      : MusicCanvas.DULL_BASE_LIGHTNESS_DARK;
+
     ctx.lineWidth = 0.9 * this.partHeight;
     ctx.lineCap = "round";
     for (var c = 0; c < config.choirs[0].length; c++) {
@@ -314,7 +409,6 @@ export class MusicCanvas extends MusicElement {
           const to = r.to;
 
           ctx.beginPath();
-          // The weird 0.3 is because we're using rounded lines
           const startX = this.canvasPadding + (from + 0.3) * this.barWidth;
           const endX = this.canvasPadding + (to - 0.3) * this.barWidth;
           const Y = startY + this.partHeight / 2;
@@ -323,29 +417,21 @@ export class MusicCanvas extends MusicElement {
 
           var lightness: number, saturation: number, transparency: number;
 
-          // If current bar is highlighted
           if (this.bar >= from && this.bar < to) {
             saturation = 80;
-            lightness = (67 - 3 * p) * this.pulses[c][p];
-            transparency = 1; // pulses[c][p];
-          }
-          // if current choir/part is highlighted
-          else if (
+            lightness =
+              (MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p) * this.pulses[c][p];
+            transparency = 1;
+          } else if (
             c == this.choir &&
             (this.voicePart == "all" || p == this.voicePart)
           ) {
             saturation = 80;
-            lightness = 67 - 3 * p;
+            lightness = MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p;
             transparency = 1;
-          }
-          // else if (c == currentChoir && p == currentPart) {
-          //   lightness = 67 - (3 * p);
-          //   saturation = 80;
-          //   transparency = 1;
-          // }
-          else if (this.bar === 0 || this.bar > barCount) {
+          } else if (this.bar === 0 || this.bar > barCount) {
             saturation = 50;
-            lightness = 67 - 3 * p;
+            lightness = MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p;
             transparency = 1;
           } else {
             saturation = 50;
@@ -360,8 +446,120 @@ export class MusicCanvas extends MusicElement {
     }
   }
 
+  #drawDev(ctx: CanvasRenderingContext2D) {
+    if (!this.isOnDevBranch) return;
+    const now = Date.now();
+    this.fpsFrameCount++;
+    if (now - this.fpsLastTime >= 1000) {
+      this.fpsValue = Math.round(
+        (this.fpsFrameCount * 1000) / (now - this.fpsLastTime)
+      );
+      this.fpsFrameCount = 0;
+      this.fpsLastTime = now;
+    }
+    ctx.fillStyle = this.#isLightMode() ? "black" : "white";
+    ctx.font = "20px Arial";
+    ctx.fillText(`Bar: ${this.bar.toFixed(3)}`, 10, this.canvas!.height - 32);
+    ctx.fillText(`FPS: ${this.fpsValue}`, 10, this.canvas!.height - 10);
+  }
+
+  #drawFalseRelationHotspot(ctx: CanvasRenderingContext2D) {
+    const shimmerTime = Date.now() / 1000;
+    for (let i = 0; i < frLocations.length; i++) {
+      const loc = frLocations[i];
+      const cx = this.canvasPadding + ((loc.from + loc.to) / 2) * this.barWidth;
+      const phase = this.shimmerPhases[i];
+      const alpha =
+        MusicCanvas.FR_HOTSPOT_BASE_ALPHA +
+        MusicCanvas.FR_HOTSPOT_ALPHA_RANGE *
+          Math.sin(shimmerTime * MusicCanvas.FR_HOTSPOT_SHIMMER_SPEED + phase);
+
+      const startY =
+        this.canvasPadding + loc.c * this.choirHeight + loc.p * this.partHeight;
+      const cy = startY + this.partHeight / 2;
+      const hue = colors().choir[loc.c];
+      const lightness = this.#getHotspotLightness(loc.c, loc.p);
+
+      const radius = this.partHeight * MusicCanvas.FR_HOTSPOT_RADIUS_MULTIPLIER;
+      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      gradient.addColorStop(
+        0,
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${alpha})`
+      );
+      gradient.addColorStop(
+        MusicCanvas.FR_HOTSPOT_GRADIENT_MID_STOP,
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
+          alpha * MusicCanvas.FR_HOTSPOT_GRADIENT_MID_ALPHA_FACTOR
+        })`
+      );
+      gradient.addColorStop(
+        1,
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, 0)`
+      );
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  #drawFalseRelationPulses(ctx: CanvasRenderingContext2D) {
+    for (let i = 0; i < frLocations.length; i++) {
+      const pulse = this.falseRelationPulses[i];
+      if (pulse <= 0) continue;
+
+      const loc = frLocations[i];
+      const cx = this.canvasPadding + ((loc.from + loc.to) / 2) * this.barWidth;
+
+      const startY =
+        this.canvasPadding + loc.c * this.choirHeight + loc.p * this.partHeight;
+      const cy = startY + this.partHeight / 2;
+
+      const radius =
+        this.partHeight * MusicCanvas.FR_PULSE_RADIUS_MULTIPLIER * pulse;
+      const hue = colors().choir[loc.c];
+      const lightness = MusicCanvas.SELECTED_BASE_LIGHTNESS;
+      const centerAlpha = Math.min(
+        MusicCanvas.FR_PULSE_MAX_ALPHA,
+        pulse * MusicCanvas.FR_PULSE_ALPHA_FACTOR
+      );
+      const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+      gradient.addColorStop(
+        0,
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${centerAlpha})`
+      );
+      gradient.addColorStop(
+        MusicCanvas.FR_PULSE_GRADIENT_MID_STOP,
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, ${
+          centerAlpha * MusicCanvas.FR_PULSE_GRADIENT_MID_ALPHA_FACTOR
+        })`
+      );
+      gradient.addColorStop(
+        1,
+        `hsla(${hue}, ${MusicCanvas.FR_HOTSPOT_SATURATION}%, ${lightness}%, 0)`
+      );
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
   #isLightMode(): boolean {
     return document.body.classList.contains("light-theme");
+  }
+
+  #getHotspotLightness(c: number, p: number): number {
+    const isLight = this.#isLightMode();
+    const isSelected =
+      c == this.choir && (this.voicePart == "all" || p == this.voicePart);
+    const dullBase = isLight
+      ? MusicCanvas.DULL_BASE_LIGHTNESS_LIGHT
+      : MusicCanvas.DULL_BASE_LIGHTNESS_DARK;
+    const baseLight = isSelected
+      ? MusicCanvas.SELECTED_BASE_LIGHTNESS - 3 * p
+      : dullBase - 3 * p;
+    return (baseLight + 50) % 100;
   }
 
   #getMousePos(e: MouseEvent): Position {
@@ -390,7 +588,6 @@ export class MusicCanvas extends MusicElement {
     this.bar = pos.bar;
   }
 
-  // TODO: combine canvasClicked and Hovered?
   #canvasClicked(e: MouseEvent) {
     this.#moveToPosition(this.#getMousePos(e));
     this.fireEvent("music-canvas-click");

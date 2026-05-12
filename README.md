@@ -67,9 +67,21 @@ Shortcuts are ignored when focus is on an input field or `<select>` element.
 - `doc/BUILD.md` — development setup, build commands, and deployment
 - `doc/TESTING.md` — running and writing tests
 - `doc/CONTRIBUTING.md` — contribution process, code style, and board workflow
-- `doc/WORKFLOW.md` — ticket lifecycle and best practices
 - `AGENTS.md` — architecture overview and conventions
 
 ## Licence
 
-MIT. See `LICENSE`.
+The software source code in this repository (TypeScript, HTML, CSS, shell scripts,
+and build configuration) is licensed under the MIT Licence. See `LICENSE` for
+the full text.
+
+This licence does **not** apply to:
+
+- **Audio recordings** in `public/audio/` — licensed separately by their
+  respective copyright holders (Andrew Leslie Cooper and Choir of the Earth).
+- **Musical scores** in `src/scores/` — derived from editorial editions with
+  their own copyright status.
+- **Lilypond source files** in `src/lilypond/` — see individual files for
+  attribution.
+
+Score and audio licensing is tracked in ticket #217.

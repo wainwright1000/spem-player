@@ -58,7 +58,7 @@ Coverage reports are written to the `coverage/` directory. This directory is git
 
 End-to-end tests run in a real browser using Playwright. They live in `e2e/` and follow the naming convention `*.spec.ts`.
 
-### Prerequisites
+### E2E Prerequisites
 
 The production build must exist before e2e tests run:
 
@@ -86,13 +86,13 @@ View the last HTML report:
 npm run test:e2e:report
 ```
 
-### Key Dependencies
+### E2E Key Dependencies
 
 - `@playwright/test`: test runner and browser automation
 - `chromium`: browser under test (installed via `npx playwright install chromium`)
 
 ## Local Tooling Tests
 
-Python helper scripts in `scripts/` have their own test suite in `tests_local/`.
+Python helper scripts in `scripts/` have their own test suite in `tests-local/`.
 These tests use `pytest` and `unittest.mock` to mock `subprocess` calls. They are
 separate from the Vitest suite and are not tracked in git.

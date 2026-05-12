@@ -1,6 +1,20 @@
-import { toNum, getBarFromTime, getTimeFromBar, colors } from "../ts/common";
+import {
+  toNum,
+  getBarFromTime,
+  getTimeFromBar,
+  colors,
+  HDSQTIME,
+} from "../ts/common";
+import config from "../ts/config";
 
 describe("common", () => {
+  it("HDSQTIME is derived from default recording tempo", () => {
+    const lastIdx = config.barno[0].length - 1;
+    const totalTime = config.bartime[0][lastIdx];
+    const totalBars = config.barno[0][lastIdx];
+    expect(HDSQTIME).toBeCloseTo(totalTime / totalBars / 64, 5);
+  });
+
   it("toNum() converts string and numbers as expected", () => {
     var result = toNum(1);
     expect(result).toBeTypeOf("number");
