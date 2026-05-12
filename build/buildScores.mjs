@@ -1,7 +1,8 @@
 #!/usr/bin/env node
+/* eslint-env node */
 import { execSync } from "child_process";
 import { globSync } from "fs";
-import { basename, dirname } from "path";
+import { basename } from "path";
 
 const defaults = {
   version: "Hugh Keyte",
