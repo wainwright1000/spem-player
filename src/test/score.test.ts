@@ -493,4 +493,71 @@ describe("MusicScore custom element", () => {
     expect(overlay).not.toBeNull();
     expect(overlay!.querySelector("#hPart")).toBeNull();
   });
+
+  it("injects dimming style when a part is selected", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    elem.setAttribute("part", "2");
+    const dimStyle = document.querySelector("svg style#part-dim-style");
+    expect(dimStyle).not.toBeNull();
+    expect(dimStyle!.textContent).toContain(
+      'g[data-part]:not([data-part="2"])'
+    );
+    expect(dimStyle!.textContent).toContain("opacity: 0.3");
+  });
+
+  it("clears dimming style when part is set to all", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    elem.setAttribute("part", "1");
+    const dimStyle = document.querySelector(
+      "svg style#part-dim-style"
+    ) as SVGStyleElement;
+    expect(dimStyle).not.toBeNull();
+    expect(dimStyle.textContent).not.toBe("");
+
+    elem.setAttribute("part", "all");
+    expect(dimStyle.textContent).toBe("");
+  });
+
+  it("clef overlay does not contain dimming style", async () => {
+    const elem = document.querySelector("music-score") as MusicScore;
+    elem.scrollTo = vi.fn();
+    const waitingForLoaded = waitForEvent(
+      elem,
+      "music-score-loaded",
+      handleScoreLoaded,
+      0,
+      null,
+      0
+    );
+    elem?.setAttribute("choir", "0");
+    await waitingForLoaded;
+
+    const overlay = elem.querySelector(".score-clef-overlay");
+    expect(overlay).not.toBeNull();
+    expect(overlay!.querySelector("#part-dim-style")).toBeNull();
+  });
 });

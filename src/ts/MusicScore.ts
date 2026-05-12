@@ -279,8 +279,25 @@ export class MusicScore extends MusicElement {
   }
 
   #updatePartHighlight() {
-    if (!this.svg || this.voicePart === "all") {
+    if (!this.svg) {
       this.highlightPart.style.fillOpacity = "0";
+      return;
+    }
+
+    // Manage dimming style for non-selected parts
+    let dimStyle = this.svg.querySelector("#part-dim-style");
+    if (!dimStyle) {
+      dimStyle = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "style"
+      );
+      dimStyle.setAttribute("id", "part-dim-style");
+      this.svg.prepend(dimStyle);
+    }
+
+    if (this.voicePart === "all") {
+      this.highlightPart.style.fillOpacity = "0";
+      dimStyle.textContent = "";
       return;
     }
 
@@ -337,6 +354,8 @@ export class MusicScore extends MusicElement {
     this.highlightPart.setAttribute("height", String(height));
     this.highlightPart.style.fill = `hsla(${colors().choir[this.choir]}, 80%, 55%, 1)`;
     this.highlightPart.style.fillOpacity = "0.12";
+
+    dimStyle.textContent = `g[data-part]:not([data-part="${this.voicePart}"]) { opacity: 0.3; }`;
   }
 
   async setScoreType(s: string) {
@@ -354,7 +373,9 @@ export class MusicScore extends MusicElement {
     overlay.className = "score-clef-overlay";
 
     const clone = this.svg.cloneNode(true) as SVGSVGElement;
-    clone.querySelectorAll("#hPos, #hBar, #hPart").forEach((el) => el.remove());
+    clone
+      .querySelectorAll("#hPos, #hBar, #hPart, #part-dim-style")
+      .forEach((el) => el.remove());
 
     const headerWidthSvg = 11.5;
     const scale = this.svg.clientWidth / this.svgWidth;
