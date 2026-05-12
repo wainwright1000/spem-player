@@ -4,7 +4,7 @@
 
 - Node.js and npm
 - LilyPond (only if regenerating SVG scores from source)
-- A POSIX shell such as Bash (for `build/buildScore.sh` and `build/buildAllScores.sh`)
+- LilyPond (only if regenerating SVG scores from source)
 
 ## Install Dependencies
 
@@ -47,27 +47,20 @@ Serves the contents of `dist/` locally.
 
 The SVG files in `src/scores/` are generated from LilyPond source files in `src/lilypond/`. If you modify the LilyPond sources, regenerate the scores before building.
 
-Build a single score:
-
-```console
-bash build/buildScore.sh "src/lilypond/Hugh Keyte/modern/Choir I A.ly"
-```
-
-Build all scores:
+Build all scores (default: Hugh Keyte, modern notation):
 
 ```console
 npm run build:scores
 ```
 
-This iterates over all `Choir*.ly` files under `src/lilypond/Hugh Keyte/` and runs `lilypond --svg` for each. It then strips `height` and `width` attributes from the first line of each generated SVG.
+Build a single score:
 
-### Platform Note for Score Generation
-
-`build/buildScore.sh` uses `sed -i ''`, which is macOS syntax. On Linux or Windows with GNU sed, change the last line to:
-
-```bash
-sed -i -E '1,1s/ height="[0-9.]+[a-zA-Z]*"//g; 1,1s/ width="[0-9.]+[a-zA-Z]*"//g' "$svg"
+```console
+npm run build:scores -- --choir="I A"
+npm run build:scores -- --version="Hugh Keyte" --notation=early --choir="II B"
 ```
+
+This iterates over matching `Choir*.ly` files under `src/lilypond/` and runs `lilypond --svg` for each, then post-processes the generated SVG with `build/postprocessSvg.py`.
 
 ## Testing
 

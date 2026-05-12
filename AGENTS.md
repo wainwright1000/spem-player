@@ -11,7 +11,7 @@ A browser-based practice tool for singers learning Thomas Tallis's 40-part motet
 - **Styling:** SCSS (compiled by `sass-embedded`), CSS custom properties for theming
 - **Testing:** Vitest 3 with jsdom, coverage via `@vitest/coverage-v8`; Playwright for end-to-end browser testing
 - **Parser:** Ohm.js for LilyPond grammar parsing
-- **Build scripts:** Bash (`build/buildScore.sh`, `build/buildAllScores.sh`) invoking LilyPond to generate SVG scores
+- **Build scripts:** Node.js (`build/buildScores.mjs`) invoking LilyPond to generate SVG scores, then Python (`build/postprocessSvg.py`) to annotate parts and strip dimensions
 - **Deployment:** Netlify (build command `npm run build`, publish directory `dist`). Automated deploy on merge to `main`. Live at [www.spemplayer.net](https://www.spemplayer.net).
 
 ## Architecture
@@ -63,7 +63,7 @@ Agent-critical notes:
 
 - `npm run build:ohm` is required before tests can run.
 - Playwright browser binaries are not auto-installed; run `npx playwright install chromium` after `npm install`.
-- LilyPond build scripts (`build/buildScore.sh`, `build/buildAllScores.sh`) use macOS `sed -i ''` syntax and will fail on GNU sed.
+- `npm run build:scores` generates SVGs from LilyPond and post-processes them. Pass `--choir`, `--notation`, or `--version` flags to build a subset.
 
 ## Testing Conventions
 
