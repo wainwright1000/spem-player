@@ -24,8 +24,5 @@ svg="src/scores/$edition/$type/${choir}.svg"
 echo "$(date): Generating score for $choir (edition: $edition, type: $type)..."
 lilypond --svg -o "src/scores/$edition/$type/" "$ly"
 
-echo "$(date): Annotating SVG parts for '$svg'"
-python3 build/annotateSvgParts.py "$svg"
-
-echo "$(date): Removing height= and width= from header of '$svg'"
-sed -E '1s/ height="[0-9.]+[a-zA-Z]*"//g; 1s/ width="[0-9.]+[a-zA-Z]*"//g' "$svg" > "$svg.tmp" && mv "$svg.tmp" "$svg"
+echo "$(date): Post-processing SVG '$svg'"
+python3 build/postprocessSvg.py "$svg"

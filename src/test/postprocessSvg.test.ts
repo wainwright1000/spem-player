@@ -3,16 +3,19 @@ import { mkdtempSync, copyFileSync, readFileSync, rmSync } from "fs";
 import { tmpdir } from "os";
 import { join } from "path";
 
-describe("annotateSvgParts build script", () => {
+describe("postprocessSvg build script", () => {
   const tmpDir = mkdtempSync(join(tmpdir(), "spem-annotate-test-"));
   const svgSource = "src/scores/Hugh Keyte/modern/Choir I A.svg";
   const spemSource = "src/lilypond/Hugh Keyte/spem.ly";
+  const wordsSource = "src/lilypond/Hugh Keyte/spem words.ly";
   const tmpSvg = join(tmpDir, "Choir I A.svg");
   const tmpSpem = join(tmpDir, "spem.ly");
+  const tmpWords = join(tmpDir, "spem words.ly");
 
   beforeAll(() => {
     copyFileSync(svgSource, tmpSvg);
     copyFileSync(spemSource, tmpSpem);
+    copyFileSync(wordsSource, tmpWords);
   });
 
   afterAll(() => {
@@ -21,7 +24,7 @@ describe("annotateSvgParts build script", () => {
 
   it("removes all anchor tags and adds data-part attributes", () => {
     execSync(
-      `python3 build/annotateSvgParts.py "${tmpSvg}" --spem "${tmpSpem}"`,
+      `python3 build/postprocessSvg.py "${tmpSvg}" --spem "${tmpSpem}" --words "${tmpWords}"`,
       { cwd: process.cwd(), encoding: "utf-8" }
     );
 
@@ -36,5 +39,12 @@ describe("annotateSvgParts build script", () => {
 
     // Should contain data-part attributes for multiple parts
     expect(output).toMatch(/data-part="4"/);
+
+    // Should contain data-part attributes for lyrics (text elements are direct children of anchors)
+    expect(output).toMatch(/data-part="[0-4]"/);
+
+    // Should strip height and width from the root <svg> element
+    expect(output).not.toMatch(/<svg[^>]*\sheight=/);
+    expect(output).not.toMatch(/<svg[^>]*\swidth=/);
   });
 });
