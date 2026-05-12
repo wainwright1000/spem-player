@@ -109,8 +109,12 @@ Specification depth matches ticket difficulty. Use the template that fits:
   [XS / S template](Specification-Template-XS-S).
 - **M / L** — structural changes, new features, and cross-file refactors. See
   the [M / L template](Specification-Template-M-L).
+- **Architectural** — repository restructuring, build pipeline changes,
+  technology choices, dependency migrations, and decisions about data ownership
+  or copyright. See the
+  [Architectural template](Specification-Template-Architectural).
 
-Both templates require the same rigour. An XS ticket needs precise root cause
+All templates require the same rigour. An XS ticket needs precise root cause
 and test plan, not a twelve-section dissertation.
 
 A well-formed ticket body contains:
@@ -146,7 +150,7 @@ A well-formed ticket body contains:
    ```
 
 5. Commit with a clear message referencing the ticket number.
-6. Push to your fork.
+6. Push to origin (Mark's repository).
 7. Open a PR to `origin/main`.
 8. Include `See #NNN` or `Fixes #NNN` in the PR description to link it to the
    board item. `Fixes` will close the ticket automatically when the PR merges
@@ -158,15 +162,20 @@ A well-formed ticket body contains:
 
 - **Board columns:** `Todo`, `In Progress`, `Review`, `Done`.
 - **`Specified` is a label, not a column.** Tickets stay in `Todo` after specification; the `specified` label indicates readiness.
-- **Auto-close keywords:** PR descriptions may use `Fixes #NNN` or `See #NNN`. Because PRs merge to `main` (the default branch), `Fixes` will close the ticket on merge.
+- **Auto-close keywords:** PR descriptions may use `Fixes #NNN`, `Closes #NNN`,
+  `Resolves #NNN`, or `See #NNN`. `Fixes`, `Closes`, and `Resolves` close the
+  ticket on merge; `See` links the PR without closing.
 - **Stale-PR checks:** the startup routine now reports any open PR with `CHANGES_REQUESTED`.
-- **Linked pull requests:** the board displays linked PRs automatically when `See #NNN` is used.
+- **Linked pull requests:** Both `Fixes #NNN` and `See #NNN` link the PR to the
+  board item automatically. The difference is that `Fixes` also closes the issue
+  on merge; `See` does not.
 
 #### What you do when you receive a PR
 
 - **Approve and merge** - Submit `Approve` review, merge PR to `main` - Move ticket from `Review` to `Done`
 - **Request changes** - Submit `Request changes` review - Leave ticket in `Review`; author will push fixes to the same branch
-- **Reject / close without merge** - Close the PR - Move ticket back to `In Progress` or `Todo` and tell the author why
+- **Reject / close without merge** - Close the PR and leave a review comment or
+  PR comment explaining why. Move ticket back to `In Progress` or `Todo`.
 - **Merge conflicts** - Leave a PR comment - Leave ticket in `Review`; author will rebase and push
 
 **Do not close a PR and ask for a new one.** Keep the same PR open and request changes. Closing destroys the conversation history.
