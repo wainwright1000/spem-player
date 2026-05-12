@@ -142,8 +142,9 @@ A well-formed ticket body contains:
 5. Commit with a clear message referencing the ticket number.
 6. Push to your fork.
 7. Open a PR to `upstream/main`.
-8. Include `See #NNN` in the PR description to link it to the board item.
-   Do not use `Fixes`, `Closes`, or `Resolves`.
+8. Include `See #NNN` or `Fixes #NNN` in the PR description to link it to the
+   board item. `Fixes` will close the ticket automatically when the PR merges
+   to `main`.
 
 ### For the Maintainer
 
@@ -163,10 +164,6 @@ A well-formed ticket body contains:
 - **Merge conflicts** - Leave a PR comment - Leave ticket in `Review`; author will rebase and push
 
 **Do not close a PR and ask for a new one.** Keep the same PR open and request changes. Closing destroys the conversation history.
-
-
-
-
 
 ## Development Practices
 
