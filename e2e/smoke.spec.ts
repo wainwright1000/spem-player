@@ -47,6 +47,23 @@ test.describe("Spem Player smoke tests", () => {
     await expect(backdrop).toBeHidden();
   });
 
+  test("help panel does not overlap header (#249)", async ({ page }) => {
+    await page.goto("/");
+
+    const help = page.locator("#help");
+    const header = page.locator("header");
+
+    await page.locator("#info").click();
+    await expect(help).toBeVisible();
+
+    const helpBox = await help.boundingBox();
+    const headerBox = await header.boundingBox();
+
+    expect(helpBox).not.toBeNull();
+    expect(headerBox).not.toBeNull();
+    expect(helpBox!.y).toBeGreaterThanOrEqual(headerBox!.y + headerBox!.height);
+  });
+
   test("URL parameters initialise state", async ({ page }) => {
     await page.goto("/?choir=3&part=2&bar=10");
 
