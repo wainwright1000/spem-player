@@ -65,9 +65,15 @@ Mark's kanban workflow with explicit entry and exit criteria:
 ### Branching
 
 - `main` — production branch.
-- Feature branches are created from `upstream/main` (fork contributors) or from `main` (direct collaborators).
+- Feature branches are created from `origin/main`.
 
-Pull requests from forks target `upstream/main`.
+**Branch naming convention:** `andrew/<ticket-number>-short-description`.
+This makes ownership clear and traces the branch back to its ticket.
+
+**Do not use a fork.** Push feature branches directly to `wainwmr/spem-player`
+(Mark's repository). Pull requests are opened from branches inside the main
+repository, not from a fork. This avoids Netlify's external-contributor approval
+gate and enables automatic deploy previews.
 
 ### Ticket Lifecycle
 
@@ -121,7 +127,7 @@ A well-formed ticket body contains:
 
 ### Pull Request Process
 
-1. Create a feature branch from `upstream/main`.
+1. Create a feature branch from `origin/main`.
 2. Make your changes, add tests, and update documentation.
 3. Ensure tests pass:
 
@@ -141,7 +147,7 @@ A well-formed ticket body contains:
 
 5. Commit with a clear message referencing the ticket number.
 6. Push to your fork.
-7. Open a PR to `upstream/main`.
+7. Open a PR to `origin/main`.
 8. Include `See #NNN` or `Fixes #NNN` in the PR description to link it to the
    board item. `Fixes` will close the ticket automatically when the PR merges
    to `main`.
