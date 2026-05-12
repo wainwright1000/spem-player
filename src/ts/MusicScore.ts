@@ -45,7 +45,7 @@ export class MusicScore extends MusicElement {
     this.highlightPosition.setAttribute("y", "0");
     this.highlightPosition.setAttribute("width", "7");
     this.highlightPosition.setAttribute("height", "0"); // Will be set later when we know the height of the SVG
-    this.highlightPosition.style.fill = `hsla(${colors().choir[0]}, 80%, 55%, 1)`;
+    this.highlightPosition.style.fill = colors().scoreHighlight;
     this.highlightPosition.style.fillOpacity = "0"; // initially invisible
     this.highlightPosition.style.strokeWidth = "5px"; //Set stroke width
 
@@ -53,7 +53,7 @@ export class MusicScore extends MusicElement {
     this.highlightBar.setAttribute("x", "0");
     this.highlightBar.setAttribute("width", "0");
     this.highlightBar.setAttribute("height", "0"); // Will be set later when we know the height of the SVG
-    this.highlightBar.style.fill = `hsla(${colors().choir[0]}, 80%, 55%, 1)`;
+    this.highlightBar.style.fill = colors().scoreHighlight;
     this.highlightBar.style.fillOpacity = "0"; // initially invisible
     this.highlightBar.style.strokeWidth = "5px"; //Set stroke width
 
@@ -183,15 +183,11 @@ export class MusicScore extends MusicElement {
   async setChoir(c: string | number) {
     super.setChoir(c);
 
-    const choirColor = `hsla(${colors().choir[this.choir]}, 80%, 55%, 1)`;
-    this.highlightPosition.style.fill = choirColor;
-    this.highlightBar.style.fill = choirColor;
-
     // load the correct score for this choir
     await this.#loadScore();
 
     // set the border color to match
-    this.style.borderColor = choirColor;
+    this.style.borderColor = `hsla(${colors().choir[this.choir]}, 80%, 55%, 1)`;
   }
 
   setBar(b: string | number) {
@@ -264,13 +260,13 @@ export class MusicScore extends MusicElement {
   highlight() {
     const isFractional = Math.abs(this.bar - Math.round(this.bar)) > 0.001;
     if (this.playing || isFractional) {
-      this.highlightPosition.style.fillOpacity = this.bar > 1 ? "0.1" : "0";
+      this.highlightPosition.style.fillOpacity = this.bar > 1 ? "0.05" : "0";
       this.highlightBar.style.fillOpacity = "0";
       if (this.scrollArea) {
         this.scrollArea.style.overflow = "hidden"; // hide the scroll bar while playing
       }
     } else {
-      this.highlightBar.style.fillOpacity = "0.1";
+      this.highlightBar.style.fillOpacity = "0.05";
       this.highlightPosition.style.fillOpacity = "0";
       if (this.scrollArea) {
         this.scrollArea.style.overflow = "auto";
@@ -352,8 +348,8 @@ export class MusicScore extends MusicElement {
     this.highlightPart.setAttribute("width", String(this.svgWidth));
     this.highlightPart.setAttribute("y", String(y));
     this.highlightPart.setAttribute("height", String(height));
-    this.highlightPart.style.fill = `hsla(${colors().choir[this.choir]}, 80%, 55%, 1)`;
-    this.highlightPart.style.fillOpacity = "0.12";
+    this.highlightPart.style.fill = colors().scoreHighlight;
+    this.highlightPart.style.fillOpacity = "0.05";
 
     dimStyle.textContent = `g[data-part]:not([data-part="${this.voicePart}"]) { opacity: 0.3; }`;
   }
