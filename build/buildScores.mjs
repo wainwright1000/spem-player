@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 /* eslint-env node */
+// Copyright (c) 2024-2026 Mark Wainwright
+// SPDX-License-Identifier: MIT
+
 import { execSync } from "child_process";
 import { globSync } from "fs";
 import { basename } from "path";
