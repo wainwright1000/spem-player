@@ -91,8 +91,3 @@ npm run test:e2e:report
 - `@playwright/test`: test runner and browser automation
 - `chromium`: browser under test (installed via `npx playwright install chromium`)
 
-## Local Tooling Tests
-
-Python helper scripts in `scripts/` have their own test suite in `tests-local/`.
-These tests use `pytest` and `unittest.mock` to mock `subprocess` calls. They are
-separate from the Vitest suite and are not tracked in git.
