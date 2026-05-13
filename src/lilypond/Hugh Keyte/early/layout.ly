@@ -60,9 +60,11 @@ shiftFirstNote = { \once \override NoteColumn.X-offset = #2 }
 %       \override Staff.Accidental.alteration-glyph-name-alist = #standard-alteration-glyph-name-alist
     % \override NoteHead.style = #'baroque
 
-    \consists Ambitus_engraver
-%     \override VerticalAxisGroup
-%               .default-staff-staff-spacing
-%               .basic-distance = #12
+    \override VerticalAxisGroup
+              .default-staff-staff-spacing
+              .basic-distance = #13
+    \override VerticalAxisGroup
+              .default-staff-staff-spacing
+              .minimum-distance = #13
   }
 }

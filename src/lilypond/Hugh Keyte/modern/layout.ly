@@ -5,7 +5,7 @@
 \paper {
 
   page-breaking = #ly:one-line-breaking
-  paper-height = 110\mm
+  paper-height = 111\mm
   top-margin = 0
   bottom-margin = 0
   left-margin = 0
@@ -19,10 +19,12 @@ shiftFirstNote = { \once \override NoteColumn.X-offset = #2 }
 \layout {
   \context {
     \Staff
-    \consists Ambitus_engraver
     \override VerticalAxisGroup
               .default-staff-staff-spacing
               .basic-distance = #15
+    \override VerticalAxisGroup
+              .default-staff-staff-spacing
+              .minimum-distance = #15
   }
   \context {
     \Score

@@ -373,7 +373,7 @@ export class MusicScore extends MusicElement {
       .querySelectorAll("#hPos, #hBar, #hPart, #part-dim-style")
       .forEach((el) => el.remove());
 
-    const headerWidthSvg = 11.5;
+    const headerWidthSvg = 8;
     const scale = this.svg.clientWidth / this.svgWidth;
     let overlayWidth = headerWidthSvg * scale;
     if (overlayWidth < 10) {

@@ -1,6 +1,7 @@
 \version "2.24.4"
 
 leadMark = \markup {
+  \with-dimensions #'(0 . 0) #'(0 . 0)
   \with-color #black % not red any more
   \path #0.2 #'((moveto 0 0)(lineto 0 1)
      (lineto 1 1))
