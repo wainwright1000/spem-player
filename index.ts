@@ -237,6 +237,17 @@ function keyboardTapped(e: KeyboardEvent) {
         controls.pause();
         setBar(canvas.seek(current, -1));
         break;
+      case "KeyB": {
+        const barInput = document.getElementById(
+          "bar-field"
+        ) as HTMLInputElement;
+        if (barInput) {
+          controls.setReturnFocus(document.activeElement);
+          barInput.focus();
+          barInput.select();
+        }
+        break;
+      }
       default:
         break;
     }

@@ -25,6 +25,8 @@ export class MusicControls extends MusicElement {
   svgPlay: SVGElement | null = null;
   svgPause: SVGElement | null = null;
 
+  returnFocusTarget: Element | null = null;
+
   #isLooping = false;
 
   constructor() {
@@ -139,12 +141,25 @@ export class MusicControls extends MusicElement {
         "End",
       ];
       if (allowed.includes(e.key) || /^[0-9]$/.test(e.key)) {
+        if (e.key === "Enter" && this.returnFocusTarget) {
+          const target = this.returnFocusTarget;
+          this.returnFocusTarget = null;
+          setTimeout(() => {
+            if (target instanceof HTMLElement) {
+              target.focus();
+            }
+          }, 0);
+        }
         return;
       }
       e.preventDefault();
     });
     if (this.playpausebutton)
       this.playpausebutton.addEventListener("click", this.playpause.bind(this));
+  }
+
+  setReturnFocus(element: Element | null) {
+    this.returnFocusTarget = element;
   }
 
   async #handleControlsChanged() {

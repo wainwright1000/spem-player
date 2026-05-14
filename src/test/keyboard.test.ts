@@ -143,4 +143,90 @@ describe("Space bar play/pause", () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
     expect(document.body.classList.contains("light-theme")).toBe(wasLight);
   });
+
+  it("Ctrl+B focuses the bar input and selects its value", async () => {
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const selectSpy = vi.spyOn(bar, "select");
+
+    document.body.focus();
+    document.body.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        code: "KeyB",
+        ctrlKey: true,
+        bubbles: true,
+      })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.activeElement).toBe(bar);
+    expect(selectSpy).toHaveBeenCalled();
+    selectSpy.mockRestore();
+  });
+
+  it("Ctrl+B is blocked when an input element is focused", async () => {
+    const input = document.createElement("input");
+    input.classList.add("control");
+    document.body.appendChild(input);
+    input.focus();
+
+    input.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        code: "KeyB",
+        ctrlKey: true,
+        bubbles: true,
+      })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(document.activeElement).toBe(input);
+    document.body.removeChild(input);
+  });
+
+  it("Enter in bar input returns focus to the previous element", async () => {
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    const previous = document.createElement("button");
+    document.body.appendChild(previous);
+    previous.focus();
+
+    // Ctrl+B to focus bar
+    previous.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        code: "KeyB",
+        ctrlKey: true,
+        bubbles: true,
+      })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(document.activeElement).toBe(bar);
+
+    // Type and press Enter
+    bar.value = "50";
+    bar.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        code: "Enter",
+        key: "Enter",
+        bubbles: true,
+      })
+    );
+    bar.dispatchEvent(new Event("change", { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
+    expect(document.activeElement).toBe(previous);
+    document.body.removeChild(previous);
+  });
+
+  it("Ctrl+B with Cmd key (metaKey) also focuses bar input", async () => {
+    document.body.focus();
+    document.body.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        code: "KeyB",
+        metaKey: true,
+        bubbles: true,
+      })
+    );
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
+    expect(document.activeElement).toBe(bar);
+  });
 });
