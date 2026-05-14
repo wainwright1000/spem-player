@@ -29,9 +29,7 @@ test.describe("Alt+B bar jump keyboard shortcut", () => {
     await expect(barInput).not.toBeFocused();
   });
 
-  test("focus returns to the previously focused element after Enter", async ({
-    page,
-  }) => {
+  test("focus returns to the play button after Enter", async ({ page }) => {
     await page.goto("/");
 
     const playButton = page.locator("#playpausebutton");
@@ -47,6 +45,25 @@ test.describe("Alt+B bar jump keyboard shortcut", () => {
     await barInput.press("Enter");
 
     await expect(playButton).toBeFocused();
+    await expect(barInput).not.toBeFocused();
+  });
+
+  test("focus returns to the canvas after Enter", async ({ page }) => {
+    await page.goto("/");
+
+    const canvas = page.locator("music-canvas");
+    const barInput = page.locator("#bar-field");
+
+    await canvas.click();
+    await expect(canvas).toBeFocused();
+
+    await page.keyboard.press("Alt+b");
+    await expect(barInput).toBeFocused();
+
+    await barInput.fill("10");
+    await barInput.press("Enter");
+
+    await expect(canvas).toBeFocused();
     await expect(barInput).not.toBeFocused();
   });
 
