@@ -220,7 +220,7 @@ function keyboardTapped(e: KeyboardEvent) {
   // don't handle keyboard events on the four control widgets
   // cos it messes with the UI interaction
   const classes = [...e.target.classList];
-  if (classes.includes("control")) {
+  if (classes.includes("control") && !e.altKey) {
     return;
   }
   // don't handle keyboard events if composing text (chinese characters)
@@ -242,22 +242,24 @@ function keyboardTapped(e: KeyboardEvent) {
     }
     return;
   }
-  if (e.altKey) {
-    switch (e.code) {
-      case "KeyB": {
-        const barInput = document.getElementById(
-          "bar-field"
-        ) as HTMLInputElement;
-        if (barInput) {
-          controls.pause();
-          controls.setReturnFocus(document.activeElement);
-          barInput.focus();
-          barInput.select();
-        }
-        break;
+  if (e.altKey && e.code === "KeyB") {
+    const barInput = document.getElementById(
+      "bar-field"
+    ) as HTMLInputElement;
+    if (barInput) {
+      controls.pause();
+      const active = document.activeElement;
+      if (
+        active &&
+        active !== document.body &&
+        active !== document.documentElement
+      ) {
+        controls.setReturnFocus(active);
+      } else {
+        controls.setReturnFocus(null);
       }
-      default:
-        break;
+      barInput.focus();
+      barInput.select();
     }
     return;
   }

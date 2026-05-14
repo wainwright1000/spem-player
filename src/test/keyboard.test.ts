@@ -163,11 +163,13 @@ describe("Space bar play/pause", () => {
     selectSpy.mockRestore();
   });
 
-  it("Alt+B is blocked when an input element is focused", async () => {
+  it("Alt+B focuses bar input even when a control input is focused", async () => {
     const input = document.createElement("input");
     input.classList.add("control");
     document.body.appendChild(input);
     input.focus();
+
+    const bar = document.getElementById("bar-field") as HTMLInputElement;
 
     input.dispatchEvent(
       new KeyboardEvent("keydown", {
@@ -178,7 +180,7 @@ describe("Space bar play/pause", () => {
     );
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    expect(document.activeElement).toBe(input);
+    expect(document.activeElement).toBe(bar);
     document.body.removeChild(input);
   });
 
