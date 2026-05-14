@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeAll, vi } from "vitest";
+﻿import { describe, it, expect, beforeAll, vi } from "vitest";
 import { MusicControls } from "../ts/MusicControls";
 
 describe("Space bar play/pause", () => {
@@ -144,7 +144,7 @@ describe("Space bar play/pause", () => {
     expect(document.body.classList.contains("light-theme")).toBe(wasLight);
   });
 
-  it("Ctrl+B focuses the bar input and selects its value", async () => {
+  it("Alt+B focuses the bar input and selects its value", async () => {
     const bar = document.getElementById("bar-field") as HTMLInputElement;
     const selectSpy = vi.spyOn(bar, "select");
 
@@ -152,7 +152,7 @@ describe("Space bar play/pause", () => {
     document.body.dispatchEvent(
       new KeyboardEvent("keydown", {
         code: "KeyB",
-        ctrlKey: true,
+        altKey: true,
         bubbles: true,
       })
     );
@@ -163,7 +163,7 @@ describe("Space bar play/pause", () => {
     selectSpy.mockRestore();
   });
 
-  it("Ctrl+B is blocked when an input element is focused", async () => {
+  it("Alt+B is blocked when an input element is focused", async () => {
     const input = document.createElement("input");
     input.classList.add("control");
     document.body.appendChild(input);
@@ -172,7 +172,7 @@ describe("Space bar play/pause", () => {
     input.dispatchEvent(
       new KeyboardEvent("keydown", {
         code: "KeyB",
-        ctrlKey: true,
+        altKey: true,
         bubbles: true,
       })
     );
@@ -188,11 +188,11 @@ describe("Space bar play/pause", () => {
     document.body.appendChild(previous);
     previous.focus();
 
-    // Ctrl+B to focus bar
+    // Alt+B to focus bar
     previous.dispatchEvent(
       new KeyboardEvent("keydown", {
         code: "KeyB",
-        ctrlKey: true,
+        altKey: true,
         bubbles: true,
       })
     );
@@ -215,18 +215,22 @@ describe("Space bar play/pause", () => {
     document.body.removeChild(previous);
   });
 
-  it("Ctrl+B with Cmd key (metaKey) also focuses bar input", async () => {
+  it("Alt+B pauses playback before focusing bar input", async () => {
+    const controls = document.querySelector("music-controls") as MusicControls;
+    controls.play();
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(controls.isPlaying()).toBe(true);
+
     document.body.focus();
     document.body.dispatchEvent(
       new KeyboardEvent("keydown", {
         code: "KeyB",
-        metaKey: true,
+        altKey: true,
         bubbles: true,
       })
     );
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    const bar = document.getElementById("bar-field") as HTMLInputElement;
-    expect(document.activeElement).toBe(bar);
+    expect(controls.isPlaying()).toBe(false);
   });
 });

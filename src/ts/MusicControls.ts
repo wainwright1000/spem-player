@@ -141,15 +141,6 @@ export class MusicControls extends MusicElement {
         "End",
       ];
       if (allowed.includes(e.key) || /^[0-9]$/.test(e.key)) {
-        if (e.key === "Enter" && this.returnFocusTarget) {
-          const target = this.returnFocusTarget;
-          this.returnFocusTarget = null;
-          setTimeout(() => {
-            if (target instanceof HTMLElement) {
-              target.focus();
-            }
-          }, 0);
-        }
         return;
       }
       e.preventDefault();
@@ -180,6 +171,14 @@ export class MusicControls extends MusicElement {
     }
     this.barinput.value = String(this.bar);
     this.fireEvent("music-controls-changed");
+
+    if (this.returnFocusTarget && document.activeElement === this.barinput) {
+      const target = this.returnFocusTarget;
+      this.returnFocusTarget = null;
+      if (target instanceof HTMLElement) {
+        target.focus();
+      }
+    }
   }
 
   playpause() {
