@@ -64,7 +64,7 @@ body {
 #backdrop {
   position: fixed;
   display: none;
-  z-index: 5;
+  z-index: 11;
   top: 0;
   left: 0;
   width: 100vw;
@@ -206,7 +206,7 @@ header {
   background: var(--color-background-lighter);
   max-width: 80%;
   left: 10%;
-  z-index: 10;
+  z-index: 12;
 
   em {
     font-family: cursive;
