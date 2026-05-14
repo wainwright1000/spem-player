@@ -43,6 +43,10 @@ recordingswitch.innerHTML = recordingswitchSvg;
 scoreswitch.innerHTML = scoreswitchSvg;
 darkswitch.innerHTML = darkswitchSvg;
 
+recordingswitch.setAttribute("tabindex", "-1");
+scoreswitch.setAttribute("tabindex", "-1");
+darkswitch.setAttribute("tabindex", "-1");
+
 let isDragging = false;
 
 var current: State = {
