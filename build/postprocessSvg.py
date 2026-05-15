@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Copyright (c) 2024-2026 Mark Wainwright
+# SPDX-License-Identifier: MIT
 """Post-process LilyPond-generated SVGs.
 
 Parses \pointAndClickOn anchor tags to determine which voice part each

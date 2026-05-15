@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Mark Wainwright
+// Copyright (c) 2024-2026 Mark Wainwright
 // SPDX-License-Identifier: MIT
 
 import config from "./config";
