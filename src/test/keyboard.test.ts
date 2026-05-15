@@ -1,4 +1,4 @@
-﻿import { describe, it, expect, beforeAll, vi } from "vitest";
+import { describe, it, expect, beforeAll, vi } from "vitest";
 import { MusicControls } from "../ts/MusicControls";
 
 describe("Space bar play/pause", () => {
