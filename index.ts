@@ -247,6 +247,7 @@ function keyboardTapped(e: KeyboardEvent) {
     return;
   }
   if (e.altKey && e.code === "KeyB") {
+    e.preventDefault();
     const barInput = document.getElementById(
       "bar-field"
     ) as HTMLInputElement;

@@ -144,6 +144,22 @@ describe("Space bar play/pause", () => {
     expect(document.body.classList.contains("light-theme")).toBe(wasLight);
   });
 
+  it("Alt+B prevents default to avoid macOS special-character insertion", async () => {
+    const event = new KeyboardEvent("keydown", {
+      code: "KeyB",
+      altKey: true,
+      bubbles: true,
+      cancelable: true,
+    });
+    const preventDefaultSpy = vi.spyOn(event, "preventDefault");
+
+    document.body.dispatchEvent(event);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    expect(preventDefaultSpy).toHaveBeenCalled();
+    preventDefaultSpy.mockRestore();
+  });
+
   it("Alt+B focuses the bar input and selects its value", async () => {
     const bar = document.getElementById("bar-field") as HTMLInputElement;
     const selectSpy = vi.spyOn(bar, "select");
