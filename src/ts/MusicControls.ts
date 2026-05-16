@@ -135,7 +135,7 @@ export class MusicControls extends MusicElement {
             this.returnFocusTarget = null;
             target.focus();
           } else {
-            this.barinput.blur();
+            this.barinput?.blur();
           }
         }
         return;
