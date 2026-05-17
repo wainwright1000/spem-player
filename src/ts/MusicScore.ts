@@ -235,7 +235,7 @@ export class MusicScore extends MusicElement {
     if (this.bar >= 1) {
       this.highlightPosition.setAttribute(
         "x",
-        String(barcurrentpct * this.svgWidth - 2.5)
+        String(barcurrentpct * this.svgWidth - 3.5)
       );
     }
 
