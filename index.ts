@@ -228,7 +228,7 @@ function keyboardTapped(e: KeyboardEvent) {
     return;
   }
   // don't handle keyboard events if composing text (chinese characters)
-  if (e.isComposing || e.keyCode === 229) {
+  if (e.isComposing) {
     return;
   }
   if (e.metaKey || e.ctrlKey) {
