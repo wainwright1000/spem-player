@@ -39,6 +39,7 @@ export class MusicScore extends MusicElement {
 
   async connectedCallback() {
     super.connectedCallback();
+    this.setAttribute("tabindex", "-1");
 
     this.highlightPosition.setAttribute("id", "hPos");
     this.highlightPosition.setAttribute("x", "0");
