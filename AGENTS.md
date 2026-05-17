@@ -4,6 +4,8 @@
 
 A browser-based practice tool for singers learning Thomas Tallis's 40-part motet, _Spem in alium_. It plays accentuated recordings of individual voice parts (from two sources: Andrew Leslie Cooper and Choir of the Earth) while displaying synchronised sheet music and a visual overview of all 40 parts.
 
+This project is maintained by three AI agents — Kimi, Copilot, and Claude Code — each of which reads these instructions. Agent handover files are stored in `temp/` (e.g. `temp/HANDOVER-CLAUDE.md`).
+
 ## Tech Stack
 
 - **Language:** TypeScript (strict mode, ES2020 target, ESNext modules)
@@ -106,7 +108,7 @@ assessment methodology.
 
 ### Session Startup
 
-1. Read `AGENTS-LOCAL.md` and follow its Session Startup section.
+Follow `~/.local/bin/method-boot.md`.
 
 ## Local Instructions
 
