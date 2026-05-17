@@ -121,7 +121,8 @@ header {
       display: inline-block;
       vertical-align: middle;
 
-      path {
+      path,
+      circle {
         stroke: var(--color-title);
       }
     }
