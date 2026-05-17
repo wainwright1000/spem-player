@@ -15,6 +15,7 @@ import { MusicScore } from "./src/ts/MusicScore";
 import recordingswitchSvg from "./src/icons/recordingswitch.svg?raw";
 import scoreswitchSvg from "./src/icons/scoreswitch.svg?raw";
 import darkswitchSvg from "./src/icons/darkswitch.svg?raw";
+import helpSvg from "./src/icons/help.svg?raw";
 
 MusicCanvas.define("music-canvas");
 MusicCanvasWatcher.define("music-canvas-watcher");
@@ -32,6 +33,7 @@ const help = document.getElementById("help") as HTMLDivElement;
 const backdrop = document.getElementById("backdrop") as HTMLDivElement;
 const darkswitch = document.getElementById("darkswitch") as HTMLElement;
 const scoreswitch = document.getElementById("scoreswitch") as HTMLElement;
+const helpIcon = document.getElementById("help-icon") as HTMLElement;
 const recordingswitch = document.getElementById(
   "recordingswitch"
 ) as HTMLElement;
@@ -39,10 +41,12 @@ const recordinglabel = document.getElementById(
   "recordinglabel"
 ) as HTMLSpanElement;
 
+helpIcon.innerHTML = helpSvg;
 recordingswitch.innerHTML = recordingswitchSvg;
 scoreswitch.innerHTML = scoreswitchSvg;
 darkswitch.innerHTML = darkswitchSvg;
 
+helpIcon.setAttribute("tabindex", "-1");
 recordingswitch.setAttribute("tabindex", "-1");
 scoreswitch.setAttribute("tabindex", "-1");
 darkswitch.setAttribute("tabindex", "-1");
