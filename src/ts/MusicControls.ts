@@ -28,6 +28,7 @@ export class MusicControls extends MusicElement {
   returnFocusTarget: Element | null = null;
 
   #isLooping = false;
+  #loopId = 0;
 
   constructor() {
     super();
@@ -159,6 +160,8 @@ export class MusicControls extends MusicElement {
     });
     if (this.playpausebutton)
       this.playpausebutton.addEventListener("click", this.playpause.bind(this));
+
+    this.audio.addEventListener("ended", () => this.pause());
   }
 
   setReturnFocus(element: Element | null) {
@@ -288,6 +291,7 @@ export class MusicControls extends MusicElement {
   pause() {
     this.playing = false;
     this.#isLooping = false;
+    window.cancelAnimationFrame(this.#loopId);
     if (this.svgPlay && this.svgLoading && this.svgPause) {
       this.svgPlay.style.display = "block";
       this.svgPause.style.display = "none";
